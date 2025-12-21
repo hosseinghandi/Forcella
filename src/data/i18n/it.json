@@ -1,0 +1,95 @@
+{
+  "metadata_it": {
+    "welcoming": {
+      "static" : "Benvenuti alla pizzeria Forcella",
+      "info": {
+         "0": "La pizza napoletana è la versione della pizza tonda tipicamente preparata nella città italiana di Napoli.",
+        "1": "ed è caratterizzata da un impasto morbido e sottile con i bordi alti.",
+        "2": "I pomodori utilizzati sono tradizionalmente i San Marzano oppure i pomodorini del Piennolo del Vesuvio."
+      }
+    },
+
+    "pizza": [
+      {
+        "name": "Margherita",
+        "description": "Un classico senza tempo, la pizza Margherita offre una combinazione semplice ma ricca di salsa di pomodoro fresca, mozzarella cremosa e foglie di basilico profumate. Leggera, fresca e piena del tradizionale sapore italiano.",
+        "image": "./pizza-image/margherita.png",
+        "ingredients": ["pomodoro", "mozzarella", "basilico"],
+        "calories": 250,
+        "spiceLevel": "nessuno",
+        "price": 8.99,
+        "review": "5",
+        "time": "10",
+        "isOffered": [true, "20"],
+        "category": ["speciali"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "1"
+      },
+      {
+        "name": "Pepperoni",
+        "description": "Un grande classico dal gusto deciso, questa pizza è ricoperta da strati di pepperoni piccante, mozzarella filante e una base di pomodoro saporita. I bordi croccanti e la nota affumicata rendono ogni morso irresistibile.",
+        "image": "./pizza-image/peperoni.png",
+        "ingredients": ["pomodoro", "mozzarella", "pepperoni"],
+        "calories": 300,
+        "spiceLevel": "medio",
+        "price": 9.99,
+        "review": "4.5",
+        "time": "15",
+        "isOffered": [false, "0"],
+        "category": ["speciali", "carne"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "2"
+      },
+      {
+        "name": "BBQ Chicken",
+        "description": "Una variante saporita della tradizione: la pizza BBQ Chicken unisce tenero petto di pollo grigliato, salsa BBQ affumicata, cipolle caramellate e mozzarella fusa. Perfetta per chi ama un gusto dolce e affumicato.",
+        "image": "./pizza-image/chicken.png",
+        "ingredients": ["salsa bbq", "petto di pollo", "cipolla", "mozzarella"],
+        "calories": 320,
+        "spiceLevel": "delicato",
+        "price": 10.99,
+        "review": "3.8",
+        "time": "20",
+        "isOffered": [false, "0"],
+        "category": ["speciali", "carne"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "3"
+      },
+      {
+        "name": "Hawaiian",
+        "description": "Un mix dolce e salato con succosi pezzi di ananas, prosciutto saporito, mozzarella cremosa e salsa di pomodoro. Un preferito tropicale che bilancia perfettamente dolcezza e sapidità.",
+        "image": "./pizza-image/hawai.png",
+        "ingredients": ["pomodoro", "mozzarella", "prosciutto", "ananas"],
+        "calories": 290,
+        "spiceLevel": "nessuno",
+        "price": 9.99,
+        "review": "4",
+        "time": "20",
+        "isOffered": [true, "15"],
+        "category": ["carne"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "4"
+      },
+      {
+        "name": "Veggie",
+        "description": "Fresca e colorata, la pizza Veggie è ricca di peperoni, cipolle, olive nere e mozzarella su una base di pomodoro. Un'opzione croccante e saporita, perfetta per gli amanti delle verdure.",
+        "image": "./pizza-image/vegan.png",
+        "ingredients": ["pomodoro", "mozzarella", "peperoni", "cipolla", "olive"],
+        "calories": 240,
+        "spiceLevel": "nessuno",
+        "price": 8.99,
+        "review": "4.1",
+        "time": "10",
+        "isOffered": [false, "0"],
+        "category": ["vegetariana"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "5"
+      }
+    ]
+  }
+}

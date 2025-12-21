@@ -1,0 +1,94 @@
+{
+  "metadata_en": {
+    "welcoming": {
+      "static" : "Welcome to pizzeria Forcella",
+      "info": {
+        "0": "Neapolitan pizza is the version of the round pizza typically prepared in the Italian city of Naples.",
+        "1": "and characterised by a soft, thin dough with high edges.",
+        "2": "The tomatoes are traditionally either San Marzano tomatoes or pomodorini del Piennolo del Vesuvio."
+      }
+    },
+    "pizza": [
+      {
+        "name": "Margherita",
+        "description": "A timeless classic, the Margherita pizza offers a simple yet rich combination of fresh tomato sauce, creamy mozzarella, and fragrant basil leaves. Light, fresh, and full of traditional Italian flavor.",
+        "image": "./pizza-image/margherita.png",
+        "ingredients": ["tomato", "mozzarella", "basil"],
+        "calories": 250,
+        "spiceLevel": "none",
+        "price": 8.99,
+        "review": "5",
+        "time": "10",
+        "isOffered": [true, "20"],
+        "category": ["special"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "1"
+      },
+      {
+        "name": "Pepperoni",
+        "description": "A great classic with a bold taste, this pizza is topped with layers of spicy pepperoni, melted mozzarella, and a flavorful tomato base. Crispy edges and a smoky note make every bite irresistible.",
+        "image": "./pizza-image/peperoni.png",
+        "ingredients": ["tomato", "mozzarella", "pepperoni"],
+        "calories": 300,
+        "spiceLevel": "medium",
+        "price": 9.99,
+        "review": "4.5",
+        "time": "15",
+        "isOffered": [false, "0"],
+        "category": ["special", "meat"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "2"
+      },
+      {
+        "name": "BBQ Chicken",
+        "description": "A flavorful twist on tradition: the BBQ Chicken pizza combines tender grilled chicken breast, smoky BBQ sauce, caramelized onions, and melted mozzarella. Perfect for those who love a sweet and smoky taste.",
+        "image": "./pizza-image/chicken.png",
+        "ingredients": ["bbq sauce", "chicken breast", "onion", "mozzarella"],
+        "calories": 320,
+        "spiceLevel": "mild",
+        "price": 10.99,
+        "review": "3.8",
+        "time": "20",
+        "isOffered": [false, "0"],
+        "category": ["special", "meat"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "3"
+      },
+      {
+        "name": "Hawaiian",
+        "description": "A sweet and savory mix with juicy pineapple chunks, flavorful ham, creamy mozzarella, and tomato sauce. A tropical favorite that perfectly balances sweetness and saltiness.",
+        "image": "./pizza-image/hawai.png",
+        "ingredients": ["tomato", "mozzarella", "ham", "pineapple"],
+        "calories": 290,
+        "spiceLevel": "none",
+        "price": 9.99,
+        "review": "4",
+        "time": "20",
+        "isOffered": [true, "15"],
+        "category": ["meat"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "4"
+      },
+      {
+        "name": "Veggie",
+        "description": "Fresh and colorful, the Veggie pizza is loaded with bell peppers, onions, black olives, and mozzarella on a tomato base. A crunchy and flavorful option, perfect for vegetable lovers.",
+        "image": "./pizza-image/vegan.png",
+        "ingredients": ["tomato", "mozzarella", "bell peppers", "onion", "olives"],
+        "calories": 240,
+        "spiceLevel": "none",
+        "price": 8.99,
+        "review": "4.1",
+        "time": "10",
+        "isOffered": [false, "0"],
+        "category": ["vegetarian"],
+        "isLiked": false,
+        "isAdded": false,
+        "id": "5"
+      }
+    ]
+  }
+}
