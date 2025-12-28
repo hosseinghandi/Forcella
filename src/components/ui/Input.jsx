@@ -31,8 +31,6 @@ export default function Input({
           {icon}
         </div>
       </div>
-
-      {/* {error && <span className="text-red-500 text-xs">Invalid input</span>} */}
     </div>
   );
 }

@@ -1,95 +1,133 @@
 {
-  "metadata_it": {
+  "metadata": {
     "welcoming": {
       "static" : "Benvenuti alla pizzeria Forcella",
       "info": {
-         "0": "La pizza napoletana è la versione della pizza tonda tipicamente preparata nella città italiana di Napoli.",
+        "0": "La pizza napoletana è la versione della pizza tonda tipicamente preparata nella città italiana di Napoli.",
         "1": "ed è caratterizzata da un impasto morbido e sottile con i bordi alti.",
         "2": "I pomodori utilizzati sono tradizionalmente i San Marzano oppure i pomodorini del Piennolo del Vesuvio."
       }
     },
-
-    "pizza": [
-      {
+    "pizza": {
+      "1": {
         "name": "Margherita",
-        "description": "Un classico senza tempo, la pizza Margherita offre una combinazione semplice ma ricca di salsa di pomodoro fresca, mozzarella cremosa e foglie di basilico profumate. Leggera, fresca e piena del tradizionale sapore italiano.",
-        "image": "./pizza-image/margherita.png",
+        "description": "Un classico senza tempo, la pizza Margherita offre una combinazione semplice ma ricca di salsa di pomodoro fresco, mozzarella cremosa e basilico profumato.",
         "ingredients": ["pomodoro", "mozzarella", "basilico"],
-        "calories": 250,
         "spiceLevel": "nessuno",
-        "price": 8.99,
-        "review": "5",
-        "time": "10",
-        "isOffered": [true, "20"],
-        "category": ["speciali"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "1"
+        "category": ["speciale"]
       },
-      {
+      "2": {
         "name": "Pepperoni",
-        "description": "Un grande classico dal gusto deciso, questa pizza è ricoperta da strati di pepperoni piccante, mozzarella filante e una base di pomodoro saporita. I bordi croccanti e la nota affumicata rendono ogni morso irresistibile.",
-        "image": "./pizza-image/peperoni.png",
+        "description": "Un grande classico dal gusto deciso, con pepperoni piccante, mozzarella filante e base di pomodoro saporita.",
         "ingredients": ["pomodoro", "mozzarella", "pepperoni"],
-        "calories": 300,
         "spiceLevel": "medio",
-        "price": 9.99,
-        "review": "4.5",
-        "time": "15",
-        "isOffered": [false, "0"],
-        "category": ["speciali", "carne"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "2"
+        "category": ["speciale", "carne"]
       },
-      {
+      "3": {
         "name": "BBQ Chicken",
-        "description": "Una variante saporita della tradizione: la pizza BBQ Chicken unisce tenero petto di pollo grigliato, salsa BBQ affumicata, cipolle caramellate e mozzarella fusa. Perfetta per chi ama un gusto dolce e affumicato.",
-        "image": "./pizza-image/chicken.png",
+        "description": "Una variante saporita con pollo grigliato, salsa BBQ affumicata, cipolle caramellate e mozzarella.",
         "ingredients": ["salsa bbq", "petto di pollo", "cipolla", "mozzarella"],
-        "calories": 320,
         "spiceLevel": "delicato",
-        "price": 10.99,
-        "review": "3.8",
-        "time": "20",
-        "isOffered": [false, "0"],
-        "category": ["speciali", "carne"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "3"
+        "category": ["speciale", "carne"]
       },
-      {
+      "4": {
         "name": "Hawaiian",
-        "description": "Un mix dolce e salato con succosi pezzi di ananas, prosciutto saporito, mozzarella cremosa e salsa di pomodoro. Un preferito tropicale che bilancia perfettamente dolcezza e sapidità.",
-        "image": "./pizza-image/hawai.png",
+        "description": "Un mix dolce e salato con ananas, prosciutto, mozzarella e salsa di pomodoro.",
         "ingredients": ["pomodoro", "mozzarella", "prosciutto", "ananas"],
-        "calories": 290,
         "spiceLevel": "nessuno",
-        "price": 9.99,
-        "review": "4",
-        "time": "20",
-        "isOffered": [true, "15"],
-        "category": ["carne"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "4"
+        "category": ["carne"]
       },
-      {
+      "5": {
         "name": "Veggie",
-        "description": "Fresca e colorata, la pizza Veggie è ricca di peperoni, cipolle, olive nere e mozzarella su una base di pomodoro. Un'opzione croccante e saporita, perfetta per gli amanti delle verdure.",
-        "image": "./pizza-image/vegan.png",
+        "description": "Pizza fresca e colorata con verdure miste e mozzarella su base di pomodoro.",
         "ingredients": ["pomodoro", "mozzarella", "peperoni", "cipolla", "olive"],
-        "calories": 240,
         "spiceLevel": "nessuno",
-        "price": 8.99,
-        "review": "4.1",
-        "time": "10",
-        "isOffered": [false, "0"],
-        "category": ["vegetariana"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "5"
+        "category": ["vegetariana"]
       }
-    ]
+    },
+    "button" : {
+      "Login" : "Accedi",
+      "Signup" : "Registrati", 
+      "Continue" : "Continua senza accedere"
+    },
+    "login": {
+    "head": "Accedi con i dati che hai inserito durante la registrazione.",
+    "forget": "Hai dimenticato la password?",
+    "email": {
+      "Label": "Email",
+      "placceHolder": "es. john.doe@email.com",
+      "error": "Inserisci un indirizzo email valido."
+    },
+    "password": {
+      "Label": "Password",
+      "placceHolder": "**********",
+      "error": "La password è obbligatoria."
+    }
+  },
+  "Signup": {
+    "head": "Inserisci i tuoi dati per registrarti alla nostra applicazione.",
+    "personal": {
+      "title": "Dati personali",
+
+      "name": {
+        "Label": "Nome",
+        "placeHolder": "es. John",
+        "error": "Il nome è obbligatorio."
+      },
+
+      "lastName": {
+        "Label": "Cognome",
+        "placeHolder": "es. Doe",
+        "error": "Il cognome è obbligatorio."
+      },
+
+      "email": {
+        "Label": "Email",
+        "placeHolder": "es. john.doe@email.com",
+        "error": "Inserisci un indirizzo email valido."
+      },
+
+      "phoneNum": {
+        "Label": "Numero di telefono",
+        "placeHolder": "es. +39 345 123 4567",
+        "error": "Inserisci un numero di telefono valido."
+      },
+
+      "password": {
+        "Label": "Password",
+        "placeHolder": "Almeno 8 caratteri",
+        "error": "La password deve contenere almeno 8 caratteri."
+      },
+
+      "rePassword": {
+        "Label": "Conferma password",
+        "placeHolder": "Reinserisci la password",
+        "error": "Le password non coincidono."
+      }
+    },
+
+    "address": {
+      "title": "Indirizzo",
+
+      "street": {
+        "Label": "Indirizzo",
+        "placeHolder": "es. Via Roma 123",
+        "error": "L’indirizzo è obbligatorio."
+      },
+
+      "zipCode": {
+        "Label": "CAP / Codice postale",
+        "placeHolder": "es. 00100",
+        "error": "Inserisci un CAP o codice postale valido."
+      },
+
+      "optional": {
+        "Label": "Appartamento (Opzionale)",
+        "placeHolder": "es. Interno 4B",
+        "error": ""
+      }
+    }
   }
 }
+}
+

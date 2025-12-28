@@ -1,6 +1,7 @@
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 export default function Error({message}) {
     return(
+        message !== "" &&
         <div className='flex flex-row gap-2'>
             <ErrorOutlineIcon 
             sx={

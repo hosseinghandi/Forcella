@@ -1,8 +1,12 @@
-import NavBar from "../components/shared/NavBar"
+import SharedNavigation from "../components/shared/SharedNavigation"
+import Filter from "../components/ui/filter"
+import SpecialCard from "../components/ui/SpecialCard"
 export default function Menu() {
     return ( 
         <>
-        <h1>I am menu page</h1>
+        <SharedNavigation backTo={"/welcome"}/>
+        <Filter />
+        <SpecialCard />
         </>
 )
 }

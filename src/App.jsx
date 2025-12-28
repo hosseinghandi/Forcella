@@ -1,11 +1,10 @@
-import React, { createContext } from "react"
-import {BrowserRouter, Routes, Route, Link, Router} from "react-router-dom"
-import { useState } from "react"
+import { createContext, useState, useEffect } from "react"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import i18n from "./utils/i18n";
 
-// data
-import en from "./data/i18n/en.json";
-import it from "./data/i18n/it.json";
-import user from "./data/user.json"
+ 
+
+// import user from "./data/user.json"
 // routes
 import AppLayout from "./routes/AppLayout";
 import StateChecker from "./routes/StateChecker"
@@ -18,15 +17,21 @@ import ProfileUser from "./pages/ProfileUser";
 import ShoppingBag from "./pages/ShoppingBag";
 import FavoritePizza from "./pages/FavoritePizza";
 import ProtectedRoute from "./routes/ProtectedRoute";
+
 export const siteContext = createContext()
-function App() {
+
+export default function App() {
   const [mode, setMode] = useState(true)
   const [lan, setLang] = useState(false)
-  const [userId, setUser] = useState(false)
-  const data = lan ? it.metadata_it : en.metadata_en
+  const [userId, setUser] = useState(true)
   const colorTheme = mode ? "#000000" : "#FFFFFF"
+
+  useEffect(() => {
+        i18n.changeLanguage(lan ? "it" : "en")
+  } , [lan])
+  
   return (
-<siteContext.Provider value={{ mode, setMode, lan, setLang, data, userId, colorTheme }}>
+<siteContext.Provider value={{ mode, setMode, lan, setLang, userId, colorTheme }}>
   <ThemeMode mode={mode}>
     <BrowserRouter>
       <Routes>
@@ -63,44 +68,3 @@ function App() {
 
   )
 }
-
-export default App 
-
-
-
-
-// <BrowserRouter>
-//   <Routes>
-
-//     {/* PUBLIC / AUTH */}
-//     <Route element={<stateChecker />}>
-//       <Route path="/welcome" element={<Welcome />} />
-//       <Route path="/login" element={<Login />} />
-//       <Route path="/signup" element={<SignUp />} />
-//     </Route>
-
-//     {/* PROTECTED APP */}
-//      <Route element={<AppLayout />}>
-//         <Route path="/" element={<Menu />} />
-//      <Route element={<ProtectedRoute />}>
-//         <Route path="/profile" element={<ProfileUser />} />
-//         <Route path="/shopping-bag" element={<ShoppingBag />} />
-//         <Route path="/favorite-pizza" element={<FavoritePizza />} />
-//      </Route>
-//     </Route>
-
-//     {/* FALLBACK */}
-//     
-
-//   </Routes>
-// </BrowserRouter>
-
-
-{/* 
-            <Route  path="/" element={<Layout />} >
-              <Route index path="/menu" element={<Menu/>} />
-              <Route path="/ProfileUser" element={<ProfileUser/>} />
-              <Route path="/ShoppingBag" element={<ShoppingBag/>} />
-              <Route path="/FavoritePizza" element={<FavoritePizza/>} />
-            </Route> */}
-              {/* protected */}

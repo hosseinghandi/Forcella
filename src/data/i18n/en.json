@@ -1,5 +1,5 @@
 {
-  "metadata_en": {
+  "metadata": {
     "welcoming": {
       "static" : "Welcome to pizzeria Forcella",
       "info": {
@@ -8,87 +8,126 @@
         "2": "The tomatoes are traditionally either San Marzano tomatoes or pomodorini del Piennolo del Vesuvio."
       }
     },
-    "pizza": [
-      {
+    "pizza": {
+      "1": {
         "name": "Margherita",
-        "description": "A timeless classic, the Margherita pizza offers a simple yet rich combination of fresh tomato sauce, creamy mozzarella, and fragrant basil leaves. Light, fresh, and full of traditional Italian flavor.",
-        "image": "./pizza-image/margherita.png",
+        "description": "A timeless classic, the Margherita pizza offers a simple yet rich combination of fresh tomato sauce, creamy mozzarella, and fragrant basil leaves.",
         "ingredients": ["tomato", "mozzarella", "basil"],
-        "calories": 250,
         "spiceLevel": "none",
-        "price": 8.99,
-        "review": "5",
-        "time": "10",
-        "isOffered": [true, "20"],
-        "category": ["special"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "1"
+        "category": ["special"]
       },
-      {
+      "2": {
         "name": "Pepperoni",
-        "description": "A great classic with a bold taste, this pizza is topped with layers of spicy pepperoni, melted mozzarella, and a flavorful tomato base. Crispy edges and a smoky note make every bite irresistible.",
-        "image": "./pizza-image/peperoni.png",
+        "description": "A great classic with a bold taste, this pizza is topped with layers of spicy pepperoni, melted mozzarella, and a flavorful tomato base.",
         "ingredients": ["tomato", "mozzarella", "pepperoni"],
-        "calories": 300,
         "spiceLevel": "medium",
-        "price": 9.99,
-        "review": "4.5",
-        "time": "15",
-        "isOffered": [false, "0"],
-        "category": ["special", "meat"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "2"
+        "category": ["special", "meat"]
       },
-      {
+      "3": {
         "name": "BBQ Chicken",
-        "description": "A flavorful twist on tradition: the BBQ Chicken pizza combines tender grilled chicken breast, smoky BBQ sauce, caramelized onions, and melted mozzarella. Perfect for those who love a sweet and smoky taste.",
-        "image": "./pizza-image/chicken.png",
+        "description": "A flavorful twist on tradition: BBQ chicken, smoky BBQ sauce, caramelized onions, and melted mozzarella.",
         "ingredients": ["bbq sauce", "chicken breast", "onion", "mozzarella"],
-        "calories": 320,
         "spiceLevel": "mild",
-        "price": 10.99,
-        "review": "3.8",
-        "time": "20",
-        "isOffered": [false, "0"],
-        "category": ["special", "meat"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "3"
+        "category": ["special", "meat"]
       },
-      {
+      "4": {
         "name": "Hawaiian",
-        "description": "A sweet and savory mix with juicy pineapple chunks, flavorful ham, creamy mozzarella, and tomato sauce. A tropical favorite that perfectly balances sweetness and saltiness.",
-        "image": "./pizza-image/hawai.png",
+        "description": "A sweet and savory mix with pineapple, ham, mozzarella, and tomato sauce.",
         "ingredients": ["tomato", "mozzarella", "ham", "pineapple"],
-        "calories": 290,
         "spiceLevel": "none",
-        "price": 9.99,
-        "review": "4",
-        "time": "20",
-        "isOffered": [true, "15"],
-        "category": ["meat"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "4"
+        "category": ["meat"]
       },
-      {
+      "5": {
         "name": "Veggie",
-        "description": "Fresh and colorful, the Veggie pizza is loaded with bell peppers, onions, black olives, and mozzarella on a tomato base. A crunchy and flavorful option, perfect for vegetable lovers.",
-        "image": "./pizza-image/vegan.png",
+        "description": "Fresh and colorful pizza loaded with vegetables and mozzarella on a tomato base.",
         "ingredients": ["tomato", "mozzarella", "bell peppers", "onion", "olives"],
-        "calories": 240,
         "spiceLevel": "none",
-        "price": 8.99,
-        "review": "4.1",
-        "time": "10",
-        "isOffered": [false, "0"],
-        "category": ["vegetarian"],
-        "isLiked": false,
-        "isAdded": false,
-        "id": "5"
+        "category": ["vegetarian"]
       }
-    ]
+    },
+    "button" : {
+      "login" : "Log in",
+      "signup" : "Sign up", 
+      "continue" : "Continue without registration"
+    },
+    "login": {
+    "head": "Log in with the data you entered during registration.",
+    "forget": "Forgot your password?",
+    "email": {
+      "Label": "Email",
+      "placeHolder": "e.g. john.doe@email.com",
+      "error": "Please enter a valid email address."
+    },
+    "password": {
+      "Label": "Password",
+      "placeHolder": "**********",
+      "error": "Password is required."
+    }
+  },
+  "Signup": {
+    "head": "Please enter your information to register for our application.",
+    "personal": {
+      "title": "Personal data",
+
+      "name": {
+        "Label": "Name",
+        "placeHolder": "e.g. John",
+        "error": "Name is required."
+      },
+
+      "lastName": {
+        "Label": "Last Name",
+        "placeHolder": "e.g. Doe",
+        "error": "Last name is required."
+      },
+
+      "email": {
+        "Label": "Email",
+        "placeHolder": "e.g. john.doe@email.com",
+        "error": "Please enter a valid email address."
+      },
+
+      "phoneNum": {
+        "Label": "Phone Number",
+        "placeHolder": "e.g. +1 555 123 4567",
+        "error": "Please enter a valid phone number."
+      },
+
+      "password": {
+        "Label": "Password",
+        "placeHolder": "At least 8 characters",
+        "error": "Password must be at least 8 characters long."
+      },
+
+      "rePassword": {
+        "Label": "Confirm Password",
+        "placeHolder": "Re-enter your password",
+        "error": "Passwords do not match."
+      }
+    },
+
+    "address": {
+      "title": "Address",
+
+      "street": {
+        "Label": "Street Address",
+        "placeHolder": "e.g. 123 Main Street",
+        "error": "Street address is required."
+      },
+
+      "zipCode": {
+        "Label": "ZIP / Postal Code",
+        "placeHolder": "e.g. 90210",
+        "error": "Please enter a valid ZIP or postal code."
+      },
+
+      "optional": {
+        "Label": "Apartment (Optional)",
+        "placeHolder": "e.g. Apt 4B",
+        "error": ""
+      }
+    }
   }
 }
+}
+

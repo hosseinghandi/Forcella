@@ -14,12 +14,18 @@ body, html {
 :root {
     --orange :  #B55638; 
     --red: #740202;
+    --dark : #000000;
 }
 body {
   margin: 0;
 }
 @theme {
+    --spacing-global-padding-x-mobile : 30px;
+    --spacing-global-padding-y-mobile : 15px;
+
+    
     --color-orange : #B55638 ;
+    --color-dark : #000000;
     /* text setup  */
     --text-welcome-small : 30px;
     --text-normal : 16px;
@@ -37,9 +43,6 @@ body {
     --spacing-bubbles-small: 18px;
     --spacing-bubbles-small-selected: 25px;
 }
-
-
-
 
 
 
