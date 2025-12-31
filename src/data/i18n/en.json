@@ -14,35 +14,40 @@
         "description": "A timeless classic, the Margherita pizza offers a simple yet rich combination of fresh tomato sauce, creamy mozzarella, and fragrant basil leaves.",
         "ingredients": ["tomato", "mozzarella", "basil"],
         "spiceLevel": "none",
-        "category": ["special"]
+        "category": ["special"],
+        "time" : 20
       },
       "2": {
         "name": "Pepperoni",
         "description": "A great classic with a bold taste, this pizza is topped with layers of spicy pepperoni, melted mozzarella, and a flavorful tomato base.",
         "ingredients": ["tomato", "mozzarella", "pepperoni"],
         "spiceLevel": "medium",
-        "category": ["special", "meat"]
+        "category": ["special", "meat"],
+        "time" : 15
       },
       "3": {
         "name": "BBQ Chicken",
         "description": "A flavorful twist on tradition: BBQ chicken, smoky BBQ sauce, caramelized onions, and melted mozzarella.",
         "ingredients": ["bbq sauce", "chicken breast", "onion", "mozzarella"],
         "spiceLevel": "mild",
-        "category": ["special", "meat"]
+        "category": ["special", "meat"],
+        "time" : 10
       },
       "4": {
         "name": "Hawaiian",
         "description": "A sweet and savory mix with pineapple, ham, mozzarella, and tomato sauce.",
         "ingredients": ["tomato", "mozzarella", "ham", "pineapple"],
         "spiceLevel": "none",
-        "category": ["meat"]
+        "category": ["meat"],
+        "time" : 15
       },
       "5": {
         "name": "Veggie",
         "description": "Fresh and colorful pizza loaded with vegetables and mozzarella on a tomato base.",
         "ingredients": ["tomato", "mozzarella", "bell peppers", "onion", "olives"],
         "spiceLevel": "none",
-        "category": ["vegetarian"]
+        "category": ["vegetarian"],
+        "time" : 10
       }
     },
     "button" : {

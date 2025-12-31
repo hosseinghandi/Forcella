@@ -34,6 +34,7 @@ export default function Login() {
         forget : t("metadata.login.forget"),  
         button : t("metadata.button.login")
     };
+
     // required context to render ui elements
     const {mode} = useContext(siteContext); 
 
@@ -49,7 +50,6 @@ export default function Login() {
       return {validation} 
     }, [formData]);
 
-
     // form handeler
     const handleChange = (event) => {
       const { name, value } = event.target;
@@ -61,6 +61,7 @@ export default function Login() {
       event.preventDefault();
     };
     
+    // requird inputs
     const listOfInputs = 
     [["email",<EmailOutlinedIcon />, "email", null],
     ["password",<KeyOutlinedIcon />,"password", null]]
@@ -68,7 +69,7 @@ export default function Login() {
     return (
       <Container>
       <Header position={false}>
-          <SharedNavigation backTo={"/welcome"}/>
+          <SharedNavigation distance={false} backTo={"/welcome"}/>
       </Header>
       <div className="flex flex-col gap-2 mb-[36px] h-[80px]">
         <p>{message.head}</p>
@@ -76,6 +77,7 @@ export default function Login() {
       </div>
         <form onSubmit={handleSubmit} >
           <div className="flex flex-col items-center justify-center gap-2">
+            {/* these are inputs respected to input list above */}
               <InputGroup 
                   listOfInputs={listOfInputs}
                   message={message}

@@ -128,7 +128,7 @@ export default function SignUp() {
   return (
     <Container>
       <Header position={true}>
-        <SharedNavigation backTo={"/welcome"} />
+        <SharedNavigation distance={false} backTo={"/welcome"} />
       </Header>
       <div className="flex flex-col gap-2 mb-[20px] h-[70px]">
         <p>{message.head}</p>

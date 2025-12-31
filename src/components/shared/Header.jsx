@@ -1,5 +1,5 @@
 // elements
-import pizzaSlice from "../../assets/pizza-image/margherita.png";
+import pizzaSlice from "/pizza-image/margherita.png";
 
 export default function Header({children, position}) {
 
