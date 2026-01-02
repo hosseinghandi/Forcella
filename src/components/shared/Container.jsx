@@ -3,7 +3,8 @@
 
 export default function Container({children}) {
     return ( 
-        <div className={`py-global-padding-y-mobile px-global-padding-x-mobile h-screen `} >
+        <div className={`py-global-padding-y-mobile 
+        px-global-padding-x-mobile`} >
             {children}
         </div>
     )

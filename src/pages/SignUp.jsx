@@ -22,7 +22,7 @@ import Button from "../components/ui/Button";
 import { isValid } from "../utils/validator";
 import InputGroup from "../components/ui/InputGroup";
 
-export default function SignUp() {
+export default function Signup() {
   // form state to save submitted data
   const [formData, setFormData] = useState({
     personalData: {
@@ -86,25 +86,25 @@ export default function SignUp() {
   // text to render
   const { t } = useTranslation();
   const message = {
-    head: t("metadata.Signup.head"),
+    head: t("metadata.signup.head"),
 
     personal: {
-      title: t("metadata.Signup.personal.title"),
-      name: t("metadata.Signup.personal.name", { returnObjects: true }),
-      lastName: t("metadata.Signup.personal.lastName", { returnObjects: true }),
-      email: t("metadata.Signup.personal.email", { returnObjects: true }),
-      phoneNum: t("metadata.Signup.personal.phoneNum", { returnObjects: true }),
-      password: t("metadata.Signup.personal.password", { returnObjects: true }),
-      rePassWord: t("metadata.Signup.personal.rePassword", {
+      title: t("metadata.signup.personal.title"),
+      name: t("metadata.signup.personal.name", { returnObjects: true }),
+      lastName: t("metadata.signup.personal.lastName", { returnObjects: true }),
+      email: t("metadata.signup.personal.email", { returnObjects: true }),
+      phoneNum: t("metadata.signup.personal.phoneNum", { returnObjects: true }),
+      password: t("metadata.signup.personal.password", { returnObjects: true }),
+      rePassWord: t("metadata.signup.personal.rePassword", {
         returnObjects: true,
       }),
     },
 
     address: {
-      title: t("metadata.Signup.address.title"),
-      street: t("metadata.Signup.address.street", { returnObjects: true }),
-      zipCode: t("metadata.Signup.address.zipCode", { returnObjects: true }),
-      optional: t("metadata.Signup.address.optional", { returnObjects: true }),
+      title: t("metadata.signup.address.title"),
+      street: t("metadata.signup.address.street", { returnObjects: true }),
+      zipCode: t("metadata.signup.address.zipCode", { returnObjects: true }),
+      optional: t("metadata.signup.address.optional", { returnObjects: true }),
     },
 
     button: t("metadata.button.signup"),

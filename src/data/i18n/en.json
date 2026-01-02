@@ -1,61 +1,21 @@
 {
   "metadata": {
     "welcoming": {
-      "static" : "Welcome to pizzeria Forcella",
-      "info": {
-        "0": "Neapolitan pizza is the version of the round pizza typically prepared in the Italian city of Naples.",
-        "1": "and characterised by a soft, thin dough with high edges.",
-        "2": "The tomatoes are traditionally either San Marzano tomatoes or pomodorini del Piennolo del Vesuvio."
-      }
+      "static": "Welcome to Pizzeria Forcella",
+      "info": [
+        "Neapolitan pizza is the version of round pizza typically prepared in the Italian city of Naples.",
+        "It is characterised by a soft, thin dough with high edges.",
+        "The tomatoes are traditionally either San Marzano tomatoes or Pomodorini del Piennolo del Vesuvio."
+      ]
     },
-    "pizza": {
-      "1": {
-        "name": "Margherita",
-        "description": "A timeless classic, the Margherita pizza offers a simple yet rich combination of fresh tomato sauce, creamy mozzarella, and fragrant basil leaves.",
-        "ingredients": ["tomato", "mozzarella", "basil"],
-        "spiceLevel": "none",
-        "category": ["special"],
-        "time" : 20
-      },
-      "2": {
-        "name": "Pepperoni",
-        "description": "A great classic with a bold taste, this pizza is topped with layers of spicy pepperoni, melted mozzarella, and a flavorful tomato base.",
-        "ingredients": ["tomato", "mozzarella", "pepperoni"],
-        "spiceLevel": "medium",
-        "category": ["special", "meat"],
-        "time" : 15
-      },
-      "3": {
-        "name": "BBQ Chicken",
-        "description": "A flavorful twist on tradition: BBQ chicken, smoky BBQ sauce, caramelized onions, and melted mozzarella.",
-        "ingredients": ["bbq sauce", "chicken breast", "onion", "mozzarella"],
-        "spiceLevel": "mild",
-        "category": ["special", "meat"],
-        "time" : 10
-      },
-      "4": {
-        "name": "Hawaiian",
-        "description": "A sweet and savory mix with pineapple, ham, mozzarella, and tomato sauce.",
-        "ingredients": ["tomato", "mozzarella", "ham", "pineapple"],
-        "spiceLevel": "none",
-        "category": ["meat"],
-        "time" : 15
-      },
-      "5": {
-        "name": "Veggie",
-        "description": "Fresh and colorful pizza loaded with vegetables and mozzarella on a tomato base.",
-        "ingredients": ["tomato", "mozzarella", "bell peppers", "onion", "olives"],
-        "spiceLevel": "none",
-        "category": ["vegetarian"],
-        "time" : 10
-      }
-    },
-    "button" : {
-      "login" : "Log in",
-      "signup" : "Sign up", 
-      "continue" : "Continue without registration"
-    },
-    "login": {
+  "button": {
+    "login": "Log in",
+    "signup": "Sign up",
+    "continue": "Continue without registration",
+    "order": "Order Now"
+  },
+
+  "login": {
     "head": "Log in with the data you entered during registration.",
     "forget": "Forgot your password?",
     "email": {
@@ -69,70 +29,155 @@
       "error": "Password is required."
     }
   },
-  "Signup": {
+  "signup": {
     "head": "Please enter your information to register for our application.",
     "personal": {
       "title": "Personal data",
-
       "name": {
         "Label": "Name",
         "placeHolder": "e.g. John",
         "error": "Name is required."
       },
-
       "lastName": {
         "Label": "Last Name",
         "placeHolder": "e.g. Doe",
         "error": "Last name is required."
       },
-
       "email": {
         "Label": "Email",
         "placeHolder": "e.g. john.doe@email.com",
         "error": "Please enter a valid email address."
       },
-
       "phoneNum": {
         "Label": "Phone Number",
         "placeHolder": "e.g. +1 555 123 4567",
         "error": "Please enter a valid phone number."
       },
-
       "password": {
         "Label": "Password",
         "placeHolder": "At least 8 characters",
         "error": "Password must be at least 8 characters long."
       },
-
       "rePassword": {
         "Label": "Confirm Password",
         "placeHolder": "Re-enter your password",
         "error": "Passwords do not match."
       }
     },
-
     "address": {
       "title": "Address",
-
       "street": {
         "Label": "Street Address",
         "placeHolder": "e.g. 123 Main Street",
         "error": "Street address is required."
       },
-
       "zipCode": {
         "Label": "ZIP / Postal Code",
         "placeHolder": "e.g. 90210",
         "error": "Please enter a valid ZIP or postal code."
       },
-
       "optional": {
-        "Label": "Apartment (Optional)",
+        "Label": "Optional",
         "placeHolder": "e.g. Apt 4B",
         "error": ""
       }
     }
-  }
-}
-}
+  },
 
+  "pizza": {
+    "searchPizza": "Search your favorite pizza",
+    "offer": "Special offer",
+    "prepration": "Preparation time",
+    "description": "Offer applied at checkout",
+    "categories" : ["Meat", "Special", "Vegetarian"]
+  }
+  },
+
+  "pizzaItems": [
+    {
+      "id": "1",
+      "name": "Margherita",
+      "description": "A traditional Neapolitan Margherita pizza recipe is tomato sauce with fresh tomatoes, mozzarella cheese and basil which represent the colours of the Italian flag – white cheese, green basil and red tomato.",
+      "ingredients": ["tomato", "mozzarella", "basil"],
+      "spiceLevel": "none",
+      "category": ["special"],
+      "calories": 250,
+      "price": 8.99,
+      "review": 5,
+      "time": 10,
+      "image": "/pizza-image/margherita.png",
+      "offered": {
+        "active": true,
+        "percentage": 20
+      }
+    },
+    {
+      "id": "2",
+      "name": "Pepperoni",
+      "description": "Pizza with tomato sauce, mozzarella, and spicy pepperoni",
+      "ingredients": ["tomato sauce", "mozzarella", "pepperoni"],
+      "spiceLevel": "medium",
+      "category": ["special", "meat"],
+      "calories": 300,
+      "price": 9.99,
+      "review": 4.5,
+      "time": 15,
+      "image": "/pizza-image/peperoni.png",
+      "offered": {
+        "active": false,
+        "percentage": 0
+      }
+    },
+    {
+      "id": "3",
+      "name": "BBQ Chicken",
+      "description": "Pizza with barbecue sauce, chicken breast, onion, and mozzarella",
+      "ingredients": ["barbecue sauce", "chicken breast", "onion", "mozzarella"],
+      "spiceLevel": "mild",
+      "category": ["special", "meat"],
+      "calories": 320,
+      "price": 10.99,
+      "review": 3.8,
+      "time": 20,
+      "image": "/pizza-image/chicken.png",
+      "offered": {
+        "active": false,
+        "percentage": 0
+      }
+    },
+    {
+      "id": "4",
+      "name": "Hawaiian",
+      "description": "Pizza with tomato sauce, mozzarella, ham, and pineapple",
+      "ingredients": ["tomato sauce", "mozzarella", "ham", "pineapple"],
+      "spiceLevel": "none",
+      "category": ["meat"],
+      "calories": 290,
+      "price": 9.99,
+      "review": 4,
+      "time": 20,
+      "image": "/pizza-image/hawai.png",
+      "offered": {
+        "active": true,
+        "percentage": 20
+      }
+    },
+    {
+      "id": "5",
+      "name": "Vegetarian",
+      "description": "Pizza with tomato sauce, mozzarella, and fresh vegetables",
+      "ingredients": ["tomato sauce", "mozzarella", "bell peppers", "onion", "olives"],
+      "spiceLevel": "none",
+      "category": ["vegetarian"],
+      "calories": 240,
+      "price": 8.99,
+      "review": 4.1,
+      "time": 10,
+      "image": "/pizza-image/vegan.png",
+      "offered": {
+        "active": false,
+        "percentage": 0
+      }
+    }
+  ]
+}

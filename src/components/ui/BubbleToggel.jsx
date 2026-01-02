@@ -3,12 +3,8 @@ import { siteContext } from "../../App";
 
 
 export default function BubbleToggel({dataList, colorTheme}) {
-        const [index, setIndex] = useState(0)
-        const arr = Array.from(
-            { length: Object.keys(dataList).length },
-            (_, i) => i );
-
-    const BubbleList = () => arr.map(i => (
+    const [index, setIndex] = useState(0)
+    const BubbleList = () => dataList.map( (el, i) => (
             <button 
             key={i}
             onClick={() => setIndex(i)}

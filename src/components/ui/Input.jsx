@@ -13,9 +13,8 @@ export default function Input({
       <label htmlFor={name} className="text-sm">
         {label}
       </label>
-
       <div
-        className="border rounded-[25px] h-[40px] 
+        className="border rounded-[var(--radius)] h-[40px] 
         flex items-center px-3
         focus-within:border-[var(--color-orange)]"
       >

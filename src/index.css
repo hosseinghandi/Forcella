@@ -16,14 +16,16 @@ body, html {
     --red: #740202;
     --dark : #000000;
     --gray : #e0e0e0ff;
+    --gold : #cfa500;
+
+    --radius : 25px;
 }
 body {
   margin: 0;
   min-width: 375px;
 }
 @theme {
-
-    --breakpoint-xs : 400px;
+    --breakpoint-xs : 415px;
     --spacing-global-padding-x-mobile : 30px;
     --spacing-global-padding-y-mobile : 15px;
 

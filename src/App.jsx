@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from "react"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import i18n from "./utils/i18n";
-
- 
+import { ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 // import user from "./data/user.json"
 // routes
@@ -11,7 +11,7 @@ import StateChecker from "./routes/StateChecker"
 import ThemeMode from "./components/ui/ThemeMode"
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
-import SignUp from "./pages/SignUp";
+import Signup from "./pages/Signup";
 import Menu from "./pages/Menu";
 import ProfileUser from "./pages/ProfileUser";
 import ShoppingBag from "./pages/ShoppingBag";
@@ -30,8 +30,21 @@ export default function App() {
         i18n.changeLanguage(lan ? "it" : "en")
   } , [lan])
   
+  const theme = createTheme({
+        typography: {
+          fontFamily: "Inter, sans-serif",
+        },
+        breakpoints: {
+          values : {
+            xs : 0,
+            sm : 500,
+          }
+        }
+      });
+
   return (
 <siteContext.Provider value={{ mode, setMode, lan, setLang, userId, colorTheme }}>
+  <ThemeProvider theme={theme} >
   <ThemeMode mode={mode}>
     <BrowserRouter>
       <Routes>
@@ -43,7 +56,7 @@ export default function App() {
 
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<Signup />} />
 
         {/* app layout */}
         <Route path="/applayout" element={<AppLayout />}>
@@ -64,6 +77,7 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   </ThemeMode>
+  </ThemeProvider>
 </siteContext.Provider>
 
   )

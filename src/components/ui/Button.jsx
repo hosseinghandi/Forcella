@@ -1,24 +1,27 @@
+
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 
-export default function ToggleTheme({type, title, to, color, disabled}) {
+export default function ToggleTheme({type, title, to, color, disabled, shrink}) {
     const navigate  = useNavigate()
   return (
         <Button
         type={type}
-        className='w-11/12 h-[40px]'
         onClick={
             () => to && navigate (to)}
-        variant="outlined"
+        variant="contained"
         disabled= {disabled}
         sx={{
+            fontSize : "1rem",
+            textTransform :"capitalize",
             border:"none",
             outline:"none",
-            width: "100%",
-            height : "40px",
+            width: shrink ? "fit-content" : "100%",
+            height : shrink ? "fit-content" : "40px",
             borderRadius : "25px",
             backgroundColor:"#B55638" ,
-            color: color
+            color: color,
+            ...(shrink && {padding : "1px 10px"})
         }}
         >
         {title}
