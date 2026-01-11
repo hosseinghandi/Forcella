@@ -1,35 +1,57 @@
-import { useState , useContext} from "react"
-import { siteContext } from "../../App";
+// *role : take the datalist and render the bubbles as designed*
+// react imports
+import { useState } from "react";
+// material ui components
+import { Box, Typography, IconButton } from "@mui/material";
 
+export default function BubbleToggle({ dataList, colorTheme }) {
+  const [index, setIndex] = useState(0);
+  return (
+    <Box sx={{ mt: "10px" }}>
+      {/* Content */}
+      <Box sx={{minHeight: "80px"}}>
+        <Typography variant="textNormal" 
+          >
+          {dataList[index]}
+        </Typography>
+      </Box>
 
-export default function BubbleToggel({dataList, colorTheme}) {
-    const [index, setIndex] = useState(0)
-    const BubbleList = () => dataList.map( (el, i) => (
-            <button 
-            key={i}
-            onClick={() => setIndex(i)}
-            role="button"
-            className="
-                    hover:cursor-pointer 
-                    rounded-full"
-                style={{
-                    backgroundColor: index === i ? colorTheme 
-                    : "#B55638",
-                    width : index === i ? "20px" : "14px",
-                    height : index === i ? "20px" : "14px"
-                }}
-                ></button>)
-            )
+      {/* Bubbles */}
+      <Box
+        sx={{
+          display: "flex",
+          gap: "16px",
+          width: "100%",
+          height : "22px",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: "24px",
+        }}
+      >
+        {dataList.map((_, i) => {
+          const active = index === i;
 
-    return (
-         <>  
-            <div className="mt-[10px]">
-            <p className="min-h-[80px] text-normal">{dataList[index]}</p>   
-            <div className="flex flex-row gap-4 w-full items-center 
-            justify-center mt-[24px]">
-                {BubbleList()}
-            </div>          
-            </div>        
-         </>
-    )
+          return (
+            <IconButton
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`select item ${i + 1}`}
+              sx={{
+                width: 14,
+                height: 14,
+                borderRadius: "50%",
+                backgroundColor: active ? colorTheme : "#B55638",
+                scale :  active ? "1.3" : "1",
+                transition: "scale 0.3s ease-in-out",
+                "&:hover": {
+                backgroundColor: active ? colorTheme : "#B55638",
+              }
+              }
+            }
+            />
+          );
+        })}
+      </Box>
+    </Box>
+  );
 }

@@ -1,5 +1,9 @@
 
+// *role: on request make button as desgined *
+
+// material ui componenet
 import Button from '@mui/material/Button';
+// react imports
 import { useNavigate } from 'react-router-dom';
 
 export default function ToggleTheme({type, title, to, color, disabled, shrink}) {

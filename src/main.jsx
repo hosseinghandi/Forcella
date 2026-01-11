@@ -5,8 +5,13 @@ import "./utils/i18n.js";
 
 import App from './App.jsx'
 
+import { appTheme } from "./utils/appTheme";
+import { ThemeProvider } from "@mui/material";
+
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+   <StrictMode>
+    <ThemeProvider theme={appTheme}>
+      <App />
+    </ThemeProvider>
+  </StrictMode>
 )

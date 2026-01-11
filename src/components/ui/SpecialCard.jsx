@@ -45,8 +45,8 @@ return (<Card
             >
             <Box sx={{width:"100%", height : "100%", display: "flex", justifyContent: "space-between", alignItems:"center"}}>
             <CardContent sx={{width:"60%", padding: "0" ,display:"flex", flexDirection:"column",justifyContent:"space-between", gap:1}}>
-                <Typography sx={{fontWeight:700}}>{messages.offer}</Typography>
-                <Typography variant="body2"><strong>{`${offeredPizza.discount}%`}</strong> {messages.description}</Typography>
+                <Typography variant="titleBold">{messages.offer}</Typography>
+                <Typography variant="textNormal"><strong>{`${offeredPizza.discount}%`}</strong> {messages.description}</Typography>
                 <CardActions sx={{padding:"0"}}>
                     <Button 
                     type="submit"

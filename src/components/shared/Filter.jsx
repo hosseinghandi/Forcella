@@ -1,54 +1,100 @@
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import CloseIcon from '@mui/icons-material/Close';
-import Button from '../ui/Button';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// *role: inform menu context about how render the items based on the user filter inputs* //
+
+// Icons
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import CloseIcon from "@mui/icons-material/Close";
+
+// UI component
+import Button from "../ui/Button";
+
+// Material ui component
+import { Box, TextField } from "@mui/material";
+
+// react imports
+import { useState } from "react";
+
+// translation import
+import { useTranslation } from "react-i18next";
 
 export default function Filter() {
-    const {t} = useTranslation()
-    const message = {
-      search : t("metadata.pizza.searchPizza"), 
-      categories : t("metadata.pizza.categories", {returnObjects: true}) 
-    }
-    
-    const categoriesBtn = () => message.categories.map( cat => {
-      return (<Button 
-              shrink={true}
-              type="submit"
-              title={cat}
-              to={`/applayout/menu/${cat}`}
-              color={"white"}
-              disabled={false}/>) 
-    })
+  const { t } = useTranslation();
+  const message = {
+    search: t("metadata.pizza.searchPizza"),
+    categories: t("metadata.pizza.categories", { returnObjects: true }),
+  };
 
-    const [filter, setFilter] = useState(false)
-    return (
-    <div className="mt-[20px] flex flex-col w-full bg-[var(--gray)] rounded-[25px]">
-      <div
-        className=" h-[40px] 
-        flex items-center px-3
-        focus-within:border-[var(--color-orange)]">
+  const categoriesBtn = () =>
+    message.categories.map((category) => {
+      return (
+        <Button
+          key={category}
+          shrink={true}
+          type="submit"
+          title={category}
+          to={`/applayout/menu/${category}`}
+          color={"white"}
+          disabled={false}
+        />
+      );
+    });
 
-        {filter ? 
-        <div className='flex flex-row w-full gap-2'>
-              {categoriesBtn()}
-            </div> 
-            : <input
-          placeholder={`${message.search}`}  
-          className="w-[90%] focus:outline-none"
-        />}
+  const [filter, setFilter] = useState(false);
+  return (
+    <Box
+      sx={{
+        mt: "20px",
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        backgroundColor: "var(--gray)",
+        borderRadius: "25px",
+      }}
+    >
+      <Box
+        sx={{
+          height: "40px",
+          display: "flex",
+          alignItems: "center",
+          px: "12px",
+          "&:focus-within": {
+            borderColor: "var(--color-orange)",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            gap: "8px",
+          }}
+        >
+          {/* LEFT CONTENT */}
+          {filter ? (
+            categoriesBtn()
+          ) : (
+            <TextField
+              variant="standard"
+              InputProps={{ disableUnderline: true }}
+              sx={{ width: "100%" }}
+              placeholder={message.search}
+            />
+          )}
 
-
-        <div 
-        onClick={() => setFilter(!filter)}
-        className="w-[10%] flex justify-center ">
-          {filter ? <CloseIcon/> : <FilterAltIcon /> }
-        </div>
-      </div>
-    </div>
+          {/* TOGGLE ICON */}
+          <Box
+            onClick={() => setFilter((prev) => !prev)}
+            sx={{
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {filter ? <CloseIcon /> : <FilterAltIcon />}
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
-} 
-
-                
-
-
+}

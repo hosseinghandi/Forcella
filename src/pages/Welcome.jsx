@@ -4,13 +4,16 @@ import { useContext } from "react";
 import { siteContext } from "../App";
 
 // ui compoenents
-import Logo from "../components/shared/logo";
+import Logo from "../components/shared/Logo";
 import SwitchLabels from "../components/ui/SwitchLabels";
 import BubbleToggel from "../components/ui/BubbleToggel";
 import Button from "../components/ui/Button";
 import ToggleTheme from "../components/ui/ToggleTheme";
-import Container from "../components/shared/Container";
+import SiteWrapper from "../components/shared/SiteWrapper";
 import Header from "../components/shared/Header";
+
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default function Welcome() {
   const { lan, setLang, mode, setMode, colorTheme } = useContext(siteContext);
@@ -20,7 +23,7 @@ export default function Welcome() {
     welcome: t("metadata.welcoming.static"),
     info: t("metadata.welcoming.info", { returnObjects: true }),
   };
-  console.log(messages.info);
+
 
   const button = {
     login: t("metadata.button.login"),
@@ -28,44 +31,68 @@ export default function Welcome() {
     continue: t("metadata.button.continue"),
   };
 
-
   return (
-    <Container>
+    <SiteWrapper>
       {/* page wrapper  */}
       <Header position={false}>
         <Logo color={colorTheme} />
         <SwitchLabels value={lan} setValue={setLang} mode={mode} />
         <ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
       </Header>
-      <div className="flex flex-col items-center justify-center">
-        <div className="text-left">
-          <h1 className="text-welcome-small font-black leading-[36px]">
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {/* Text section */}
+        <Box
+          sx={{
+            textAlign: "left",
+            width: "100%",
+          }}
+        >
+          <Typography
+            variant="titleWelcoming"
+          >
             {messages.welcome}
-          </h1>
-          <BubbleToggel dataList={messages.info} colorTheme={colorTheme} />
-        </div>
+          </Typography>
 
-        <div className="flex flex-col gap-[10px] mt-[40px] w-full">
+          <BubbleToggel dataList={messages.info} colorTheme={colorTheme} />
+        </Box>
+
+        {/* Buttons */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            marginTop: "40px",
+            width: "100%",
+          }}
+        >
           <Button
             title={button.login}
-            to={"/login"}
-            color={"white"}
+            to="/login"
+            color="white"
             disable={false}
           />
           <Button
             title={button.signup}
-            to={"/signup"}
-            color={"white"}
+            to="/signup"
+            color="white"
             disable={false}
           />
           <Button
             title={button.continue}
-            to={"/applayout/menu"}
-            color={"white"}
+            to="/applayout/menu"
+            color="white"
             disable={false}
           />
-        </div>
-      </div>
-    </Container>
+        </Box>
+      </Box>
+    </SiteWrapper>
   );
 }

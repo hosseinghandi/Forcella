@@ -1,6 +1,7 @@
-// ui elements 
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
+// *role : make ui clickable switch to change the languge*
+
+// material ui elements
+import { FormControlLabel, Switch } from "@mui/material";
 
 export default function SwitchLabels({ value, setValue, mode }) {
   return (
@@ -11,54 +12,56 @@ export default function SwitchLabels({ value, setValue, mode }) {
       }}
       control={
         <Switch
-          onClick={() => setValue(!value)}
+          onClick={() => setValue(prev => prev === "en" ? "it" : "en" )}
           sx={{
-            
             width: 85,
             height: 25,
             padding: 0,
-            display: 'flex',
-            alignItems: 'center',
+            display: "flex",
+            alignItems: "center",
 
-            '& .MuiSwitch-switchBase': {
+            "& .MuiSwitch-switchBase": {
               padding: 0,
               margin: 0,
-              transform: 'translateX(0px)',
+              outline: "none",
+              transform: "translateX(0px)",
 
-              '&.Mui-checked': {
-                transform: 'translateX(60px)', // 85 - 17
-                '& + .MuiSwitch-track': {
-                  backgroundColor: '#B55638',
+              "&.Mui-checked": {
+                transform: "translateX(60px)", // 85 - 17
+                "& + .MuiSwitch-track": {
+                  backgroundColor: "#B55638",
                   opacity: 1,
                 },
               },
             },
 
-            '& .MuiSwitch-thumb': {
+            "& .MuiSwitch-thumb": {
               width: 25,
               height: 25,
-              borderRadius: '50%',
-              backgroundColor: mode ? "#000000" : "#FFFFFF" ,
+              outline: "none",
+              // border: "none", border should be rmoved
+              borderRadius: "50%",
+              backgroundColor: mode ? "#000000" : "#FFFFFF",
             },
 
-            '& .MuiSwitch-track': {
+            "& .MuiSwitch-track": {
               borderRadius: 8.5,
-              backgroundColor: '#B55638',
+              backgroundColor: "#B55638",
               opacity: 1,
-              position: 'relative',
+              position: "relative",
 
-              '&::before': {
-                content: `"${value ? 'Italiano' : 'English'}"`,
-                position: 'absolute',
-                top: '50%',
-                 transform: value
-                ? 'translateY(-50%) translateX(10px)'
-                : 'translateY(-50%) translateX(26px)',
+              "&::before": {
+                content: `"${value.toUpperCase()}"`,
+                position: "absolute",
+                top: "50%",
+                transform: value
+                  ? "translateY(-50%) translateX(40px)"
+                  : "translateY(-50%) translateX(26px)",
                 fontSize: 14,
                 fontWeight: 600,
-                pointerEvents: 'none',
+                pointerEvents: "none",
 
-                transition: 'left 0.35s ease-in-out', // 👈 smooth & slightly slow
+                transition: "left 0.35s ease-in-out", // 👈 smooth & slightly slow
               },
             },
           }}

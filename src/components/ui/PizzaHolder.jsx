@@ -1,56 +1,70 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import StarIcon from '@mui/icons-material/Star';
-import Box from "@mui/material/Box";
-import Skeleton from "@mui/material/Skeleton";
+// *role : on request render pizza item for menu*
 
+// material ui components
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+  IconButton,
+  Box,
+  Skeleton,
+} from "@mui/material";
+
+// import translation
 import { useTranslation } from "react-i18next";
+
+// import material ui icons for pizza holder
+import StarIcon from "@mui/icons-material/Star";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
 
-
-export default function PizzaCard({
-  price, 
-  name, 
-  img, 
-  discount, 
-  time, 
+export default function PizzaHolder({
+  price,
+  name,
+  img,
+  discount,
   id,
-  review 
-}) 
-{ 
-  const {t} = useTranslation()
+  review,
+  setInfo,
+  liked,
+  added
+}) {
+  const { t } = useTranslation();
   const messages = {
-    review : t("pizzaItems.review"),
-  }
+    review: t("pizzaItems.review"),
+  };
   const isLoading = false;
-  const finalPrice = discount[0] ? 
-  ( price * (1 - (discount[1]/100))).toFixed(2) : price;
+  const finalPrice = discount[0]
+    ? (price * (1 - discount[1] / 100)).toFixed(2)
+    : price;
 
-  const iconList = [<AddCircleIcon />, <FavoriteIcon />, <InfoIcon />];
-  
+  const iconList = [
+    <AddCircleIcon key={"add"} sx={{color : added ? "red" : "black"}}/>,
+    <FavoriteIcon key={"fav"} sx={{color : liked ? "red" : "black"}}/>,
+    <InfoIcon key={"info"} />,
+  ];
+
   const icons = (list) => {
-    return list.map((el) => (
-      <IconButton 
-      id={id}
-      sx={{ padding: "0", color: "var(--dark)" }} 
-      size="small">
+    return list.map((el, index) => (
+      <IconButton
+        key={index}
+        onClick={() => setInfo(id)}
+        sx={{ padding: "0", color: "var(--dark)" }}
+        size="small"
+      >
         {el}
       </IconButton>
     ));
   };
 
   const reviewStars = (review) => {
-    return Array.from({length : review}).map(( _ ,index) => 
-    <StarIcon sx={{fontSize:14, fill: "var(--gold)"}} key={index}/>)
-  }
-  
-
+    return Array.from({ length: review }).map((_, index) => (
+      <StarIcon sx={{ fontSize: 14, fill: "var(--gold)" }} key={index} />
+    ));
+  };
 
   return isLoading ? (
     <>
@@ -65,7 +79,7 @@ export default function PizzaCard({
     <Card
       key={id}
       sx={{
-        height: { xs: "140px" , sm: "200px"},
+        height: { xs: "140px", sm: "200px" },
         borderRadius: "var(--radius)",
         width: "100%",
         backgroundColor: "var(--gray)",
@@ -93,7 +107,7 @@ export default function PizzaCard({
             component="img"
             alt={`A photo of ${name} pizza`}
             image={img}
-            sx={{ height: "100%", width: "fit-content"}}
+            sx={{ height: "100%", width: "fit-content" }}
           />
           {/* creating discount badge */}
           {discount[0] && (
@@ -127,15 +141,12 @@ export default function PizzaCard({
             width: "100%",
           }}
         >
-          <Typography
-            sx={{ fontSize: 18, fontWeight: 700 }}
-            component="p"
-          >
+          <Typography variant="pizzaContentBold" component="p">
             {name}
           </Typography>
           <Box
             sx={{
-                marginTop: "40px",
+              marginTop: "40px",
             }}
           >
             <Box
@@ -146,13 +157,12 @@ export default function PizzaCard({
                 flexDirection: "row",
               }}
             >
-              <Typography variant="body2">{reviewStars(review)}</Typography>
+              <Typography variant="star">{reviewStars(review)}</Typography>
             </Box>
             <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
               <Typography
+                variant="pizzaContentBold"
                 sx={{
-                  fontSize: 17,
-                  fontWeight: 900,
                   ...(discount[0] && {
                     textDecoration: "line-through",
                     textDecorationColor: "var(--red)",
@@ -163,9 +173,7 @@ export default function PizzaCard({
                 {`${price}€`}
               </Typography>
               {discount[0] && (
-                <Typography
-                  sx={{ fontWeight: 900 }}
-                >{`${finalPrice}€`}</Typography>
+                <Typography variant="pizzaContentBold">{`${finalPrice}€`}</Typography>
               )}
             </Box>
           </Box>

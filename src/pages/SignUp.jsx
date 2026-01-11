@@ -10,10 +10,12 @@ import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import MarkunreadMailboxOutlinedIcon from "@mui/icons-material/MarkunreadMailboxOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import FormControl from '@mui/material/FormControl';
 // shared ui
 import SharedNavigation from "../components/shared/SharedNavigation";
-import Container from "../components/shared/Container";
+import SiteWrapper from "../components/shared/SiteWrapper";
 import Header from "../components/shared/Header";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
@@ -111,6 +113,7 @@ export default function Signup() {
   };
 
   // list of inputs
+  // [Field,icon, type, section]
   const personlInputs = [
     ["name", <PersonOutlinedIcon />, "text", "personal"],
     ["lastName", <PersonOutlinedIcon />, "text", "personal"],
@@ -119,27 +122,24 @@ export default function Signup() {
     ["password", <KeyOutlinedIcon />, "password", "personal"],
     ["rePassWord", <KeyOutlinedIcon />, "password", "personal"],
   ];
-
   const addressInputs = [
     ["zipCode", <MarkunreadMailboxOutlinedIcon />, "number", "address"],
     ["optional", <LocationOnOutlinedIcon />, "text", "address"],
   ];
 
   return (
-    <Container>
+    <SiteWrapper>
       <Header position={true}>
         <SharedNavigation distance={false} backTo={"/welcome"} />
       </Header>
-      <div className="flex flex-col gap-2 mb-[20px] h-[70px]">
-        <p>{message.head}</p>
-      </div>
-      <form onSubmit={handelSubmit}>
-        <div
-          className="flex flex-col items-center 
-                    justify-center gap-4"
+      <Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
+        <Typography variant="textHead" >{message.head}</Typography >
+      
+      <FormControl onSubmit={handelSubmit}>
+        <Box sx={{display: "flex", flexDirection: "column", gap: 2,alignItems :"center", justifyContent: "center"}}
         >
-          <div className="flex flex-col gap-2 w-[100%]">
-            <p className="font-bold">{message.personal.title}</p>
+          <Box sx={{display: "flex", flexDirection: "column", gap: 2,width: "100%"}}>
+            <Typography variant="titleBold">{message.personal.title}</Typography>
             <InputGroup
               listOfInputs={personlInputs}
               message={message}
@@ -147,9 +147,9 @@ export default function Signup() {
               validation={validation}
               handleChange={handleChange}
             />
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="font-bold">Address:</p>
+          </Box>
+          <Box sx={{display: "flex", flexDirection: "column", gap: 2}}>
+            <Typography variant="titleBold">Address:</Typography>
             <Input
               label={message.address.street.Label}
               name="address"
@@ -161,7 +161,7 @@ export default function Signup() {
               placeholder={message.address.street.placeHolder}
             />
 
-            <div className="flex flex-row gap-2">
+            <Box sx={{display: "flex", flexDirection: "row", gap: 2}}>
               <InputGroup
                 listOfInputs={addressInputs}
                 message={message}
@@ -169,8 +169,8 @@ export default function Signup() {
                 validation={validation}
                 handleChange={handleChange}
               />
-            </div>
-          </div>
+            </Box>
+          </Box>
           <div className="w-[100%] mb-10">
             {/* <Button
               type="submit"
@@ -187,8 +187,9 @@ export default function Signup() {
               disabled={false}
             />
           </div>
-        </div>
-      </form>
-    </Container>
+        </Box>
+      </FormControl>
+      </Box>
+    </SiteWrapper>
   );
 }

@@ -1,4 +1,5 @@
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import  Typography  from '@mui/material/Typography';
 export default function Error({message}) {
     return(
         message !== "" &&
@@ -7,7 +8,7 @@ export default function Error({message}) {
             sx={
                 {color: "var(--red)"}
             }/>
-            <p className='text-[var(--red)]'>{message}</p>
+            <Typography variant='textNormal' sx={{color: "var(--red)"}}>{message}</Typography>
         </div>
     )
 }

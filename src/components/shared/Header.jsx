@@ -1,44 +1,54 @@
-// elements
+// *role : render the image used for initial pages and adopted the image based on the requst* //
+
+// cover image 
 import pizzaSlice from "/pizza-image/margherita.png";
+// Material UI
+import Box from "@mui/material/Box";
 
 export default function Header({children, position}) {
-
+    
     const positionValue = !position ? 
     {left: "-110px", top: "-25px", position : "absolute"} : 
     {left: "-110px", top: "-220px", position : "absolute"}  
     
     return(
-    <header 
-    style={{
-        height : position ? "15vh" : "42vh" 
-    }}
-    className=" w-full ">
+    <Box 
+    component="header"
+    sx={{width : "100%" , 
+        height : position ? "15vh" : "42vh"}}>
                 {/* Pizza image */}
-                <img
-                style={positionValue}
+                <Box
+                component="img"
                 src={pizzaSlice}
                 alt="Margherita pizza"
-                className={`
-                    absolute
-                    left-[-110px]
-                    transition-transform
-                    duration-700
-                    ease-in-out
-                    h-[42vh]
-                    md:h-[50vh]
-                    ${
-                        position 
-                        ? "-translate-y-[20px]"
-                        : "-translate-y-[25px]"
-                    }
-                    `}
-
+                sx={{
+                position: "absolute",
+                left: "-110px",
+                height: {
+                    xs: "42vh",
+                    md: "50vh",
+                },
+                transform: position
+                    ? "translateY(-20px)"
+                    : "translateY(-25px)",
+                transition: "transform 0.7s ease-in-out",
+                ...positionValue, // if this is an sx-compatible object
+                }}
                 />
                 {/* Logo + language */}
-                <div className="absolute top-4 right-4 flex flex-col items-end gap-2">
+                <Box 
+                sx={{
+                        position: "absolute",
+                        top: "16px",
+                        right: "16px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-end",
+                        gap: "8px",
+                        }}>
                 {children}
-                </div>
-            </header>
+                </Box>
+            </Box>
     )
 }
 

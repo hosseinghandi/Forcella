@@ -1,4 +1,4 @@
-const userState = {
+export const exampleUser = {
   "userId": "usr_92f7a3b1d8",
   "personalInfo": {
     "firstName": "Jack",
@@ -13,7 +13,7 @@ const userState = {
   },
   "preferences": {
     "language": "en",
-    "theme": "dark"
+    "dark": true
   },
   "pizzaInCart" : [4,5],
   "likedPizzasId": [1, 3],
@@ -24,5 +24,3 @@ const userState = {
       "orderState" : "delivered"
     }
 }
-
-localStorage.setItem("userState", JSON.stringify(userState));

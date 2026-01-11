@@ -9,14 +9,15 @@ import { useTranslation } from "react-i18next";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
 import SharedNavigation from "../components/shared/SharedNavigation";
-import Container from "../components/shared/Container";
+import SiteWrapper from "../components/shared/SiteWrapper";
 import Header from "../components/shared/Header";
 import Error from "../components/ui/Error";
 // 
 // ui 
-import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
-
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import FormControl from '@mui/material/FormControl';
 // utiles 
 import {isValid} from "../utils/validator";
 import InputGroup from "../components/ui/InputGroup";
@@ -62,21 +63,21 @@ export default function Login() {
     };
     
     // requird inputs
+    // [Field, icon, type, section]
     const listOfInputs = 
     [["email",<EmailOutlinedIcon />, "email", null],
     ["password",<KeyOutlinedIcon />,"password", null]]
 
     return (
-      <Container>
+      <SiteWrapper>
       <Header position={false}>
           <SharedNavigation distance={false} backTo={"/welcome"}/>
       </Header>
-      <div className="flex flex-col gap-2 mb-[36px] h-[80px]">
-        <p>{message.head}</p>
+      <Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
+        <Typography variant="textHead">{message.head}</Typography>
         <Error message={error}/>
-      </div>
-        <form onSubmit={handleSubmit} >
-          <div className="flex flex-col items-center justify-center gap-2">
+        <FormControl onSubmit={handleSubmit} >
+          <Box sx={{display: "flex", flexDirection: "column", gap: 2,alignItems :"center", justifyContent: "center"}}>
             {/* these are inputs respected to input list above */}
               <InputGroup 
                   listOfInputs={listOfInputs}
@@ -85,23 +86,23 @@ export default function Login() {
                   validation={validation}
                   handleChange={handleChange}
                 />
-            <p 
-            style={{
-              color : mode ? "#00000090" : "#FFFFFF60"
-            }}
-            className="w-full text-left my-2">{message.forget}</p>
-          </div>
-          <div >
+            <Typography 
+            sx={{
+              color : mode ? "#00000090" : "#FFFFFF60",
+              width : "100%", 
+              textAlign : "left",
+              
+            }}>{message.forget}</Typography>
+
           <Button               
                                 type="submit"
                                 title={message.button} 
                                 to={ !error.length > 0 ? "" : "/signup" }
                                 color={"white"} 
                                 />
-
-          </div>
-
-        </form>
-        </Container>
+          </Box>
+        </FormControl>
+        </Box>
+        </SiteWrapper>
     );
 }

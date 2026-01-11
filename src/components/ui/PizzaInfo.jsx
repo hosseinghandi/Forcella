@@ -1,129 +1,163 @@
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "../ui/Button"
+import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import Dialog from "@mui/material/Dialog";
 
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import WhatshotSharpIcon from "@mui/icons-material/WhatshotSharp";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 
+export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
+  const {
+    name,
+    description,
+    ingredients,
+    spiceLevel,
+    category,
+    calories,
+    time,
+    image,
+  } = requestedpizzaInfo;
 
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import WhatshotSharpIcon from '@mui/icons-material/WhatshotSharp';
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+  const ingredientsList = (ing) => {
+    return ing.map((el, index) => (
+      <img key={el ?? index} className="w-[30px]" src={`/pizza-gradient/${el}.png`} />
+    ));
+  };
 
-export default function pizzaInfo({pizzaInfo, setInfo}) {
-    const { name,
-      description,
-      ingredients,
-      spiceLevel,
-      category,
-      calories,
-      time,
-      review, 
-      image
-      } = pizzaInfo
-
-      console.log(ingredients)
-    const ingredientsList = (ing) => {
-      return ing.map( el => (<img src={`/pizza-gradient/${el}.png`}/>))
-    }
-
+  const icons = (icon, value, label, index) => {
     return (
-        <Card 
-        sx={    
-          {   
-            position :"fixed",
-            padding: "20px",
-            top : "50%",
-            left : 0,
-            borderRadius: "var(--radius)", 
-            border : "1px solid black",
-            width : "95%",                
-            left : "50%",
-            transform : "translate(-50%,-50%)", 
-            display:"flex", 
-            flexDirection : "column", 
-            gap : 2
-              }
-            }>
-        <Box sx={{width : "100%", display: "flex", justifyContent :"end"}}>
-            <IconButton 
-            id={0}
-            sx={{ padding: "0", color: "var(--dark)" }} 
-            size="small"> <CloseIcon />
-            </IconButton>
-
+      <Box
+            key={index}
+            sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        > 
+          {icon}
+          <Typography sx={{ fontSize: 15, textAlign: "justify" }}>
+            {`${value} ${label ?? ""}`}
+          </Typography>
         </Box>
-        <CardMedia
-            component="img"
-            alt={`A photo of pizza`}
-            image={image}
-            sx={{ padding:"0", height: "100%", width: "70%", margin : "auto"}}
-        />
-        <Box sx={{display : "flex", flexDirection : "column", gap:2}}>
-          <Box sx={{backgroundColor: "var(--gray)",borderRadius : "var(--radius)"}}>
-            <CardContent > 
-                <Typography  sx={{ fontSize: 16 }}>{name}</Typography>
-                <Typography  sx={{ fontSize: 15 , textAlign :"justify"}}>
-                  {description}
-                  </Typography>
-                  <Box sx={{display : "flex", flexDirection : "row", justifyContent : "space-between"}}>
-                    <Box sx={{display : "flex" , flexDirection : "row", 
-                      justifyContent : "center", alignItems :"center", gap : "5px"}}>
-                      <AccessTimeIcon sx={{width: "24px"}}/>
-                      <Typography  sx={{ fontSize: 15 , textAlign :"justify"}}>
-                      {`${time} min`}
-                      </Typography>
-                    </Box>
-                    <Box sx={{display : "flex" , flexDirection : "row", 
-                      justifyContent : "center", alignItems :"center", gap : "5px"}}>
-                      <LocalFireDepartmentIcon sx={{width: "24px"}}/>
-                      <Typography  sx={{ fontSize: 15 , textAlign :"justify"}}>
-                      {spiceLevel}
-                      </Typography>
-                    </Box>
-                    <Box sx={{display : "flex" , flexDirection : "row", 
-                      justifyContent : "center", alignItems :"center", gap : "5px"}}>
-                      <WhatshotSharpIcon sx={{width: "24px"}}/>
-                      <Typography  sx={{ fontSize: 15 , textAlign :"justify"}}>
-                      {`${calories} Kcl`}
-                      </Typography>
-                    </Box>
-                  </Box>
-
-            </CardContent>
-          </Box>
-          <Box sx={{backgroundColor: "var(--gray)",borderRadius : "var(--radius)", overflowX : "scroll"}}>
-            <CardContent > 
-                <Typography  sx={{ fontSize: 18 }}>{`ingredients :`} {ingredientsList(ingredients)}</Typography>
-
-            </CardContent>
-          </Box>
-        </Box>
-
-        </Card>
-      
-        
     )
+  }
+  return (
+        <Dialog
+            PaperProps={{
+              sx: {
+                borderRadius: "25px",
+              },
+            }}
+            open={Boolean(requestedpizzaInfo)}
+            onClose={() => setInfo(null)}
+            fullWidth
+            maxWidth="sm"
+    >
+      <Card
+        sx={{
+          p: 2,
+          borderRadius: "var(--radius)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
+        {/* Close button */}
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton onClick={() => setInfo(null)} size="small">
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        {/* Image */}
+        <CardMedia
+          component="img"
+          image={image}
+          alt={name}
+          sx={{
+            width: "70%",
+            mx: "auto",
+          }}
+        />
+
+        {/* Info */}
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box
+            sx={{
+              backgroundColor: "var(--gray)",
+              borderRadius: "var(--radius)",
+            }}
+          >
+            <CardContent
+              sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            >
+              <Box sx={{display: "flex", flexDirection :"row", gap:2}}>
+                <Typography variant="titleBoldInfo">{name}</Typography>
+                {category.map( (el,index) => (
+                  <Button
+                  key={index}
+                  shrink={true}
+                  title={el}
+                  to={`/applayout/menu/${el}`}
+                  color={"white"}
+                  disabled={false}
+                />)) }
+              </Box>
+
+              <Typography variant="textNormal" textAlign="justify">
+                {description}
+              </Typography>
+
+              {/* Stats */}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                {icons(<AccessTimeIcon sx={{width: "25px"}}/>, time, "min","time")}
+                {icons(<WhatshotSharpIcon sx={{width: "25px"}}/>, spiceLevel, null,"spicy")}
+                {icons(<LocalFireDepartmentIcon sx={{width: "25px"}}/>, calories, "Kcl","calories")}
+              </Box>
+            </CardContent>
+          </Box>
+
+          {/* Ingredients */}
+          <Box
+            sx={{
+              backgroundColor: "var(--gray)",
+              borderRadius: "var(--radius)",
+            }}
+          >
+            <CardContent>
+              <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                <Typography variant="titleBold">Ingredients:</Typography>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                    overflowX: "auto",
+                  }}
+                >
+                  {ingredientsList(ingredients)}
+                </Box>
+              </Box>
+            </CardContent>
+          </Box>
+        </Box>
+      </Card>
+    </Dialog>
+
+  );
 }
 
-
-
-    // "id": "1",
-    //   "name": "Margherita",
-    //   "description": "Classic pizza with tomato sauce, mozzarella, and fresh basil",
-    //   "ingredients": ["tomato sauce", "mozzarella", "basil"],
-    //   "spiceLevel": "none",
-    //   "category": ["special"],
-    //   "calories": 250,
-    //   "price": 8.99,
-    //   "review": 5,
-    //   "time": 10,
-    //   "image": "/pizza-image/margherita.png",
-    //   "offered": {
-    //     "active": true,
-    //     "percentage": 20
-    //   }

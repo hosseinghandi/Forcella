@@ -5,7 +5,9 @@ export default function InputGroup ({
     formData,
     validation,
     handleChange
-}) {
+}) 
+
+{
       return listOfInputs.map( ([Field,icon, type, section]) => {
         const msgSource = section ? message[section] : message;
         const dataSource = section ? formData[section] : formData;
