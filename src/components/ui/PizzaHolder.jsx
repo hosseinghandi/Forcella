@@ -12,46 +12,43 @@ import {
   Skeleton,
 } from "@mui/material";
 
-// import translation
-import { useTranslation } from "react-i18next";
-
+// react import 
+import { memo } from "react";
 // import material ui icons for pizza holder
 import StarIcon from "@mui/icons-material/Star";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
 
-export default function PizzaHolder({
+export default memo(function PizzaHolder({
   price,
   name,
   img,
   discount,
   id,
   review,
-  setInfo,
+  onToggelCart,
+  onTogglePizza,
+  onInfoRequest,
   liked,
   added
 }) {
-  const { t } = useTranslation();
-  const messages = {
-    review: t("pizzaItems.review"),
-  };
   const isLoading = false;
   const finalPrice = discount[0]
     ? (price * (1 - discount[1] / 100)).toFixed(2)
     : price;
 
   const iconList = [
-    <AddCircleIcon key={"add"} sx={{color : added ? "red" : "black"}}/>,
-    <FavoriteIcon key={"fav"} sx={{color : liked ? "red" : "black"}}/>,
-    <InfoIcon key={"info"} />,
+    [<AddCircleIcon sx={{color : added ? "red" : "black"}}/>, onToggelCart, "add"],
+    [<FavoriteIcon sx={{color : liked ? "red" : "black"}}/> , onTogglePizza, "fav"],
+    [<InfoIcon />, onInfoRequest, "info"],
   ];
 
   const icons = (list) => {
-    return list.map((el, index) => (
+    return list.map(([el, task, key]) => (
       <IconButton
-        key={index}
-        onClick={() => setInfo(id)}
+        key={key}
+        onClick={() => task(id)}
         sx={{ padding: "0", color: "var(--dark)" }}
         size="small"
       >
@@ -194,4 +191,4 @@ export default function PizzaHolder({
       </CardActions>
     </Card>
   );
-}
+})

@@ -1,24 +1,31 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import  Button  from "../ui/Button";
-import Box from "@mui/material/Box";
+// *role : on request render passed pizza as special offer*
+
+// material ui component
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
+
+import { memo } from "react"
+// ui component
+import Button from "../ui/Button";
+
+// import translator
 import { useTranslation } from "react-i18next";
-import Skeleton from "@mui/material/Skeleton";
 
+export default memo(function SpecialCard({ offered }) {
 
+  const { t } = useTranslation();
 
-export default function SpecialCard ({offered}) {
-    const {t} = useTranslation()
-    const messages = {
-        offer : t("metadata.pizza.offer"),
-        description : t("metadata.pizza.description"),
-        order : t("metadata.button.order")
-    }
-
-    
+  const messages = {
+    offer: t("metadata.pizza.offer"),
+    description: t("metadata.pizza.description"),
+    order: t("metadata.button.order"),
+  };
 
     // take a random pizza each time is rendered the page from offered product
     const RandomPizza = offered[Math.floor(Math.random()*offered.length)]
@@ -28,6 +35,7 @@ export default function SpecialCard ({offered}) {
         img : RandomPizza.image,
         discount : RandomPizza.offered.percentage
     }
+
 return (<Card
             key={1}
             sx={{
@@ -54,6 +62,7 @@ return (<Card
                     to={"/applayout/shoppingbag"}
                     color={"white"}
                     shrink={true}
+                    nonActive ={false}
                     disabled={false}
               ></Button>
                 </CardActions>
@@ -67,6 +76,6 @@ return (<Card
             </Box>
             </Card>
     )
-}
+})
 
 

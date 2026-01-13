@@ -1,13 +1,14 @@
 import  {setItem, getItem} from "./storage"
-import {user} from "../exampleUser"
+import  exampleUser  from "../exampleUser.json"
+
 const useStateKey = "userState"
 
 export const saveUserState = (state) => {
     return setItem(useStateKey, state)
 }
 
-export const getUserState = (state) => {
-    return getItem(useStateKey, null)
+export const getUserState = () => {
+    return getItem(useStateKey, exampleUser)
 }
 
 export const updateUserState = (partState) =>{

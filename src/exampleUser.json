@@ -1,4 +1,4 @@
-export const exampleUser = {
+{
   "userId": "usr_92f7a3b1d8",
   "personalInfo": {
     "firstName": "Jack",
@@ -15,8 +15,8 @@ export const exampleUser = {
     "language": "en",
     "dark": true
   },
-  "pizzaInCart" : [4,5],
-  "likedPizzasId": [1, 3],
+  "pizzaInCartId" : [],
+  "likedPizzasId": [],
   "lastOrdered":{
       "pizzaId" : 1,
       "quantity" : 4,
@@ -24,3 +24,4 @@ export const exampleUser = {
       "orderState" : "delivered"
     }
 }
+

@@ -20,6 +20,10 @@
             fontSize : "15px",
             fontWeight : "400"
           }, 
+          "textError" : {
+            fontSize : "18px",
+            fontWeight : "400"
+          },
           "textHead" : {
             fontSize : "16px",
             fontWeight : "400"

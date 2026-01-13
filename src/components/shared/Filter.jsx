@@ -1,18 +1,17 @@
+// to do : change the layout of the filters
 // *role: inform menu context about how render the items based on the user filter inputs* //
 
-// Icons
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import CloseIcon from "@mui/icons-material/Close";
 
 // UI component
 import Button from "../ui/Button";
 
 // Material ui component
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 
 // react imports
 import { useState } from "react";
 
+import { useParams } from "react-router-dom";
 // translation import
 import { useTranslation } from "react-i18next";
 
@@ -23,6 +22,10 @@ export default function Filter() {
     categories: t("metadata.pizza.categories", { returnObjects: true }),
   };
 
+  // control later which one is selected or active
+  // const [current, setCurrent] = useState("all")
+  const {filterkey} = useParams()
+  console.log(filterkey)
   const categoriesBtn = () =>
     message.categories.map((category) => {
       return (
@@ -32,13 +35,14 @@ export default function Filter() {
           type="submit"
           title={category}
           to={`/applayout/menu/${category}`}
+          nonActive = {true ? filterkey !== category : false}
           color={"white"}
           disabled={false}
         />
       );
     });
 
-  const [filter, setFilter] = useState(false);
+
   return (
     <Box
       sx={{
@@ -52,7 +56,7 @@ export default function Filter() {
     >
       <Box
         sx={{
-          height: "40px",
+          height: "50px",
           display: "flex",
           alignItems: "center",
           px: "12px",
@@ -64,34 +68,45 @@ export default function Filter() {
         <Box
           sx={{
             display: "flex",
+            flexGrow : 1,
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
-            gap: "8px",
+            gap: "4px",
           }}
         >
           {/* LEFT CONTENT */}
-          {filter ? (
-            categoriesBtn()
-          ) : (
-            <TextField
-              variant="standard"
-              InputProps={{ disableUnderline: true }}
-              sx={{ width: "100%" }}
-              placeholder={message.search}
-            />
-          )}
+          <Button
+                key={"All"}
+                shrink={true}
+                type="link"
+                title={"All"}
+                to={`/applayout/menu`}
+                color={"white"}
+                nonActive={!filterkey ?  false : true}
+                disabled={false}
+          />
+            {categoriesBtn()}
+
+               <Button
+                key={"offered"}
+                shrink={true}
+                type="submit"
+                title={"Offered"}
+                to={`/applayout/menu/offered`}
+                color={"white"}
+                nonActive={filterkey ==="offered" ?  false : true}
+                disabled={false}
+          />
 
           {/* TOGGLE ICON */}
           <Box
-            onClick={() => setFilter((prev) => !prev)}
             sx={{
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
             }}
           >
-            {filter ? <CloseIcon /> : <FilterAltIcon />}
           </Box>
         </Box>
       </Box>

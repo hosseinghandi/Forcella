@@ -1,14 +1,23 @@
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "../ui/Button"
-import Typography from "@mui/material/Typography";
-import CardMedia from "@mui/material/CardMedia";
-import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
-import Dialog from "@mui/material/Dialog";
+// to do: change thename of ingerdents beacuse tehy are not corrisponded
 
+// *role : on request render information dialog paper*
+// material ui component
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  CardMedia,
+  IconButton,
+  Dialog,
+} from "@mui/material";
+
+// ui component
+import Button from "../ui/Button";
+
+// material ui icons for info paper
+import CloseIcon from "@mui/icons-material/Close";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import WhatshotSharpIcon from "@mui/icons-material/WhatshotSharp";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
@@ -27,40 +36,44 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
 
   const ingredientsList = (ing) => {
     return ing.map((el, index) => (
-      <img key={el ?? index} className="w-[30px]" src={`/pizza-gradient/${el}.png`} />
+      <img
+        key={el ?? index}
+        className="w-[30px]"
+        src={`/pizza-gradient/${el}.png`}
+      />
     ));
   };
 
   const icons = (icon, value, label, index) => {
     return (
       <Box
-            key={index}
-            sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "5px",
-          }}
-        > 
-          {icon}
-          <Typography sx={{ fontSize: 15, textAlign: "justify" }}>
-            {`${value} ${label ?? ""}`}
-          </Typography>
-        </Box>
-    )
-  }
+        key={index}
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "5px",
+        }}
+      >
+        {icon}
+        <Typography sx={{ fontSize: 15, textAlign: "justify" }}>
+          {`${value} ${label ?? ""}`}
+        </Typography>
+      </Box>
+    );
+  };
   return (
-        <Dialog
-            PaperProps={{
-              sx: {
-                borderRadius: "25px",
-              },
-            }}
-            open={Boolean(requestedpizzaInfo)}
-            onClose={() => setInfo(null)}
-            fullWidth
-            maxWidth="sm"
+    <Dialog
+      PaperProps={{
+        sx: {
+          borderRadius: "25px",
+        },
+      }}
+      open={Boolean(requestedpizzaInfo)}
+      onClose={() => setInfo(null)}
+      fullWidth
+      maxWidth="sm"
     >
       <Card
         sx={{
@@ -100,17 +113,18 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
             <CardContent
               sx={{ display: "flex", flexDirection: "column", gap: 2 }}
             >
-              <Box sx={{display: "flex", flexDirection :"row", gap:2}}>
+              <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
                 <Typography variant="titleBoldInfo">{name}</Typography>
-                {category.map( (el,index) => (
+                {category.map((el, index) => (
                   <Button
-                  key={index}
-                  shrink={true}
-                  title={el}
-                  to={`/applayout/menu/${el}`}
-                  color={"white"}
-                  disabled={false}
-                />)) }
+                    key={index}
+                    shrink={true}
+                    title={el}
+                    to={`/applayout/menu/${el}`}
+                    color={"white"}
+                    disabled={false}
+                  />
+                ))}
               </Box>
 
               <Typography variant="textNormal" textAlign="justify">
@@ -124,9 +138,24 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
                   justifyContent: "space-between",
                 }}
               >
-                {icons(<AccessTimeIcon sx={{width: "25px"}}/>, time, "min","time")}
-                {icons(<WhatshotSharpIcon sx={{width: "25px"}}/>, spiceLevel, null,"spicy")}
-                {icons(<LocalFireDepartmentIcon sx={{width: "25px"}}/>, calories, "Kcl","calories")}
+                {icons(
+                  <AccessTimeIcon sx={{ width: "25px" }} />,
+                  time,
+                  "min",
+                  "time"
+                )}
+                {icons(
+                  <WhatshotSharpIcon sx={{ width: "25px" }} />,
+                  spiceLevel,
+                  null,
+                  "spicy"
+                )}
+                {icons(
+                  <LocalFireDepartmentIcon sx={{ width: "25px" }} />,
+                  calories,
+                  "Kcl",
+                  "calories"
+                )}
               </Box>
             </CardContent>
           </Box>
@@ -157,7 +186,5 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
         </Box>
       </Card>
     </Dialog>
-
   );
 }
-

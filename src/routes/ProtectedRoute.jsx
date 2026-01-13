@@ -6,8 +6,8 @@ import { useContext } from "react";
 import { siteContext } from "../App";
 
 export default function ProtectedRoute(){
-    const { userId } = useContext(siteContext);
+    const { userdata } = useContext(siteContext);
     return ( 
-        userId ?  <Outlet/> : <Navigate to="/login" replace/>
+        userdata ?  <Outlet/> : <Navigate to="/login" replace/>
     )
 }

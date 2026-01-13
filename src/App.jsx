@@ -5,9 +5,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import i18n from "./utils/i18n";
 
 // userState and local storage
-// import {saveUserState , getUserState , updateUserState} from "../src/utils/userStateTracker"
-import{ exampleUser }from "./exampleUser"
-
+import {saveUserState , getUserState , updateUserState} from "../src/utils/userStateTracker"
 // routes
 import AppLayout from "./routes/AppLayout";
 import StateChecker from "./routes/StateChecker"
@@ -28,20 +26,23 @@ export const siteContext = createContext()
 
 export default function App() {
   
-  const [mode, setMode] = useState(exampleUser.preferences.theme || false)
-  const [lan, setLang] = useState(exampleUser.preferences.language || "en")
-  const [userdata, setUser] = useState(exampleUser || null)
+  const user = getUserState()
+  // local storag elater shpuld be handel
+  const [mode, setMode] = useState(true)
+  const [lan, setLang] = useState(user.preferences.language || "en")
+  const [userdata, setUser] = useState(() => user)
 
 
   const colorTheme = mode ? "#000000" : "#FFFFFF"
 
   useEffect(() => {
         i18n.changeLanguage(lan)
+        updateUserState({preferences : {language : lan}})
   } , [lan])
   
 
   return (
-<siteContext.Provider value={{ mode, setMode, lan, setLang, userdata, colorTheme }}>
+<siteContext.Provider value={{ mode, setMode, lan, setLang, userdata,setUser, colorTheme }}>
   <SiteWrapper>
     <BrowserRouter>
       <Routes>
@@ -59,7 +60,11 @@ export default function App() {
         <Route path="/applayout" element={<AppLayout />}>
 
           {/* public inside app */}
-          <Route path="menu" element={<Menu />} />
+          <Route path={"menu"} >
+            <Route index element={<Menu />}/>  
+            <Route path=":filterkey" element={<Menu />}/>
+            <Route />
+          </Route>
 
           {/* protected */}
           <Route element={<ProtectedRoute />}>

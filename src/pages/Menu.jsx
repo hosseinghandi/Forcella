@@ -1,76 +1,103 @@
 // react imports
-import { useState,createContext, useContext } from "react"
-import { useTranslation } from "react-i18next"
+import { useState, useContext, useCallback, useMemo } from "react";
 
-import { siteContext } from "../App"
+// impoprt react router
+import { useParams } from "react-router-dom";
 
-import SharedNavigation from "../components/shared/SharedNavigation"
-// import Filter from "../components/shared/Filter"
-import SpecialCard from "../components/ui/SpecialCard"
-import PizzaHolder from "../components/ui/PizzaHolder"
-import PizzaInfo from "../components/ui/PizzaInfo"
+// import translation
+import { useTranslation } from "react-i18next";
+// impoprt helper
+import { useToggleAction } from "../hook/useToggleAction";
+// import app context
+import { siteContext } from "../App";
 
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
+// ui components
+import SharedNavigation from "../components/shared/SharedNavigation";
+import SpecialCard from "../components/ui/SpecialCard";
+import PizzaHolder from "../components/ui/PizzaHolder";
+import PizzaInfo from "../components/ui/PizzaInfo";
 
-export const menuContext= createContext()
+// import material ui
+import Grid from "@mui/material/Grid";
+import { Box } from "@mui/material";
 
 export default function Menu() {
-    const {userdata} = useContext(siteContext)
-    const  {pizzaInCart, likedPizzasId} = userdata
-    console.log(likedPizzasId)
-    const {t} = useTranslation() 
-    const [requestedFilter, setFilter] = useState("all")
-    const [search, setSearch] = useState(null)
-    const [info, setInfo] = useState(null)
-    console.log()
+  // set text for rendering
+  const { t } = useTranslation();
+  const pizzaRawData = t("pizzaItems", { returnObjects: true });
 
-    const pizzaData = t("pizzaItems", {returnObjects : true})
-    const offeredPizza = pizzaData.filter((el)=> el.offered.active)
-    const requestedpizzaInfo = info ? pizzaData.filter((el)=> el.id === info)[0] : null
+  //check if teh user asked any filter  
+  const { filterkey } = useParams();
+//   filter the pizzas helper   
+    const pizzaFilter = (data) =>
+    filterkey ? data.filter((el) => el.category.includes(filterkey)) : data;
+//   take the offered one from the pizzadata and pass it to special offered cart 
+  const offeredPizza = useMemo(() => {
+    return pizzaRawData.filter((el) => el.offered.active);
+  }, [pizzaRawData]);
 
-    // // pizza info is included of all text that hsould be translate 
+//   orgnized pizza data 
+  const pizzaData =
+    filterkey === "offered" ? offeredPizza : pizzaFilter(pizzaRawData);
 
-    return ( 
-        <menuContext.Provider value={{requestedFilter}}>
-            <SharedNavigation distance={true} backTo={"/welcome"} filter={true}/>
-                  <Grid container spacing={2} sx={{ mt: 2 }}>
-                        {/* Special Offer */}
-                        <Grid>
-                        <SpecialCard offered={offeredPizza} />
-                        </Grid>
+  // getting userdata from app context
+  const { userdata} = useContext(siteContext);
+//   take out pizza in cart id and liked pizza id 
+  const { pizzaInCartId, likedPizzasId } = userdata;
+  // set a stete to track info request
+  const [info, setInfo] = useState(null);
 
-                        {/* Pizza list */}
-                        {pizzaData.map((pizza) => (
-                        <Grid
-                            sx={{width:"100%"}}
-                            key={pizza.id}
-                            // xs={12}      // 📱 mobile → 1 column
-                            // sm={6}       // 📱 tablet → 2 columns
-                            // md={4}       // 💻 desktop → 3 columns
-                        >
-                            <PizzaHolder
-                            name={pizza.name}
-                            price={pizza.price}
-                            img={pizza.image}
-                            discount={[pizza.offered.active, pizza.offered.percentage]}
-                            time={pizza.time}
-                            id={pizza.id}
-                            liked={console.log(likedPizzasId.includes(Number(pizza.id)))}
-                            added={true}
-                            setInfo={setInfo}
-                            review={pizza.review}
-                            />
-                        </Grid>
-                        ))}
+//   handel any changes requested  by user
+  const handelToggleCart = useToggleAction("pizzaInCartId");
+  const handelTogglePizza = useToggleAction("likedPizzasId");
+  const handelInfoRequest = useCallback((id) => {
+    setInfo(id);
+  });
 
-                        {/* Pizza info modal / section */}
-                    </Grid>
-                        {requestedpizzaInfo && (
-                            <PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
-                        )}
-        </menuContext.Provider >
-)
+  const requestedpizzaInfo = info
+    ? pizzaData.filter((el) => el.id === info)[0]: null;
+  // // pizza info is included of all text that hsould be translate
+
+  return (
+    <>
+      <SharedNavigation distance={true} backTo={"/welcome"} filter={true} />
+      <Box component={"div"}>
+        {/* Special Offer */}
+        {!filterkey && (
+          <Box sx={{margin: " 20px 0"}}>
+            <SpecialCard offered={offeredPizza} />
+          </Box>
+        )}
+
+        <Box
+          sx={{ width: "100%" , 
+            display:"flex", 
+            flexDirection:"column", gap:"20px"}} 
+        >
+        {/* Pizza list */}
+        {pizzaData.map((pizza) => (
+            <PizzaHolder
+              key={pizza.name}
+              name={pizza.name}
+              price={pizza.price}
+              img={pizza.image}
+              discount={[pizza.offered.active, pizza.offered.percentage]}
+              time={pizza.time}
+              id={pizza.id}
+              liked={likedPizzasId.includes(pizza.id)}
+              added={pizzaInCartId.includes(pizza.id)}
+              onToggelCart={handelToggleCart}
+              onTogglePizza={handelTogglePizza}
+              onInfoRequest={handelInfoRequest}
+            />
+        ))}
+        </Box>
+
+        {/* Pizza info modal / section */}
+      </Box>
+      {requestedpizzaInfo && (
+        <PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
+      )}
+    </>
+  );
 }

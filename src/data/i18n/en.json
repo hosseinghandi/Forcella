@@ -95,12 +95,12 @@
 
   "pizzaItems": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Margherita",
       "description": "A traditional Neapolitan Margherita pizza recipe is tomato sauce with fresh tomatoes, mozzarella cheese and basil which represent the colours of the Italian flag – white cheese, green basil and red tomato.",
       "ingredients": ["tomato", "mozzarella", "basil"],
       "spiceLevel": "none",
-      "category": ["special"],
+      "category": ["Special"],
       "calories": 250,
       "price": 8.99,
       "review": 5,
@@ -112,12 +112,12 @@
       }
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Pepperoni",
       "description": "Pizza with tomato sauce, mozzarella, and spicy pepperoni",
       "ingredients": ["tomato sauce", "mozzarella", "pepperoni"],
       "spiceLevel": "medium",
-      "category": ["special", "meat"],
+      "category": ["Special", "Meat"],
       "calories": 300,
       "price": 9.99,
       "review": 4.5,
@@ -129,12 +129,12 @@
       }
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "BBQ Chicken",
       "description": "Pizza with barbecue sauce, chicken breast, onion, and mozzarella",
-      "ingredients": ["barbecue sauce", "chicken breast", "onion", "mozzarella"],
+      "ingredients": ["barbecue_sauce", "chicken breast", "onion", "mozzarella"],
       "spiceLevel": "mild",
-      "category": ["special", "meat"],
+      "category": ["Special", "Meat"],
       "calories": 320,
       "price": 10.99,
       "review": 3.8,
@@ -146,12 +146,12 @@
       }
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Hawaiian",
       "description": "Pizza with tomato sauce, mozzarella, ham, and pineapple",
       "ingredients": ["tomato sauce", "mozzarella", "ham", "pineapple"],
       "spiceLevel": "none",
-      "category": ["meat"],
+      "category": ["Meat"],
       "calories": 290,
       "price": 9.99,
       "review": 4,
@@ -163,12 +163,12 @@
       }
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Vegetarian",
       "description": "Pizza with tomato sauce, mozzarella, and fresh vegetables",
-      "ingredients": ["tomato sauce", "mozzarella", "bell peppers", "onion", "olives"],
+      "ingredients": ["tomato sauce", "mozzarella", "bell_peppers", "onion", "olives"],
       "spiceLevel": "none",
-      "category": ["vegetarian"],
+      "category": ["Vegetarian"],
       "calories": 240,
       "price": 8.99,
       "review": 4.1,

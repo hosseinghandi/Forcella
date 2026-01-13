@@ -96,12 +96,12 @@
 
   "pizzaItems": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Margherita",
       "description": "Pizza classica con pomodoro, mozzarella e basilico fresco",
       "ingredients": ["pomodoro", "mozzarella", "basilico"],
       "spiceLevel": "nessuno",
-      "category": ["speciale"],
+      "category": ["Speciale"],
       "calories": 250,
       "price": 8.99,
       "review": 5,
@@ -113,12 +113,12 @@
       }
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Pepperoni",
       "description": "Pizza con pomodoro, mozzarella e pepperoni piccante",
       "ingredients": ["pomodoro", "mozzarella", "pepperoni"],
       "spiceLevel": "medio",
-      "category": ["speciale", "carne"],
+      "category": ["Speciale", "Carne"],
       "calories": 300,
       "price": 9.99,
       "review": 4.5,
@@ -130,12 +130,12 @@
       }
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "BBQ con Pollo",
       "description": "Pizza con salsa barbecue, petto di pollo, cipolla e mozzarella",
       "ingredients": ["salsa barbecue", "petto di pollo", "cipolla", "mozzarella"],
       "spiceLevel": "leggero",
-      "category": ["speciale", "carne"],
+      "category": ["Speciale", "Carne"],
       "calories": 320,
       "price": 10.99,
       "review": 3.8,
@@ -147,12 +147,12 @@
       }
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Hawaiana",
       "description": "Pizza con pomodoro, mozzarella, prosciutto e ananas",
       "ingredients": ["pomodoro", "mozzarella", "prosciutto", "ananas"],
       "spiceLevel": "nessuno",
-      "category": ["carne"],
+      "category": ["Carne"],
       "calories": 290,
       "price": 9.99,
       "review": 4,
@@ -164,12 +164,12 @@
       }
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Vegetariana",
       "description": "Pizza con pomodoro, mozzarella e verdure fresche",
       "ingredients": ["pomodoro", "mozzarella", "peperoni", "cipolla", "olive"],
       "spiceLevel": "nessuno",
-      "category": ["vegetariana"],
+      "category": ["Vegetariana"],
       "calories": 240,
       "price": 8.99,
       "review": 4.1,

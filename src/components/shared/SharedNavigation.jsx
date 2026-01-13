@@ -44,7 +44,7 @@ export default function SharedNavigation({ mode, backTo, distance, filter }) {
 
       {filter && (
         <Box sx={{ mt: 1 }}>
-          <Filter />
+          <Filter/>
         </Box>
       )}
     </Box>
