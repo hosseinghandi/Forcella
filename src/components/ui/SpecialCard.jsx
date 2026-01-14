@@ -17,7 +17,7 @@ import Button from "../ui/Button";
 // import translator
 import { useTranslation } from "react-i18next";
 
-export default memo(function SpecialCard({ offered }) {
+export default memo(function SpecialCard({ offered, colorText}) {
 
   const { t } = useTranslation();
 
@@ -28,7 +28,8 @@ export default memo(function SpecialCard({ offered }) {
   };
 
     // take a random pizza each time is rendered the page from offered product
-    const RandomPizza = offered[Math.floor(Math.random()*offered.length)]
+    // const RandomPizza = offered[Math.floor(Math.random()*offered.length)]
+    const RandomPizza = offered[0]
     // structure the data to share
     const offeredPizza = {
         name : RandomPizza.name,
@@ -60,7 +61,7 @@ return (<Card
                     type="submit"
                     title={messages.order}
                     to={"/applayout/shoppingbag"}
-                    color={"white"}
+                    color={colorText}
                     shrink={true}
                     nonActive ={false}
                     disabled={false}

@@ -6,7 +6,7 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 // material ui component
 import {Box,Typography} from "@mui/material";
 
-export default function Error({ message }) {
+export default function Error({ message, colorText}) {
   return (
     message !== "" && (
       <Box sx={{display: "flex", flexDirection:"row", gap:1}}>

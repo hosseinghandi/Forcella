@@ -108,7 +108,7 @@ export default memo(function PizzaHolder({
             sx={{ height: "100%", width: "fit-content" }}
           />
           {/* creating discount badge */}
-          {discount && (
+          {discount[0] && (
             <Box
               sx={{
                 position: "absolute",
@@ -124,7 +124,7 @@ export default memo(function PizzaHolder({
                 textAlign: "center",
               }}
             >
-              {`${discount}%`} <br />
+              {`${discount[1]}%`} <br />
               OFF
             </Box>
           )}

@@ -28,13 +28,14 @@ export default function App() {
   
   const user = getUserState()
   // local storag elater shpuld be handel
-  const [mode, setMode] = useState(true)
+  const [mode, setMode] = useState(false)
   const [lan, setLang] = useState(user.preferences.language || "en")
   const [userdata, setUser] = useState(() => user)
 
-
-  const colorTheme = mode ? "#000000" : "#FFFFFF"
-
+    // color text is contrary to color them becasue they should be 
+  const colorText =  mode ? "#000000" : "#FFFFFF"  
+  const colorTheme = mode ? "#FFFFFF" : "#000000" 
+  
   useEffect(() => {
         i18n.changeLanguage(lan)
         updateUserState({preferences : {language : lan}})
@@ -42,7 +43,7 @@ export default function App() {
   
 
   return (
-<siteContext.Provider value={{ mode, setMode, lan, setLang, userdata,setUser, colorTheme }}>
+<siteContext.Provider value={{ mode, setMode, lan, setLang, userdata,setUser, colorTheme, colorText }}>
   <SiteWrapper>
     <BrowserRouter>
       <Routes>

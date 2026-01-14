@@ -3,7 +3,7 @@
 // material ui elements
 import { FormControlLabel, Switch } from "@mui/material";
 
-export default function SwitchLabels({ value, setValue, mode }) {
+export default function SwitchLabels({ value, setValue, colorTheme }) {
   return (
     <FormControlLabel
       sx={{
@@ -41,7 +41,7 @@ export default function SwitchLabels({ value, setValue, mode }) {
               outline: "none",
               // border: "none", border should be rmoved
               borderRadius: "50%",
-              backgroundColor: mode ? "#000000" : "#FFFFFF",
+              backgroundColor: colorTheme,
             },
 
             "& .MuiSwitch-track": {

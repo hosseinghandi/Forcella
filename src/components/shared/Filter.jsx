@@ -1,21 +1,17 @@
 // to do : change the layout of the filters
 // *role: inform menu context about how render the items based on the user filter inputs* //
 
-
 // UI component
 import Button from "../ui/Button";
 
 // Material ui component
 import { Box } from "@mui/material";
 
-// react imports
-import { useState } from "react";
-
 import { useParams } from "react-router-dom";
 // translation import
 import { useTranslation } from "react-i18next";
 
-export default function Filter() {
+export default function Filter({colorText}) {
   const { t } = useTranslation();
   const message = {
     search: t("metadata.pizza.searchPizza"),
@@ -25,7 +21,6 @@ export default function Filter() {
   // control later which one is selected or active
   // const [current, setCurrent] = useState("all")
   const {filterkey} = useParams()
-  console.log(filterkey)
   const categoriesBtn = () =>
     message.categories.map((category) => {
       return (
@@ -36,7 +31,7 @@ export default function Filter() {
           title={category}
           to={`/applayout/menu/${category}`}
           nonActive = {true ? filterkey !== category : false}
-          color={"white"}
+          color={colorText}
           disabled={false}
         />
       );
@@ -82,7 +77,7 @@ export default function Filter() {
                 type="link"
                 title={"All"}
                 to={`/applayout/menu`}
-                color={"white"}
+                color={colorText}
                 nonActive={!filterkey ?  false : true}
                 disabled={false}
           />
@@ -94,7 +89,7 @@ export default function Filter() {
                 type="submit"
                 title={"Offered"}
                 to={`/applayout/menu/offered`}
-                color={"white"}
+                color={colorText}
                 nonActive={filterkey ==="offered" ?  false : true}
                 disabled={false}
           />

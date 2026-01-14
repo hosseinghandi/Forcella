@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 export default function Welcome() {
-  const { lan, setLang, mode, setMode, colorTheme } = useContext(siteContext);
+  const { lan, setLang, mode, setMode, colorTheme, colorText } = useContext(siteContext);
   const { t } = useTranslation();
 
   const messages = {
@@ -36,7 +36,7 @@ export default function Welcome() {
       {/* page wrapper  */}
       <Header position={false}>
         <Logo color={colorTheme} />
-        <SwitchLabels value={lan} setValue={setLang} mode={mode} />
+        <SwitchLabels value={lan} setValue={setLang} colorTheme={colorTheme} />
         <ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
       </Header>
       <Box

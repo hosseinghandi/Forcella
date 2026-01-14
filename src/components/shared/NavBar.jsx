@@ -8,14 +8,15 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 // material ui components
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 
-export default function NavBar({ mode, current }) {
+export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum }) {
+
   const pathList = [
-    { path: "/applayout/menu", icon: LocalPizzaIcon },
-    { path: "/applayout/favorites", icon: FavoriteOutlinedIcon },
-    { path: "/applayout/shoppingbag", icon: ShoppingBagOutlinedIcon },
-    { path: "/applayout/profile", icon: PersonOutlinedIcon },
+    { path: "menu", icon: LocalPizzaIcon },
+    { path: "favorites", icon: FavoriteOutlinedIcon },
+    { path: "shoppingbag", icon: ShoppingBagOutlinedIcon },
+    { path: "profile", icon: PersonOutlinedIcon },
   ];
 
   return (
@@ -37,21 +38,33 @@ export default function NavBar({ mode, current }) {
           alignItems: "center",
           justifyContent: "space-around",
           height: "50px",
-          backgroundColor: "var(--dark)",
           borderRadius: "25px",
+          ...({ backgroundColor: mode ? "var(--orange)": "var(--dark)"})
+          
         }}
       >
         {pathList.map(({ path, icon: Icon }) => (
           <Link to={path} key={path}>
+            
             <IconButton>
               <Box
                 sx={{
-                  color: current === path ? "var(--orange)" : "#fff",
-                  transform: current === path ? "scale(1.2)" : "scale(1)",
+                  ...({color:( current.includes(path)) ? mode ? "black" : "var(--orange)" : "white"}),
+                  transform: ( current.includes(path)) ? "scale(1.3)" : "scale(1)",
                   transition: "all 0.25s ease",
                 }}
-              >
-                <Icon />
+              > 
+                <Box component={"div"} sx={{position:"relative"}}>
+                  <Typography 
+                  sx={{color:"white", 
+                  position:"absolute", 
+                  fontSize:"10px"}}> 
+                    {path.includes("favorites") ? 
+                    pizzaLikedNum !== 0 && pizzaLikedNum: path.includes("shoppingbag") && 
+                    pizzaInCartNum !== 0 && pizzaInCartNum}
+                  </Typography>
+                  <Icon />
+                </Box>
               </Box>
             </IconButton>
           </Link>

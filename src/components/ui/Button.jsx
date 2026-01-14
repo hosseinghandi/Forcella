@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 // react imports
 import { useNavigate } from "react-router-dom";
 
-export default function ToggleTheme({
+export default function ButtonBasic({
   type,
   title,
   to,

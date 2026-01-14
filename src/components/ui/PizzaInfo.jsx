@@ -5,7 +5,6 @@
 import {
   Box,
   Card,
-  CardActions,
   CardContent,
   Typography,
   CardMedia,

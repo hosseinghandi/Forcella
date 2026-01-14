@@ -25,7 +25,7 @@
             fontWeight : "400"
           },
           "textHead" : {
-            fontSize : "16px",
+            fontSize : "17px",
             fontWeight : "400"
           },
           "logoText" : {

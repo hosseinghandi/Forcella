@@ -7,11 +7,19 @@ import { useContext } from "react";
 import { siteContext } from "../App";
 
 export default function Layout() {
-    const {mode} = useContext(siteContext)
+    const {mode, userdata} = useContext(siteContext)
+    const pizzaLikedNum = userdata["likedPizzasId"].length
+    const pizzaInCartNum = userdata["pizzaInCartId"].length
+
     const location = useLocation()
     return (  
                 <Container>
-                    <NavBar mode={mode} current={location.pathname}/>
+                    <NavBar mode={mode} 
+                    current={location.pathname} 
+                    pizzaLikedNum={pizzaLikedNum}
+                    pizzaInCartNum={pizzaInCartNum}
+                    
+                    />
                     <Outlet />
                 </Container>
         
