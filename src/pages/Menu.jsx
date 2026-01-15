@@ -11,11 +11,17 @@ import {pizzaFinder} from "../utils/pizzaFinder"
 // import app context
 import { siteContext } from "../App";
 
+import * as MUI from "../utils/MUI"
+import * as UI from "../utils/UI"
+import * as Icon from "../utils/Icons"
+
 // ui components
 import SharedNavigation from "../components/shared/SharedNavigation";
 import SpecialCard from "../components/ui/SpecialCard";
-import PizzaHolder from "../components/ui/PizzaHolder";
+import PizzaInList from "../components/ui/PizzaInList";
 import PizzaInfo from "../components/ui/PizzaInfo";
+import SiteWrapper from "../components/shared/SiteWrapper";
+import Filter from "../components/ui/Filter"
 
 // import material ui
 import { Box } from "@mui/material";
@@ -32,7 +38,7 @@ export default function Menu() {
   const filterPizza = useMemo(() => (pizzaFinder(pizzaRawData, "filter", filterkey )), [filterkey])
   const offeredPizza = useMemo(() => (pizzaFinder(pizzaRawData, "offered")), [])
   const requestedpizzaInfo = useMemo(() => (pizzaFinder(pizzaRawData, "info", info)), [info])
-  const pizzaData = filterkey === "offered" ? offeredPizza : filterPizza;
+  const pizzaData = filterkey === "offered" || filterkey === "offerta" ? offeredPizza : filterPizza;
 
   //handel any changes requested  by user
   const handelToggleCart = useToggleAction("pizzaInCartId");
@@ -41,24 +47,25 @@ export default function Menu() {
   const handelInfoRequest = useCallback((id) => {setInfo(id);});
 
   return (
-    <>
-      <SharedNavigation distance={true} filter={true} colorTheme={colorTheme} colorText={colorText}/>
-      <Box component={"div"}>
+    <UI.SiteWrapper>
+        <UI.SharedNavigation menu={true}/>      
+        <UI.Filter colorText={colorText}/>
+        <MUI.Box component={"div"}>
         {/* Special Offer */}
         {!filterkey && (
-          <Box sx={{marginTop: "20px"}} >
-            <SpecialCard offered={offeredPizza} colorText={colorText}/>
-          </Box>
+          <MUI.Box sx={{marginTop: "20px"}} >
+            <UI.SpecialCard offered={offeredPizza} colorText={colorText}/>
+          </MUI.Box>
         )}
 
-        <Box
+        <MUI.Box
           sx={{ width: "100%" , 
             display:"flex", 
             flexDirection:"column"}} 
         >
         {/* Pizza list */}
         {pizzaData.map((pizza) => (
-            <PizzaHolder
+            <UI.PizzaInList
               key={pizza.name}
               name={pizza.name}
               price={pizza.price}
@@ -74,13 +81,13 @@ export default function Menu() {
               onInfoRequest={handelInfoRequest}
             />
         ))}
-        </Box>
+        </MUI.Box>
 
         {/* Pizza info modal / section */}
-      </Box>
+      </MUI.Box>
       {requestedpizzaInfo && (
-        <PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
+        <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
       )}
-    </>
+    </UI.SiteWrapper>
   );
 }

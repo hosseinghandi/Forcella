@@ -1,9 +1,14 @@
-import NavBar from "../components/shared/NavBar";
+import { useContext } from "react"
+import { siteContext } from "../App"
+
+import * as UI from "../utils/UI"
 
 export default function ProfileUser() {
+
+    const {userdata} = useContext(siteContext)
     return (
-        <>
-            <h1>I am profile</h1>
-        </>
-    )
+    <>
+    <UI.UserInfoHolder 
+    userdata={userdata}/>
+    </>)
 }

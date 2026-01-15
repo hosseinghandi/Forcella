@@ -2,22 +2,22 @@
 // react imports
 import { useState } from "react";
 // material ui components
-import { Box, Typography, IconButton } from "@mui/material";
+import * as MUI from "../../utils/MUI"
 
 export default function BubbleToggle({ dataList, colorTheme }) {
   const [index, setIndex] = useState(0);
   return (
-    <Box sx={{ mt: "10px" }}>
+    <MUI.Box sx={{ mt: "10px" }}>
       {/* Content */}
-      <Box sx={{minHeight: "80px"}}>
-        <Typography variant="textNormal" 
+      <MUI.Box sx={{minHeight: "80px"}}>
+        <MUI.Typography variant="textNormal" 
           >
           {dataList[index]}
-        </Typography>
-      </Box>
+        </MUI.Typography>
+      </MUI.Box>
 
       {/* Bubbles */}
-      <Box
+      <MUI.Box
         sx={{
           display: "flex",
           gap: "16px",
@@ -32,7 +32,7 @@ export default function BubbleToggle({ dataList, colorTheme }) {
           const active = index === i;
 
           return (
-            <IconButton
+            <MUI.IconButton
               key={i}
               onClick={() => setIndex(i)}
               aria-label={`select item ${i + 1}`}
@@ -51,7 +51,7 @@ export default function BubbleToggle({ dataList, colorTheme }) {
             />
           );
         })}
-      </Box>
-    </Box>
+      </MUI.Box>
+    </MUI.Box>
   );
 }

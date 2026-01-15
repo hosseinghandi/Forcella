@@ -13,7 +13,7 @@ export default function Layout() {
 
     const location = useLocation()
     return (  
-                <Container>
+        <>
                     <NavBar mode={mode} 
                     current={location.pathname} 
                     pizzaLikedNum={pizzaLikedNum}
@@ -21,7 +21,7 @@ export default function Layout() {
                     
                     />
                     <Outlet />
-                </Container>
+        </>
         
     )
 }

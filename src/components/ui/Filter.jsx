@@ -1,11 +1,9 @@
 // to do : change the layout of the filters
 // *role: inform menu context about how render the items based on the user filter inputs* //
 
-// UI component
-import Button from "../ui/Button";
+import * as MUI from "../../utils/MUI"
+import * as UI from "../../utils/UI"
 
-// Material ui component
-import { Box } from "@mui/material";
 
 import { useParams } from "react-router-dom";
 // translation import
@@ -21,16 +19,27 @@ export default function Filter({colorText}) {
   // control later which one is selected or active
   // const [current, setCurrent] = useState("all")
   const {filterkey} = useParams()
+
   const categoriesBtn = () =>
     message.categories.map((category) => {
+
+      const path = category === "All" || category === "Tutto" ?  
+      `/applayout/menu` : 
+      `/applayout/menu/${category}` 
+
+      const isActive = (path) => {
+        if (path === `/applayout/menu` && !filterkey) return false
+        else if (filterkey !== category) return true
+      }
+      
       return (
-        <Button
+        <UI.ButtonBasic
           key={category}
           shrink={true}
           type="submit"
           title={category}
-          to={`/applayout/menu/${category}`}
-          nonActive = {true ? filterkey !== category : false}
+          to={path}
+          nonActive = {isActive(path)}
           color={colorText}
           disabled={false}
         />
@@ -39,7 +48,7 @@ export default function Filter({colorText}) {
 
 
   return (
-    <Box
+    <MUI.Box
       sx={{
         mt: "20px",
         display: "flex",
@@ -49,7 +58,7 @@ export default function Filter({colorText}) {
         borderRadius: "25px",
       }}
     >
-      <Box
+      <MUI.Box
         sx={{
           height: "50px",
           display: "flex",
@@ -60,7 +69,7 @@ export default function Filter({colorText}) {
           },
         }}
       >
-        <Box
+        <MUI.Box
           sx={{
             display: "flex",
             flexGrow : 1,
@@ -70,41 +79,17 @@ export default function Filter({colorText}) {
             gap: "4px",
           }}
         >
-          {/* LEFT CONTENT */}
-          <Button
-                key={"All"}
-                shrink={true}
-                type="link"
-                title={"All"}
-                to={`/applayout/menu`}
-                color={colorText}
-                nonActive={!filterkey ?  false : true}
-                disabled={false}
-          />
             {categoriesBtn()}
-
-               <Button
-                key={"offered"}
-                shrink={true}
-                type="submit"
-                title={"Offered"}
-                to={`/applayout/menu/offered`}
-                color={colorText}
-                nonActive={filterkey ==="offered" ?  false : true}
-                disabled={false}
-          />
-
-          {/* TOGGLE ICON */}
-          <Box
+          <MUI.Box
             sx={{
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
             }}
           >
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+          </MUI.Box>
+        </MUI.Box>
+      </MUI.Box>
+    </MUI.Box>
   );
 }

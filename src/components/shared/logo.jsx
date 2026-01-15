@@ -1,6 +1,6 @@
 // *render the logo and the name of app*
 // logo image
-import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
+import * as Icon from "../../utils/Icons";
 
 // Material UI
 import { Box, Typography } from "@mui/material";
@@ -20,7 +20,7 @@ export default function Logo() {
         <Typography variant="logoText"> FORCELLA </Typography>
         }
         </Typography>
-      <LocalPizzaIcon sx={{ color: colorTheme }} />
+      <Icon.Pizza sx={{ color: colorTheme }} />
     </Box>
   );
 }

@@ -28,6 +28,10 @@
             fontSize : "17px",
             fontWeight : "400"
           },
+          "textNotification" : {
+            fontSize : "12px",
+            fontWeight : "400"
+          },
           "logoText" : {
             fontSize : "16px",
             fontWeight : "400"

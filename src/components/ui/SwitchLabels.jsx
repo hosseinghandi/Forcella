@@ -1,17 +1,15 @@
 // *role : make ui clickable switch to change the languge*
-
-// material ui elements
-import { FormControlLabel, Switch } from "@mui/material";
+import * as MUI from "../../utils/MUI"
 
 export default function SwitchLabels({ value, setValue, colorTheme }) {
   return (
-    <FormControlLabel
+    <MUI.FormControlLabel
       sx={{
         gap: 0,
         margin: 0,
       }}
       control={
-        <Switch
+        <MUI.Switch
           onClick={() => setValue(prev => prev === "en" ? "it" : "en" )}
           sx={{
             width: 85,

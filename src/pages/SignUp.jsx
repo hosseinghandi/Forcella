@@ -3,28 +3,20 @@
 // react imports
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-// ui elements
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import PhoneIphoneOutlinedIcon from "@mui/icons-material/PhoneIphoneOutlined";
-import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
-import MarkunreadMailboxOutlinedIcon from "@mui/icons-material/MarkunreadMailboxOutlined";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import FormControl from '@mui/material/FormControl';
-// shared ui
-import SharedNavigation from "../components/shared/SharedNavigation";
-import SiteWrapper from "../components/shared/SiteWrapper";
-import Header from "../components/shared/Header";
-import Input from "../components/ui/Input";
-import Button from "../components/ui/Button";
+
+import * as Icon from "../utils/Icons"
+import * as MUI from "../utils/MUI"
+import * as UI from "../utils/UI"
 
 // utiles
 import { isValid } from "../utils/validator";
-import InputGroup from "../components/ui/InputGroup";
+
+// import context
+import {useContext} from "react"
+import { siteContext } from "../App";
 
 export default function Signup() {
+  const {colorTheme} = useContext(siteContext)
   // form state to save submitted data
   const [formData, setFormData] = useState({
     personalData: {
@@ -112,84 +104,71 @@ export default function Signup() {
     button: t("metadata.button.signup"),
   };
 
-  // list of inputs
-  // [Field,icon, type, section]
   const personlInputs = [
-    ["name", <PersonOutlinedIcon />, "text", "personal"],
-    ["lastName", <PersonOutlinedIcon />, "text", "personal"],
-    ["email", <EmailOutlinedIcon />, "email", "personal"],
-    ["phoneNum", <PhoneIphoneOutlinedIcon />, "tel", "personal"],
-    ["password", <KeyOutlinedIcon />, "password", "personal"],
-    ["rePassWord", <KeyOutlinedIcon />, "password", "personal"],
+    ["name", <Icon.Person_outlined />, "text", "personal"],
+    ["lastName", <Icon.Person_outlined />, "text", "personal"],
+    ["email", <Icon.Email />, "email", "personal"],
+    ["phoneNum", <Icon.Phone />, "tel", "personal"],
+    ["password", <Icon.Key />, "password", "personal"],
+    ["rePassWord", <Icon.Key />, "password", "personal"],
   ];
   const addressInputs = [
-    ["zipCode", <MarkunreadMailboxOutlinedIcon />, "number", "address"],
-    ["optional", <LocationOnOutlinedIcon />, "text", "address"],
+    ["zipCode", <Icon.Mailbox />, "number", "address"],
+    ["optional", <Icon.Location />, "text", "address"],
   ];
 
   return (
-    <SiteWrapper>
-      <Header position={true}>
-        <SharedNavigation distance={false} backTo={"/welcome"} />
-      </Header>
-      <Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
-        <Typography variant="textHead" >{message.head}</Typography >
+    <UI.SiteWrapper>
+      <UI.SharedNavigation navigation={true} position={"top"}/>
+      <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
+        <MUI.Typography variant="textHead" >{message.head}</MUI.Typography >
       
-      <FormControl onSubmit={handelSubmit}>
-        <Box sx={{display: "flex", flexDirection: "column", gap: 2,alignItems :"center", justifyContent: "center"}}
+      <MUI.FormControl onSubmit={handelSubmit}>
+        <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2,alignItems :"center", justifyContent: "center"}}
         >
-          <Box sx={{display: "flex", flexDirection: "column", gap: 2,width: "100%"}}>
-            <Typography variant="titleBold">{message.personal.title}</Typography>
-            <InputGroup
+          <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2,width: "100%"}}>
+            <MUI.Typography variant="titleBold">{message.personal.title}</MUI.Typography>
+            <UI.InputGroup
               listOfInputs={personlInputs}
               message={message}
               formData={formData}
               validation={validation}
               handleChange={handleChange}
             />
-          </Box>
-          <Box sx={{display: "flex", flexDirection: "column", gap: 2}}>
-            <Typography variant="titleBold">Address:</Typography>
-            <Input
+          </MUI.Box>
+          <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2}}>
+            <MUI.Typography variant="titleBold">Address:</MUI.Typography>
+            <UI.InputBasic
               label={message.address.street.Label}
               name="address"
               type="text"
-              icon={<LocationOnOutlinedIcon />}
+              icon={<Icon.Location />}
               value={formData.address.address}
               isValid={validation.address.address}
               onChange={handleChange("address")}
               placeholder={message.address.street.placeHolder}
             />
 
-            <Box sx={{display: "flex", flexDirection: "row", gap: 2}}>
-              <InputGroup
+            <MUI.Box sx={{display: "flex", flexDirection: "row", gap: 2}}>
+              <UI.InputGroup
                 listOfInputs={addressInputs}
                 message={message}
                 formData={formData}
                 validation={validation}
                 handleChange={handleChange}
               />
-            </Box>
-          </Box>
-          <div className="w-[100%] mb-10">
-            {/* <Button
-              type="submit"
-              title={true ? "Registrati" : "Sign up"}
-              to={"/applayout/menu"}
-              color={"white"}
-              disabled={!isFormValid}
-            /> */}
-            <Button
+            </MUI.Box>
+          </MUI.Box>
+            <UI.ButtonBasic
               type="submit"
               title={"keep goining"}
               to={"/applayout/menu"}
               color={"white"}
               disabled={false}
             />
-          </div>
-        </Box>
-      </FormControl>
-      </Box>
-    </SiteWrapper>
+        </MUI.Box>
+      </MUI.FormControl>
+      </MUI.Box>
+    </UI.SiteWrapper>
   );
 }

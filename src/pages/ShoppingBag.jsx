@@ -10,10 +10,16 @@ import {pizzaFinder} from "../utils/pizzaFinder"
 // import app context
 import { siteContext } from "../App";
 
+
+import * as MUI from "../utils/MUI"
+import * as UI from "../utils/UI"
+
+
+import SiteWrapper from "../components/shared/SiteWrapper";
 // ui components
 import SharedNavigation from "../components/shared/SharedNavigation";
 import SpecialCard from "../components/ui/SpecialCard";
-import PizzaHolder from "../components/ui/PizzaHolder";
+import PizzaInOrder from "../components/ui/PizzaInOrder";
 import PizzaInfo from "../components/ui/PizzaInfo";
 import Error from "../components/ui/Error";
 
@@ -35,33 +41,31 @@ export default function ShoppingBag () {
     
     //   handel any changes requested  by user
     const handelToggleCart = useToggleAction("pizzaInCartId");
-    const handelTogglePizza = useToggleAction("likedPizzasId");
     
     const handelInfoRequest = useCallback((id) => {
         setInfo(id);
     });
 
     return (
-        <>
-            <SharedNavigation distance={true} backTo={"/welcome"} filter={false} />
-            
-            <Typography variant="textHead">Your order list:</Typography>
+        <UI.SiteWrapper>
+            <UI.SharedNavigation menu={true}/> 
+            <MUI.Typography variant="textHead">Your order list:</MUI.Typography>
 
-            <Box component={"div"}>
+            <MUI.Box component={"div"}>
             {/* Special Offer */}
             {(
-                <Box sx={{margin: " 20px 0"}}>
-                <SpecialCard offered={offeredPizza} />
-                </Box>
+                <MUI.Box sx={{margin: " 20px 0"}}>
+                <UI.SpecialCard offered={offeredPizza} />
+                </MUI.Box>
             )}
-                        <Box
+                        <MUI.Box
                             sx={{ width: "100%" , 
                             display:"flex", 
                             flexDirection:"column", gap:"20px"}} 
                         >
                         {/* Pizza list */}
                         { pizzaInCart.length !== 0 ? pizzaInCart.map((pizza) => (
-                            <PizzaHolder
+                            <UI.PizzaInOrder
                                 key={pizza.name}
                                 name={pizza.name}
                                 price={pizza.price}
@@ -72,29 +76,28 @@ export default function ShoppingBag () {
                                 id={pizza.id}
                                 liked={pizzaFinder(userdata["likedPizzasId"],"boolean", pizza.id)}
                                 added={pizzaFinder(userdata["pizzaInCartId"],"boolean", pizza.id)}
-                                onToggelCart={handelToggleCart}
-                                onTogglePizza={handelTogglePizza}
+                                OnchangeQuantity={handelToggleCart}
                                 onInfoRequest={handelInfoRequest}
                             />
-                        )) : <Error 
+                        )) : <UI.Error 
                             message={
                             "Your cart  is empty please check out our menu"} />
                             }
-                        </Box>
-            <Box
+                        </MUI.Box>
+            <MUI.Box
                 sx={{ width: "100%" , 
                 display:"flex", 
                 flexDirection:"column", gap:"20px"}} 
             >
             {/* Pizza list */}
 
-            </Box>
+            </MUI.Box>
     
             {/* Pizza info modal / section */}
-            </Box>
+            </MUI.Box>
             {requestedpizzaInfo && (
-            <PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
+            <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
             )}
-        </>
+        </UI.SiteWrapper>
     );
 }

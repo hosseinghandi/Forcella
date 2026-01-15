@@ -5,23 +5,12 @@
 import { useContext, useState, useMemo } from "react";
 import { siteContext } from "../App";
 import { useTranslation } from "react-i18next";
-// ui elements
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
-import SharedNavigation from "../components/shared/SharedNavigation";
-import SiteWrapper from "../components/shared/SiteWrapper";
-import Header from "../components/shared/Header";
-import Error from "../components/ui/Error";
-// 
-// ui 
-import Button from "../components/ui/Button";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import FormControl from '@mui/material/FormControl';
+
+import * as MUI from "../utils/MUI"
+import * as UI from "../utils/UI"
+import * as Icon from "../utils/Icons"
 // utiles 
 import {isValid} from "../utils/validator";
-import InputGroup from "../components/ui/InputGroup";
-
 
 export default function Login() {
   // const user = {email: "123@gmail.com",password: "23456"} 
@@ -37,7 +26,7 @@ export default function Login() {
     };
 
     // required context to render ui elements
-    const {mode} = useContext(siteContext); 
+    const {mode, colorTheme} = useContext(siteContext); 
 
     //states
     const [formData, setFormData] = useState({email: "",password: ""});
@@ -65,44 +54,42 @@ export default function Login() {
     // requird inputs
     // [Field, icon, type, section]
     const listOfInputs = 
-    [["email",<EmailOutlinedIcon />, "email", null],
-    ["password",<KeyOutlinedIcon />,"password", null]]
+    [["email",<Icon.Email />, "email", null],
+    ["password",<Icon.Key />,"password", null]]
 
     return (
-      <SiteWrapper>
-      <Header position={false}>
-          <SharedNavigation distance={false} backTo={"/welcome"}/>
-      </Header>
-      <Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
-        <Typography variant="textHead">{message.head}</Typography>
-        <Error message={error}/>
-        <FormControl onSubmit={handleSubmit} >
-          <Box sx={{display: "flex", flexDirection: "column", gap: 2,alignItems :"center", justifyContent: "center"}}>
+      <UI.SiteWrapper>
+      <UI.SharedNavigation navigation={true}/>
+      <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
+        <MUI.Typography variant="textHead">{message.head}</MUI.Typography>
+        <UI.Error message={error}/>
+        <MUI.FormControl onSubmit={handleSubmit} >
+          <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2,alignItems :"center", justifyContent: "center"}}>
             {/* these are inputs respected to input list above */}
-              <InputGroup 
+              <UI.InputGroup 
                   listOfInputs={listOfInputs}
                   message={message}
                   formData={formData}
                   validation={validation}
                   handleChange={handleChange}
                 />
-            <Typography 
+            <MUI.Typography 
             sx={{
               color : mode ? "#00000090" : "#FFFFFF60",
               width : "100%", 
               textAlign : "left",
               
-            }}>{message.forget}</Typography>
+            }}>{message.forget}</MUI.Typography>
 
-          <Button               
+          <UI.ButtonBasic               
                                 type="submit"
                                 title={message.button} 
                                 to={ !error.length > 0 ? "" : "/signup" }
                                 color={"white"} 
                                 />
-          </Box>
-        </FormControl>
-        </Box>
-        </SiteWrapper>
+          </MUI.Box>
+        </MUI.FormControl>
+        </MUI.Box>
+        </UI.SiteWrapper>
     );
 }

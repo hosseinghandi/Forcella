@@ -4,10 +4,6 @@ import * as Icon from "../../utils/Icons"
 
 // react import 
 import { memo } from "react";
-// import material ui icons for pizza holder
-
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 export default memo(function PizzaInList({
   price,
@@ -15,26 +11,30 @@ export default memo(function PizzaInList({
   img,
   discount,
   id,
+  review,
   onToggelCart,
   onTogglePizza,
+  onInfoRequest,
+  liked,
+  added
 }) {
-
-  const finalPrice = discount
-    ? (price * (1 - discount / 100)).toFixed(2)
-    : price;
-  const count = `3`
-    
+  const isLoading = false;
   
+  const finalPrice = discount
+    ? (price * (1 - discount/ 100)).toFixed(2)
+    : price;
+
   const iconList = [
-    [<Icon.Add />, onToggelCart, "add"],
-    [<Icon.Remove /> , onTogglePizza, "minus"]
+    [<Icon.Add sx={{color : added ? "red" : "black"}}/>, onToggelCart, "add"],
+    [<Icon.Heart sx={{color : liked ? "red" : "black"}}/> , onTogglePizza, "fav"],
+    [<Icon.Info />, onInfoRequest, "info"],
   ];
 
   const icons = (list) => {
     return list.map(([el, task, key]) => (
       <MUI.IconButton
         key={key}
-        // onClick={() => task(id)}
+        onClick={() => task(id)}
         sx={{ padding: "0", color: "var(--dark)" }}
         size="small"
       >
@@ -43,13 +43,17 @@ export default memo(function PizzaInList({
     ));
   };
 
+  const reviewStars = (review) => {
+    return Array.from({ length: review }).map((_, index) => (
+      <Icon.Star sx={{ fontSize: 14, fill: "var(--gold)" }} key={index} />
+    ));
+  };
 
   return (
     <MUI.Card
       key={id}
       sx={{
-        border: "1px solid red",
-        height:  "10vh",
+        height: { xs: "140px", sm: "200px" },
         borderRadius: "var(--radius)",
         width: "100%",
         backgroundColor: "var(--gray)",
@@ -65,26 +69,47 @@ export default memo(function PizzaInList({
       {/* inner items holder  */}
       <MUI.Box
         sx={{
-          border: "1px solid green",
           height: "100%",
-          width: "100%",
+          width: "90%",
           display: "flex",
           alignItems: "center",
           gap: "5px",
         }}
-       >
+      >
         {/* image holder  */}
-        <MUI.Box sx={{ 
-          border:"1px solid yellow",
-          height: "9vh" , 
-          width: "50%", 
-          position: "relative"}}>
+        <MUI.Box sx={{ height: "100%", width: "80%", position: "relative" }}>
+        {discount ? (
+            <MUI.Badge
+              badgeContent={
+                <MUI.Typography variant="body5">
+                  {discount}%<br />OFF
+                </MUI.Typography>
+              }
+              anchorOrigin={{ vertical: "right", horizontal: "left" }}
+              sx={{
+                "& .MuiBadge-badge": {
+                  width: "40px",
+                  height: "40px",
+                  backgroundColor: "var(--dark)",
+                  color: "var(--gold)",
+                },
+              }}
+            >
+              <MUI.CardMedia
+                component="img"
+                alt={`A photo of ${name} pizza`}
+                image={img}
+                sx={{ height: "100%", width: "fit-content" }}
+              />
+            </MUI.Badge>
+          ) : (
             <MUI.CardMedia
               component="img"
               alt={`A photo of ${name} pizza`}
               image={img}
-              sx={{ height: "100%", width: "9vh" }}
+              sx={{ height: "100%", width: "fit-content" }}
             />
+          )}
         </MUI.Box>
         <MUI.CardContent
           sx={{
@@ -95,19 +120,13 @@ export default memo(function PizzaInList({
             height: "100%",
             width: "100%",
           }}
-        > 
-          <MUI.Box sx={{display: "flex", flexDirection:"row", gap:2, 
-            alignItems :"center"}}>
-            <MUI.Typography variant="pizzaContentBold" component="p">
-              {name}
-            </MUI.Typography>
-            <MUI.Typography variant="textNormal" component="p">
-              {`x ${count}`}
-            </MUI.Typography>
-          </MUI.Box>
+        >
+          <MUI.Typography variant="pizzaContentBold" component="p">
+            {name}
+          </MUI.Typography>
           <MUI.Box
             sx={{
-              marginTop: "20px",
+              marginTop: "40px",
             }}
           >
             <MUI.Box
@@ -118,6 +137,7 @@ export default memo(function PizzaInList({
                 flexDirection: "row",
               }}
             >
+              <MUI.Typography variant="star">{reviewStars(review)}</MUI.Typography>
             </MUI.Box>
             <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
               <MUI.Typography
@@ -130,10 +150,10 @@ export default memo(function PizzaInList({
                   }),
                 }}
               >
-                {`${price * count}€`}
+                {`${price}€`}
               </MUI.Typography>
               {discount && (
-                <MUI.Typography variant="pizzaContentBold">{`${finalPrice * count}€`}</MUI.Typography>
+                <MUI.Typography variant="pizzaContentBold">{`${finalPrice}€`}</MUI.Typography>
               )}
             </MUI.Box>
           </MUI.Box>
@@ -153,33 +173,5 @@ export default memo(function PizzaInList({
         {icons(iconList)}
       </MUI.CardActions>
     </MUI.Card>
-    )
+  );
 })
-
-
-
-          {/* {discount ? (
-            <Badge
-              badgeContent={
-                <Typography variant="body5">
-                  {discount}%<br />OFF
-                </Typography>
-              }
-              anchorOrigin={{ vertical: "right", horizontal: "left" }}
-              sx={{
-                "& .MuiBadge-badge": {
-                  width: "40px",
-                  height: "40px",
-                  backgroundColor: "var(--dark)",
-                  color: "var(--gold)",
-                },
-              }}
-            >
-              <CardMedia
-                component="img"
-                alt={`A photo of ${name} pizza`}
-                image={img}
-                sx={{ height: "100%", width: "9vh" }}
-              />
-            </Badge>
-          ) :  )} */}

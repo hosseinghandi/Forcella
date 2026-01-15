@@ -1,27 +1,60 @@
 // *role : help to navigate through app act as header*
 
-// ui components
-import Logo from "./Logo";
-import Filter from "./Filter";
 
 // material ui icons for sharednavbar
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
-// material ui componenets
-import { Box, IconButton } from "@mui/material";
+import * as Icon from "../../utils/Icons"
+import * as MUI from "../../utils/MUI"
+import * as UI from "../../utils/UI"
+ 
 // router imports
 import { useNavigate } from "react-router-dom";
 // import react 
 import { useContext } from "react";
-// import context 
 import { siteContext } from "../../App";
 
-export default function SharedNavigation({distance, filter, colorTheme, colorText }) {
+
+
+
+export default function SharedNavigation({position, navigation, splash, menu }) {
+  
   const navigate = useNavigate();
-  // const {colorTheme, colorText} = useContext(siteContext)
+  const {lan, mode,setLang, setMode, colorTheme, colorText} = useContext(siteContext)
+
+  const requestedHtml = 
+              navigation || menu?
+              <>
+              <MUI.Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  ...({justifyContent: navigation ? "flex-end" : "space-between"}),
+                  alignItems: "center",
+                  gap:"10px",
+                  width: "100%",
+                }}
+              >
+              <MUI.IconButton sx={{padding:"0px"}} onClick={() => navigate(-1)}>
+                      <Icon.Arrow htmlColor= {colorTheme} /> 
+              </MUI.IconButton>
+              <UI.Logo color={colorTheme} />
+              </MUI.Box>
+              </> : splash ? 
+                      <MUI.Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "7px",
+                        alignItems: "flex-end",
+                      }}
+                    >
+                        <UI.Logo color={colorTheme} />
+                        <UI.SwitchLabels value={lan} setValue={setLang} colorTheme={colorTheme} />
+                        <UI.ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
+                </MUI.Box> : null
+                
 
   return (
-    <Box
+    <MUI.Box
       sx={{
         padding: "10px 0",
         width: "100%",
@@ -30,27 +63,19 @@ export default function SharedNavigation({distance, filter, colorTheme, colorTex
         justifyContent: "flex-end",
         
       }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: distance ? "100%" : "45%",
-        }}
       >
-        <IconButton sx={{padding:"0"}} onClick={() => navigate(-1)}>
-          <ArrowBackIcon htmlColor= {colorTheme} /> 
-        </IconButton>
-        <Logo color={colorTheme} />
-      </Box>
-
-      {filter && (
-        <Box sx={{ mt: 1 }}>
-          <Filter colorText={colorText}/>
-        </Box>
-      )}
-    </Box>
+        
+       { !menu ? 
+       <UI.Header position={position}>
+        {requestedHtml}
+        </UI.Header> :
+        <>
+        
+          {requestedHtml}
+        </> 
+        }
+      
+      
+    </MUI.Box>
   );
 }

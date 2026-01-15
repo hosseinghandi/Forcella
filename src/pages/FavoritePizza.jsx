@@ -1,27 +1,18 @@
+
+
 // react imports
 import { useState, useContext, useCallback, useMemo } from "react";
 
-// impoprt react router
-import { useParams } from "react-router-dom";
+import * as MUI from "../utils/MUI"
+import * as UI from "../utils/UI"
 
 // import translation
 import { useTranslation } from "react-i18next";
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
 import {pizzaFinder} from "../utils/pizzaFinder"
-
 // import app context
 import { siteContext } from "../App";
-
-// ui components
-import SharedNavigation from "../components/shared/SharedNavigation";
-import SpecialCard from "../components/ui/SpecialCard";
-import PizzaHolder from "../components/ui/PizzaHolder";
-import PizzaInfo from "../components/ui/PizzaInfo";
-import Error from "../components/ui/Error";
-
-// import material ui
-import { Box, Typography} from "@mui/material";
 
 export default function FavoritePizza() {
     // primary data set
@@ -45,26 +36,26 @@ export default function FavoritePizza() {
     });
 
     return (
-        <>
-            <SharedNavigation distance={true} filter={false} />
+        <UI.SiteWrapper>
+            <UI.SharedNavigation menu={true}/>  
             
-            <Typography variant="textHead">Your favorite pizza list:</Typography>
-            <Box component={"div"}>
+            <MUI.Typography variant="textHead">Your favorite pizza list:</MUI.Typography>
+            <MUI.Box component={"div"}>
             {/* Special Offer */}
             {(
-                <Box sx={{margin: " 20px 0"}}>
-                    <SpecialCard offered={offeredPizza} colorText={colorText} />
-                </Box>
+                <MUI.Box sx={{margin: " 20px 0"}}>
+                    <UI.SpecialCard offered={offeredPizza} colorText={colorText} />
+                </MUI.Box>
             )}
     
-            <Box
+            <MUI.Box
                 sx={{ width: "100%" , 
                 display:"flex", 
                 flexDirection:"column", gap:"20px"}} 
             >
             {/* Pizza list */}
             { favoritePizza.length !== 0 ? favoritePizza.map((pizza) => (
-                <PizzaHolder
+                <UI.PizzaInList
                     key={pizza.name}
                     name={pizza.name}
                     price={pizza.price}
@@ -79,17 +70,17 @@ export default function FavoritePizza() {
                     onTogglePizza={handelTogglePizza}
                     onInfoRequest={handelInfoRequest}
                 />
-            )) : <Error 
+            )) : <UI.Error 
                 message={
                 "Your favorite list is empty please check out our menu"} />
                 }
-            </Box>
+            </MUI.Box>
     
             {/* Pizza info modal / section */}
-            </Box>
+            </MUI.Box>
             {requestedpizzaInfo && (
-            <PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
+            <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
             )}
-        </>
+        </UI.SiteWrapper>
     );
 }

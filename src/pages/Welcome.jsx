@@ -3,17 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { siteContext } from "../App";
 
-// ui compoenents
-import Logo from "../components/shared/Logo";
-import SwitchLabels from "../components/ui/SwitchLabels";
-import BubbleToggel from "../components/ui/BubbleToggel";
-import Button from "../components/ui/Button";
-import ToggleTheme from "../components/ui/ToggleTheme";
-import SiteWrapper from "../components/shared/SiteWrapper";
-import Header from "../components/shared/Header";
+import * as MUI from "../utils/MUI"
+import * as UI from "../utils/UI"
 
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 
 export default function Welcome() {
   const { lan, setLang, mode, setMode, colorTheme, colorText } = useContext(siteContext);
@@ -24,22 +16,16 @@ export default function Welcome() {
     info: t("metadata.welcoming.info", { returnObjects: true }),
   };
 
-
   const button = {
     login: t("metadata.button.login"),
     signup: t("metadata.button.signup"),
     continue: t("metadata.button.continue"),
-  };
-
+  }
+  
   return (
-    <SiteWrapper>
-      {/* page wrapper  */}
-      <Header position={false}>
-        <Logo color={colorTheme} />
-        <SwitchLabels value={lan} setValue={setLang} colorTheme={colorTheme} />
-        <ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
-      </Header>
-      <Box
+    <UI.SiteWrapper>
+      <UI.SharedNavigation splash={true}/>
+      <MUI.Box
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -48,23 +34,23 @@ export default function Welcome() {
         }}
       >
         {/* Text section */}
-        <Box
+        <MUI.Box
           sx={{
             textAlign: "left",
             width: "100%",
           }}
         >
-          <Typography
+          <MUI.Typography
             variant="titleWelcoming"
           >
             {messages.welcome}
-          </Typography>
+          </MUI.Typography>
 
-          <BubbleToggel dataList={messages.info} colorTheme={colorTheme} />
-        </Box>
+          <UI.BubbleToggel dataList={messages.info} colorTheme={colorTheme} />
+        </MUI.Box>
 
         {/* Buttons */}
-        <Box
+        <MUI.Box
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -73,26 +59,26 @@ export default function Welcome() {
             width: "100%",
           }}
         >
-          <Button
+          <UI.ButtonBasic
             title={button.login}
             to="/login"
             color="white"
             disable={false}
           />
-          <Button
+          <UI.ButtonBasic
             title={button.signup}
             to="/signup"
             color="white"
             disable={false}
           />
-          <Button
+          <UI.ButtonBasic
             title={button.continue}
             to="/applayout/menu"
             color="white"
             disable={false}
           />
-        </Box>
-      </Box>
-    </SiteWrapper>
+        </MUI.Box>
+      </MUI.Box>
+    </UI.SiteWrapper>
   );
 }

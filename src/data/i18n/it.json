@@ -90,7 +90,7 @@
     "offer": "Offerta speciale",
     "prepration": "Tempo di preparazione",
     "description": "Offerta applicata al checkout",
-    "categories": ["Carne", "Speciale", "Vegetariana"]
+    "categories": ["Tutto","Carne", "Speciale", "Vegetariana", "offerta"]
   }
   },
 

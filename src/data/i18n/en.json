@@ -89,7 +89,7 @@
     "offer": "Special offer",
     "prepration": "Preparation time",
     "description": "Offer applied at checkout",
-    "categories" : ["Meat", "Special", "Vegetarian"]
+    "categories" : ["All", "Meat", "Special", "Vegetarian", "offered"]
   }
   },
 

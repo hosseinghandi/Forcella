@@ -18,10 +18,15 @@
   "pizzaInCartId" : [],
   "likedPizzasId": [],
   "lastOrdered":{
-      "pizzaId" : 1,
-      "quantity" : 4,
+      "pizzaId" : [1],
+      "quantity" : [4],
       "totalPrice" : 45,
       "orderState" : "delivered"
-    }
+    },
+  "pizzaInProcess" : {
+    "id" : [2],
+    "quantity" : [3]
+  }
+
 }
 

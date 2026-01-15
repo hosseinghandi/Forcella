@@ -1,8 +1,9 @@
 // *role :  on reuqest make input *
 // material ui elements
-import { TextField, InputAdornment } from "@mui/material";
 
-export default function Input({
+import * as MUI from "../../utils/MUI"
+
+export default function InputBasic({
   name,
   label,
   icon,
@@ -13,18 +14,18 @@ export default function Input({
   ...inputProps
 }) {
   return (
-    <TextField
+    <MUI.TextField
       label={name}
       placeholder={inputProps.placeholder}
       fullWidth
       InputProps={{
         endAdornment: (
-          <InputAdornment
+          <MUI.InputAdornment
             sx={{ color: isValid ? "green" : "black" }}
             position="end"
           >
             {icon}
-          </InputAdornment>
+          </MUI.InputAdornment>
         ),
       }}
       sx={{

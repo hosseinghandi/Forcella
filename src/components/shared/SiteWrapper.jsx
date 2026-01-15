@@ -2,7 +2,7 @@
 // and take care of theme mode as well
 
 // material ui components
-import { Container, Box } from "@mui/material";
+import * as MUI from "../../utils/MUI"
 // react imports
 import { useContext } from "react";
 import { siteContext } from "../../App";
@@ -10,8 +10,8 @@ import { siteContext } from "../../App";
 export default function SiteWrapper({ children }) {
   const { colorText, colorTheme } = useContext(siteContext);
   return (
-    <Container maxWidth={false} disableGutters>
-      <Box
+    <MUI.Container maxWidth={false} disableGutters>
+      <MUI.Box
         component="main"
         sx={{
           py: "var(--spacing-global-padding-y-mobile)",
@@ -23,8 +23,8 @@ export default function SiteWrapper({ children }) {
         }}
       >
         {children}
-      </Box>
-    </Container>
+      </MUI.Box>
+    </MUI.Container>
   );
 }
 

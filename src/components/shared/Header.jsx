@@ -2,8 +2,8 @@
 
 // cover image
 import pizzaSlice from "/pizza-image/margherita.png";
-// Material UI
-import Box from "@mui/material/Box";
+
+import * as MUI from "../../utils/MUI";
 
 export default function Header({ children, position }) {
   const positionValue = !position
@@ -11,12 +11,12 @@ export default function Header({ children, position }) {
     : { left: "-110px", top: "-220px", position: "absolute" };
 
   return (
-    <Box
+    <MUI.Box
       component="header"
       sx={{ width: "100%", height: position ? "15vh" : "42vh" }}
     >
       {/* Pizza image */}
-      <Box
+      <MUI.Box
         component="img"
         src={pizzaSlice}
         alt="Margherita pizza"
@@ -32,20 +32,7 @@ export default function Header({ children, position }) {
           ...positionValue, // if this is an sx-compatible object
         }}
       />
-      {/* Logo + language */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: "16px",
-          right: "16px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          gap: "8px",
-        }}
-      >
         {children}
-      </Box>
-    </Box>
+    </MUI.Box>
   );
 }

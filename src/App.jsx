@@ -25,7 +25,7 @@ import SiteWrapper from "./components/shared/SiteWrapper";
 export const siteContext = createContext()
 
 export default function App() {
-  
+  // localStorage.clear()
   const user = getUserState()
   // local storag elater shpuld be handel
   const [mode, setMode] = useState(false)

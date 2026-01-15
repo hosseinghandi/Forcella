@@ -1,7 +1,7 @@
 // *role: on request make button as desgined *
 
 // material ui componenet
-import Button from "@mui/material/Button";
+import * as MUI from "../../utils/MUI"
 // react imports
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export default function ButtonBasic({
 }) {
   const navigate = useNavigate();
   return (
-    <Button
+    <MUI.Button
       type={type}
       onClick={() => to && navigate(to)}
       variant="contained"
@@ -36,6 +36,6 @@ export default function ButtonBasic({
       }}
     >
       {title}
-    </Button>
+    </MUI.Button>
   );
 }

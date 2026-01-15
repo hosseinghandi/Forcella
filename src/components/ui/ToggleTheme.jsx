@@ -1,14 +1,11 @@
 // role: on request inform the app context to change the theme mode
 
-// matrial ui elements
-import Button from "@mui/material/Button";
-// matrial icon for theme switcher
-import BedtimeIcon from "@mui/icons-material/Bedtime";
-import BrightnessHighIcon from "@mui/icons-material/BrightnessHigh";
+import * as MUI from "../../utils/MUI"
+import * as Icon from "../../utils/Icons"
 
 export default function ToggelTheme({ value, setValue, colorTheme }) {
   return (
-    <Button
+    <MUI.Button
       onClick={() => setValue(!value)}
       variant="outlined"
       sx={{
@@ -26,19 +23,19 @@ export default function ToggelTheme({ value, setValue, colorTheme }) {
         justifyContent: "center",
       }}
     >
-      {value ? (
-        <BedtimeIcon
+      {value ? 
+      <Icon.BrightnessHigh
           sx={{
             width: "18px",
           }}
         />
-      ) : (
-        <BrightnessHighIcon
+        :
+        <Icon.Bedtime
           sx={{
             width: "18px",
           }}
-        />
-      )}
-    </Button>
+        /> 
+      }
+    </MUI.Button>
   );
 }

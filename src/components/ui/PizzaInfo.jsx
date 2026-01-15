@@ -1,25 +1,10 @@
-// to do: change thename of ingerdents beacuse tehy are not corrisponded
-
+// to do: change the name of ingerdents beacuse tehy are not corrisponded
 // *role : on request render information dialog paper*
-// material ui component
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  CardMedia,
-  IconButton,
-  Dialog,
-} from "@mui/material";
 
-// ui component
-import Button from "../ui/Button";
 
-// material ui icons for info paper
-import CloseIcon from "@mui/icons-material/Close";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import WhatshotSharpIcon from "@mui/icons-material/WhatshotSharp";
-import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import * as MUI from "../../utils/MUI"
+import * as UI from "../../utils/UI"
+import * as Icon from "../../utils/Icons"
 
 export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
   const {
@@ -45,7 +30,7 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
 
   const icons = (icon, value, label, index) => {
     return (
-      <Box
+      <MUI.Box
         key={index}
         sx={{
           display: "flex",
@@ -56,14 +41,14 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
         }}
       >
         {icon}
-        <Typography sx={{ fontSize: 15, textAlign: "justify" }}>
+        <MUI.Typography sx={{ fontSize: 15, textAlign: "justify" }}>
           {`${value} ${label ?? ""}`}
-        </Typography>
-      </Box>
+        </MUI.Typography>
+      </MUI.Box>
     );
   };
   return (
-    <Dialog
+    <MUI.Dialog
       PaperProps={{
         sx: {
           borderRadius: "25px",
@@ -74,7 +59,7 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
       fullWidth
       maxWidth="sm"
     >
-      <Card
+      <MUI.Card
         sx={{
           p: 2,
           borderRadius: "var(--radius)",
@@ -84,14 +69,14 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
         }}
       >
         {/* Close button */}
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <IconButton onClick={() => setInfo(null)} size="small">
-            <CloseIcon />
-          </IconButton>
-        </Box>
+        <MUI.Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <MUI.IconButton onClick={() => setInfo(null)} size="small">
+            <Icon.Close />
+          </MUI.IconButton>
+        </MUI.Box>
 
         {/* Image */}
-        <CardMedia
+        <MUI.CardMedia
           component="img"
           image={image}
           alt={name}
@@ -102,20 +87,20 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
         />
 
         {/* Info */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <Box
+        <MUI.Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <MUI.Box
             sx={{
               backgroundColor: "var(--gray)",
               borderRadius: "var(--radius)",
             }}
           >
-            <CardContent
+            <MUI.CardContent
               sx={{ display: "flex", flexDirection: "column", gap: 2 }}
             >
-              <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
-                <Typography variant="titleBoldInfo">{name}</Typography>
+              <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
+                <MUI.Typography variant="titleBoldInfo">{name}</MUI.Typography>
                 {category.map((el, index) => (
-                  <Button
+                  <UI.ButtonBasic
                     key={index}
                     shrink={true}
                     title={el}
@@ -124,53 +109,53 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
                     disabled={false}
                   />
                 ))}
-              </Box>
+              </MUI.Box>
 
-              <Typography variant="textNormal" textAlign="justify">
+              <MUI.Typography variant="textNormal" textAlign="justify">
                 {description}
-              </Typography>
+              </MUI.Typography>
 
               {/* Stats */}
-              <Box
+              <MUI.Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
                 }}
               >
                 {icons(
-                  <AccessTimeIcon sx={{ width: "25px" }} />,
+                  <Icon.AccessTime sx={{ width: "25px" }} />,
                   time,
                   "min",
                   "time"
                 )}
                 {icons(
-                  <WhatshotSharpIcon sx={{ width: "25px" }} />,
+                  <Icon.Whatshot sx={{ width: "25px" }} />,
                   spiceLevel,
                   null,
                   "spicy"
                 )}
                 {icons(
-                  <LocalFireDepartmentIcon sx={{ width: "25px" }} />,
+                  <Icon.Fire sx={{ width: "25px" }} />,
                   calories,
                   "Kcl",
                   "calories"
                 )}
-              </Box>
-            </CardContent>
-          </Box>
+              </MUI.Box>
+            </MUI.CardContent>
+          </MUI.Box>
 
           {/* Ingredients */}
-          <Box
+          <MUI.Box
             sx={{
               backgroundColor: "var(--gray)",
               borderRadius: "var(--radius)",
             }}
           >
-            <CardContent>
-              <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <Typography variant="titleBold">Ingredients:</Typography>
+            <MUI.CardContent>
+              <MUI.Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                <MUI.Typography variant="titleBold">Ingredients:</MUI.Typography>
 
-                <Box
+                <MUI.Box
                   sx={{
                     display: "flex",
                     gap: 2,
@@ -178,12 +163,12 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
                   }}
                 >
                   {ingredientsList(ingredients)}
-                </Box>
-              </Box>
-            </CardContent>
-          </Box>
-        </Box>
-      </Card>
-    </Dialog>
+                </MUI.Box>
+              </MUI.Box>
+            </MUI.CardContent>
+          </MUI.Box>
+        </MUI.Box>
+      </MUI.Card>
+    </MUI.Dialog>
   );
 }

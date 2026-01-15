@@ -1,7 +1,7 @@
 // *role: make a group of inputs in sign up and login page*
 
 // ui component
-import Input from "./Input";
+import * as UI from "../../utils/UI"
 
 export default function InputGroup({
   listOfInputs,
@@ -15,7 +15,7 @@ export default function InputGroup({
     const dataSource = section ? formData[section] : formData;
     const validationSource = section ? validation?.[section] : null;
     return (
-      <Input
+      <UI.InputBasic
         key={Field}
         label={msgSource[Field].Label}
         name={Field}
