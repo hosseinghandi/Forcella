@@ -20,6 +20,10 @@
             fontSize : "15px",
             fontWeight : "400"
           }, 
+          "textSmall" : {
+            fontSize : "14px",
+            fontWeight : "200"
+          },
           "textError" : {
             fontSize : "18px",
             fontWeight : "400"

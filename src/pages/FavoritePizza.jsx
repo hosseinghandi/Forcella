@@ -33,7 +33,7 @@ export default function FavoritePizza() {
     
     const handelInfoRequest = useCallback((id) => {
         setInfo(id);
-    });
+    }, [info]);
 
     return (
         <UI.SiteWrapper>

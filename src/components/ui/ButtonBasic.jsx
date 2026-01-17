@@ -6,19 +6,21 @@ import * as MUI from "../../utils/MUI"
 import { useNavigate } from "react-router-dom";
 
 export default function ButtonBasic({
+  id,
   type,
   title,
   to,
   color,
   disabled,
   shrink,
-  nonActive
+  nonActive,
+  task
 }) {
   const navigate = useNavigate();
   return (
     <MUI.Button
       type={type}
-      onClick={() => to && navigate(to)}
+      onClick={() => id ? task(id): navigate(to)}
       variant="contained"
       disabled={disabled}
       sx={{

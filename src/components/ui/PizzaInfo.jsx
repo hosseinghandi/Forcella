@@ -6,7 +6,7 @@ import * as MUI from "../../utils/MUI"
 import * as UI from "../../utils/UI"
 import * as Icon from "../../utils/Icons"
 
-export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
+export default function pizzaInfo({ requestedpizzaInfo, setInfo, dialog }) {
   const {
     name,
     description,
@@ -28,10 +28,15 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
     ));
   };
 
-  const icons = (icon, value, label, index) => {
+  const iconsList = [
+    [<Icon.AccessTime sx={{ width: "25px" }} />, time,"min","time"],
+    [<Icon.Whatshot sx={{ width: "25px" }} />, spiceLevel,null,"spicy"],
+    [<Icon.Fire sx={{ width: "25px" }} />, calories,"Kcl","calories"]]
+
+  const icons = (list) => list.map(([icon, value, label, key]) => {
     return (
       <MUI.Box
-        key={index}
+        key={key}
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -46,54 +51,37 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
         </MUI.Typography>
       </MUI.Box>
     );
-  };
-  return (
-    <MUI.Dialog
-      PaperProps={{
-        sx: {
-          borderRadius: "25px",
-        },
-      }}
-      open={Boolean(requestedpizzaInfo)}
-      onClose={() => setInfo(null)}
-      fullWidth
-      maxWidth="sm"
-    >
-      <MUI.Card
-        sx={{
-          p: 2,
-          borderRadius: "var(--radius)",
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-        }}
-      >
-        {/* Close button */}
-        <MUI.Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <MUI.IconButton onClick={() => setInfo(null)} size="small">
-            <Icon.Close />
-          </MUI.IconButton>
-        </MUI.Box>
+  });
+  
 
-        {/* Image */}
-        <MUI.CardMedia
-          component="img"
-          image={image}
-          alt={name}
-          sx={{
-            width: "70%",
-            mx: "auto",
-          }}
-        />
-
-        {/* Info */}
-        <MUI.Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+  const infoContent = 
+    <>
+        {dialog &&
+          (<>
+            <MUI.Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <MUI.IconButton onClick={() => setInfo(null)} size="small">
+                <Icon.Close />
+              </MUI.IconButton>
+            </MUI.Box>
+            <MUI.CardMedia
+              component="img"
+              image={image}
+              alt={name}
+              sx={{
+                width: "70%",
+                mx: "auto",
+              }}
+            />
+          </>)}
+        {/* main wrapper */}
+        <MUI.Box sx={{ display: "flex", flexDirection: "column", ...( dialog ?? { gap: 2 })}}>
+          {/* upper content */}
           <MUI.Box
             sx={{
               backgroundColor: "var(--gray)",
               borderRadius: "var(--radius)",
             }}
-          >
+           >
             <MUI.CardContent
               sx={{ display: "flex", flexDirection: "column", gap: 2 }}
             >
@@ -104,9 +92,7 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
                     key={index}
                     shrink={true}
                     title={el}
-                    to={`/applayout/menu/${el}`}
                     color={"white"}
-                    disabled={false}
                   />
                 ))}
               </MUI.Box>
@@ -122,24 +108,7 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
                   justifyContent: "space-between",
                 }}
               >
-                {icons(
-                  <Icon.AccessTime sx={{ width: "25px" }} />,
-                  time,
-                  "min",
-                  "time"
-                )}
-                {icons(
-                  <Icon.Whatshot sx={{ width: "25px" }} />,
-                  spiceLevel,
-                  null,
-                  "spicy"
-                )}
-                {icons(
-                  <Icon.Fire sx={{ width: "25px" }} />,
-                  calories,
-                  "Kcl",
-                  "calories"
-                )}
+                {icons(iconsList)}
               </MUI.Box>
             </MUI.CardContent>
           </MUI.Box>
@@ -150,8 +119,8 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
               backgroundColor: "var(--gray)",
               borderRadius: "var(--radius)",
             }}
-          >
-            <MUI.CardContent>
+           >
+            <MUI.CardContent >
               <MUI.Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                 <MUI.Typography variant="titleBold">Ingredients:</MUI.Typography>
 
@@ -160,15 +129,45 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo }) {
                     display: "flex",
                     gap: 2,
                     overflowX: "auto",
-                  }}
-                >
+                  }}>
                   {ingredientsList(ingredients)}
                 </MUI.Box>
               </MUI.Box>
             </MUI.CardContent>
           </MUI.Box>
         </MUI.Box>
+    </>             
+
+
+
+  
+  return dialog ? (
+    <MUI.Dialog
+      PaperProps={{
+        sx: {
+          borderRadius: "25px",
+        },
+      }}
+      onClose={() => setInfo(null)}
+      open={dialog}
+      fullWidth
+      maxWidth="sm"
+    >
+    <MUI.Card
+        sx={{
+          p: 2,
+          borderRadius: "var(--radius)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
+
+    {infoContent}
       </MUI.Card>
     </MUI.Dialog>
-  );
+  ) : 
+      <MUI.Box>  
+        {infoContent}
+      </MUI.Box>
 }

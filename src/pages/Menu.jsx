@@ -13,20 +13,9 @@ import { siteContext } from "../App";
 
 import * as MUI from "../utils/MUI"
 import * as UI from "../utils/UI"
-import * as Icon from "../utils/Icons"
-
-// ui components
-import SharedNavigation from "../components/shared/SharedNavigation";
-import SpecialCard from "../components/ui/SpecialCard";
-import PizzaInList from "../components/ui/PizzaInList";
-import PizzaInfo from "../components/ui/PizzaInfo";
-import SiteWrapper from "../components/shared/SiteWrapper";
-import Filter from "../components/ui/Filter"
-
-// import material ui
-import { Box } from "@mui/material";
 
 export default function Menu() {
+  
 // primary data base
   const [info, setInfo] = useState(null); 
   const { userdata, colorTheme, colorText} = useContext(siteContext);
@@ -44,7 +33,7 @@ export default function Menu() {
   const handelToggleCart = useToggleAction("pizzaInCartId");
   const handelTogglePizza = useToggleAction("likedPizzasId");
 
-  const handelInfoRequest = useCallback((id) => {setInfo(id);});
+  const handelInfoRequest = useCallback((id) => {setInfo(id);}, [info]);
 
   return (
     <UI.SiteWrapper>
@@ -86,7 +75,7 @@ export default function Menu() {
         {/* Pizza info modal / section */}
       </MUI.Box>
       {requestedpizzaInfo && (
-        <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
+        <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} dialog={true} />
       )}
     </UI.SiteWrapper>
   );
