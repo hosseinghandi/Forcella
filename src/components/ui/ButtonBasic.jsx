@@ -20,7 +20,7 @@ export default function ButtonBasic({
   return (
     <MUI.Button
       type={type}
-      onClick={() => id ? task(id): navigate(to)}
+      onClick={() => id ? task(id) : navigate(to)}
       variant="contained"
       disabled={disabled}
       sx={{

@@ -12,19 +12,28 @@ import { useTranslation } from "react-i18next";
 
 export default memo(function UserInfoHolder({userdata}) {
 
-//   const { t } = useTranslation();
-//   const messages = {
-//     offer: t("metadata.pizza.offer"),
-//     description: t("metadata.pizza.description"),
-//     order: t("metadata.button.order"),
-//   };
+const dataPrepration = [
+        [userdata.personalInfo.firstName, Icon.Person_outlined], 
+        [userdata.personalInfo.lastName, Icon.Person_outlined], 
+        [userdata.personalInfo.address.street, Icon.Location], 
+        [userdata.personalInfo.email, Icon.Email],
+        [userdata.personalInfo.phone, Icon.Phone],
+        // [userdata.lastOrdered.phone, Icon.ShoppingBag]
+]
 
-const personalDetail = (userdata) => {
-            <MUI.Box>
-                    <Icon.Person_outlined/>
-                    {userdata.personalInfo.firstName}
-            </MUI.Box>  
-}
+console.log(dataPrepration)
+        
+// [userdata.lastOrdered, Icon.ShoppingBag],
+
+
+const personalDetail = (dataPrepration) => {
+                return dataPrepration.map(([data, Icon], index)=> 
+                <MUI.Box 
+                        key={index}>
+                    {Icon}
+                    {data}
+                </MUI.Box> ) }
+
 
 return (
         <MUI.Card
@@ -45,7 +54,8 @@ return (
              <MUI.Box>
                     <Icon.Person_outlined/>
                     {userdata.personalInfo.firstName}
-            </MUI.Box>   
+            </MUI.Box>  
+                    {personalDetail(dataPrepration)}
             </MUI.Card>
     )
 })

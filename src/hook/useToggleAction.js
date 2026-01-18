@@ -1,5 +1,5 @@
 import { useCallback, useContext } from "react";
-import { siteContext } from "../App";
+import { SiteContext } from "../App";
 import { updateUserState } from "../utils/userStateTracker";
 
 
@@ -35,7 +35,7 @@ import { updateUserState } from "../utils/userStateTracker";
 // }
 
 export function useToggleAction(key) {
-  const { setUser } = useContext(siteContext);
+  const { setUser } = useContext(SiteContext);
 
   const toggle = useCallback((id) => {
 

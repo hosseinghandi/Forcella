@@ -74,13 +74,11 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo, dialog }) {
             />
           </>)}
         {/* main wrapper */}
-        <MUI.Box sx={{ display: "flex", flexDirection: "column", ...( dialog ?? { gap: 2 })}}>
+        <MUI.Box sx={{ display: "flex", 
+          flexDirection: "column", 
+          ...( dialog ?? { gap: 2 })}}>
           {/* upper content */}
           <MUI.Box
-            sx={{
-              backgroundColor: "var(--gray)",
-              borderRadius: "var(--radius)",
-            }}
            >
             <MUI.CardContent
               sx={{ display: "flex", flexDirection: "column", gap: 2 }}
@@ -153,18 +151,7 @@ export default function pizzaInfo({ requestedpizzaInfo, setInfo, dialog }) {
       fullWidth
       maxWidth="sm"
     >
-    <MUI.Card
-        sx={{
-          p: 2,
-          borderRadius: "var(--radius)",
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-        }}
-      >
-
     {infoContent}
-      </MUI.Card>
     </MUI.Dialog>
   ) : 
       <MUI.Box>  

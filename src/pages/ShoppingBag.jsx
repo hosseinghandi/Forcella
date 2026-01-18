@@ -11,7 +11,7 @@ import { useOrderCount } from "../hook/useOrderCount";
 import { pizzaFinder } from "../utils/pizzaFinder";
 
 // import app context
-import { siteContext } from "../App";
+import { SiteContext } from "../App";
 
 import * as MUI from "../utils/MUI";
 import * as UI from "../utils/UI";
@@ -22,7 +22,7 @@ import { updateUserState } from "../utils/userStateTracker";
 export default function ShoppingBag() {
   // primary data set
   const [info, setInfo] = useState(null);
-  const { userdata, colorText, colorTheme } = useContext(siteContext);
+  const { userdata, colorText, colorTheme } = useContext(SiteContext);
   const { t } = useTranslation();
   const pizzaRawData = t("pizzaItems", { returnObjects: true });
 
@@ -47,12 +47,10 @@ export default function ShoppingBag() {
   const handelRemove = useOrderCount("remove");
 
 const orderdataProvider = useOrderSummery(pizzaInCart, pizzaInProcess)
-
-console.log(orderdataProvider.timeList)
-
+// console.log(orderdataProvider)
 
   return (
-    <UI.SiteWrapper>
+    <>
       <UI.SharedNavigation menu={true} />
       <MUI.Typography variant="textHead">Your order list:</MUI.Typography>
       <MUI.Box component={"div"}>
@@ -61,7 +59,7 @@ console.log(orderdataProvider.timeList)
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            gap: "20px",
+            gap: "var(--gapOfItems)",
           }}
         >
           {/* Pizza list */}
@@ -82,13 +80,21 @@ console.log(orderdataProvider.timeList)
             ))
 
           )}
-          {/* <UI.PreparationTime 
-          timeList={orderdata.timeList} 
-          count={orderdata.count}/> */}
+          <UI.PreparationTime 
+          totalTimeRequired={orderdataProvider.totalTimeRequired} 
+          totalCount={orderdataProvider.totalCount}/>
 
-          {/* <UI.OrderSummery 
-          timeList={pizzaInCart.map( el => el.time)} 
-          count={Object.values(pizzaInProcess).map( el => el)}/> */}
+          <UI.OrderSummery 
+            subTotalPrice={orderdataProvider.subTotal}
+            shipping={orderdataProvider.shipping}
+            tax={orderdataProvider.tax}
+            totalToPay={orderdataProvider.totalToPay}
+          />
+
+          <UI.ButtonBasic
+          title={"Order"}
+          to={"/applayout/payment"}
+          />
            </>
           : (
             <UI.Error
@@ -99,6 +105,6 @@ console.log(orderdataProvider.timeList)
         </MUI.Box>
         
       </MUI.Box>
-    </UI.SiteWrapper>
+    </>
   );
 }

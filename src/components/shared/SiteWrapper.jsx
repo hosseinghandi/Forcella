@@ -5,10 +5,10 @@
 import * as MUI from "../../utils/MUI"
 // react imports
 import { useContext } from "react";
-import { siteContext } from "../../App";
+import { SiteContext } from "../../App";
 
 export default function SiteWrapper({ children }) {
-  const { colorText, colorTheme } = useContext(siteContext);
+  const { colorText, colorTheme } = useContext(SiteContext);
   return (
     <MUI.Container maxWidth={false} disableGutters>
       <MUI.Box

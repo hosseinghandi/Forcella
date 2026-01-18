@@ -3,26 +3,13 @@ import { createContext, useState, useEffect } from "react"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 // import translator 
 import i18n from "./utils/i18n";
-
-// userState and local storage
-import {saveUserState , getUserState , updateUserState} from "../src/utils/userStateTracker"
-// routes
-import AppLayout from "./routes/AppLayout";
-import StateChecker from "./routes/StateChecker"
-
-// ui components
-import Login from "./pages/Login";
-import Welcome from "./pages/Welcome";
-import Signup from "./pages/Signup";
-import Menu from "./pages/Menu";
-import ProfileUser from "./pages/ProfileUser";
-import ShoppingBag from "./pages/ShoppingBag";
-import FavoritePizza from "./pages/FavoritePizza";
-import ProtectedRoute from "./routes/ProtectedRoute";
-import SiteWrapper from "./components/shared/SiteWrapper";
+import {saveUserState , getUserState , updateUserState} from "../src/utils/userStateTracker";
+import * as Routers from "./utils/Routers"
+import * as Pages from "./utils/Pages"
+import * as UI from "./utils/UI"
 
 // a global context to avoid state drilling  
-export const siteContext = createContext()
+export const SiteContext = createContext()
 
 export default function App() {
   // localStorage.clear()
@@ -40,47 +27,44 @@ export default function App() {
         i18n.changeLanguage(lan)
         updateUserState({preferences : {language : lan}})
   } , [lan])
-  
 
   return (
-<siteContext.Provider value={{ mode, setMode, lan, setLang, userdata,setUser, colorTheme, colorText }}>
-  <SiteWrapper>
+<SiteContext.Provider value={{ mode, setMode, lan, setLang, userdata,setUser, colorTheme, colorText }}>
     <BrowserRouter>
+    <UI.SiteWrapper>
       <Routes>
-
         {/* entry */}
-        <Route path="/" element={<StateChecker />} />
+        <Route path="/" element={<Routers.StateChecker />} />
 
         {/* public */}
 
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/welcome" element={<Pages.Welcome />} />
+        <Route path="/login" element={<Pages.Login />} />
+        <Route path="/signup" element={<Pages.Signup />} />
 
         {/* app layout */}
-        <Route path="/applayout" element={<AppLayout />}>
+        <Route path="/applayout" element={<Routers.AppLayout />}>
 
           {/* public inside app */}
           <Route path={"menu"} >
-            <Route index element={<Menu />}/>  
-            <Route path=":filterkey" element={<Menu />}/>
-            <Route />
+            <Route index element={<Pages.Menu />}/>  
+            <Route path=":filterkey" element={<Pages.Menu />}/>
           </Route>
 
           {/* protected */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="profile" element={<ProfileUser />} />
-            <Route path="shoppingbag" element={<ShoppingBag />} />
-            <Route path="favorites" element={<FavoritePizza />} />
+          <Route element={<Routers.ProtectedRoute />}>
+            <Route path="profile" element={<Pages.ProfileUser />} />
+            <Route path="shoppingbag" element={<Pages.ShoppingBag />} />
+            <Route path="favorites" element={<Pages.FavoritePizza />} />
+            <Route path="payment" element={<Pages.Payment/>} />
           </Route>
 
         </Route>
-
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
+      </UI.SiteWrapper>
     </BrowserRouter>
-  </SiteWrapper>
-</siteContext.Provider>
+</SiteContext.Provider>
 
   )
 }

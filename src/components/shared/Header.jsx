@@ -2,8 +2,8 @@
 
 // cover image
 import pizzaSlice from "/pizza-image/margherita.png";
-
 import * as MUI from "../../utils/MUI";
+
 
 export default function Header({ children, position }) {
   const positionValue = !position

@@ -11,18 +11,18 @@ import { useNavigate } from "react-router-dom";
 
 // import react 
 import { useContext } from "react";
-import { siteContext } from "../../App";
+import { SiteContext } from "../../App";
 
 
 
 
-export default function SharedNavigation({position, navigation, splash, menu }) {
+export default function SharedNavigation({position, navigation, splash, menu, profile }) {
   
   const navigate = useNavigate();
-  const {lan, mode,setLang, setMode, colorTheme, colorText} = useContext(siteContext)
+  const {lan, mode,setLang, setMode, colorTheme, colorText} = useContext(SiteContext)
 
   const requestedHtml = 
-              navigation || menu?
+              navigation || menu ?
               <>
               <MUI.Box
                 sx={{
@@ -51,7 +51,21 @@ export default function SharedNavigation({position, navigation, splash, menu }) 
                         <UI.Logo color={colorTheme} />
                         <UI.SwitchLabels value={lan} setValue={setLang} colorTheme={colorTheme} />
                         <UI.ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
-                </MUI.Box> : null
+                </MUI.Box> 
+                : profile ?
+                      <MUI.Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "7px",
+                              alignItems: "flex-end",
+                            }}
+                          >
+                              <MUI.Typography> it works</MUI.Typography>
+                      </MUI.Box> : null
+                
+
+
                 
 
   return (
@@ -66,12 +80,11 @@ export default function SharedNavigation({position, navigation, splash, menu }) 
       }}
       >
         
-       { !menu ? 
+       { (!menu && !profile) ? 
        <UI.Header position={position}>
         {requestedHtml}
         </UI.Header> :
         <>
-        
           {requestedHtml}
         </> 
         }

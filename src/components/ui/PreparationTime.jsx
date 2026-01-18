@@ -1,18 +1,6 @@
 import * as MUI from "../../utils/MUI"
-export default function PreparationTime ({timeList, count}) {
-    
-    const timeCal = (time, count) => {
-        const totalTimeRequired = time.map( (t,index) => ( t + 
-            (count[index] > 1 ? (count[index]/10) : 0)))
+export default function PreparationTime ({totalTimeRequired, totalCount}) {
 
-        const totalCount = count.reduce((accumulator, currentValue) => 
-            accumulator + currentValue , 0)
-
-        return  [Math.floor(Math.max(...totalTimeRequired) + 
-                Math.log2( totalCount || 1) * 5), totalCount]
-    }
-    
-    const [time_t, count_t] = timeCal(timeList, count)
 
     return (
         <MUI.Card 
@@ -33,10 +21,12 @@ export default function PreparationTime ({timeList, count}) {
                 Your order will be ready within <MUI.Typography 
                 component={"span"}
                 variant="pizzaContentBold"
-                > {time_t} minutes</MUI.Typography> and <MUI.Typography 
+                > {Math.floor(totalTimeRequired)} minutes</MUI.Typography> and <MUI.Typography 
                 component={"span"}
                 variant="pizzaContentBold"
-                > {Math.floor(count_t/4)} {`worker${Math.floor(count_t/4) > 1 ? "s":""}`} 
+                > {(totalCount/4) > 0.99 ? 
+                    Math.floor(totalCount/4) : 1 } 
+                    {` worker${Math.floor(totalCount/4) > 1 ? "s":""}`} 
                 </MUI.Typography> will be dedicated to your order.</MUI.Typography>
         </MUI.Card>
     )

@@ -48,48 +48,48 @@ export default function Filter({colorText}) {
 
 
   return (
-    <MUI.Box
-      sx={{
-        mt: "20px",
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        backgroundColor: "var(--gray)",
-        borderRadius: "25px",
-      }}
-    >
-      <MUI.Box
-        sx={{
-          height: "50px",
-          display: "flex",
-          alignItems: "center",
-          px: "12px",
-          "&:focus-within": {
-            borderColor: "var(--color-orange)",
-          },
-        }}
-      >
         <MUI.Box
           sx={{
+            mt: "20px",
             display: "flex",
-            flexGrow : 1,
-            alignItems: "center",
-            justifyContent: "space-between",
+            flexDirection: "column",
             width: "100%",
-            gap: "4px",
+            backgroundColor: "var(--gray)",
+            borderRadius: "25px",
           }}
         >
-            {categoriesBtn()}
           <MUI.Box
             sx={{
-              cursor: "pointer",
+              height: "50px",
               display: "flex",
               alignItems: "center",
+              px: "12px",
+              "&:focus-within": {
+                borderColor: "var(--color-orange)",
+              },
             }}
           >
+            <MUI.Box
+              sx={{
+                display: "flex",
+                flexGrow : 1,
+                alignItems: "center",
+                justifyContent: "space-between",
+                width: "100%",
+                gap: "4px",
+              }}
+            >
+                {categoriesBtn()}
+              <MUI.Box
+                sx={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+              </MUI.Box>
+            </MUI.Box>
           </MUI.Box>
         </MUI.Box>
-      </MUI.Box>
-    </MUI.Box>
   );
 }

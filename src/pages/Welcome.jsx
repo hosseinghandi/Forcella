@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
 // react imports
 import { useContext } from "react";
-import { siteContext } from "../App";
+import { SiteContext } from "../App";
 
 import * as MUI from "../utils/MUI"
 import * as UI from "../utils/UI"
 
 
 export default function Welcome() {
-  const { lan, setLang, mode, setMode, colorTheme, colorText } = useContext(siteContext);
+  const { lan, setLang, mode, setMode, colorTheme, colorText } = useContext(SiteContext);
   const { t } = useTranslation();
 
   const messages = {
@@ -23,7 +23,7 @@ export default function Welcome() {
   }
   
   return (
-    <UI.SiteWrapper>
+    <>
       <UI.SharedNavigation splash={true}/>
       <MUI.Box
         sx={{
@@ -79,6 +79,6 @@ export default function Welcome() {
           />
         </MUI.Box>
       </MUI.Box>
-    </UI.SiteWrapper>
+    </>
   );
 }

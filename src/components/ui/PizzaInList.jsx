@@ -22,7 +22,7 @@ export default memo(function PizzaInList({
   
   const finalPrice = discount
     ? (price * (1 - discount/ 100)).toFixed(2)
-    : price;
+    : price.toFixed(2);
 
   const iconList = [
     [<Icon.Add sx={{color : added ? "red" : "black"}}/>, onToggelCart, "add"],
@@ -53,17 +53,8 @@ export default memo(function PizzaInList({
     <MUI.Card
       key={id}
       sx={{
-        height: { xs: "140px", sm: "200px" },
-        borderRadius: "var(--radius)",
-        width: "100%",
-        backgroundColor: "var(--gray)",
-        boxShadow: "none",
-        padding: "12px 18px",
-        display: "flex",
+        height: { xs: "140px"},
         flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginTop: "10px"
       }}
     >
       {/* inner items holder  */}

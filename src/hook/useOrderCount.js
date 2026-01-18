@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { siteContext } from "../App";
+import { SiteContext } from "../App";
 import { updateUserState } from "../utils/userStateTracker";
 
 export function useOrderCount (key) {
-    const {setUser} = useContext(siteContext)
+    const {setUser} = useContext(SiteContext)
 
     if (key === "add") {
         const increaseQty = (id) => {

@@ -27,15 +27,7 @@ return (<MUI.Card
             key={1}
             sx={{
                 height: { xs: "160px" },
-                borderRadius: "25px",
-                width: "100%",
-                backgroundColor: "var(--gray)",
-                boxShadow: "none",
-                padding: "10px",
-                display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
             }}
             >
             <MUI.Box sx={{width:"100%", height : "100%", display: "flex", justifyContent: "space-between", alignItems:"center"}}>

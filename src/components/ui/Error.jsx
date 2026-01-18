@@ -5,9 +5,6 @@
 import * as Icon from "../../utils/Icons"
 import * as MUI from "../../utils/MUI"
 
-// material ui component
-import {Box,Typography} from "@mui/material";
-
 export default function Error({ message, colorText}) {
   return (
     message !== "" && (

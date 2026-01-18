@@ -54,16 +54,7 @@ export default memo(function PizzaInOrder({
       key={id}
       sx={{
         height: "fit-content",
-        borderRadius: "var(--radius)",
-        width: "100%",
-        backgroundColor: "var(--gray)",
-        boxShadow: "none",
-        padding: "12px 18px",
-        display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginTop: "10px",
       }}
     >
       {/* check if the user reches to order number zero and ask him if 

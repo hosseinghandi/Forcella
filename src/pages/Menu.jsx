@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useToggleAction } from "../hook/useToggleAction";
 import {pizzaFinder} from "../utils/pizzaFinder"
 // import app context
-import { siteContext } from "../App";
+import { SiteContext } from "../App";
 
 import * as MUI from "../utils/MUI"
 import * as UI from "../utils/UI"
@@ -18,7 +18,7 @@ export default function Menu() {
   
 // primary data base
   const [info, setInfo] = useState(null); 
-  const { userdata, colorTheme, colorText} = useContext(siteContext);
+  const { userdata, colorTheme, colorText} = useContext(SiteContext);
   const { t } = useTranslation();
   const pizzaRawData = t("pizzaItems", { returnObjects: true });
   const { filterkey } = useParams();
@@ -36,13 +36,13 @@ export default function Menu() {
   const handelInfoRequest = useCallback((id) => {setInfo(id);}, [info]);
 
   return (
-    <UI.SiteWrapper>
+    <>
         <UI.SharedNavigation menu={true}/>      
         <UI.Filter colorText={colorText}/>
         <MUI.Box component={"div"}>
         {/* Special Offer */}
         {!filterkey && (
-          <MUI.Box sx={{marginTop: "20px"}} >
+          <MUI.Box >
             <UI.SpecialCard offered={offeredPizza} colorText={colorText}/>
           </MUI.Box>
         )}
@@ -77,6 +77,6 @@ export default function Menu() {
       {requestedpizzaInfo && (
         <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} dialog={true} />
       )}
-    </UI.SiteWrapper>
+    </>
   );
 }

@@ -46,8 +46,35 @@
           }, 
           "star" : {
             fontSize : "15px"
-          }
+          },
         },
+        components: {
+            MuiTableCell: {
+              styleOverrides: {
+                root: {
+                  padding: "5px 0",
+                },
+              },
+            },
+          },
+          components:{
+            MuiCard:{
+              styleOverrides: {
+                root: {                  
+                  
+                  borderRadius: "var(--radius)", 
+                  width: "100%",
+                  backgroundColor: "var(--gray)",
+                  boxShadow: "none",
+                  padding: "12px 18px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "var(--gapOfItems)",
+            }
+          }
+                }
+              },
         
         breakpoints: {
           values : {

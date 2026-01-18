@@ -15,11 +15,13 @@ body, html {
     --orange :  #B55638; 
     --red: #740202;
     --dark : #000000;
-    --gray : #e0e0e0ff;
+    /* --gray : #e0e0e0ff; */
+    --gray: rgb(240, 238, 238);
     --gold : #cfa500;
     --radius : 25px;
-    --spacing-global-padding-x-mobile : 15px;
-    --spacing-global-padding-y-mobile : 7.5px;
+    --spacing-global-padding-x-mobile : 30px;
+    --spacing-global-padding-y-mobile : 15px;
+    --gapOfItems : 10px;
 }
 body {
   margin: 0;

@@ -13,10 +13,10 @@ import { isValid } from "../utils/validator";
 
 // import context
 import {useContext} from "react"
-import { siteContext } from "../App";
+import { SiteContext } from "../App";
 
 export default function Signup() {
-  const {colorTheme} = useContext(siteContext)
+  const {colorTheme} = useContext(SiteContext)
   // form state to save submitted data
   const [formData, setFormData] = useState({
     personalData: {
@@ -118,7 +118,7 @@ export default function Signup() {
   ];
 
   return (
-    <UI.SiteWrapper>
+    <>
       <UI.SharedNavigation navigation={true} position={"top"}/>
       <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
         <MUI.Typography variant="textHead" >{message.head}</MUI.Typography >
@@ -169,6 +169,6 @@ export default function Signup() {
         </MUI.Box>
       </MUI.FormControl>
       </MUI.Box>
-    </UI.SiteWrapper>
+    </>
   );
 }

@@ -22,7 +22,7 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum }) {
         left: 0,
         bottom: "20px",
         width: "100%",
-        px: "calc(var(--spacing-global-padding-x-mobile) * 2)",
+        px: "calc(var(--spacing-global-padding-x-mobile))",
         zIndex: 999,
       }}
     >

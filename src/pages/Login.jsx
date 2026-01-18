@@ -3,7 +3,7 @@
 
 // react imports
 import { useContext, useState, useMemo } from "react";
-import { siteContext } from "../App";
+import { SiteContext } from "../App";
 import { useTranslation } from "react-i18next";
 
 import * as MUI from "../utils/MUI"
@@ -26,7 +26,7 @@ export default function Login() {
     };
 
     // required context to render ui elements
-    const {mode, colorTheme} = useContext(siteContext); 
+    const {mode, colorTheme} = useContext(SiteContext); 
 
     //states
     const [formData, setFormData] = useState({email: "",password: ""});
@@ -58,7 +58,7 @@ export default function Login() {
     ["password",<Icon.Key />,"password", null]]
 
     return (
-      <UI.SiteWrapper>
+      <>
       <UI.SharedNavigation navigation={true}/>
       <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
         <MUI.Typography variant="textHead">{message.head}</MUI.Typography>
@@ -90,6 +90,6 @@ export default function Login() {
           </MUI.Box>
         </MUI.FormControl>
         </MUI.Box>
-        </UI.SiteWrapper>
+        </>
     );
 }
