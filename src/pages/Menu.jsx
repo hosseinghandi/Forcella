@@ -3,8 +3,6 @@ import { useState, useContext, useCallback, useMemo } from "react";
 
 // impoprt react router
 import { useParams } from "react-router-dom";
-// import translation
-import { useTranslation } from "react-i18next";
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
 import {pizzaFinder} from "../utils/pizzaFinder"
@@ -18,9 +16,7 @@ export default function Menu() {
   
 // primary data base
   const [info, setInfo] = useState(null); 
-  const { userdata, colorTheme, colorText} = useContext(SiteContext);
-  const { t } = useTranslation();
-  const pizzaRawData = t("pizzaItems", { returnObjects: true });
+  const { userdata, colorTheme, colorText, pizzaRawData} = useContext(SiteContext);
   const { filterkey } = useParams();
   
   // data preparation based on the userdata and rawData

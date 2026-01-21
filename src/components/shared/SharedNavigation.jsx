@@ -16,8 +16,8 @@ import { SiteContext } from "../../App";
 
 
 
-export default function SharedNavigation({position, navigation, splash, menu, profile }) {
-  
+export default function SharedNavigation({position, navigation, splash, menu, profile, editeMode, setEditMode}) {
+  console.log(editeMode)
   const navigate = useNavigate();
   const {lan, mode,setLang, setMode, colorTheme, colorText} = useContext(SiteContext)
 
@@ -53,16 +53,32 @@ export default function SharedNavigation({position, navigation, splash, menu, pr
                         <UI.ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
                 </MUI.Box> 
                 : profile ?
+                <>
                       <MUI.Box
                             sx={{
                               display: "flex",
-                              flexDirection: "column",
+                              flexDirection: "row",
                               gap: "7px",
+                              justifyContent:"space-between",
                               alignItems: "flex-end",
                             }}
                           >
-                              <MUI.Typography> it works</MUI.Typography>
-                      </MUI.Box> : null
+                      <MUI.IconButton sx={{padding:"0px"}} onClick={() => navigate(-1)}>
+                      < Icon.Arrow htmlColor= {colorTheme} /> 
+                      </MUI.IconButton>
+                            <MUI.Box sx={{display:"flex", flexDirection:"row", 
+                              justifyContent:"center", alignItems:"flex-start"}}
+                              >
+                              <MUI.IconButton 
+                              onClick={()=> setEditMode(prev => !prev)}
+                              sx={{padding:"0", color: editeMode ? " var(--orange)" : "black"}}>
+                                <Icon.EditPen/>
+                                <MUI.Typography sx={{marginRight:"30px", marginLeft:"5px"}}>Edit</MUI.Typography>
+                              </MUI.IconButton>
+                                <Icon.LogOut />
+                            </MUI.Box>
+                      </MUI.Box> 
+                </> : null
                 
 
 

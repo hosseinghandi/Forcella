@@ -8,6 +8,10 @@
             fontSize : "34px",
             fontWeight : "900"
           },
+          "profileWelcoming": {
+            fontSize : "34px",
+            fontWeight : "400"
+          },
           "titleBold" : {
             fontSize : "16px",
             fontWeight : "900"

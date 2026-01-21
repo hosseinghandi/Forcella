@@ -1,8 +1,6 @@
 // react imports
 import { useState, useContext, useCallback, useMemo } from "react";
 
-// import translation
-import { useTranslation } from "react-i18next";
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
 import { useOrderSummery } from "../hook/useOrderSummery";
@@ -22,9 +20,7 @@ import { updateUserState } from "../utils/userStateTracker";
 export default function ShoppingBag() {
   // primary data set
   const [info, setInfo] = useState(null);
-  const { userdata, colorText, colorTheme } = useContext(SiteContext);
-  const { t } = useTranslation();
-  const pizzaRawData = t("pizzaItems", { returnObjects: true });
+  const { userdata, colorText, colorTheme,pizzaRawData } = useContext(SiteContext);
 
   const pizzaInCart = useMemo(
     () => pizzaFinder(pizzaRawData, "bag", userdata["pizzaInCartId"]),
@@ -41,7 +37,6 @@ export default function ShoppingBag() {
     [info],
   );
   const pizzaInProcess = userdata.pizzaInProcess;
-
   const handelAdd = useOrderCount("add");
   const handelMinus = useOrderCount("minus");
   const handelRemove = useOrderCount("remove");

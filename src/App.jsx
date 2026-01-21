@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from "react"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 // import translator 
 import i18n from "./utils/i18n";
+import { useTranslation } from "react-i18next";
 import {saveUserState , getUserState , updateUserState} from "../src/utils/userStateTracker";
 import * as Routers from "./utils/Routers"
 import * as Pages from "./utils/Pages"
@@ -12,7 +13,9 @@ import * as UI from "./utils/UI"
 export const SiteContext = createContext()
 
 export default function App() {
-  // localStorage.clear()
+  const {t} = useTranslation()
+  const pizzaRawData = t("pizzaItems", { returnObjects: true });
+  localStorage.clear()
   const user = getUserState()
   // local storag elater shpuld be handel
   const [mode, setMode] = useState(false)
@@ -29,7 +32,7 @@ export default function App() {
   } , [lan])
 
   return (
-<SiteContext.Provider value={{ mode, setMode, lan, setLang, userdata,setUser, colorTheme, colorText }}>
+<SiteContext.Provider value={{ mode, setMode, lan, setLang, userdata,pizzaRawData,setUser, colorTheme, colorText }}>
     <BrowserRouter>
     <UI.SiteWrapper>
       <Routes>

@@ -17,11 +17,21 @@
   },
   "pizzaInCartId" : [],
   "likedPizzasId": [],
-  "lastOrdered":{
-      "pizzaId" : [1],
-      "quantity" : [4],
-      "totalPrice" : 45,
-      "orderState" : "delivered"
+  "orders":{
+      "1242025" : {
+        "pizzaId" : [1,4],
+        "quantity" : [4,5],
+        "totalPrice" : [45],
+        "orderState" : "delivered",
+        "orderDate": "12/4/2025"
+      },
+      "1212026" : {
+        "pizzaId" : [2,3],
+        "quantity" : [2,6],
+        "totalPrice" : [35],
+        "orderState" : "In the oven",
+        "orderDate": "1/5/2025"
+      }
     },
   "pizzaInProcess" : {}
 

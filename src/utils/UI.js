@@ -14,6 +14,6 @@ export { default as SiteWrapper } from "../components/shared/SiteWrapper";
 export { default as InputGroup } from "../components/ui/InputGroup";
 export { default as Filter } from "../components/ui/Filter";
 export { default as BubbleToggel } from "../components/ui/BubbleToggel";
-export { default as UserInfoHolder } from "../components/ui/UserInfoHolder";
+export { default as UserInfoHolderStatic } from "../components/ui/UserInfoHolderStatic";
 export { default as PreparationTime } from "../components/ui/PreparationTime";
 export { default as OrderSummery } from "../components/ui/OrderSummery";
