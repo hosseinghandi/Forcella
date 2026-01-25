@@ -1,4 +1,4 @@
-    export const pizzaFinder = (data, searchFor, compareTo) => {
+ const pizzaFinder = (data, searchFor, compareTo) => {
 
         if (searchFor === "filter") 
             return compareTo ? data.filter((el) => el["category"]?.includes(compareTo)) : data
@@ -15,3 +15,4 @@
             return data ? data.filter((el) => el.id === compareTo)[0] : null
         }
     } 
+   export default pizzaFinder

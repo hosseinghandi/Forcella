@@ -1,4 +1,23 @@
-// role : takes the user data and save it to the user data json
+// role : takes theuser data and save it to the user data json
+
+
+// form data structure shoukld be change to
+  //   personalInfo: {
+  //   firstName: "Jack",
+  //   lastName: "Walton",
+  //   email: "jackiwl@gamil.com",
+  //   phone: "+339 334 159 3024",
+  //   address: {
+  //         street: "124 Maple Grove Avenue, Newyork, America",
+  //         city: "Riverton",
+  //         zipcode: "90211"
+  //   }
+  // },
+  // preferences: {
+  //   language: "en",
+  //   dark: true
+  // }
+
 
 // react imports
 import { useState, useMemo } from "react";
@@ -19,19 +38,21 @@ export default function Signup() {
   const {colorTheme} = useContext(SiteContext)
   // form state to save submitted data
   const [formData, setFormData] = useState({
-    personalData: {
-      name: "",
-      lastName: "",
-      email: "",
-      phoneNum: "",
-      password: "",
-      rePassWord: "",
-    },
-    address: {
-      address: "",
-      zipCode: "",
-      optional: "",
-    },
+    "personalInfo": {
+    "firstName": "Jack",
+    "lastName": "Walton",
+    "email": "jackiwl@gamil.com",
+    "phone": "+339 334 159 3024",
+    "address": {
+          "street": "124 Maple Grove Avenue, Newyork, America",
+          "city": "Riverton",
+          "zipcode": "90211"
+    }
+  },
+  "preferences": {
+    "language": "en",
+    "dark": true
+  }
   });
 
   // validation object
@@ -68,6 +89,7 @@ export default function Signup() {
         ...prev[section],
         [name]: value,
       },
+      
     }));
   };
 

@@ -2,7 +2,7 @@
 import * as MUI from "../../utils/MUI";
 import * as UI from "../../utils/UI";
 import * as Icon from "../../utils/Icons";
-import { pizzaFinder } from "../../utils/pizzaFinder";
+
 // react import
 import { memo, useMemo } from "react";
 // import material ui icons for pizza holder
@@ -27,8 +27,6 @@ export default memo(function PizzaInOrder({
   const finalPrice = discount
     ? (price * (1 - discount / 100)).toFixed(2)
     : price;
-
-    //  const requestedpizzaInfo = useMemo(() => (pizzaFinder(pizzaRawData, "info", info)), [info])
 
   const iconList = [
     [<Icon.Add />, handelAdd, "add"],

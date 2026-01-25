@@ -17,3 +17,4 @@ export { default as BubbleToggel } from "../components/ui/BubbleToggel";
 export { default as UserInfoHolderStatic } from "../components/ui/UserInfoHolderStatic";
 export { default as PreparationTime } from "../components/ui/PreparationTime";
 export { default as OrderSummery } from "../components/ui/OrderSummery";
+export {default as UserInfoHolderEditMode} from "../components/ui/UserInfoHolderEditMode"

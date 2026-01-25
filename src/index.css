@@ -22,6 +22,7 @@ body, html {
     --spacing-global-padding-x-mobile : 30px;
     --spacing-global-padding-y-mobile : 15px;
     --gapOfItems : 10px;
+    --inputSize : 45px;
 }
 body {
   margin: 0;

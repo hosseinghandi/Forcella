@@ -1,5 +1,5 @@
 {
-  "userId": "usr_92f7a3b1d8",
+  "userId": "user_jackiwl",
   "personalInfo": {
     "firstName": "Jack",
     "lastName": "Walton",
@@ -9,11 +9,9 @@
           "street": "124 Maple Grove Avenue",
           "city": "Riverton",
           "zipcode": "90211"
-    }
-  },
-  "preferences": {
+    },
     "language": "en",
-    "dark": true
+    "theme": true
   },
   "pizzaInCartId" : [],
   "likedPizzasId": [],

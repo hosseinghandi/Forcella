@@ -5,7 +5,7 @@ import { useState, useContext, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
-import {pizzaFinder} from "../utils/pizzaFinder"
+import * as helpers from "../utils/helpers"
 // import app context
 import { SiteContext } from "../App";
 
@@ -20,9 +20,9 @@ export default function Menu() {
   const { filterkey } = useParams();
   
   // data preparation based on the userdata and rawData
-  const filterPizza = useMemo(() => (pizzaFinder(pizzaRawData, "filter", filterkey )), [filterkey])
-  const offeredPizza = useMemo(() => (pizzaFinder(pizzaRawData, "offered")), [])
-  const requestedpizzaInfo = useMemo(() => (pizzaFinder(pizzaRawData, "info", info)), [info])
+  const filterPizza = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "filter", filterkey )), [filterkey])
+  const offeredPizza = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "offered")), [])
+  const requestedpizzaInfo = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "info", info)), [info])
   const pizzaData = filterkey === "offered" || filterkey === "offerta" ? offeredPizza : filterPizza;
 
   //handel any changes requested  by user
@@ -59,8 +59,8 @@ export default function Menu() {
               discount={pizza.offered.active && pizza.offered.percentage}
               time={pizza.time}
               id={pizza.id}
-              liked={pizzaFinder(userdata["likedPizzasId"],"boolean", pizza.id)}
-              added={pizzaFinder(userdata["pizzaInCartId"],"boolean", pizza.id)}
+              liked={helpers.pizzaFinder(userdata["likedPizzasId"],"boolean", pizza.id)}
+              added={helpers.pizzaFinder(userdata["pizzaInCartId"],"boolean", pizza.id)}
               onToggelCart={handelToggleCart}
               onTogglePizza={handelTogglePizza}
               onInfoRequest={handelInfoRequest}

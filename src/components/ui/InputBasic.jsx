@@ -11,18 +11,26 @@ export default function InputBasic({
   isValid,
   background,
   NoBorder,
+  defaultValueInput,
+  editMode,
+  onChange,
   ...inputProps
 }) {
   return (
     <MUI.TextField
-      label={name}
+      required
+      label={label && label}
+      name={name}
       placeholder={inputProps.placeholder}
+      defaultValue={defaultValueInput && defaultValueInput}
       fullWidth
+      onChange={() => onChange(event)}
+      
       InputProps={{
         endAdornment: (
           <MUI.InputAdornment
             sx={{ color: isValid ? "green" : "black" }}
-            position="end"
+            position= "end"
           >
             {icon}
           </MUI.InputAdornment>
@@ -34,15 +42,20 @@ export default function InputBasic({
           paddingLeft: 2,
           top: "50%",
           transform: "translateY(-50%)",
+          ...(editMode && {paddingLeft: 6})
+          
         },
         "& .MuiInputLabel-shrink": {
           top: "0",
           fontSize: " 0.75rem",
         },
         "& .MuiOutlinedInput-root": {
+          display:"flex",
           backgroundColor: background ? background : "white",
           borderRadius: "25px",
-          height: "45px",
+          width:"100%",
+          height: "var(--inputSize)",
+          ...(editMode && {flexDirection:"row-reverse"})
         },
         "& .MuiOutlinedInput-input": {
           display: "flex",

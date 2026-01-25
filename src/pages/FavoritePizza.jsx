@@ -5,26 +5,22 @@ import { useState, useContext, useCallback, useMemo } from "react";
 
 import * as MUI from "../utils/MUI"
 import * as UI from "../utils/UI"
+import * as helpers from "../utils/helpers"
 
-// import translation
-import { useTranslation } from "react-i18next";
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
-import {pizzaFinder} from "../utils/pizzaFinder"
 // import app context
 import { SiteContext } from "../App";
 
 export default function FavoritePizza() {
     // primary data set
     const [info, setInfo] = useState(null);
-    const { userdata, colorText, colorTheme} = useContext(SiteContext);
-    const { t } = useTranslation();
-    const pizzaRawData = t("pizzaItems", { returnObjects: true });
+    const { userdata, colorText, colorTheme,pizzaRawData} = useContext(SiteContext);
 
     // data preparation
-    const favoritePizza = useMemo( () => pizzaFinder(pizzaRawData,"fav",userdata["likedPizzasId"]) , [userdata])
-    const offeredPizza = useMemo(() => (pizzaFinder(pizzaRawData, "offered")), [])
-    const requestedpizzaInfo = useMemo(() => (pizzaFinder(pizzaRawData, "info", info)), [info])
+    const favoritePizza = useMemo( () => helpers.pizzaFinder(pizzaRawData,"fav",userdata["likedPizzasId"]) , [userdata])
+    const offeredPizza = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "offered")), [])
+    const requestedpizzaInfo = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "info", info)), [info])
 
     
     //   handel any changes requested  by user
@@ -63,8 +59,8 @@ export default function FavoritePizza() {
                         discount={pizza.offered.active && pizza.offered.percentage}
                         time={pizza.time}
                         id={pizza.id}
-                        liked={pizzaFinder(userdata["likedPizzasId"],"boolean", pizza.id)}
-                        added={pizzaFinder(userdata["pizzaInCartId"],"boolean", pizza.id)}
+                        liked={helpers.pizzaFinder(userdata["likedPizzasId"],"boolean", pizza.id)}
+                        added={helpers.pizzaFinder(userdata["pizzaInCartId"],"boolean", pizza.id)}
                         onToggelCart={handelToggleCart}
                         onTogglePizza={handelTogglePizza}
                         onInfoRequest={handelInfoRequest}

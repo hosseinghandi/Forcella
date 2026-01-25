@@ -1,34 +1,25 @@
 // react imports
 import { useState, useContext, useCallback, useMemo } from "react";
 
-// impoprt helper
-import { useToggleAction } from "../hook/useToggleAction";
 import { useOrderSummery } from "../hook/useOrderSummery";
 import { useOrderCount } from "../hook/useOrderCount";
-
-import { pizzaFinder } from "../utils/pizzaFinder";
 
 // import app context
 import { SiteContext } from "../App";
 
 import * as MUI from "../utils/MUI";
 import * as UI from "../utils/UI";
-
-// import material ui
-import { updateUserState } from "../utils/userStateTracker";
-
+import * as helpers from "../utils/helpers"
 export default function ShoppingBag() {
   // primary data set
   const [info, setInfo] = useState(null);
   const { userdata, colorText, colorTheme,pizzaRawData } = useContext(SiteContext);
 
   const pizzaInCart = useMemo(
-    () => pizzaFinder(pizzaRawData, "bag", userdata["pizzaInCartId"]),
+    () => helpers.pizzaFinder(pizzaRawData, "bag", userdata["pizzaInCartId"]),
     [userdata],
   );
 
-  // data preparation
-//   const offeredPizza = useMemo(() => pizzaFinder(pizzaRawData, "offered"), []);
 
   const handelInfoRequest = useCallback(
     (id) => {
@@ -42,7 +33,6 @@ export default function ShoppingBag() {
   const handelRemove = useOrderCount("remove");
 
 const orderdataProvider = useOrderSummery(pizzaInCart, pizzaInProcess)
-// console.log(orderdataProvider)
 
   return (
     <>

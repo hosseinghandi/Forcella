@@ -24,3 +24,5 @@ export { default as BrightnessHigh } from "@mui/icons-material/BrightnessHigh";
 export { default as EditPen } from "@mui/icons-material/ModeEditOutlineOutlined";
 export { default as LogOut } from "@mui/icons-material/LogoutOutlined";
 export { default as Circle } from "@mui/icons-material/Brightness1";
+export { default as Language } from "@mui/icons-material/Translate";
+export { default as Theme } from "@mui/icons-material/Contrast";

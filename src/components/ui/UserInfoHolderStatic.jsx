@@ -2,29 +2,24 @@
 // material ui component
 import * as Icon from "../../utils/Icons";
 import * as MUI from "../../utils/MUI";
+import * as helpers from "../../utils/helpers"
 import { memo } from "react";
 
 export default memo(function UserInfoHolderStatic({ userdata, pizzaRawData }) {
-  // prepare personal data to render
-  const dataPrepration = [
-    [userdata.personalInfo.firstName, Icon.Person_outlined],
-    [userdata.personalInfo.lastName, Icon.Person_outlined],
-    [userdata.personalInfo.address.street, Icon.Location],
-    [userdata.personalInfo.email, Icon.Email],
-    [userdata.personalInfo.phone, Icon.Phone],
-  ];
+
+  const dataPrepration = helpers.requestData( userdata, "profile")
 
   const gapFull = "10px";
   const gapHalf = "5px"
   //   get passed data and make react nodes
   const personalDetail = (dataPrepration) => {
-    return dataPrepration.map(([data, Icon], index) => {
+    return dataPrepration.map(([data, Icon, label], index) => {
       return (
         // main card holder
         <MUI.Card
           key={index}
           sx={{
-            height: "60px",
+            minHeight: "45px",
             padding: "10px",
             flexDirection: "column",
             alignItems: "flex-start",
@@ -42,8 +37,11 @@ export default memo(function UserInfoHolderStatic({ userdata, pizzaRawData }) {
             }}
             key={index}
           >
-            <Icon />
-            {data}
+            {<Icon />}
+            <MUI.Box sx={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+              <MUI.Typography variant="titleBold" sx={{ width:"110px"}}>{label.toUpperCase()}</MUI.Typography> 
+              <MUI.Typography sx={{ flex:1}}>{data}</MUI.Typography> 
+            </MUI.Box>
           </MUI.Box>
         </MUI.Card>
       );
@@ -149,7 +147,7 @@ export default memo(function UserInfoHolderStatic({ userdata, pizzaRawData }) {
               gap: gapFull,
             }}
           >
-            <MUI.Typography variant="titleBold">Your order:</MUI.Typography>
+            <MUI.Typography variant="titleBold">YOUR ORDER:</MUI.Typography>
             {hint()}
             {orderState(userdata.orders)}
           </MUI.Box>

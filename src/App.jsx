@@ -15,11 +15,11 @@ export const SiteContext = createContext()
 export default function App() {
   const {t} = useTranslation()
   const pizzaRawData = t("pizzaItems", { returnObjects: true });
-  localStorage.clear()
+  // localStorage.clear()
   const user = getUserState()
   // local storag elater shpuld be handel
   const [mode, setMode] = useState(false)
-  const [lan, setLang] = useState(user.preferences.language || "en")
+  const [lan, setLang] = useState(user.personalInfo.language || "en")
   const [userdata, setUser] = useState(() => user)
 
     // color text is contrary to color them becasue they should be 
