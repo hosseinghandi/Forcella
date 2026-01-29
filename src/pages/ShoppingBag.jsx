@@ -5,15 +5,15 @@ import { useOrderSummery } from "../hook/useOrderSummery";
 import { useOrderCount } from "../hook/useOrderCount";
 
 // import app context
-import { SiteContext } from "../App";
+// import { SiteContext } from "../App";
 
-import * as MUI from "../utils/MUI";
-import * as UI from "../utils/UI";
-import * as helpers from "../utils/helpers"
+import * as MUI from "../barrels/MUI";
+import * as UI from "../barrels/UI";
+import * as helpers from "../barrels/helpers"
 export default function ShoppingBag() {
   // primary data set
   const [info, setInfo] = useState(null);
-  const { userdata, colorText, colorTheme,pizzaRawData } = useContext(SiteContext);
+  // const { userdata, colorText, colorTheme,pizzaRawData } = useContext(SiteContext);
 
   const pizzaInCart = useMemo(
     () => helpers.pizzaFinder(pizzaRawData, "bag", userdata["pizzaInCartId"]),
@@ -36,7 +36,7 @@ const orderdataProvider = useOrderSummery(pizzaInCart, pizzaInProcess)
 
   return (
     <>
-      <UI.SharedNavigation menu={true} />
+      <UI.SharedNavigation main={true} />
       <MUI.Typography variant="textHead">Your order list:</MUI.Typography>
       <MUI.Box component={"div"}>
         <MUI.Box

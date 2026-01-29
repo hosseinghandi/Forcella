@@ -4,10 +4,12 @@ import Container from "../components/shared/SiteWrapper"
 // ui elements
 import NavBar from "../components/shared/NavBar"
 import { useContext } from "react";
-import { SiteContext } from "../App";
-
+import {useTheme} from "../providers/Theme"
+import {useUserData} from "../providers/UserData"
 export default function Layout() {
-    const {mode, userdata} = useContext(SiteContext)
+
+    const {mode} = useTheme()
+    const {userdata} = useUserData()
     const pizzaLikedNum = userdata["likedPizzasId"].length
     const pizzaInCartNum = userdata["pizzaInCartId"].length
 

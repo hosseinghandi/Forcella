@@ -1,25 +1,25 @@
 // *role: help user to navigate through app*
 // router imports
 import { Link } from "react-router-dom";
-
-import * as Icon from "../../utils/Icons"
-import * as MUI from "../../utils/MUI"
-
+import * as MUI from "../../barrels/MUI"
+import * as Icon from "../../barrels/Icons"
+// import * as helpers from "../../barrels/helpers"
+// import {useRequestData} from"../../hook/useRequestData"
 export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum }) {
 
+  // const pathList = helpers.useRequestData("pathList")
   const pathList = [
-    { path: "menu", icon: Icon.Pizza },
-    { path: "favorites", icon: Icon.Heart },
-    { path: "shoppingbag", icon: Icon.ShoppingBag },
-    { path: "profile", icon: Icon.Person_bold },
-  ];
-
+              { path: "menu", Icon: Icon.Pizza },
+              { path: "favorites", Icon: Icon.Heart },
+              { path: "shoppingbag", Icon: Icon.ShoppingBag },
+              { path: "profile", Icon: Icon.Person_bold },
+        ]
   return (
     <MUI.Box
       component="nav"
       sx={{
         position: "fixed",
-        left: 0,
+        left: "0",
         bottom: "20px",
         width: "100%",
         px: "calc(var(--spacing-global-padding-x-mobile))",
@@ -38,7 +38,7 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum }) {
           
         }}
       >
-        {pathList.map(({ path, icon: Icon }) => (
+        {pathList.map(({ path, Icon }) => (
           <Link to={path} key={path}>
               <MUI.Box
                 sx={{
@@ -47,6 +47,9 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum }) {
                   transition: "all 0.25s ease-in-out",
                 }}
               > 
+                      {
+                      path.includes("shoppingbag") || path.includes("favorites") 
+                      ? 
                       <MUI.Badge 
                         sx={{
                           "& .MuiBadge-badge": {
@@ -61,13 +64,14 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum }) {
                           vertical: 'top',
                           horizontal: 'left',
                         }}
-                        
                         badgeContent={
-                        path.includes("shoppingbag") ? pizzaInCartNum : 
-                        path.includes("favorites") ? pizzaLikedNum : 0
+                        path.includes("shoppingbag") ? pizzaInCartNum :   
+                        path.includes("favorites") ?  pizzaLikedNum : null
                         }>
                           <Icon/>
-                      </MUI.Badge>
+                      </MUI.Badge> : 
+                      <Icon/>
+                      }
               </MUI.Box>
           </Link>
         ))}

@@ -1,41 +1,22 @@
 // role : takes theuser data and save it to the user data json
 
-
-// form data structure shoukld be change to
-  //   personalInfo: {
-  //   firstName: "Jack",
-  //   lastName: "Walton",
-  //   email: "jackiwl@gamil.com",
-  //   phone: "+339 334 159 3024",
-  //   address: {
-  //         street: "124 Maple Grove Avenue, Newyork, America",
-  //         city: "Riverton",
-  //         zipcode: "90211"
-  //   }
-  // },
-  // preferences: {
-  //   language: "en",
-  //   dark: true
-  // }
-
-
 // react imports
 import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import * as Icon from "../utils/Icons"
-import * as MUI from "../utils/MUI"
-import * as UI from "../utils/UI"
+import * as Icon from "../barrels/Icons"
+import * as MUI from "../barrels/MUI"
+import * as UI from "../barrels/UI"
 
 // utiles
 import { isValid } from "../utils/validator";
 
 // import context
 import {useContext} from "react"
-import { SiteContext } from "../App";
+// import { SiteContext } from "../App";
 
 export default function Signup() {
-  const {colorTheme} = useContext(SiteContext)
+  // const {colorTheme} = useContext(SiteContext)
   // form state to save submitted data
   const [formData, setFormData] = useState({
     "personalInfo": {
@@ -48,10 +29,6 @@ export default function Signup() {
           "city": "Riverton",
           "zipcode": "90211"
     }
-  },
-  "preferences": {
-    "language": "en",
-    "dark": true
   }
   });
 
@@ -60,11 +37,11 @@ export default function Signup() {
     const personal = {};
     const address = {};
 
-    for (const [key, value] of Object.entries(formData.personalData)) {
+    for (const [key, value] of Object.entries(formData.personalInfo)) {
       if (key === "rePassWord") continue;
       personal[key] = isValid(key, value);
     }
-    for (const [key, value] of Object.entries(formData.address)) {
+    for (const [key, value] of Object.entries(formData.personalInfo.address)) {
       address[key] = isValid(key, value);
     }
 
@@ -141,7 +118,7 @@ export default function Signup() {
 
   return (
     <>
-      <UI.SharedNavigation navigation={true} position={"top"}/>
+      <UI.SharedNavigation navigation={true} position={"top"}  photobaner={true}/>
       <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
         <MUI.Typography variant="textHead" >{message.head}</MUI.Typography >
       
@@ -165,7 +142,7 @@ export default function Signup() {
               name="address"
               type="text"
               icon={<Icon.Location />}
-              value={formData.address.address}
+              value={formData.personalInfo.address}
               isValid={validation.address.address}
               onChange={handleChange("address")}
               placeholder={message.address.street.placeHolder}

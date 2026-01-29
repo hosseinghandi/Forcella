@@ -1,31 +1,45 @@
-// *role : take the datalist and render the bubbles as designed*
-// react imports
-import { useState } from "react";
-// material ui components
-import * as MUI from "../../utils/MUI"
+// *Role : take the datalist pssing through props 
+//  and render the bubbles to navigate through*
 
-export default function BubbleToggle({ dataList, colorTheme }) {
+// required material
+import * as MUI from "../../barrels/MUI"
+// required imports
+import { useState } from "react";
+import { useContext } from "react";
+import { useTheme } from "../../providers/Theme";
+
+export default function BubbleToggle({ dataList}) {
   const [index, setIndex] = useState(0);
+  const {colors} = useTheme()
   return (
-    <MUI.Box sx={{ mt: "10px" }}>
+    <MUI.Box sx={{ mt: "var(--GlobalgapOfItems)" }}>
       {/* Content */}
-      <MUI.Box sx={{minHeight: "80px"}}>
-        <MUI.Typography variant="textNormal" 
+      <MUI.Box 
+      id={`tabpanel${index}`}
+      role="tabpanel"
+      aria-labelledby={`tab-${index}`}
+      sx={{minHeight: "var(--infoInnerTextHolderSize)"}}
+      >
+        <MUI.Typography 
+        sx={{lineHeight:1.2}}
+        variant="textWelcomingInfo" 
           >
           {dataList[index]}
         </MUI.Typography>
       </MUI.Box>
 
-      {/* Bubbles */}
+      {/* Bubbles wrapper */}
       <MUI.Box
+        role="tablist"
+        aria-label="tab navigations"
         sx={{
           display: "flex",
-          gap: "16px",
+          gap: "var(--bubbleDimension)",
           width: "100%",
-          height : "22px",
+          height : "var(--bubbleDimension)",
           alignItems: "center",
+          margin:"10px",
           justifyContent: "center",
-          mt: "24px",
         }}
       >
         {dataList.map((_, i) => {
@@ -34,17 +48,21 @@ export default function BubbleToggle({ dataList, colorTheme }) {
           return (
             <MUI.IconButton
               key={i}
+              id={`tab-${i}`}
               onClick={() => setIndex(i)}
-              aria-label={`select item ${i + 1}`}
+              aria-controls={`tabpanel${i}`}
+              aria-selected = {active}
+              tabIndex={active ? 0 : -1}
+              role="tab"
               sx={{
-                width: 14,
-                height: 14,
+                width: "var(--bubbleDimension)",
+                height: "var(--bubbleDimension)",
                 borderRadius: "50%",
-                backgroundColor: active ? colorTheme : "#B55638",
-                scale :  active ? "1.3" : "1",
-                transition: "scale 0.3s ease-in-out",
+                backgroundColor: active ? colors.text : "#B55638",
+                transform :  active ? "scale(1.3)" : 'scale(1)',
+                transition: "transform 0.3s ease-in-out",
                 "&:hover": {
-                backgroundColor: active ? colorTheme : "#B55638",
+                backgroundColor: active ? colors.text : "#B55638",
               }
               }
             }

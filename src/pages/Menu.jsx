@@ -5,18 +5,17 @@ import { useState, useContext, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
-import * as helpers from "../utils/helpers"
+import * as helpers from "../barrels/helpers"
 // import app context
-import { SiteContext } from "../App";
 
-import * as MUI from "../utils/MUI"
-import * as UI from "../utils/UI"
+import * as MUI from "../barrels/MUI"
+import * as UI from "../barrels/UI"
 
 export default function Menu() {
   
 // primary data base
   const [info, setInfo] = useState(null); 
-  const { userdata, colorTheme, colorText, pizzaRawData} = useContext(SiteContext);
+  // const { userdata, colorTheme, colorText, pizzaRawData} = useContext(SiteContext);
   const { filterkey } = useParams();
   
   // data preparation based on the userdata and rawData
@@ -28,12 +27,11 @@ export default function Menu() {
   //handel any changes requested  by user
   const handelToggleCart = useToggleAction("pizzaInCartId");
   const handelTogglePizza = useToggleAction("likedPizzasId");
-
   const handelInfoRequest = useCallback((id) => {setInfo(id);}, [info]);
 
   return (
     <>
-        <UI.SharedNavigation menu={true}/>      
+        <UI.SharedNavigation distance={true} main={true} photobaner={false} />      
         <UI.Filter colorText={colorText}/>
         <MUI.Box component={"div"}>
         {/* Special Offer */}

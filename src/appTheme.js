@@ -1,13 +1,32 @@
 
-  import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material";
   
   export const appTheme = createTheme({
         typography: {
           fontFamily: "Inter, sans-serif",
-          "titleWelcoming": {
-            fontSize : "34px",
-            fontWeight : "900"
+
+          // general text size for all design
+          "textNormal" : {
+            fontSize: "clamp(1rem, var(--initial-16px-at375px), 1.7rem)",
+            fontWeight : "300", 
+          }, 
+          "logoText" : {
+            fontSize : "clamp(1rem, var(--initial-16px-at375px), 1.4rem)",
+            fontWeight : "500",
           },
+          // font for "Welcomeing page"
+          "titleWelcoming": {
+            fontSize : "clamp(30px, var(--initial-30px-at375px), 5.5rem)",
+            fontWeight : "900", 
+            textAlign:"left"
+          },
+          "textWelcomingInfo" : {
+            fontSize: "clamp(1rem, var(--initial-16px-at375px), 1.5rem)",
+            fontWeight : 200, 
+            letterSpacing : 1.5,
+            textAlign:"left"
+          }, 
+          
           "profileWelcoming": {
             fontSize : "34px",
             fontWeight : "400"
@@ -20,13 +39,9 @@
             fontSize : "18px",
             fontWeight : "900"
           },
-          "textNormal" : {
-            fontSize : "15px",
-            fontWeight : "400"
-          }, 
           "textSmall" : {
             fontSize : "14px",
-            fontWeight : "200"
+            fontWeight : "200", 
           },
           "textError" : {
             fontSize : "18px",
@@ -40,10 +55,7 @@
             fontSize : "12px",
             fontWeight : "400"
           },
-          "logoText" : {
-            fontSize : "16px",
-            fontWeight : "400"
-          },
+          
           "pizzaContentBold" : {
             fontSize : "16px",
             fontWeight : "900"
@@ -51,8 +63,20 @@
           "star" : {
             fontSize : "15px"
           },
+          "textProfileBold" : {
+            fontSize:"15px",
+            fontWeight:600,
+            
+          }
         },
         components: {
+            MuiTypography: {
+              styleOverrides:{
+                root:{
+                  lineHeight: 1
+                }
+              }
+            },
             MuiTableCell: {
               styleOverrides: {
                 root: {
@@ -60,9 +84,7 @@
                 },
               },
             },
-          },
-          components:{
-            MuiCard:{
+             MuiCard:{
               styleOverrides: {
                 root: {                  
                   
@@ -78,12 +100,14 @@
             }
           }
                 }
-              },
-        
+          },
         breakpoints: {
-          values : {
-            xs : 0,
-            sm : 500,
-          }
+        values: {
+          xs: 0,
+          sm: 600,
+          md: 765,
+          lg: 1200,
+          xl: 1536,
+        },
         }
       });

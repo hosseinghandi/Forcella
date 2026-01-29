@@ -10,7 +10,6 @@ const handelSubmit = (section, newData, task) => {
       updateUserState(change);
       return change;
     });
-    
   };
 
   export default handelSubmit

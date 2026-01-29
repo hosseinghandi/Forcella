@@ -28,7 +28,7 @@ const ExpressionFor = {
         value.trim().length >= 8,
 
     address: (value) =>
-        value.trim().length > 5,
+        true,
 
     zipCode: (value) =>
         zipCodeRegex.test(value),

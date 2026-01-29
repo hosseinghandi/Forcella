@@ -1,8 +1,8 @@
 // to do : change the layout of the filters
 // *role: inform menu context about how render the items based on the user filter inputs* //
 
-import * as MUI from "../../utils/MUI"
-import * as UI from "../../utils/UI"
+import * as MUI from "../../barrels/MUI"
+import * as UI from "../../barrels/UI"
 
 
 import { useParams } from "react-router-dom";

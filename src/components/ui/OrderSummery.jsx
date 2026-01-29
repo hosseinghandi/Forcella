@@ -1,4 +1,4 @@
-import * as MUI from "../../utils/MUI"
+import * as MUI from "../../barrels/MUI"
 export default function Ordersummery ({subTotalPrice,shipping, tax,totalToPay}) {
     function createData(name, value) {
     return { name, value };

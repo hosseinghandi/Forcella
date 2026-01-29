@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { SiteContext } from "../App";
-import { updateUserState } from "../utils/userStateTracker";
 
+import { updateUserState, getUserState } from "../utils/userStateTracker";
+import { useUserData } from "../providers/UserData";
 export function useOrderCount (key) {
-    const {setUser} = useContext(SiteContext)
 
+    const {setUser} = useUserData()
+    
     if (key === "add") {
         const increaseQty = (id) => {
             setUser( prev => {
@@ -39,9 +39,10 @@ export function useOrderCount (key) {
     };
     return decreaseQty
 }
-if ("remove") {
+if (key === "remove") {
     const removeQty = (id) => {
-        setUser(prev => {
+        setUser(prev => {   
+            
             let nextState = {
                 ...prev, 
                 pizzaInProcess : Object.fromEntries(
@@ -55,5 +56,21 @@ if ("remove") {
         });
     };
     return removeQty
+}
+
+if (key === "delet") {
+    const deletItem = (id) => {
+        setUser(prev => {   
+            let nextState = {
+                ...prev, 
+                orders : Object.fromEntries(
+                Object.entries(prev.orders).filter(([k]) => k !== id)
+                )
+            };    
+            updateUserState(nextState)
+            return nextState
+        });
+    };
+    return deletItem
 }
 };

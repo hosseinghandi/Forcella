@@ -1,184 +1,276 @@
 {
-  "metadata": {
-    "welcoming": {
-      "static": "Benvenuti alla pizzeria Forcella",
-      "info": [
-        "La pizza napoletana è la versione della pizza rotonda tipicamente preparata nella città italiana di Napoli.",
-        "ed è caratterizzata da un impasto morbido e sottile con bordi alti.",
-        "I pomodori sono tradizionalmente pomodori San Marzano o pomodorini del Piennolo del Vesuvio."
-      ]
-    }
-    ,
-  "button": {
+  "app": {
+    "name": "Pizzeria Forcella",
+    "description": "Ordina autentica pizza napoletana preparata con ingredienti freschi."
+  },
+  "navigation": {
+    "menu": "Menu",
+    "favorites": "Preferiti",
+    "shoppingBag": "Carrello",
+    "profile": "Profilo",
     "login": "Accedi",
-    "signup": "Registrati",
-    "continue": "Continua senza registrazione",
-    "order": "Ordina ora"
+    "signup": "Registrati"
   },
 
-  "login": {
-    "head": "Accedi con i dati inseriti durante la registrazione.",
-    "forget": "Hai dimenticato la password?",
-    "email": {
-      "Label": "Email",
-      "placeHolder": "es. john.doe@email.com",
-      "error": "Inserisci un indirizzo email valido."
+  "pages": {
+    "welcoming": {
+      "title": "Benvenuto a Pizzeria Forcella",
+      "content": {
+        "highlights": [
+          "La pizza napoletana ha origine a Napoli, in Italia, dove è diventata un simbolo della tradizione culinaria italiana.",
+          "Preparata con pomodori San Marzano selezionati con cura, mozzarella fresca e ingredienti locali di alta qualità.",
+          "Cotta in un tradizionale forno a legna ad altissima temperatura in meno di 90 secondi, per ottenere un impasto morbido e alveolato."
+        ]
+      }
     },
-    "password": {
-      "Label": "Password",
-      "placeHolder": "**********",
-      "error": "La password è obbligatoria."
+
+    "login": {
+      "title": "Accedi",
+      "subtitle": "Accedi con i dati inseriti durante la registrazione.",
+      "form": {
+        "fields": {
+          "email": {
+            "placeholder": "es. john.doe@email.com",
+            "error": "Inserisci un indirizzo email valido."
+          },
+          "password": {
+            "placeholder": "********",
+            "error": "La password è obbligatoria."
+          }
+        },
+        "links": {
+          "forgotPassword": "Hai dimenticato la password?"
+        }
+      }
+    },
+
+    "signup": {
+      "title": "Registrati",
+      "subtitle": "Inserisci le tue informazioni per registrarti.",
+      "form": {
+        "sections": {
+          "personal": {
+            "title": "Informazioni personali",
+            "fields": {
+              "firstName": {
+                "placeholder": "es. John",
+                "error": "Il nome è obbligatorio."
+              },
+              "lastName": {
+                "placeholder": "es. Doe",
+                "error": "Il cognome è obbligatorio."
+              },
+              "email": {
+                "placeholder": "es. john.doe@email.com",
+                "error": "Indirizzo email non valido."
+              },
+              "phone": {
+                "placeholder": "es. +1 555 123 4567",
+                "error": "Numero di telefono non valido."
+              }
+            }
+          },
+          "address": {
+            "title": "Indirizzo",
+            "fields": {
+              "street": {
+                "placeholder": "es. Via Roma 123",
+                "error": "La via è obbligatoria."
+              },
+              "zipCode": {
+                "placeholder": "es. 90210",
+                "error": "CAP non valido."
+              },
+              "optional": {
+                "placeholder": "es. Interno 4B"
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "menu": {
+      "title": "Menu",
+      "search": {
+        "placeholder": "Cerca la tua pizza preferita"
+      },
+      "categories": ["Tutte", "Carne", "Vegetariana", "Speciale", "In offerta"],
+      "offer": {
+        "note": "{{percentage}} di sconto applicato al checkout"
+      }
+    },
+
+    "profile": {
+      "title": "Il mio profilo",
+      "sections": {
+        "personalInfo": "Informazioni personali",
+        "orders": "Cronologia ordini"
+      }
+    },
+    "cart": {
+      "title": "Carrello",
+      "states": {
+        "empty": "Il tuo carrello è vuoto"
+      }
+    },
+
+    "favorites": {
+      "title": "Pizze preferite",
+      "states": {
+        "empty": "Non hai ancora pizze preferite"
+      }
     }
   },
-
-  "signup": {
-    "head": "Inserisci i tuoi dati per registrarti alla nostra applicazione.",
-    "personal": {
-      "title": "Dati personali",
-      "name": {
-        "Label": "Nome",
-        "placeHolder": "es. John",
-        "error": "Il nome è obbligatorio."
-      },
-      "lastName": {
-        "Label": "Cognome",
-        "placeHolder": "es. Doe",
-        "error": "Il cognome è obbligatorio."
-      },
-      "email": {
-        "Label": "Email",
-        "placeHolder": "es. john.doe@email.com",
-        "error": "Inserisci un indirizzo email valido."
-      },
-      "phoneNum": {
-        "Label": "Numero di telefono",
-        "placeHolder": "es. +1 555 123 4567",
-        "error": "Inserisci un numero di telefono valido."
-      },
-      "password": {
-        "Label": "Password",
-        "placeHolder": "Almeno 8 caratteri",
-        "error": "La password deve contenere almeno 8 caratteri."
-      },
-      "rePassword": {
-        "Label": "Conferma password",
-        "placeHolder": "Reinserisci la password",
-        "error": "Le password non corrispondono."
-      }
-    },
-    "address": {
-      "title": "Indirizzo",
-      "street": {
-        "Label": "Indirizzo",
-        "placeHolder": "es. Via Roma 123",
-        "error": "L'indirizzo è obbligatorio."
-      },
-      "zipCode": {
-        "Label": "CAP / Codice postale",
-        "placeHolder": "es. 90210",
-        "error": "Inserisci un CAP o codice postale valido."
-      },
-      "optional": {
-        "Label": "Opzionale",
-        "placeHolder": "es. Int. 4B",
-        "error": ""
-      }
-    }
-  }, 
   "pizza": {
-    "searchPizza": "Cerca la tua pizza preferita",
-    "offer": "Offerta speciale",
-    "prepration": "Tempo di preparazione",
-    "description": "Offerta applicata al checkout",
-    "categories": ["Tutto","Carne", "Speciale", "Vegetariana", "offerta"]
-  }
-  },
-
-  "pizzaItems": [
-    {
-      "id": 1,
-      "name": "Margherita",
-      "description": "Pizza classica con pomodoro, mozzarella e basilico fresco",
-      "ingredients": ["pomodoro", "mozzarella", "basilico"],
-      "spiceLevel": "nessuno",
-      "category": ["Speciale"],
-      "calories": 250,
-      "price": 8.99,
-      "review": 5,
-      "time": 10,
-      "image": "/pizza-image/margherita.png",
-      "offered": {
-        "active": true,
-        "percentage": 20
-      }
+    "labels": {
+      "ingredients": "Ingredienti",
+      "calories": "Calorie",
+      "preparationTime": "Tempo di preparazione",
+      "spiceLevel": "Livello di piccantezza"
     },
-    {
-      "id": 2,
-      "name": "Pepperoni",
-      "description": "Pizza con pomodoro, mozzarella e pepperoni piccante",
-      "ingredients": ["pomodoro", "mozzarella", "pepperoni"],
-      "spiceLevel": "medio",
-      "category": ["Speciale", "Carne"],
-      "calories": 300,
-      "price": 9.99,
-      "review": 4.5,
-      "time": 15,
-      "image": "/pizza-image/peperoni.png",
-      "offered": {
-        "active": false,
-        "percentage": 0
-      }
+    "spiceLevels": {
+      "none": "Non piccante",
+      "mild": "Leggero",
+      "medium": "Medio",
+      "hot": "Piccante"
     },
-    {
-      "id": 3,
-      "name": "BBQ con Pollo",
-      "description": "Pizza con salsa barbecue, petto di pollo, cipolla e mozzarella",
-      "ingredients": ["salsa barbecue", "petto di pollo", "cipolla", "mozzarella"],
-      "spiceLevel": "leggero",
-      "category": ["Speciale", "Carne"],
-      "calories": 320,
-      "price": 10.99,
-      "review": 3.8,
-      "time": 20,
-      "image": "/pizza-image/chicken.png",
-      "offered": {
-        "active": false,
-        "percentage": 0
-      }
-    },
-    {
-      "id": 4,
-      "name": "Hawaiana",
-      "description": "Pizza con pomodoro, mozzarella, prosciutto e ananas",
-      "ingredients": ["pomodoro", "mozzarella", "prosciutto", "ananas"],
-      "spiceLevel": "nessuno",
-      "category": ["Carne"],
-      "calories": 290,
-      "price": 9.99,
-      "review": 4,
-      "time": 20,
-      "image": "/pizza-image/hawai.png",
-      "offered": {
-        "active": true,
-        "percentage": 20
-      }
-    },
-    {
-      "id": 5,
-      "name": "Vegetariana",
-      "description": "Pizza con pomodoro, mozzarella e verdure fresche",
-      "ingredients": ["pomodoro", "mozzarella", "peperoni", "cipolla", "olive"],
-      "spiceLevel": "nessuno",
-      "category": ["Vegetariana"],
-      "calories": 240,
-      "price": 8.99,
-      "review": 4.1,
-      "time": 10,
-      "image": "/pizza-image/vegan.png",
-      "offered": {
-        "active": false,
-        "percentage": 0
+    "items": {
+      "margherita": {
+        "id": 1,
+        "name": "Margherita",
+        "description": "La tradizionale pizza napoletana Margherita è preparata con salsa di pomodoro, mozzarella fresca e basilico che rappresentano i colori della bandiera italiana: bianco della mozzarella, verde del basilico e rosso del pomodoro.",
+        "ingredients": ["tomato", "mozzarella", "basil"],
+        "spiceLevel": "none",
+        "category": ["Special"],
+        "calories": 250,
+        "price": 8.99,
+        "review": 5,
+        "time": 10,
+        "image": "/pizza-image/margherita.png",
+        "offered": {
+          "active": true,
+          "percentage": 20
+        }
+      },
+      "pepperoni": {
+        "id": 2,
+        "name": "Pepperoni",
+        "description": "Pizza con salsa di pomodoro, mozzarella e salame piccante",
+        "ingredients": ["tomato_sauce", "mozzarella", "pepperoni"],
+        "spiceLevel": "hot",
+        "category": ["Special", "Meat"],
+        "calories": 300,
+        "price": 9.99,
+        "review": 4.5,
+        "time": 15,
+        "image": "/pizza-image/peperoni.png",
+        "offered": {
+          "active": false,
+          "percentage": 0
+        }
+      },
+      "bbq_chicken": {
+        "id": 3,
+        "name": "Pollo BBQ",
+        "description": "Pizza con salsa barbecue, petto di pollo, cipolla e mozzarella",
+        "ingredients": [
+          "barbecue_sauce",
+          "chicken_breast",
+          "onion",
+          "mozzarella"
+        ],
+        "spiceLevel": "Mild",
+        "category": ["Special", "Meat"],
+        "calories": 320,
+        "price": 10.99,
+        "review": 3.8,
+        "time": 20,
+        "image": "/pizza-image/chicken.png",
+        "offered": {
+          "active": false,
+          "percentage": 0
+        }
+      },
+      "hawaiian": {
+        "id": 4,
+        "name": "Hawaiana",
+        "description": "Pizza con salsa di pomodoro, mozzarella, prosciutto e ananas",
+        "ingredients": ["tomato_sauce", "mozzarella", "ham", "pineapple"],
+        "spiceLevel": "medium",
+        "category": ["Meat"],
+        "calories": 290,
+        "price": 9.99,
+        "review": 4,
+        "time": 20,
+        "image": "/pizza-image/hawai.png",
+        "offered": {
+          "active": true,
+          "percentage": 20
+        }
+      },
+      "vegetarian": {
+        "id": 5,
+        "name": "Vegetariana",
+        "description": "Pizza con salsa di pomodoro, mozzarella e verdure fresche",
+        "ingredients": [
+          "tomato_sauce",
+          "mozzarella",
+          "bell_peppers",
+          "onion",
+          "olives"
+        ],
+        "spiceLevel": "none",
+        "category": ["Vegetarian"],
+        "calories": 240,
+        "price": 8.99,
+        "review": 4.1,
+        "time": 10,
+        "image": "/pizza-image/vegan.png",
+        "offered": {
+          "active": false,
+          "percentage": 0
+        }
       }
     }
-  ]
+  },
+  "ui": {
+    "buttons": {
+      "login": "Accedi",
+      "signup": "Registrati",
+      "continue": "Continua",
+      "orderNow": "Ordina ora",
+      "save": "Salva",
+      "cancel": "Annulla"
+    },
+    "inputs": {
+      "search": "Cerca",
+      "email": "Email",
+      "password": "Password"
+    },
+    "labels": {
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "password": "Password",
+      "confirmPassword": "Conferma password",
+      "email": "Email",
+      "phone": "Telefono",
+      "address": "Indirizzo",
+      "city": "Città",
+      "street": "Via",
+      "zipcode": "CAP",
+      "optional": "Informazioni aggiuntive (opzionale)",
+      "language": "Lingua",
+      "theme": "Tema"
+    },
+    "state": {
+      "delivered": "consegnato",
+      "inTheOven": "In forno"
+    },
+    "feedback": {
+      "loading": "Caricamento...",
+      "error": "Qualcosa è andato storto",
+      "noData": "Nessun dato disponibile"
+    }
+  }
 }

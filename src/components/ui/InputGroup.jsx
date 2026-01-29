@@ -1,7 +1,7 @@
 // *role: make a group of inputs in sign up and login page*
 
 // ui component
-import * as UI from "../../utils/UI"
+import * as UI from "../../barrels/UI"
 
 export default function InputGroup({
   listOfInputs,

@@ -2,29 +2,35 @@
 // and take care of theme mode as well
 
 // material ui components
-import * as MUI from "../../utils/MUI"
+import * as MUI from "../../barrels/MUI"
 // react imports
-import { useContext } from "react";
-import { SiteContext } from "../../App";
+import {useTheme} from  "../../providers/Theme"
 
 export default function SiteWrapper({ children }) {
-  const { colorText, colorTheme } = useContext(SiteContext);
+  const {colors} = useTheme()
   return (
-    <MUI.Container maxWidth={false} disableGutters>
       <MUI.Box
         component="main"
         sx={{
-          py: "var(--spacing-global-padding-y-mobile)",
-          px: "var(--spacing-global-padding-x-mobile)",
+          py: {
+            xs : "var(--spacing-global-padding-y-mobile)",
+            sm: "var(--spacing-global-padding-y-tablet)",
+            md: "var(--spacing-global-padding-y-desktop)",
+          },
+          px: {
+            xs:"var(--spacing-global-padding-x-mobile)",
+            sm:"var(--spacing-global-padding-x-tablet)",
+            md: "var(--spacing-global-padding-x-desktop)",
+          },
+
           fontFamily: "Inter, sans-serif",
-          backgroundColor: colorText ,
-          color: colorTheme,
+          backgroundColor: colors.theme ,
+          color: colors.text,
           minHeight: "100vh",
         }}
       >
         {children}
       </MUI.Box>
-    </MUI.Container>
   );
 }
 

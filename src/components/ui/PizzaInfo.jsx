@@ -2,9 +2,9 @@
 // *role : on request render information dialog paper*
 
 
-import * as MUI from "../../utils/MUI"
-import * as UI from "../../utils/UI"
-import * as Icon from "../../utils/Icons"
+import * as MUI from "../../barrels/MUI"
+import * as UI from "../../barrels/UI"
+import * as Icon from "../../barrels/Icons"
 
 export default function pizzaInfo({ requestedpizzaInfo, setInfo, dialog }) {
   const {

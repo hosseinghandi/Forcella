@@ -3,12 +3,12 @@
 
 // react imports
 import { useContext, useState, useMemo } from "react";
-import { SiteContext } from "../App";
 import { useTranslation } from "react-i18next";
 
-import * as MUI from "../utils/MUI"
-import * as UI from "../utils/UI"
-import * as Icon from "../utils/Icons"
+import * as MUI from "../barrels/MUI"
+import * as UI from "../barrels/UI"
+import * as Icon from "../barrels/Icons"
+import * as provider from "../barrels/providers"
 // utiles 
 import {isValid} from "../utils/validator";
 
@@ -26,7 +26,7 @@ export default function Login() {
     };
 
     // required context to render ui elements
-    const {mode, colorTheme} = useContext(SiteContext); 
+    const {mode, colorTheme} = useTheme(); 
 
     //states
     const [formData, setFormData] = useState({email: "",password: ""});
@@ -59,7 +59,7 @@ export default function Login() {
 
     return (
       <>
-      <UI.SharedNavigation navigation={true}/>
+      <UI.SharedNavigation navigation={true} photobaner={true}/>
       <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
         <MUI.Typography variant="textHead">{message.head}</MUI.Typography>
         <UI.Error message={error}/>

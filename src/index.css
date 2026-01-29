@@ -12,19 +12,81 @@ body, html {
 }
 
 :root {
-    --orange :  #B55638; 
+  /********GLOBAL SETUP*******/
+  /* initial value for clamp */
+  --initial-16px-at375px: calc((16 / 375) * 100vw);
+  --initial-20px-at375px: calc((20 / 375) * 100vw);
+  --initial-25px-at375px: calc((25 / 375) * 100vw);
+  --initial-30px-at375px: calc((30 / 375) * 100vw);
+  --initial-45px-at375px: calc((45 / 375) * 100vw);
+  --initial-80px-at375px: calc((80 / 375) * 100vw);
+  --initial-90px-at375px: calc((90 / 375) * 100vw);
+  --initial-100px-at375px: calc((100 / 375) * 100vw);
+  /* colors */
+   --orange :  #B55638; 
     --red: #740202;
-    --dark : #000000;
+    --black :  #212121;
+    --black-bg: #1A1A1A;
+    --black-text : #333333;
+    --white-bg: #F9FAFB;
+    --white-text :  #F8F9FA;
+
     /* --gray : #e0e0e0ff; */
     --gray: rgb(240, 238, 238);
     --gold : #cfa500;
+
+  /* Global radius of elements */
     --radius : 25px;
-    --spacing-global-padding-x-mobile : 30px;
-    --spacing-global-padding-y-mobile : 15px;
-    --gapOfItems : 10px;
-    --inputSize : 45px;
+
+  /* Global padding */
+  --spacing-global-padding-x-mobile : 30px;
+  --spacing-global-padding-y-mobile : 15px;
+  --spacing-global-padding-x-tablet : 35px;
+  --spacing-global-padding-y-tablet : 30px;
+  --spacing-global-padding-x-desktop : 60px;
+  --spacing-global-padding-y-desktop : 40px;
+
+  /* photo baner (pizza) */
+  --Size-pizzaBaner-mobile: 44vh;
+  --Size-pizzaBaner-tablet: 55vh;
+  --Size-pizzaBaner-desktop: 50vw;
+  --Size-pizzaBaner-bigDesktop: 48vw;
+
+  /* global text setup */
+  --butonText :  clamp(1rem, var(--initial-16px-at375px), 1.2rem);
+
+  /* global input and button size  */
+  --buttonSize : clamp(45px,--initial-45px-at375px , 60px);
+  --inputSize : 45px;
+
+  /* global gaps */
+   --GlobalgapOfItems : clamp(5px, 5px + 5vw, 50px);
+
+  /********welcoming page setup*******/
+  --welcome-content-padding-tablet : calc(100px - (var(--spacing-global-padding-x-mobile)) );
+  /* ditance from text and bubbles */
+  --infoInnerTextHolderSize : clamp(80px, var(--initial-80px-at375px), 130px);
+  /* ditance bubbles to the buttons*/
+  --infoItemHolderGap: clamp(20px, var(--initial-20px-at375px), 40px);
+  /* the distance within toggles at header */
+  --gapClickableSetup : clamp(16px, var(--initial-16px-at375px), 20px);
+
+  --bubbleDimension : clamp(16px, var(--initial-16px-at375px), 22px);
+  --switchDimension : clamp(25px, var(--initial-25px-at375px), 32px);
+  --toggleDimension : clamp(30px, var(--initial-30px-at375px), 40px);
+
+
+
+    
+
+    
+    
 }
 body {
   margin: 0;
   min-width: 375px;
 }
+
+
+/* later i should check these: */
+/* is tehre anyway to handel the text of bubbles to be moe effecnt? */

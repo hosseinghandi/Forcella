@@ -1,10 +1,9 @@
 import { useContext, useState} from "react"
-import { SiteContext } from "../App"
-import * as UI from "../utils/UI"
-import * as MUI from "../utils/MUI"
+import * as UI from "../barrels/UI"
+import * as MUI from "../barrels/MUI"
 
 export default function ProfileUser() {
-    const {userdata,setUser, pizzaRawData,mode, setMode, lan, setLang, colorTheme} = useContext(SiteContext)
+    // const {userdata,setUser, pizzaRawData,mode, setMode, lan, setLang, colorTheme} = useContext(SiteContext)
     const [editeMode, setEditMode] = useState(false)
 
     return (
@@ -20,17 +19,12 @@ export default function ProfileUser() {
                 <UI.ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
             </MUI.Box>}
     </MUI.Box>
-    {
-    editeMode ?
-     <UI.UserInfoHolderEditMode 
-     userdata={userdata}
-     setUser={setUser}
-     setEditMode={setEditMode}
-     /> :
-    <UI.UserInfoHolderStatic 
+    <UI.UserInfoHolder
+    setUser={setUser}
+    setEditMode={setEditMode}
+    editeMode={editeMode}
     userdata={userdata}
     pizzaRawData={pizzaRawData}
-    /> 
-    }
+    />
     </>)
 }

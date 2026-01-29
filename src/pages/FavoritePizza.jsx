@@ -3,19 +3,18 @@
 // react imports
 import { useState, useContext, useCallback, useMemo } from "react";
 
-import * as MUI from "../utils/MUI"
-import * as UI from "../utils/UI"
-import * as helpers from "../utils/helpers"
+import * as MUI from "../barrels/MUI"
+import * as UI from "../barrels/UI"
+import * as helpers from "../barrels/helpers"
 
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
 // import app context
-import { SiteContext } from "../App";
 
 export default function FavoritePizza() {
     // primary data set
     const [info, setInfo] = useState(null);
-    const { userdata, colorText, colorTheme,pizzaRawData} = useContext(SiteContext);
+    // const { userdata, colorText, colorTheme,pizzaRawData} = ;
 
     // data preparation
     const favoritePizza = useMemo( () => helpers.pizzaFinder(pizzaRawData,"fav",userdata["likedPizzasId"]) , [userdata])
@@ -32,7 +31,7 @@ export default function FavoritePizza() {
     }, [info]);
 
     return (<>
-                <UI.SharedNavigation menu={true}/>  
+                <UI.SharedNavigation main={true}/>  
                 
                 <MUI.Typography variant="textHead">Your favorite pizza list:</MUI.Typography>
                 <MUI.Box component={"div"}>
@@ -74,7 +73,7 @@ export default function FavoritePizza() {
                 {/* Pizza info modal / section */}
                 </MUI.Box>
                 {requestedpizzaInfo && (
-                <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
+                <UI.PizzaInfo dialog={true} requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} />
                 )}
             </>
     );

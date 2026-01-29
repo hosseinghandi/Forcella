@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 import { useContext } from "react";
 
 // shared context
-import { SiteContext } from "../App";
+import {useUserData} from "../providers/UserData"
 
 export default function Authorization() {
-   const { userId } = useContext(SiteContext);
-    return userId ?  
+    const {userdata} = useUserData()
+    return userdata ?  
     <Navigate to="/applayout/menu" replace /> : 
     <Navigate to="/welcome" replace />
     

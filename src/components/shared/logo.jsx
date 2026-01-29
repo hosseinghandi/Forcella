@@ -1,26 +1,33 @@
-// *render the logo and the name of app*
+// *Role: Render the logo and the name of app
+
 // logo image
-import * as Icon from "../../utils/Icons";
-
-// Material UI
-import { Box, Typography } from "@mui/material";
-
+import * as Icon from "../../barrels/Icons";
+import * as MUI from "../../barrels/MUI";
+import { useTheme } from "../../providers/Theme";
 import {Link, useLocation }from "react-router-dom";
-import { SiteContext } from "../../App";
 import { useContext } from "react";
+
+
 export default function Logo() {
-  const { colorTheme } = useContext(SiteContext);
+  const { colors } = useTheme();
+  // check if this is render in applayout page if yes, change text to link to nvigate to menu when is cliked
   const location = useLocation()
   return (
-    <Box sx={{ display: "flex", flexDirection: "row" }}>
-      <Typography variant="logoText">
+    <MUI.Box 
+    component={"div"}
+    sx={{ display: "flex", flexDirection: "row", alignItems:"flex-end"}}>
         {
         location.pathname.includes("/applayout") ?
-        <Link to={"/applayout/menu"}>FORCELLA</Link> :
-        <Typography variant="logoText"> FORCELLA </Typography>
+        <Link 
+        to={"/applayout/menu"} 
+        aria-label="Navigate to menu"
+        >FORCELLA</Link> :
+        <MUI.Typography 
+        component={"span"}
+        variant="logoText" 
+        sx={{lineHeight:{sm:0.85}}} > FORCELLA </MUI.Typography>
         }
-        </Typography>
-      <Icon.Pizza sx={{ color: colorTheme }} />
-    </Box>
+      <Icon.Pizza aria-hidden={true} focusable={true} sx={{ color: colors.text}} />
+    </MUI.Box>
   );
 }

@@ -2,8 +2,8 @@
 
 // material ui icons for error
 
-import * as Icon from "../../utils/Icons"
-import * as MUI from "../../utils/MUI"
+import * as Icon from "../../barrels/Icons"
+import * as MUI from "../../barrels/MUI"
 
 export default function Error({ message, colorText}) {
   return (

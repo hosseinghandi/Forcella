@@ -1,140 +1,68 @@
-// *role : help to navigate through app act as header*
+// *role : help to navigate through app guidedby given input
 
 
-// material ui icons for sharednavbar
-import * as Icon from "../../utils/Icons"
-import * as MUI from "../../utils/MUI"
-import * as UI from "../../utils/UI"
+
+// required material
+import * as Icon from "../../barrels/Icons"
+import * as MUI from "../../barrels/MUI"
+import * as UI from "../../barrels/UI"
  
-// router imports
+// required imports
 import { useNavigate } from "react-router-dom";
-
-// import react 
 import { useContext, useState } from "react";
-import { SiteContext } from "../../App";
+import { useLanguage } from "../../providers/Language";
+import { useTheme } from "../../providers/Theme";
 
 
+// hints: 
+// photobander : if true,  the photo baner will be render,   
+// position : if true and photobaner is true, the photo baner is shifting up to adopt it to the page,
+// navigation: if asked it will render just the logo and arrow to go back one step back
+// main : if true, offeres a simple layout of navigation with distance adopted to most pages
+// splash : if true, bubbletoggle and theme switcher will be rendered as well for welcoming page 
+// profile : if true, the ui adoptd o profile will be render includes of edit mode icon, 
+// this option needs also editMode and setEditeMode values
 
 
-export default function SharedNavigation({position, navigation, splash, menu, profile, editeMode, setEditMode}) {
-  const navigate = useNavigate();
-  const {lan, mode,setLang, setMode, colorTheme, colorText} = useContext(SiteContext)
+export default function SharedNavigation({
+  varient,
+  position, 
+  photobaner,
+  editeMode, 
+  setEditMode}) 
+  {
+
+  //  use main context of the site to render what is required
+  const {colors, mode, setMode} = useTheme()
+  const {lang, setLang} = useLanguage
+
+  // handel logout 
   const [exit, setExit] = useState(false)
-  const requestedHtml = 
-              navigation || menu ?
-              <>
-              <MUI.Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  ...({justifyContent: navigation ? "flex-end" : "space-between"}),
-                  alignItems: "center",
-                  gap:"10px",
-                  width: "100%",
-                }}
-              >
-              <MUI.IconButton sx={{padding:"0px"}} onClick={() => navigate(-1)}>
-                      <Icon.Arrow htmlColor= {colorTheme} /> 
-              </MUI.IconButton>
-              <UI.Logo color={colorTheme} />
-              </MUI.Box>
-              </> : splash ? 
-                      <MUI.Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "7px",
-                        alignItems: "flex-end",
-                      }}
-                    >
-                        <UI.Logo color={colorTheme} />
-                        <UI.SwitchLabels value={lan} setValue={setLang} colorTheme={colorTheme} />
-                        <UI.ToggleTheme value={mode} setValue={setMode} colorTheme={colorTheme} />
-                </MUI.Box> 
-                : profile ?
-                <>
-                      <MUI.Dialog
-                            PaperProps={{
-                          sx: {
-                            borderRadius: "25px",
-                            padding:"12px 18px", display:"flex", 
-                            flexDirection:"column", justifyContent:"center", alignItems:"center", gap:"var(--gapOfItems)"
-                          },
-                        }}
-                        onClose={exit }
-                        open={exit}
-                        fullWidth
-                        maxWidth="sm"
-                            >
-                         <MUI.Typography>Wait—leaving already? The pizza will miss you!</MUI.Typography>
-                          <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 8 }}>
-                                       <UI.ButtonBasic
-                                         type="submit"
-                                         title={"Yes"}
-                                         task={setExit}
-                                         shrink={true}
-                                       />
-                                       <UI.ButtonBasic
-                                         type="submit"
-                                         title={"No"}
-                                         task={setExit}
-                                         shrink={true}
-                                       />
-                                     </MUI.Box>
-                        </MUI.Dialog>
-                      <MUI.Box
-                            sx={{
-                              display: "flex",
-                              flexDirection: "row",
-                              gap: "7px",
-                              justifyContent:"space-between",
-                              alignItems: "flex-end",
-                            }}
-                          >
-                      <MUI.IconButton sx={{padding:"0px"}} onClick={() => navigate(-1)}>
-                      < Icon.Arrow htmlColor= {colorTheme} /> 
-                      </MUI.IconButton>
-                            <MUI.Box sx={{display:"flex", flexDirection:"row", 
-                              justifyContent:"center", alignItems:"flex-start"}}
-                              >
-                              <MUI.IconButton 
-                              disableFocusRipple={true} 
-                              disableRipple={true}
-                              onClick={()=> setEditMode(prev => !prev)}
-                              sx={{
-                                padding:"0", 
-                                color: editeMode ? " var(--orange)" : "black"}}>
-                                <Icon.EditPen/>
-                                <MUI.Typography sx={{marginRight:"30px", marginLeft:"5px"}}>Edit</MUI.Typography>
-                              </MUI.IconButton>
-                                <Icon.LogOut onClick={() => setExit( prev => !prev)}/>
-                            </MUI.Box>
-                      </MUI.Box> 
-                </> : null
-                
+
+    const html = (varient) => {
+      switch(varient) {
+        case "welcoming": 
+        return <UI.WelcomingNav />           
+        break;
+        case "navigation" || "main": 
+        return <UI.Navigation />
+        break;
+        case  "profile" :    
+        return  <UI.NavProfile 
+                  exit={exit} 
+                  setExit={setExit} 
+                  editeMode={editeMode} 
+                  setEditMode={setEditMode}/>
+        break;
+      }
+    }
+
+
+
 
   return (
-    <MUI.Box
-      sx={{
-        padding: "10px 0",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        
-      }}
-      >
-        
-       { (!menu && !profile) ? 
-       <UI.Header position={position}>
-        {requestedHtml}
-        </UI.Header> :
-        <>
-          {requestedHtml}
-        </> 
-        }
-      
-      
-    </MUI.Box>
+       <UI.NavigationWrapper position={position} photobaner={photobaner}>
+        {html(varient)}
+        </UI.NavigationWrapper>
   );
 }

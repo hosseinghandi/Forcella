@@ -26,3 +26,6 @@ export { default as LogOut } from "@mui/icons-material/LogoutOutlined";
 export { default as Circle } from "@mui/icons-material/Brightness1";
 export { default as Language } from "@mui/icons-material/Translate";
 export { default as Theme } from "@mui/icons-material/Contrast";
+export { default as Trash } from "@mui/icons-material/DeleteOutlineOutlined";
+export { default as CardBank } from "@mui/icons-material/PaymentOutlined";
+export { default as Calender } from "@mui/icons-material/CalendarTodayOutlined";

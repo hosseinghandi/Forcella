@@ -1,7 +1,7 @@
 // *role : on request render passed pizza as special offer*
 
-import * as MUI from "../../utils/MUI"
-import * as UI from "../../utils/UI"
+import * as MUI from "../../barrels/MUI"
+import * as UI from "../../barrels/UI"
 
 import { memo } from "react"
 // ui component

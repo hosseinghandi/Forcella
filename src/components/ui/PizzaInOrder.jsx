@@ -1,7 +1,7 @@
 // *role : on request render pizza item for menu*
-import * as MUI from "../../utils/MUI";
-import * as UI from "../../utils/UI";
-import * as Icon from "../../utils/Icons";
+import * as MUI from "../../barrels/MUI";
+import * as UI from "../../barrels/UI";
+import * as Icon from "../../barrels/Icons";
 
 // react import
 import { memo, useMemo } from "react";

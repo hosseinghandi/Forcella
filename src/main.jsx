@@ -5,7 +5,7 @@ import "./utils/i18n.js";
 
 import App from './App.jsx'
 
-import { appTheme } from "./utils/appTheme";
+import { appTheme } from "./appTheme.js";
 import { ThemeProvider } from "@mui/material";
 
 createRoot(document.getElementById('root')).render(

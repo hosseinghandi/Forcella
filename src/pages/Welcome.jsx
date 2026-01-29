@@ -1,34 +1,35 @@
 import { useTranslation } from "react-i18next";
 // react imports
-import { useContext } from "react";
-import { SiteContext } from "../App";
 
-import * as MUI from "../utils/MUI"
-import * as UI from "../utils/UI"
-
+import * as MUI from "../barrels/MUI"
+import * as UI from "../barrels/UI"
 
 export default function Welcome() {
-  const { lan, setLang, mode, setMode, colorTheme, colorText } = useContext(SiteContext);
   const { t } = useTranslation();
-
-  const messages = {
-    welcome: t("metadata.welcoming.static"),
-    info: t("metadata.welcoming.info", { returnObjects: true }),
-  };
-
-  const button = {
-    login: t("metadata.button.login"),
-    signup: t("metadata.button.signup"),
-    continue: t("metadata.button.continue"),
-  }
-  
   return (
     <>
-      <UI.SharedNavigation splash={true}/>
+      <UI.SharedNavigation varient={"welcoming"} photobaner={true}/>
+      <MUI.Box sx={{
+        width:"100%", 
+        height:{lg:"80vh"},
+        display:"flex", 
+        justifyContent:{
+          xs: "center",
+          md: "flex-end"
+          }}}>
       <MUI.Box
         sx={{
+          px : {
+            sm: "var(--welcome-content-padding-tablet)",
+          },
+          width:{
+            lg: "65%",
+          },
+          
+          
           display: "flex",
           flexDirection: "column",
+          gap:"var(--infoItemHolderGap)",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -38,46 +39,49 @@ export default function Welcome() {
           sx={{
             textAlign: "left",
             width: "100%",
+
           }}
         >
           <MUI.Typography
             variant="titleWelcoming"
           >
-            {messages.welcome}
+            {t("pages.welcoming.title")}
           </MUI.Typography>
 
-          <UI.BubbleToggel dataList={messages.info} colorTheme={colorTheme} />
+          <UI.BubbleToggel 
+          dataList={
+            t("pages.welcoming.content.highlights", 
+            { returnObjects: true })} />
         </MUI.Box>
 
         {/* Buttons */}
         <MUI.Box
           sx={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: 
+            { xs: "column",
+              sm: "column",
+              md:"row"
+            },
             gap: "10px",
-            marginTop: "40px",
             width: "100%",
           }}
         >
           <UI.ButtonBasic
-            title={button.login}
+            title={t("ui.buttons.login")}
             to="/login"
             color="white"
-            disable={false}
+            disabled={false}
           />
           <UI.ButtonBasic
-            title={button.signup}
+            title={t("ui.buttons.signup")}
             to="/signup"
             color="white"
-            disable={false}
+            disabled={false}
           />
-          <UI.ButtonBasic
-            title={button.continue}
-            to="/applayout/menu"
-            color="white"
-            disable={false}
-          />
+          
         </MUI.Box>
+      </MUI.Box>
       </MUI.Box>
     </>
   );
