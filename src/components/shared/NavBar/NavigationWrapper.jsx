@@ -16,17 +16,18 @@ export default function NavigationWrapper({ children, position, photobaner }) {
   
   const positionValue = !position
     ? { left: {xs:"-15vh", lg:"-20vh", xl:"-15vw"}, top: "-25px", position: "absolute" }
-    : { left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, top: "-220px", position: "absolute" };
+    : { left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, top: {xs:"-50vw", sm:"-30vw", md:"-50vw",lg:"-35vw"}, position: "absolute" };
 
   return photobaner ?( 
        <MUI.Box
       component="header"
       sx={{
         width: "100%", height: {
-        xs :position ? "15vh" : "37vh",
-        md : position ? "5vh" : "48vh",
-        lg : "fit-content",
-        xl : "fit-content",
+        xs :position ? "16vh" : "37vh",
+        sm : position ? "33vw" : "48vh",
+        md : position ? "20vw" : "48vh",
+        lg : position ? "10vw" : "fit-content",
+        xl : position ? "10vw" : "fit-content",
       }}}>
       {/* Pizza image */}
         <MUI.Box

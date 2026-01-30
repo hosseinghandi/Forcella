@@ -12,8 +12,8 @@ export default function AppRoutes() {
         {/* public */}
 
         <Route path="/welcome" element={<Pages.Welcome />} />
-        {/* <Route path="/login" element={<Pages.Login />} />
-        <Route path="/signup" element={<Pages.Signup />} /> */}
+        <Route path="/login" element={<Pages.Login />} />
+        <Route path="/signup" element={<Pages.Signup />} />
 
         {/* app layout */}
         {/* <Route path="/applayout" element={<Routers.AppLayout />}> */}
@@ -27,7 +27,7 @@ export default function AppRoutes() {
           {/* protected */}
           {/* <Route element={<Routers.ProtectedRoute />}>
             <Route path="profile" element={<Pages.ProfileUser />} />
-            <Route path="shoppingbag" element={<Pages.ShoppingBag />} />
+            <Route path="shoppingbag" element={<Pages.Cart />} />
             <Route path="favorites" element={<Pages.FavoritePizza />} />
             <Route path="payment" element={<Pages.Payment/>} />
           </Route> */}

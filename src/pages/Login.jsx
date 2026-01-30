@@ -1,95 +1,126 @@
-// role : takes the user inputs and find it in user database 
-
+// role : takes the user inputs and find it in user database
 
 // react imports
-import { useContext, useState, useMemo } from "react";
+// import {useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import * as MUI from "../barrels/MUI"
-import * as UI from "../barrels/UI"
-import * as Icon from "../barrels/Icons"
-import * as provider from "../barrels/providers"
-// utiles 
-import {isValid} from "../utils/validator";
+import * as MUI from "../barrels/MUI";
+import * as UI from "../barrels/UI";
+import * as Icon from "../barrels/Icons";
+
+// import * as provider from "../barrels/providers"
+import { useTheme } from "../providers/Theme";
+
+// utiles
+// import {isValid} from "../utils/validator";
 
 export default function Login() {
-  // const user = {email: "123@gmail.com",password: "23456"} 
-    
+  // required context to render ui elements
+  const { colors } = useTheme();
   // text to render
-    const {t} = useTranslation()
-    const message = {
-        head : t("metadata.login.head"),
-        email : t("metadata.login.email", { returnObjects: true }),
-        password : t("metadata.login.password", { returnObjects: true }),
-        forget : t("metadata.login.forget"),  
-        button : t("metadata.button.login")
-    };
+  const { t } = useTranslation();
+  const text = {
+    subtitle: t("pages.login.subtitle"),
+    inputs: {
+      email: {
+        label: t("ui.labels.email"),
+        placeholder: t("pages.login.form.fields.email.placeholder"),
+        error: t("pages.login.form.fields.email.error"),
+      },
+      password: {
+        label: t("ui.labels.password"),
+        placeholder: t("pages.login.form.fields.password.placeholder"),
+        error: t("pages.login.form.fields.password.error"),
+      },
+    },
+    button: {
+      login: t("ui.buttons.login"),
+    },
+    forget: t("pages.login.form.links.forgotPassword"),
+  };
 
-    // required context to render ui elements
-    const {mode, colorTheme} = useTheme(); 
+  const listOfInputs = [
+    [text.inputs.email.label, Icon.Email, text.inputs.email.placeholder],
+    [text.inputs.password.label, Icon.Key, text.inputs.password.placeholder],
+  ];
 
-    //states
-    const [formData, setFormData] = useState({email: "",password: ""});
-    const [error, setError] = useState("");
-
-    // validator 
-    const validation = useMemo( () => {
-      const validation = {};
-      for (const [key, value] of Object.entries(formData)) { 
-        validation[key] = isValid(key,value)};
-      return {validation} 
-    }, [formData]);
-
-    // form handeler
-    const handleChange = (event) => {
-      const { name, value } = event.target;
-      setFormData((prevFormData) => 
-          ({ ...prevFormData, [name]: value }));
-    };
-    
-    const handleSubmit = (event) => { 
-      event.preventDefault();
-    };
-    
-    // requird inputs
-    // [Field, icon, type, section]
-    const listOfInputs = 
-    [["email",<Icon.Email />, "email", null],
-    ["password",<Icon.Key />,"password", null]]
-
-    return (
-      <>
-      <UI.SharedNavigation navigation={true} photobaner={true}/>
-      <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2, marginBottom:4, height:10}}>
-        <MUI.Typography variant="textHead">{message.head}</MUI.Typography>
-        <UI.Error message={error}/>
-        <MUI.FormControl onSubmit={handleSubmit} >
-          <MUI.Box sx={{display: "flex", flexDirection: "column", gap: 2,alignItems :"center", justifyContent: "center"}}>
-            {/* these are inputs respected to input list above */}
-              <UI.InputGroup 
-                  listOfInputs={listOfInputs}
-                  message={message}
-                  formData={formData}
-                  validation={validation}
-                  handleChange={handleChange}
-                />
-            <MUI.Typography 
+  return (
+    <>
+      <UI.SharedNavigation varient={"navigation"} photobaner={true} />
+      <UI.LayoutType1>
+        <MUI.FormControl
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--GlobalgapOfItems)",
+            width: { xs: "100%", lg: "60%" },
+          }}
+        >
+          <UI.Error message={"this is a placeholder for error"} />
+          <MUI.Typography variant="textNormal">{text.subtitle}</MUI.Typography>
+          <MUI.Box
             sx={{
-              color : mode ? "#00000090" : "#FFFFFF60",
-              width : "100%", 
-              textAlign : "left",
-              
-            }}>{message.forget}</MUI.Typography>
-
-          <UI.ButtonBasic               
-                                type="submit"
-                                title={message.button} 
-                                to={ !error.length > 0 ? "" : "/signup" }
-                                color={"white"} 
-                                />
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: { xs: "center", lg: "flex-start" },
+              gap: "var(--GlobalgapOfInputs)",
+            }}
+          >
+            {listOfInputs.map(([l, Icon, p]) => (
+              <UI.InputBasic
+                label={l}
+                key={l}
+                name={l}
+                type={l}
+                Icon={Icon}
+                placeholder={p}
+                // onChange={helpers.handleChange("personalInfo",(subsection ? subsection : ""), setFormData)}
+              />
+            ))}
           </MUI.Box>
+          <MUI.Typography
+          variant="textNormal"
+            sx={{
+              color: colors.text,
+              width: "100%",
+              textAlign: "left",
+            }}
+          >
+            {text.forget}
+          </MUI.Typography>
+
+          <UI.ButtonBasic
+            type="submit"
+            title={text.button.login}
+            to={"/applayout/menu"}
+            color={"white"}
+          />
         </MUI.FormControl>
-        </MUI.Box>
-        </>
-    );
+      </UI.LayoutType1>
+    </>
+  );
 }
+
+// //states
+// const [formData, setFormData] = useState({email: "",password: ""});
+// const [error, setError] = useState("");
+
+// // validator
+// const validation = useMemo( () => {
+//   const validation = {};
+//   for (const [key, value] of Object.entries(formData)) {
+//     validation[key] = isValid(key,value)};
+//   return {validation}
+// }, [formData]);
+
+// // form handeler
+// const handleChange = (event) => {
+//   const { name, value } = event.target;
+//   setFormData((prevFormData) =>
+//       ({ ...prevFormData, [name]: value }));
+// };
+
+// const handleSubmit = (event) => {
+//   event.preventDefault();
+// };

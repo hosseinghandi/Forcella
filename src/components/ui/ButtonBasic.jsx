@@ -46,7 +46,7 @@ export default function ButtonBasic({
         outline: "none",
         fontWeight:400,
         width: shrink ? "fit-content" : "100%",
-        height: shrink ? "fit-content" : "var(--buttonSize)",
+        height: shrink ? "fit-content" : "var(--buttonAndInputSize)",
         borderRadius: "25px",
         backgroundColor: "#B55638",
         color: "var(--white-text)",

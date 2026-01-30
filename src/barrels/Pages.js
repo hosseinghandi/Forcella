@@ -5,8 +5,4 @@ export { default as Menu } from "../pages/Menu";
 export { default as ProfileUser } from "../pages/ProfileUser";
 export { default as Signup } from "../pages/Signup";
 export { default as Welcome } from "../pages/Welcome";
-export { default as ShoppingBag } from "../pages/ShoppingBag";
-
-
-
-
+export { default as Cart } from "../pages/Cart";

@@ -68,7 +68,15 @@
               "phone": {
                 "placeholder": "e.g. +1 555 123 4567",
                 "error": "Invalid phone number."
-              }
+              },
+              "password": {
+                  "placeholder": "At least 8 characters",
+                  "error": "Password must be at least 8 characters long."
+                },
+                "confirmPassword": {
+                  "placeholder": "Re-enter your password",
+                  "error": "Passwords do not match."
+                }
             }
           },
           "address": {
@@ -78,7 +86,7 @@
                 "placeholder": "e.g. 123 Main Street",
                 "error": "Street is required."
               },
-              "zipCode": {
+              "zipcode": {
                 "placeholder": "e.g. 90210",
                 "error": "Invalid ZIP code."
               },
@@ -121,6 +129,45 @@
       "states": {
         "empty": "You have no favorite pizzas yet"
       }
+    }
+  },
+  "ui": {
+    "buttons": {
+      "login": "Log in",
+      "signup": "Sign up",
+      "continue": "Continue",
+      "orderNow": "Order now",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "inputs": {
+      "search": "Search",
+      "email": "Email",
+      "password": "Password"
+    },
+    "labels": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "city": "City",
+      "street": "Street",
+      "zipcode": "ZIP code",
+      "optional": "Extra info",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "state" :{
+      "delivered" : "delivered",
+      "inTheOven" : "In the oven"
+    },
+    "feedback": {
+      "loading": "Loading...",
+      "error": "Something went wrong",
+      "noData": "No data available"
     }
   },
   "pizza": {
@@ -234,44 +281,6 @@
         }
       }
     }
-  },
-  "ui": {
-    "buttons": {
-      "login": "Log in",
-      "signup": "Sign up",
-      "continue": "Continue",
-      "orderNow": "Order now",
-      "save": "Save",
-      "cancel": "Cancel"
-    },
-    "inputs": {
-      "search": "Search",
-      "email": "Email",
-      "password": "Password"
-    },
-    "labels": {
-      "firstName": "First name",
-      "lastName": "Last name",
-      "password": "Password",
-      "confirmPassword": "Confirm password",
-      "email": "Email",
-      "phone": "Phone",
-      "address": "Address",
-      "city": "City",
-      "street": "Street",
-      "zipcode": "ZIP code",
-      "optional": "Additional info (optional)",
-      "language": "Language",
-      "theme": "Theme"
-    },
-    "state" :{
-      "delivered" : "delivered",
-      "inTheOven" : "In the oven"
-    },
-    "feedback": {
-      "loading": "Loading...",
-      "error": "Something went wrong",
-      "noData": "No data available"
-    }
   }
+  
 }

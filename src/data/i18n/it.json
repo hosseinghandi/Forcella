@@ -67,6 +67,14 @@
               "phone": {
                 "placeholder": "es. +1 555 123 4567",
                 "error": "Numero di telefono non valido."
+              },
+              "password": {
+                "placeholder": "Almeno 8 caratteri",
+                "error": "La password deve contenere almeno 8 caratteri."
+              },
+              "confirmPassword": {
+                "placeholder": "Reinserisci la password",
+                "error": "Le password non coincidono."
               }
             }
           },
@@ -120,6 +128,45 @@
       "states": {
         "empty": "Non hai ancora pizze preferite"
       }
+    }
+  },
+  "ui": {
+    "buttons": {
+      "login": "Accedi",
+      "signup": "Registrati",
+      "continue": "Continua",
+      "orderNow": "Ordina ora",
+      "save": "Salva",
+      "cancel": "Annulla"
+    },
+    "inputs": {
+      "search": "Cerca",
+      "email": "Email",
+      "password": "Password"
+    },
+    "labels": {
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "password": "Password",
+      "confirmPassword": "Conferma password",
+      "email": "Email",
+      "phone": "Telefono",
+      "address": "Indirizzo",
+      "city": "Città",
+      "street": "Via",
+      "zipcode": "CAP",
+      "optional": "Informazioni aggiuntive",
+      "language": "Lingua",
+      "theme": "Tema"
+    },
+    "state": {
+      "delivered": "consegnato",
+      "inTheOven": "In forno"
+    },
+    "feedback": {
+      "loading": "Caricamento...",
+      "error": "Qualcosa è andato storto",
+      "noData": "Nessun dato disponibile"
     }
   },
   "pizza": {
@@ -232,45 +279,6 @@
           "percentage": 0
         }
       }
-    }
-  },
-  "ui": {
-    "buttons": {
-      "login": "Accedi",
-      "signup": "Registrati",
-      "continue": "Continua",
-      "orderNow": "Ordina ora",
-      "save": "Salva",
-      "cancel": "Annulla"
-    },
-    "inputs": {
-      "search": "Cerca",
-      "email": "Email",
-      "password": "Password"
-    },
-    "labels": {
-      "firstName": "Nome",
-      "lastName": "Cognome",
-      "password": "Password",
-      "confirmPassword": "Conferma password",
-      "email": "Email",
-      "phone": "Telefono",
-      "address": "Indirizzo",
-      "city": "Città",
-      "street": "Via",
-      "zipcode": "CAP",
-      "optional": "Informazioni aggiuntive (opzionale)",
-      "language": "Lingua",
-      "theme": "Tema"
-    },
-    "state": {
-      "delivered": "consegnato",
-      "inTheOven": "In forno"
-    },
-    "feedback": {
-      "loading": "Caricamento...",
-      "error": "Qualcosa è andato storto",
-      "noData": "Nessun dato disponibile"
     }
   }
 }

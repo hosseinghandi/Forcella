@@ -7,22 +7,26 @@ import { createTheme } from "@mui/material";
 
           // general text size for all design
           "textNormal" : {
-            fontSize: "clamp(1rem, var(--initial-16px-at375px), 1.7rem)",
-            fontWeight : "300", 
+            fontSize: "clamp(1rem, var(--initial-16px-at375px), 1.2rem)",
+            fontWeight : 400, 
           }, 
+          "textLabel" : {
+            fontSize: "clamp(14px, var(--initial-14px-at375px), 1.1rem)",
+            fontWeight : 300, 
+          },
           "logoText" : {
             fontSize : "clamp(1rem, var(--initial-16px-at375px), 1.4rem)",
-            fontWeight : "500",
+            fontWeight : 500,
           },
           // font for "Welcomeing page"
           "titleWelcoming": {
-            fontSize : "clamp(30px, var(--initial-30px-at375px), 5.5rem)",
+            fontSize : "clamp(30px, var(--initial-30px-at375px), 4rem)",
             fontWeight : "900", 
             textAlign:"left"
           },
           "textWelcomingInfo" : {
             fontSize: "clamp(1rem, var(--initial-16px-at375px), 1.5rem)",
-            fontWeight : 200, 
+            fontWeight : 400, 
             letterSpacing : 1.5,
             textAlign:"left"
           }, 
@@ -44,7 +48,8 @@ import { createTheme } from "@mui/material";
             fontWeight : "200", 
           },
           "textError" : {
-            fontSize : "18px",
+            color:"var(--red)",
+            fontSize : "clamp(1rem, var(--initial-16px-at375px), 1.2rem)",
             fontWeight : "400"
           },
           "textHead" : {

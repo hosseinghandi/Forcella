@@ -5,12 +5,12 @@ import * as MUI from "../../barrels/MUI"
 import { useTheme } from "../../providers/Theme";
 import { useLanguage } from "../../providers/Language";
 
-export default function SwitchLanguage({ value, setValue}) {
+export default function SwitchLanguage() {
   const {colors} = useTheme()
   const {lang, setLang} = useLanguage()
   return (
         <MUI.Switch
-          checked={value === "it"}
+          checked={lang === "it"}
           aria-label={`Language: ${lang === "it" ? "Italian" : "English"}`}
           onChange={() => 
             setLang(prev => prev === "en" ? "it" : "en" )

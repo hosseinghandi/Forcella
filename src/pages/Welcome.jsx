@@ -6,35 +6,18 @@ import * as UI from "../barrels/UI"
 
 export default function Welcome() {
   const { t } = useTranslation();
+  const text = {
+    title: t("pages.welcoming.title"), 
+    highlights : t("pages.welcoming.content.highlights", { returnObjects: true }),
+    button: {
+        login :t("ui.buttons.login"),
+        signup : t("ui.buttons.signup")
+    }
+  }
   return (
     <>
       <UI.SharedNavigation varient={"welcoming"} photobaner={true}/>
-      <MUI.Box sx={{
-        width:"100%", 
-        height:{lg:"80vh"},
-        display:"flex", 
-        justifyContent:{
-          xs: "center",
-          md: "flex-end"
-          }}}>
-      <MUI.Box
-        sx={{
-          px : {
-            sm: "var(--welcome-content-padding-tablet)",
-          },
-          width:{
-            lg: "65%",
-          },
-          
-          
-          display: "flex",
-          flexDirection: "column",
-          gap:"var(--infoItemHolderGap)",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {/* Text section */}
+       <UI.LayoutType1>
         <MUI.Box
           sx={{
             textAlign: "left",
@@ -44,14 +27,13 @@ export default function Welcome() {
         >
           <MUI.Typography
             variant="titleWelcoming"
+            sx={{fontSize:{xl:"5.5rem"}}}
           >
-            {t("pages.welcoming.title")}
+            {text.title}
           </MUI.Typography>
 
           <UI.BubbleToggel 
-          dataList={
-            t("pages.welcoming.content.highlights", 
-            { returnObjects: true })} />
+          dataList={text.highlights} />
         </MUI.Box>
 
         {/* Buttons */}
@@ -68,21 +50,20 @@ export default function Welcome() {
           }}
         >
           <UI.ButtonBasic
-            title={t("ui.buttons.login")}
+            title={text.button.login}
             to="/login"
             color="white"
             disabled={false}
           />
           <UI.ButtonBasic
-            title={t("ui.buttons.signup")}
+            title={text.button.signup}
             to="/signup"
             color="white"
             disabled={false}
           />
           
         </MUI.Box>
-      </MUI.Box>
-      </MUI.Box>
+    </UI.LayoutType1>
     </>
   );
 }

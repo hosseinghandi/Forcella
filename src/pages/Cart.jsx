@@ -1,16 +1,13 @@
 // react imports
-import { useState, useContext, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 import { useOrderSummery } from "../hook/useOrderSummery";
 import { useOrderCount } from "../hook/useOrderCount";
 
-// import app context
-// import { SiteContext } from "../App";
-
 import * as MUI from "../barrels/MUI";
 import * as UI from "../barrels/UI";
 import * as helpers from "../barrels/helpers"
-export default function ShoppingBag() {
+export default function Cart() {
   // primary data set
   const [info, setInfo] = useState(null);
   // const { userdata, colorText, colorTheme,pizzaRawData } = useContext(SiteContext);

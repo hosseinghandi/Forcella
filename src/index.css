@@ -14,6 +14,9 @@ body, html {
 :root {
   /********GLOBAL SETUP*******/
   /* initial value for clamp */
+   --initial-4px-at375px: calc((4 / 375) * 100vw);
+  --initial-8px-at375px: calc((8 / 375) * 100vw);
+  --initial-14px-at375px: calc((4 / 375) * 100vw);
   --initial-16px-at375px: calc((16 / 375) * 100vw);
   --initial-20px-at375px: calc((20 / 375) * 100vw);
   --initial-25px-at375px: calc((25 / 375) * 100vw);
@@ -28,7 +31,7 @@ body, html {
     --black :  #212121;
     --black-bg: #1A1A1A;
     --black-text : #333333;
-    --white-bg: #F9FAFB;
+    --white-bg: #f5f5f5;
     --white-text :  #F8F9FA;
 
     /* --gray : #e0e0e0ff; */
@@ -46,22 +49,28 @@ body, html {
   --spacing-global-padding-x-desktop : 60px;
   --spacing-global-padding-y-desktop : 40px;
 
+
+  /* global text setup */
+  --butonText :  clamp(1rem, var(--initial-16px-at375px), 1.2rem);
+
+  /* global input and button size  */
+  --buttonAndInputSize : clamp(45px,var(--initial-45px-at375px), 50px);
+
+  /* global gaps */
+   --GlobalgapOfItems : clamp(20px, var(--initial-16px-at375px), 30px);
+   --GlobalgapOfInputs : clamp(4px, var(--initial-4px-at375px), 10px);
+
+
+    /********Navsetup*******/
+
   /* photo baner (pizza) */
   --Size-pizzaBaner-mobile: 44vh;
   --Size-pizzaBaner-tablet: 55vh;
   --Size-pizzaBaner-desktop: 50vw;
   --Size-pizzaBaner-bigDesktop: 48vw;
 
-  /* global text setup */
-  --butonText :  clamp(1rem, var(--initial-16px-at375px), 1.2rem);
-
-  /* global input and button size  */
-  --buttonSize : clamp(45px,--initial-45px-at375px , 60px);
-  --inputSize : 45px;
-
-  /* global gaps */
-   --GlobalgapOfItems : clamp(5px, 5px + 5vw, 50px);
-
+  --gapOfLogoAndArrow : clamp(1rem, var(--initial-16px-at375px), 2rem);
+  --arrowDimension :  clamp(1rem, var(--initial-20px-at375px), 2rem);
   /********welcoming page setup*******/
   --welcome-content-padding-tablet : calc(100px - (var(--spacing-global-padding-x-mobile)) );
   /* ditance from text and bubbles */
@@ -76,7 +85,7 @@ body, html {
   --toggleDimension : clamp(30px, var(--initial-30px-at375px), 40px);
 
 
-
+ /********login page setup*******/
     
 
     

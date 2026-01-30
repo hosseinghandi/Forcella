@@ -21,3 +21,4 @@ export {default as WelcomingNav} from  "../components/shared/NavBar/WelcomingNav
 export {default as Navigation} from  "../components/shared/NavBar/Navigation";
 export {default as NavProfile} from "../components/shared/NavBar/NavProfile"
 export {default as NavigationWrapper} from "../components/shared/NavBar/NavigationWrapper"
+export {default as LayoutType1} from "../components/shared/LayoutType1"

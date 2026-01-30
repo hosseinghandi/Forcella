@@ -9,7 +9,7 @@ export default function App() {
   // localStorage.clear()
 
   return (
-            <BrowserRouter>
+  <BrowserRouter>
     <providers.Theme>
       <providers.Language>
         <providers.UserData>
@@ -21,6 +21,6 @@ export default function App() {
         </providers.UserData>
       </providers.Language>
     </providers.Theme>
-            </BrowserRouter>
+  </BrowserRouter>
   );
 }

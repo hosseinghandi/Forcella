@@ -23,3 +23,5 @@ export {default as TableHead} from "@mui/material/TableHead";
 export {default as TableRow} from "@mui/material/TableRow";
 export {default as Paper} from "@mui/material/Paper";
 export {default as Slide} from '@mui/material/Slide';
+export {default as InputLabel} from '@mui/material/InputLabel';
+export {default as InputBase} from '@mui/material/InputBase';

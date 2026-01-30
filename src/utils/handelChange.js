@@ -2,7 +2,6 @@ const handleChange =
     (section, subSection = null, task) =>
     (e) => {
       const { name, value } = e.target;
-      console.log(name, value)
       task((prev) => {
               const updatedState = subSection ? 
             // if subsection => 

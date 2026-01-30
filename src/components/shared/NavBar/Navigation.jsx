@@ -1,54 +1,41 @@
 import { useTheme } from "../../../providers/Theme";
 import { useNavigate } from "react-router-dom";
-export default function Navigation () {
+import * as MUI from "../../../barrels/MUI"
+import * as Icon from "../../../barrels/Icons"
+import * as UI from "../../../barrels/UI"
+export default function Navigation ({varient}) {
     const navigate = useNavigate();
     const {colors} = useTheme()
     return (
                    <MUI.Box
                      sx={{
-                       
                        display: "flex",
-                       flexDirection: "row",
-                       ...({justifyContent: varient === "navigation" ? "flex-end" : "space-between"}),
-                       alignItems: "center",
-                       gap:"0px",
+                       flexDirection: {
+                        xs: "column", 
+                        md: "row-reverse"},
+                       ...(varient === "navigation" ?
+                        {justifyContent:  {xs:"flex-end", md:"flex-start" }, gap : "var(--gapOfLogoAndArrow)"} 
+                        :{justifyContent:"space-between" , gap : 0} ),
+                       alignItems: {
+                        xs:"flex-end", 
+                        md: "center"},
                        width: "100%",
                      }}
                    >
+                     <UI.Logo color={colors.text} />
                      <MUI.IconButton 
-                     sx={{padding:"0px"}} onClick={() => navigate(-1)}>
+                     sx={{
+                       "&:hover": {
+                        backgroundColor: "var(--orange)",
+                      },
+                      padding:"0", border:`1px solid ${colors.text}`}} 
+                     onClick={() => navigate(-1)}>
                              <Icon.Arrow 
-                             aria-label="going back"
+                             role={"navigation"}
+                             sx={{height:"var(--arrowDimension)",width:"var(--arrowDimension)", order:"2"}}
+                             aria-label="Navigate to previous page"
                              htmlColor= {colors.text} /> 
                      </MUI.IconButton>
-                     <UI.Logo color={colors.text} />
-                   </MUI.Box> 
+                      </MUI.Box>
     )
 }
-
-
-
-// import { useContext, useState } from "react";
-// import { SiteContext } from "../../App";
-//   const navigate = useNavigate();
-//   //  use main context of the site to render what is required
-//   const {lan, mode,setLang, setMode, colorTheme, colorText} = useContext(SiteContext)
-// <MUI.Box
-//                 sx={{
-                  
-//                   display: "flex",
-//                   flexDirection: "row",
-//                   ...({justifyContent: navigation ? "flex-end" : "space-between"}),
-//                   alignItems: "center",
-//                   gap:"0px",
-//                   width: "100%",
-//                 }}
-//               >
-//                 <MUI.IconButton 
-//                 sx={{padding:"0px"}} onClick={() => navigate(-1)}>
-//                         <Icon.Arrow 
-//                         aria-label="going back"
-//                         htmlColor= {colorText} /> 
-//                 </MUI.IconButton>
-//                 <UI.Logo color={colorTheme} />
-//               </MUI.Box>
