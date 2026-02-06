@@ -1,12 +1,9 @@
 // role : takes the user inputs and find it in user database
 
-// react imports
-// import {useState, useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import useRequestText from "../hook/useRequestText";
 
 import * as MUI from "../barrels/MUI";
 import * as UI from "../barrels/UI";
-import * as Icon from "../barrels/Icons";
 
 // import * as provider from "../barrels/providers"
 import { useTheme } from "../providers/Theme";
@@ -18,31 +15,9 @@ export default function Login() {
   // required context to render ui elements
   const { colors } = useTheme();
   // text to render
-  const { t } = useTranslation();
-  const text = {
-    subtitle: t("pages.login.subtitle"),
-    inputs: {
-      email: {
-        label: t("ui.labels.email"),
-        placeholder: t("pages.login.form.fields.email.placeholder"),
-        error: t("pages.login.form.fields.email.error"),
-      },
-      password: {
-        label: t("ui.labels.password"),
-        placeholder: t("pages.login.form.fields.password.placeholder"),
-        error: t("pages.login.form.fields.password.error"),
-      },
-    },
-    button: {
-      login: t("ui.buttons.login"),
-    },
-    forget: t("pages.login.form.links.forgotPassword"),
-  };
-
-  const listOfInputs = [
-    [text.inputs.email.label, Icon.Email, text.inputs.email.placeholder],
-    [text.inputs.password.label, Icon.Key, text.inputs.password.placeholder],
-  ];
+  const data =  useRequestText("login")
+  const text = data.text
+  const listOfInputs = data.inputsList
 
   return (
     <>
@@ -67,14 +42,14 @@ export default function Login() {
               gap: "var(--GlobalgapOfInputs)",
             }}
           >
-            {listOfInputs.map(([l, Icon, p]) => (
+            {listOfInputs.map(({label, icon, placeholder}) => (
               <UI.InputBasic
-                label={l}
-                key={l}
-                name={l}
-                type={l}
-                Icon={Icon}
-                placeholder={p}
+                label={label}
+                key={label}
+                name={label}
+                type={label}
+                Icon={icon}
+                placeholder={placeholder}
                 // onChange={helpers.handleChange("personalInfo",(subsection ? subsection : ""), setFormData)}
               />
             ))}

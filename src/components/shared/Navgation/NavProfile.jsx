@@ -43,7 +43,7 @@ export default function NavProfile ({exit, setExit}) {
                             }}
                           >
                       <MUI.IconButton sx={{padding:"0px"}} onClick={() => navigate(-1)}>
-                      < Icon.Arrow htmlColor= {colorText} /> 
+                      < Icon.Arrow htmlColor= {colorText} sx={{height:"var(--iconsize)", width:"var(--iconsize)"}}/> 
                       </MUI.IconButton>
                             <MUI.Box sx={{display:"flex", flexDirection:"row", 
                               justifyContent:"center", alignItems:"flex-start"}}

@@ -5,10 +5,9 @@ import * as UI from "../../barrels/UI"
 // required imports
 import { useState } from "react";
 
-
-
 export default function SharedNavigation({
   varient,
+  filter,
   position, 
   photobaner,
   editeMode, 
@@ -22,22 +21,20 @@ export default function SharedNavigation({
       switch(varient) {
         case "welcoming": 
         return <UI.WelcomingNav />           
-        break;
-        case "navigation" || "main": 
-        return <UI.Navigation varient={varient}/>
-        break;
+        case "navigation": 
+        case "main":
+        return <UI.Navigation varient={varient} filter={filter}/>
+                
         case  "profile" :    
         return  <UI.NavProfile 
                   exit={exit} 
                   setExit={setExit} 
                   editeMode={editeMode} 
                   setEditMode={setEditMode}/>
-        break;
+        default: 
+              <UI.Navigation varient={"navigation"}/>
       }
     }
-
-
-
 
   return (
        <UI.NavigationWrapper position={position} photobaner={photobaner}>

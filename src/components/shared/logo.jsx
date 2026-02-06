@@ -5,7 +5,6 @@ import * as Icon from "../../barrels/Icons";
 import * as MUI from "../../barrels/MUI";
 import { useTheme } from "../../providers/Theme";
 import {Link, useLocation }from "react-router-dom";
-import { useContext } from "react";
 
 
 export default function Logo() {

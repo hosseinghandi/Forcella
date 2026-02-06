@@ -7,29 +7,39 @@ import { createTheme } from "@mui/material";
 
           // general text size for all design
           "textNormal" : {
-            fontSize: "clamp(1rem, var(--initial-16px-at375px), 1.2rem)",
+            fontSize: "var(--textNormal)",
             fontWeight : 400, 
           }, 
           "textLabel" : {
-            fontSize: "clamp(14px, var(--initial-14px-at375px), 1.1rem)",
+            fontSize: "var(--textLabel)",
             fontWeight : 300, 
           },
           "logoText" : {
-            fontSize : "clamp(1rem, var(--initial-16px-at375px), 1.4rem)",
+            fontSize : "var(--logoText) ",
             fontWeight : 500,
           },
           // font for "Welcomeing page"
           "titleWelcoming": {
-            fontSize : "clamp(30px, var(--initial-30px-at375px), 4rem)",
-            fontWeight : "900", 
+            fontSize : "var(--titleWelcoming) ",
+            fontWeight : 900, 
             textAlign:"left"
           },
           "textWelcomingInfo" : {
-            fontSize: "clamp(1rem, var(--initial-16px-at375px), 1.5rem)",
+            fontSize: "var(--textWelcomingInfo)",
             fontWeight : 400, 
             letterSpacing : 1.5,
             textAlign:"left"
           }, 
+          "pizzaContentBold" : {
+            fontSize : "var(--pizzaContentBold) ",
+            fontWeight : "900"
+          }, 
+
+
+
+
+
+          
           
           "profileWelcoming": {
             fontSize : "34px",
@@ -61,13 +71,7 @@ import { createTheme } from "@mui/material";
             fontWeight : "400"
           },
           
-          "pizzaContentBold" : {
-            fontSize : "16px",
-            fontWeight : "900"
-          }, 
-          "star" : {
-            fontSize : "15px"
-          },
+
           "textProfileBold" : {
             fontSize:"15px",
             fontWeight:600,
@@ -91,17 +95,15 @@ import { createTheme } from "@mui/material";
             },
              MuiCard:{
               styleOverrides: {
-                root: {                  
-                  
+                root: {         
                   borderRadius: "var(--radius)", 
                   width: "100%",
                   backgroundColor: "var(--gray)",
                   boxShadow: "none",
-                  padding: "12px 18px",
+                  padding: "var(--cardPaddingY) var(--cardPaddingX)",
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  marginTop: "var(--gapOfItems)",
             }
           }
                 }
@@ -111,6 +113,7 @@ import { createTheme } from "@mui/material";
           xs: 0,
           sm: 600,
           md: 765,
+          special: 1024,
           lg: 1200,
           xl: 1536,
         },

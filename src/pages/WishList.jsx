@@ -1,25 +1,29 @@
 
 
 // react imports
-import { useState, useContext, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 import * as MUI from "../barrels/MUI"
 import * as UI from "../barrels/UI"
-import * as helpers from "../barrels/helpers"
-
+import * as requests from "../barrels/requests"
+import { useUserData } from "../providers/UserData";
+import {usePizzaData} from "../providers/PizzaData"
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
 // import app context
+import useRequestData from "../hook/useRequestText";
 
-export default function FavoritePizza() {
+export default function WishList() {
     // primary data set
+    const {userdata} = useUserData()
+      const pizzaRawData = useRequestData("menu")
     const [info, setInfo] = useState(null);
     // const { userdata, colorText, colorTheme,pizzaRawData} = ;
 
     // data preparation
-    const favoritePizza = useMemo( () => helpers.pizzaFinder(pizzaRawData,"fav",userdata["likedPizzasId"]) , [userdata])
-    const offeredPizza = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "offered")), [])
-    const requestedpizzaInfo = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "info", info)), [info])
+    const favoritePizza = useMemo( () => requests.findPizza(pizzaRawData,"wish",userdata["likedPizzasId"]) , [userdata])
+    const offeredPizza = useMemo(() => (requests.findPizza(pizzaRawData, "offered")), [])
+    const requestedpizzaInfo = useMemo(() => (requests.findPizza(pizzaRawData, "info", info)), [info])
 
     
     //   handel any changes requested  by user
@@ -36,11 +40,11 @@ export default function FavoritePizza() {
                 <MUI.Typography variant="textHead">Your favorite pizza list:</MUI.Typography>
                 <MUI.Box component={"div"}>
                 {/* Special Offer */}
-                {(
+                {/* {(
                     <MUI.Box >
                         <UI.SpecialCard offered={offeredPizza} colorText={colorText} />
                     </MUI.Box>
-                )}
+                )} */}
         
                 <MUI.Box
                     sx={{ width: "100%" , 
@@ -58,8 +62,8 @@ export default function FavoritePizza() {
                         discount={pizza.offered.active && pizza.offered.percentage}
                         time={pizza.time}
                         id={pizza.id}
-                        liked={helpers.pizzaFinder(userdata["likedPizzasId"],"boolean", pizza.id)}
-                        added={helpers.pizzaFinder(userdata["pizzaInCartId"],"boolean", pizza.id)}
+                        liked={requests.findPizza(userdata["likedPizzasId"],"boolean", pizza.id)}
+                        added={requests.findPizza(userdata["pizzaInCartId"],"boolean", pizza.id)}
                         onToggelCart={handelToggleCart}
                         onTogglePizza={handelTogglePizza}
                         onInfoRequest={handelInfoRequest}

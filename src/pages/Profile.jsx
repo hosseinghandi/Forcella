@@ -2,7 +2,7 @@ import { useContext, useState} from "react"
 import * as UI from "../barrels/UI"
 import * as MUI from "../barrels/MUI"
 
-export default function ProfileUser() {
+export default function Profile() {
     // const {userdata,setUser, pizzaRawData,mode, setMode, lan, setLang, colorTheme} = useContext(SiteContext)
     const [editeMode, setEditMode] = useState(false)
 

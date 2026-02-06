@@ -6,7 +6,6 @@
 
 // required material
 import * as MUI from "../../barrels/MUI"
- 
 // required imports
 import { useNavigate } from "react-router-dom";
 
@@ -50,7 +49,8 @@ export default function ButtonBasic({
         borderRadius: "25px",
         backgroundColor: "#B55638",
         color: "var(--white-text)",
-        ...(nonActive && {opacity : "20%"})
+        ...(nonActive && {opacity : "20%"}),
+        ...(shrink && { padding: "1px 10px"}),
       }}
     >
       {title}

@@ -7,7 +7,7 @@ export default function AppRoutes() {
     return(
         <Routes>
         {/* entry */}
-        {/* <Route path="/" element={<Routers.StateChecker />} /> */}
+        <Route path="/" element={<Routers.StateChecker />} />
 
         {/* public */}
 
@@ -16,24 +16,22 @@ export default function AppRoutes() {
         <Route path="/signup" element={<Pages.Signup />} />
 
         {/* app layout */}
-        {/* <Route path="/applayout" element={<Routers.AppLayout />}> */}
 
           {/* public inside app */}
-          {/* <Route path={"menu"} >
+          <Route path={"/menu"} >
             <Route index element={<Pages.Menu />}/>  
             <Route path=":filterkey" element={<Pages.Menu />}/>
-          </Route> */}
+          </Route>
 
           {/* protected */}
-          {/* <Route element={<Routers.ProtectedRoute />}>
-            <Route path="profile" element={<Pages.ProfileUser />} />
-            <Route path="shoppingbag" element={<Pages.Cart />} />
-            <Route path="favorites" element={<Pages.FavoritePizza />} />
-            <Route path="payment" element={<Pages.Payment/>} />
-          </Route> */}
+          <Route element={<Routers.ProtectedRoute />}>
+            <Route path="/profile" element={<Pages.ProfileUser />} />
+            <Route path="/cart" element={<Pages.Cart />} />
+            {/* <Route path="/wish" element={<Pages.WishList />} /> */}
+            <Route path="/payment" element={<Pages.Payment/>} />
+          </Route>
 
-        {/* </Route> */}
-        {/* <Route path="*" element={<h1>404</h1>} /> */}
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     )
 }

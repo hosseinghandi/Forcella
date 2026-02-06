@@ -1,19 +1,10 @@
-import { useTranslation } from "react-i18next";
-// react imports
 
+import useRequestText from "../hook/useRequestText";
 import * as MUI from "../barrels/MUI"
 import * as UI from "../barrels/UI"
 
 export default function Welcome() {
-  const { t } = useTranslation();
-  const text = {
-    title: t("pages.welcoming.title"), 
-    highlights : t("pages.welcoming.content.highlights", { returnObjects: true }),
-    button: {
-        login :t("ui.buttons.login"),
-        signup : t("ui.buttons.signup")
-    }
-  }
+  const text = useRequestText("welcoming")
   return (
     <>
       <UI.SharedNavigation varient={"welcoming"} photobaner={true}/>
@@ -45,6 +36,7 @@ export default function Welcome() {
               sm: "column",
               md:"row"
             },
+            marginTop : "var(--GlobalgapOfItems)",
             gap: "10px",
             width: "100%",
           }}
@@ -61,7 +53,6 @@ export default function Welcome() {
             color="white"
             disabled={false}
           />
-          
         </MUI.Box>
     </UI.LayoutType1>
     </>

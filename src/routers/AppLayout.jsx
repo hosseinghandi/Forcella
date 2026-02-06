@@ -1,28 +1,9 @@
 // react imports
-import { Outlet, useLocation } from "react-router-dom"
-import Container from "../components/shared/SiteWrapper"
-// ui elements
-import NavBar from "../components/shared/NavBar"
-import { useContext } from "react";
-import {useTheme} from "../providers/Theme"
-import {useUserData} from "../providers/UserData"
-export default function Layout() {
+import { Outlet} from "react-router-dom"
 
-    const {mode} = useTheme()
-    const {userdata} = useUserData()
-    const pizzaLikedNum = userdata["likedPizzasId"].length
-    const pizzaInCartNum = userdata["pizzaInCartId"].length
+export default function AppLayout() {
 
-    const location = useLocation()
     return (  
-                <>
-                    <NavBar mode={mode} 
-                    current={location.pathname} 
-                    pizzaLikedNum={pizzaLikedNum}
-                    pizzaInCartNum={pizzaInCartNum}
-                    />
-                    <Outlet />
-                </>
-        
+            <Outlet />
     )
 }

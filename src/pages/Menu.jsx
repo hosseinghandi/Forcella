@@ -1,55 +1,77 @@
 // react imports
-import { useState, useContext, useCallback, useMemo } from "react";
-
+import { useState, useCallback, useMemo } from "react";
+import * as requests from "../barrels/requests";
 // impoprt react router
 import { useParams } from "react-router-dom";
 // impoprt helper
 import { useToggleAction } from "../hook/useToggleAction";
-import * as helpers from "../barrels/helpers"
 // import app context
-
 import * as MUI from "../barrels/MUI"
 import * as UI from "../barrels/UI"
+import { useTheme } from "../providers/Theme";
+import { useUserData } from "../providers/UserData";
+import useRequestData from "../hook/useRequestText";
 
 export default function Menu() {
-  
+  const {colors} = useTheme()
+  const{userdata} = useUserData()
 // primary data base
   const [info, setInfo] = useState(null); 
   // const { userdata, colorTheme, colorText, pizzaRawData} = useContext(SiteContext);
   const { filterkey } = useParams();
-  
+
+  const pizzaRawData = useRequestData("menu")
   // data preparation based on the userdata and rawData
-  const filterPizza = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "filter", filterkey )), [filterkey])
-  const offeredPizza = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "offered")), [])
-  const requestedpizzaInfo = useMemo(() => (helpers.pizzaFinder(pizzaRawData, "info", info)), [info])
-  const pizzaData = filterkey === "offered" || filterkey === "offerta" ? offeredPizza : filterPizza;
+  const filterPizza = useMemo(() => (requests.findPizza(pizzaRawData, "filter", filterkey )), [filterkey])
+  const WishList = useMemo( () => requests.findPizza(pizzaRawData,"wish",userdata["likedPizzasId"]) , [userdata])
+  const offeredPizza = useMemo(() => (requests.findPizza(pizzaRawData, "offered")), [])
+  const requestedpizzaInfo = useMemo(() => (requests.findPizza(pizzaRawData, "info", info)), [info])
+
+  const pizzaData = 
+  filterkey === "offered" || filterkey === "offerta" ? 
+  offeredPizza : filterkey === "wish" ? WishList :  filterPizza;
+
+
 
   //handel any changes requested  by user
   const handelToggleCart = useToggleAction("pizzaInCartId");
   const handelTogglePizza = useToggleAction("likedPizzasId");
   const handelInfoRequest = useCallback((id) => {setInfo(id);}, [info]);
 
+
+
+
   return (
     <>
-        <UI.SharedNavigation distance={true} main={true} photobaner={false} />      
-        <UI.Filter colorText={colorText}/>
-        <MUI.Box component={"div"}>
         {/* Special Offer */}
-        {!filterkey && (
-          <MUI.Box >
-            <UI.SpecialCard offered={offeredPizza} colorText={colorText}/>
-          </MUI.Box>
-        )}
+        <MUI.Box sx={{display:"flex", flexDirection:"column", 
+        gap:"var(--GlobalgapOfGrids)", 
+        mb:"var(--GlobalgapOfGrids)"}}>
+        <UI.SharedNavigation varient={"main"} filter={true}/>  
+        { filterkey === "wish" && <MUI.Typography variant="textNormal">Your favorit list:</MUI.Typography>}
+        </MUI.Box>
 
-        <MUI.Box
-          sx={{ width: "100%" , 
-            display:"flex", 
-            flexDirection:"column"}} 
+        <MUI.Grid 
+        sx={{"& > :last-child": {
+          mb: {xs:"calc(var(--filterAndNavSize) + 20px)", special:"unset"},
+        },}}
+        container 
+        rowSpacing="var(--GlobalgapOfGrids)" 
+        columnSpacing="var(--GlobalgapOfGrids)"
+
         >
-        {/* Pizza list */}
-        {pizzaData.map((pizza) => (
+          
+          {!filterkey && (
+            <MUI.Grid
+              size={{xs:12, md:12, special:4, xl:3}}>
+              <UI.SpecialCard offered={offeredPizza}/>
+              </MUI.Grid> 
+          )}
+          {pizzaData.map((pizza) => (
+            <MUI.Grid 
+            key={pizza.name}
+            size={{xs:12, md:6, special:4, xl:3}}>
             <UI.PizzaInList
-              key={pizza.name}
               name={pizza.name}
               price={pizza.price}
               review={pizza.review}
@@ -57,17 +79,16 @@ export default function Menu() {
               discount={pizza.offered.active && pizza.offered.percentage}
               time={pizza.time}
               id={pizza.id}
-              liked={helpers.pizzaFinder(userdata["likedPizzasId"],"boolean", pizza.id)}
-              added={helpers.pizzaFinder(userdata["pizzaInCartId"],"boolean", pizza.id)}
+              liked={requests.findPizza(userdata["likedPizzasId"],"boolean", pizza.id)}
+              added={requests.findPizza(userdata["pizzaInCartId"],"boolean", pizza.id)}
               onToggelCart={handelToggleCart}
               onTogglePizza={handelTogglePizza}
               onInfoRequest={handelInfoRequest}
             />
+            </MUI.Grid>
         ))}
-        </MUI.Box>
-
+      </MUI.Grid>
         {/* Pizza info modal / section */}
-      </MUI.Box>
       {requestedpizzaInfo && (
         <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} dialog={true} />
       )}

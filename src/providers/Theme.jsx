@@ -2,7 +2,7 @@ import {createContext, useContext, useMemo, useState } from "react"
 export const ThemeContext = createContext(null);
 
 export default function ThemeProvider({children}) {
-    const [mode, setMode] = useState(false);
+    const [mode, setMode] = useState(true);
 
     const value = useMemo( () => (
         {

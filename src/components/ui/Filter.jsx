@@ -3,38 +3,30 @@
 
 import * as MUI from "../../barrels/MUI"
 import * as UI from "../../barrels/UI"
-
+import useRequestData from "../../hook/useRequestText";
 
 import { useParams } from "react-router-dom";
-// translation import
-import { useTranslation } from "react-i18next";
-
 export default function Filter({colorText}) {
-  const { t } = useTranslation();
-  const message = {
-    search: t("metadata.pizza.searchPizza"),
-    categories: t("metadata.pizza.categories", { returnObjects: true }),
-  };
 
-  // control later which one is selected or active
-  // const [current, setCurrent] = useState("all")
+  const categories = useRequestData("categories")
+
   const {filterkey} = useParams()
 
   const categoriesBtn = () =>
-    message.categories.map((category) => {
-
-      const path = category === "All" || category === "Tutto" ?  
-      `/applayout/menu` : 
-      `/applayout/menu/${category}` 
+      categories.map((category) => {
+      const path = category === "All" || category === "Tutte" ?  
+      `/menu` : 
+      `/menu/${category}` 
 
       const isActive = (path) => {
-        if (path === `/applayout/menu` && !filterkey) return false
+        if (path === `/menu` && !filterkey) return false
         else if (filterkey !== category) return true
       }
-      
       return (
+        <MUI.Grid 
+        key={category}
+        size="auto">
         <UI.ButtonBasic
-          key={category}
           shrink={true}
           type="submit"
           title={category}
@@ -43,53 +35,33 @@ export default function Filter({colorText}) {
           color={colorText}
           disabled={false}
         />
+        </MUI.Grid>
       );
     });
 
 
   return (
-        <MUI.Box
+        <MUI.Card
           sx={{
-            mt: "20px",
-            display: "flex",
+            // this gap the spac for mobiole which put space within the arrow and filter 
+            mt:{xs:"var(--GlobalgapOfGrids)",md:"unset"},
+            height:{xs:"fit-content", special:"var(--filterAndNavSize)" },
             flexDirection: "column",
+            justifyContent:"center",
             width: "100%",
             backgroundColor: "var(--gray)",
-            borderRadius: "25px",
+            borderRadius: "var(--radius)"
           }}
         >
-          <MUI.Box
-            sx={{
-              height: "50px",
-              display: "flex",
-              alignItems: "center",
-              px: "12px",
-              "&:focus-within": {
-                borderColor: "var(--color-orange)",
-              },
-            }}
-          >
-            <MUI.Box
-              sx={{
-                display: "flex",
-                flexGrow : 1,
-                alignItems: "center",
-                justifyContent: "space-between",
-                width: "100%",
-                gap: "4px",
-              }}
+            <MUI.Grid 
+            width={"100%"}
+            container
+            rowSpacing={{xs:"var(--GlobalgapOfGrids)", sm:"calc(var(--GlobalgapOfGrids) / 2)" }} 
+            columnSpacing={{xs:"var(--GlobalgapOfGrids)", sm:"calc(var(--GlobalgapOfGrids) / 2)"}}
+            justifyContent={{sm:"space-evenly"}} 
             >
-                {categoriesBtn()}
-              <MUI.Box
-                sx={{
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-              </MUI.Box>
-            </MUI.Box>
-          </MUI.Box>
-        </MUI.Box>
+              {categoriesBtn()}
+            </MUI.Grid>
+        </MUI.Card>
   );
 }

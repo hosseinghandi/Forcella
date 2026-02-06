@@ -14,13 +14,13 @@ export default function SiteWrapper({ children }) {
         sx={{
           py: {
             xs : "var(--spacing-global-padding-y-mobile)",
-            sm: "var(--spacing-global-padding-y-tablet)",
-            md: "var(--spacing-global-padding-y-desktop)",
+            md: "var(--spacing-global-padding-y-tablet)",
+            special: "var(--spacing-global-padding-y-desktop)",
           },
           px: {
             xs:"var(--spacing-global-padding-x-mobile)",
-            sm:"var(--spacing-global-padding-x-tablet)",
-            md: "var(--spacing-global-padding-x-desktop)",
+            md:"var(--spacing-global-padding-x-tablet)",
+            special: "var(--spacing-global-padding-x-desktop)",
           },
 
           fontFamily: "Inter, sans-serif",

@@ -9,25 +9,23 @@
 import pizzaSlice from "/pizza-image/margherita.png";
 // required imports
 import * as MUI from "../../../barrels/MUI";
-
 export default function NavigationWrapper({ children, position, photobaner }) {
-  // the position takes a boolean value to figure out if the page is sign up, since there 
-  // we need more space to render inputs respect to login and welcoming page
+
   
   const positionValue = !position
     ? { left: {xs:"-15vh", lg:"-20vh", xl:"-15vw"}, top: "-25px", position: "absolute" }
-    : { left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, top: {xs:"-50vw", sm:"-30vw", md:"-50vw",lg:"-35vw"}, position: "absolute" };
+    : { left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, top: {xs:"-23vh", sm:"-20vh", md:"-35vh",lg:"-35vw", xl:"-60vh"}, position: "absolute" };
 
   return photobaner ?( 
-       <MUI.Box
-      component="header"
-      sx={{
-        width: "100%", height: {
+    <MUI.Box
+    component="header"
+    sx={{
+      width: "100%", height: {
         xs :position ? "16vh" : "37vh",
-        sm : position ? "33vw" : "48vh",
-        md : position ? "20vw" : "48vh",
-        lg : position ? "10vw" : "fit-content",
-        xl : position ? "10vw" : "fit-content",
+        sm : position ? "20vh" : "48vh",
+        md : position ? "15vh" : "48vh",
+        lg : position ? "17vh" : "fit-content",
+        xl : position ? "30vh" : "fit-content",
       }}}>
       {/* Pizza image */}
         <MUI.Box
@@ -51,18 +49,13 @@ export default function NavigationWrapper({ children, position, photobaner }) {
     </MUI.Box> ):
             <MUI.Box
                   sx={{
-                    padding: "10px 0",
                     width: "100%",
                     display: "flex",
-                    flexDirection: "column",
+                    flexDirection: {xs:"column",lg:"row"},
                     justifyContent: "flex-end",
-                    
                   }}
                   >
                     {children}
-                          
                 </MUI.Box>
-
-
     }
 
