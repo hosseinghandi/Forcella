@@ -6,6 +6,7 @@ import * as Icon from "../../barrels/Icons"
 import * as MUI from "../../barrels/MUI"
 
 export default function Error({ message, colorText}) {
+  console.log(message)
   return (
     message !== "" && (
       <MUI.Box sx={{display: "flex", flexDirection:"row",justifyContent:"start-flex",alignItems:"center",width:"100%", gap:1, mt:"20px"}}>

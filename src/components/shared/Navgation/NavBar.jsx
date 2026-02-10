@@ -3,12 +3,12 @@
 import { Link } from "react-router-dom";
 import * as MUI from "../../../barrels/MUI"
 import * as requests from "../../../barrels/requests"
-import { color } from "motion";
+import { useTheme } from "../../../providers/Theme"
 export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum}) {
   
   const pathList = requests.requestList("nav_path_list")
-
-  console.log()
+  const {colors} = useTheme()
+  const comparisonTo = (path) => (current.split("/").at(-1).includes(path.split("/").at(-1)))
   return (
     <MUI.Box
       sx={{
@@ -38,24 +38,36 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum}) {
         {pathList.map(({ path, Icon }) => (
           <Link to={path} key={path} replace>
               <MUI.Box
+
                 sx={{
                   "&:hover" : {
-                           ...( !current.includes(path) && {scale: 1.2})
+                           ...( !comparisonTo(path) && {scale: 1.2})
                           },
-                  ...({color:( current.split("/").at(-1).includes(path)) ? mode ? "black" : "var(--orange)" : "var(--white-bg)"}),
-                  transform: ( current.includes(path)) ? "scale(1.3)" : "scale(1)",
+                  ...(
+                    {color:(comparisonTo(path)) ? 
+                    mode ? "var(--black-bg)" : "var(--orange)" : "var(--white-bg)"}
+                  ),
+
+                  transform: comparisonTo(path)
+                  ? "scale(1.3)" : "scale(1)",
                   transition: "all 0.25s ease-in-out",
                 }}
+
               > 
                       {
-                      path.includes("cart") || path.includes("favorites") 
+                      path.includes("cart") || path.includes("wish") 
                       ? 
                       <MUI.Badge 
                         sx={{
                           "& .MuiBadge-badge": {
-                            backgroundColor: mode ? "var(--black-bg)" : "var(--orange)",
-                            color: current.includes(path) ? "black" : "white",
-                            transform: ( current.includes(path)) && "scale(0.7)",
+
+                            backgroundColor: comparisonTo(path) 
+                            ? mode ? "var(--orange)" : "var(--white-bg)" 
+                            : !comparisonTo(path) && mode ? "var(--black-bg)" : "var(--white-bg)",
+                            color: mode ? "var(--white-bg)" : "var(--black-bg)",
+
+                            border: comparisonTo(path) && mode ? "1px solid var(--white-bg)" : "none",
+                            transform: comparisonTo(path) && "scale(0.7)",
                           }
                         }
                         }
@@ -66,12 +78,12 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum}) {
                         }}
                         badgeContent={
                         path.includes("cart") ? pizzaInCartNum :   
-                        path.includes("favorites") ?  pizzaLikedNum : null
+                        path.includes("wish") ?  pizzaLikedNum : null
                         }>
                           <Icon 
                           sx={{width:"var(--iconsize)", 
                           height:"var(--iconsize)", 
-                          "&:hover" : {
+                          "&:hover" : {                            
                             color : mode ? "var(--black-bg)" : "var(--orange)",
                             scale: 1.3
                           }
@@ -79,10 +91,9 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum}) {
                       </MUI.Badge> : 
                       <Icon 
                       sx={{
-                          
                           width:"var(--iconsize)", 
-                          height:"var(--iconsize)", 
-                          "&:hover" : {
+                          height:"var(--iconsize)",                           
+                          "&:hover" : {                            
                             color : mode ? "var(--black-bg)" : "var(--orange)",
                           }
                           }}/>

@@ -1,160 +1,215 @@
 // to do: change the name of ingerdents beacuse tehy are not corrisponded
 // *role : on request render information dialog paper*
 
+import * as MUI from "../../barrels/MUI";
+import * as UI from "../../barrels/UI";
+import * as Icon from "../../barrels/Icons";
+import useRequestData from "../../hook/useRequestText";
+import * as requests from "../../barrels/requests";
+import { useMemo } from "react";
 
-import * as MUI from "../../barrels/MUI"
-import * as UI from "../../barrels/UI"
-import * as Icon from "../../barrels/Icons"
+export default function pizzaInfo({ id, setInfo, dialog }) {
 
-export default function pizzaInfo({ requestedpizzaInfo, setInfo, dialog }) {
+  const {pizzaRawData,spiceLevels_text,labels_text} = useRequestData("menu")
+
+  const requestedpizzaInfo = requests.findPizza(pizzaRawData, "info", id)
   const {
     name,
     description,
     ingredients,
     spiceLevel,
-    category,
     calories,
     time,
     image,
   } = requestedpizzaInfo;
 
+    console.log()
+
+
   const ingredientsList = (ing) => {
     return ing.map((el, index) => (
-      <img
-        key={el ?? index}
-        className="w-[30px]"
+      <MUI.Grid 
+      key={el ?? index}
+      size="auto"
+      >
+      <MUI.Box
+        component={"img"}
+        sx={{width:"calc(var(--iconsize) * 2 )"}}
+        alt={`An icon of ${el}`}
         src={`/pizza-gradient/${el}.png`}
       />
+      </MUI.Grid>
     ));
   };
 
   const iconsList = [
-    [<Icon.AccessTime sx={{ width: "25px" }} />, time,"min","time"],
-    [<Icon.Whatshot sx={{ width: "25px" }} />, spiceLevel,null,"spicy"],
-    [<Icon.Fire sx={{ width: "25px" }} />, calories,"Kcl","calories"]]
+    [Icon.AccessTime, time, "min", labels_text.time],
+    [Icon.Whatshot , null, spiceLevels_text[spiceLevel], labels_text.spiceLevel],
+    [Icon.Fire, calories, "Kcl", labels_text.calories],
+  ];
 
-  const icons = (list) => list.map(([icon, value, label, key]) => {
-    return (
+  const icons = (list) =>
+    list.map(([Icon, value, label, key]) => {
+      return (
+        <MUI.Box
+          key={key}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "5px",
+          }}
+        >
+          <Icon sx={{ width : "var(--iconsize)"}}/>
+          <MUI.Typography variant="textNormal" sx={{ textAlign: "justify" }}>
+            {`${value ?? ""} ${label}`}
+          </MUI.Typography>
+        </MUI.Box>
+      );
+    });
+
+  const infoContent = (
+    <>
+    {/* if dialog i asked there is a need of close tab */}
+      {dialog ? (
+        <>
+          <MUI.Box sx={{ display: "flex", justifyContent: "flex-end"}}>
+            <MUI.IconButton
+              aria-label="close"
+              onClick={() => setInfo(null)}
+              sx={{
+                "&:hover": {
+                  background: "var(--orange)",
+                },
+                width: "25px",
+                height: "25px",
+                border: "1px solid var(--black-bg)",
+              }}
+            >
+              <Icon.Close aria-hidden="true"/>
+            </MUI.IconButton>
+          </MUI.Box>
+        </>
+      ) : (
+        <MUI.Divider variant="full" sx={{ mb: "var(--GlobalgapOfGrids)" }} />
+      )}
+
+      {/* main wrapper (text + ingredient)*/}
       <MUI.Box
-        key={key}
         sx={{
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "5px",
+          justifyContent:"space-between",
+          flexDirection: {xs:"column", md:"row"},
+          gap:{xs:"var(--GlobalgapOfGrids)", md:"calc(var(--GlobalgapOfGrids) / 2)"},
+          // ...(dialog ?? { gap: 2 }),
         }}
       >
-        {icon}
-        <MUI.Typography sx={{ fontSize: 15, textAlign: "justify" }}>
-          {`${value} ${label ?? ""}`}
-        </MUI.Typography>
-      </MUI.Box>
-    );
-  });
-  
+         {dialog && 
+          <>
+          <MUI.Box sx={{
 
-  const infoContent = 
-    <>
-        {dialog &&
-          (<>
-            <MUI.Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <MUI.IconButton onClick={() => setInfo(null)} size="small">
-                <Icon.Close />
-              </MUI.IconButton>
-            </MUI.Box>
-            <MUI.CardMedia
+            width:"100%", height:{xs:"25vh", special :"35vw" , xl:"35vh"}, display:"flex", justifyContent:"center",
+            }}>
+            <MUI.Box
               component="img"
-              image={image}
-              alt={name}
+              src={image}
+              alt={`A picture of ${name} pizza`}
               sx={{
-                width: "70%",
-                mx: "auto",
+                objectFit:"contain"
               }}
             />
-          </>)}
-        {/* main wrapper */}
-        <MUI.Box sx={{ display: "flex", 
-          flexDirection: "column", 
-          ...( dialog ?? { gap: 2 })}}>
-          {/* upper content */}
-          <MUI.Box
-           >
-            <MUI.CardContent
-              sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-            >
-              <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
-                <MUI.Typography variant="titleBoldInfo">{name}</MUI.Typography>
-                {category.map((el, index) => (
-                  <UI.ButtonBasic
-                    key={index}
-                    shrink={true}
-                    title={el}
-                    color={"white"}
-                  />
-                ))}
               </MUI.Box>
+            <MUI.Divider
+                variant="full"
+              />
+          </>
+          }
 
-              <MUI.Typography variant="textNormal" textAlign="justify">
-                {description}
-              </MUI.Typography>
-
-              {/* Stats */}
-              <MUI.Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                {icons(iconsList)}
-              </MUI.Box>
-            </MUI.CardContent>
-          </MUI.Box>
-
-          {/* Ingredients */}
           <MUI.Box
             sx={{
-              backgroundColor: "var(--gray)",
-              borderRadius: "var(--radius)",
+              padding: "unset",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent : {lg:"space-between"},
+              gap:"var(--GlobalgapOfGrids)"
             }}
-           >
-            <MUI.CardContent >
-              <MUI.Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                <MUI.Typography variant="titleBold">Ingredients:</MUI.Typography>
+          >
+          
+         
+          {/* content holder */}
+          <MUI.Box sx={{
+              display:"flex",
+              flexDirection:"column",
+              gap:"var(--GlobalgapOfGrids)"}}>
+            
+            {/* header holder  */}
+            <MUI.Box
+              sx={{               
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                
+                justifyContent:"space-between"
+              }}
+            >
+              <MUI.Typography variant="titleBoldInfo" >{name}</MUI.Typography>
 
-                <MUI.Box
-                  sx={{
-                    display: "flex",
-                    gap: 2,
-                    overflowX: "auto",
-                  }}>
-                  {ingredientsList(ingredients)}
-                </MUI.Box>
-              </MUI.Box>
-            </MUI.CardContent>
+            </MUI.Box>
+
+            <MUI.Typography variant="textNormal" sx={{textAlign:"let", lineHeight:1.1}} >
+              {description}
+            </MUI.Typography>
+
+            {/* Stats */}
+            <MUI.Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              {icons(iconsList)}
+            </MUI.Box>
+            </MUI.Box>
+            <MUI.Box sx={{ padding: 0, margin: "0" }}>
+            <MUI.Divider
+              variant="full"
+              sx={{ my: "var(--GlobalgapOfGrids)" }}
+            />
+            <MUI.Grid
+              container 
+              sx={{alignItems:"center"}}
+              rowSpacing="calc(var(--GlobalgapOfGrids) / 3)" 
+              columnSpacing="calc(var(--GlobalgapOfGrids) / 3)">
+              <MUI.Typography variant="titleBoldInfo">{labels_text.ingredients} </MUI.Typography>
+                {ingredientsList(ingredients.icons)}
+              </MUI.Grid>
+            </MUI.Box>
           </MUI.Box>
-        </MUI.Box>
-    </>             
+          </MUI.Box>
 
+        {/* Ingredients */}
 
+          
+    </>
+  );
 
-  
   return dialog ? (
     <MUI.Dialog
       PaperProps={{
         sx: {
+          padding: "var(--cardPaddingY) var(--cardPaddingX)",
           borderRadius: "25px",
         },
       }}
-      onClose={() => setInfo(null)}
+      onClose={dialog}
       open={dialog}
       fullWidth
-      maxWidth="sm"
+      maxWidth="special"
     >
-    {infoContent}
+      {infoContent}
     </MUI.Dialog>
-  ) : 
-      <MUI.Box>  
-        {infoContent}
-      </MUI.Box>
+  ) : (
+    <MUI.Box sx={{ padding: "0" }}>{infoContent}</MUI.Box>
+  );
 }

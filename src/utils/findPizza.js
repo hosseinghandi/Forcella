@@ -10,11 +10,11 @@
              return compareTo && 
             data.filter( el => compareTo.includes(el.id))
         case "offered" :
-             return data && data.filter((el) => el.offered.active)
+             return data && data.filter((el) => el.discount)
         case "info" :
              return data ? data.filter((el) => el.id === compareTo)[0] : null
         default:
-            throw new Error(`getPizza: unknown searchFor "${searchFor}"`)
+            throw new Error(`getPizza: unknown searchFor"${searchFor}"`)
     }
 }
    export default findPizza

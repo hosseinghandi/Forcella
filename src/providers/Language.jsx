@@ -11,6 +11,7 @@ export default function LanguageProvider({ children }) {
     
     useEffect(() => {
         i18n.changeLanguage(lang)
+        document.documentElement.lang = lang;
         updateUserState({personalInfo : {language : lang}})
     }, [lang])
 

@@ -20,15 +20,14 @@ export default function Menu() {
   // const { userdata, colorTheme, colorText, pizzaRawData} = useContext(SiteContext);
   const { filterkey } = useParams();
 
-  const pizzaRawData = useRequestData("menu")
+  const data = useRequestData("menu")
+  const {pizzaRawData,wishList_text} = data
   // data preparation based on the userdata and rawData
   const filterPizza = useMemo(() => (requests.findPizza(pizzaRawData, "filter", filterkey )), [filterkey])
   const WishList = useMemo( () => requests.findPizza(pizzaRawData,"wish",userdata["likedPizzasId"]) , [userdata])
   const offeredPizza = useMemo(() => (requests.findPizza(pizzaRawData, "offered")), [])
-  const requestedpizzaInfo = useMemo(() => (requests.findPizza(pizzaRawData, "info", info)), [info])
-
   const pizzaData = 
-  filterkey === "offered" || filterkey === "offerta" ? 
+  filterkey === "Offered" || filterkey === "offerta" ? 
   offeredPizza : filterkey === "wish" ? WishList :  filterPizza;
 
 
@@ -38,19 +37,24 @@ export default function Menu() {
   const handelTogglePizza = useToggleAction("likedPizzasId");
   const handelInfoRequest = useCallback((id) => {setInfo(id);}, [info]);
 
-
-
-
   return (
     <>
         {/* Special Offer */}
         <MUI.Box sx={{display:"flex", flexDirection:"column", 
         gap:"var(--GlobalgapOfGrids)", 
         mb:"var(--GlobalgapOfGrids)"}}>
-        <UI.SharedNavigation varient={"main"} filter={true}/>  
-        { filterkey === "wish" && <MUI.Typography variant="textNormal">Your favorit list:</MUI.Typography>}
+        <UI.SharedNavigation varient={"main"} filter={ !filterkey === "wish"}/>  
+        
+        {filterkey === "wish" ?
+          WishList.length > 0  ?
+        <MUI.Typography variant="textNormalTitles">{wishList_text.title}</MUI.Typography> :
+        <MUI.Box>
+          <UI.Error message={wishList_text.state} />
         </MUI.Box>
+        : null
+        }
 
+        </MUI.Box>
         <MUI.Grid 
         sx={{"& > :last-child": {
           mb: {xs:"calc(var(--filterAndNavSize) + 20px)", special:"unset"},
@@ -76,7 +80,7 @@ export default function Menu() {
               price={pizza.price}
               review={pizza.review}
               img={pizza.image}
-              discount={pizza.offered.active && pizza.offered.percentage}
+              discount={pizza.discount}
               time={pizza.time}
               id={pizza.id}
               liked={requests.findPizza(userdata["likedPizzasId"],"boolean", pizza.id)}
@@ -89,8 +93,8 @@ export default function Menu() {
         ))}
       </MUI.Grid>
         {/* Pizza info modal / section */}
-      {requestedpizzaInfo && (
-        <UI.PizzaInfo requestedpizzaInfo={requestedpizzaInfo} setInfo={setInfo} dialog={true} />
+      {info && (
+        <UI.PizzaInfo id={info} setInfo={setInfo} dialog={true} />
       )}
     </>
   );

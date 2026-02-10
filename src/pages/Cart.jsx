@@ -15,12 +15,12 @@ export default function Cart() {
   const [info, setInfo] = useState(null);
   // const { userdata, colorText, colorTheme,pizzaRawData } = useContext(SiteContext);
   const {userdata} = useUserData()
-  const pizzaRawData = useRequestData("menu")
+  const {pizzaRawData, cart_text} = useRequestData("cart")
   const pizzaInCart = useMemo(
     () => request.findPizza(pizzaRawData, "cart", userdata["pizzaInCartId"]),
     [userdata],
   );
-
+  // console.log()
 
   const handelInfoRequest = useCallback(
     (id) => {
@@ -41,27 +41,32 @@ const orderdataProvider = useOrderSummery(pizzaInCart, pizzaInProcess)
                   gap:"var(--GlobalgapOfGrids)", 
                   mb:"var(--GlobalgapOfGrids)"}}>
                   <UI.SharedNavigation varient={"main"} filter={false}/>  
-                  {<MUI.Typography variant="textNormal">Your order list:</MUI.Typography>}
+                  { pizzaInCart.length > 0 &&
+                  <MUI.Typography variant="textNormalTitles">{cart_text.title}</MUI.Typography> 
+                } 
           </MUI.Box>
-
           <MUI.Grid 
                   sx={{"& > :last-child": {
-                    mb: {xs:"calc(var(--filterAndNavSize) + 20px)", special:"unset"},
+                  mb: {xs:"calc(var(--filterAndNavSize) + 20px)", 
+                    special:"unset"},
                   },}}
                   container 
                   rowSpacing="var(--GlobalgapOfGrids)" 
                   columnSpacing="var(--GlobalgapOfGrids)"
-          
                   >
-                    
+                   
           {/* Pizza list */}
           {pizzaInCart.length !== 0 ? 
            <>
+            <MUI.Grid 
+            sx={{width:"100%"}}
+            container  rowSpacing="var(--GlobalgapOfGrids)" 
+                  columnSpacing="var(--GlobalgapOfGrids)"> 
            {(
             pizzaInCart.map((pizza) => (
               <MUI.Grid 
                     key={pizza.name}
-                    size={{xs:12, md:6, special:4, xl:3}}>
+                    size={{xs:12, sm :6 , special:4, xl:3}}>
               <UI.PizzaInOrder
                 key={pizza.name}
                 pizzaData={pizza}
@@ -74,36 +79,40 @@ const orderdataProvider = useOrderSummery(pizzaInCart, pizzaInProcess)
               />
               </MUI.Grid>
             ))
-
           )}
-          <MUI.Grid 
-                
-                size={{xs:12, md:6, special:4, xl:3}}>
-
-          <UI.PreparationTime 
-          totalTimeRequired={orderdataProvider.totalTimeRequired} 
-          totalCount={orderdataProvider.totalCount}/>
-
           </MUI.Grid>
-          <MUI.Grid 
-                
-                size={{xs:12, md:6, special:4, xl:3}}>
-
-          <UI.OrderSummery 
-            subTotalPrice={orderdataProvider.subTotal}
-            shipping={orderdataProvider.shipping}
-            tax={orderdataProvider.tax}
-            totalToPay={orderdataProvider.totalToPay}
-          />
+          <MUI.Grid container 
+          sx={{width:"100%"}}
+          rowSpacing="var(--GlobalgapOfGrids)" 
+                                columnSpacing="var(--GlobalgapOfGrids)"> 
+            <MUI.Grid 
+                  size={{xs:12, md:6, special:4, xl:6}}>
+            <UI.PreparationTime 
+            text = {cart_text}
+            totalTimeRequired={orderdataProvider.totalTimeRequired} 
+            totalCount={orderdataProvider.totalCount}/>
+            </MUI.Grid>
+            <MUI.Grid 
+                  size={{xs:12, md:6, special:8, xl:6}}>
+            <UI.OrderSummery 
+              text = {cart_text}
+              subTotalPrice={orderdataProvider.subTotal}
+              shippingPrice={orderdataProvider.shipping}
+              taxPrice={orderdataProvider.tax}
+              totalToPay={orderdataProvider.totalToPay}
+            />
           </MUI.Grid>
-          <UI.ButtonBasic
-          title={"Order"}
-          to={"/applayout/payment"}
-          />
+           </MUI.Grid>
+          <MUI.Box sx={{display:"flex",padding:"0 25%", justifyContent:"center" , width:"100%"}}>
+            <UI.ButtonBasic
+            title={cart_text.button}
+            to={"payment"}
+            />
+          </MUI.Box>
            </>
           : (
             <UI.Error
-              message={"Your cart  is empty please check out our menu"}
+              message={cart_text.state}
             />
           )}
     </MUI.Grid>

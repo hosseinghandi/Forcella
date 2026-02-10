@@ -17,7 +17,9 @@ const useRequestText = (request) => {
         case "signup":
           return requests.getSignupData(t);
         case "menu" :
-          return requests.getMenuData(t)
+          return requests.getMenuData(t);
+        case "cart":
+          return requests.getCartData(t);
         case "categories":
           return t("pages.menu.categories", {returnObjects: true})
         case "offer" :

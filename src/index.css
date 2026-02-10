@@ -1,4 +1,3 @@
-@import "tailwindcss";
 
 body, html {
     font-family: "Inter", sans-serif;
@@ -73,6 +72,7 @@ body, html {
   --titleWelcoming : clamp(30px, var(--initial-30px-at375px), 4rem);
   --textWelcomingInfo : clamp(1rem, var(--initial-16px-at375px), 1.5rem);
   --pizzaContentBold : clamp(1rem, var(--initial-16px-at375px), 1.2rem);
+  --textNormalTitles : clamp(1rem, var(--initial-16px-at375px), 1.6rem);;
 
   /*************************************************
    * INPUTS & BUTTONS

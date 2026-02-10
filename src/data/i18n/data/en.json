@@ -1,9 +1,10 @@
 {
   "pizzas": {
     "labels": {
-      "ingredients": "Ingredients",
+      "ingredients": "Ingredients : ",
       "calories": "Calories",
       "preparationTime": "Preparation time",
+      "time": "time",
       "spiceLevel": "Spice level"
     },
     "spiceLevels": {
@@ -16,8 +17,11 @@
       "margherita": {
         "id": 1,
         "name": "Margherita",
-        "description": "A traditional Neapolitan Margherita pizza recipe is tomato sauce with fresh tomatoes, mozzarella cheese and basil which represent the colours of the Italian flag – white cheese, green basil and red tomato.",
-        "ingredients": ["tomato", "mozzarella", "basil"],
+        "description": "The iconic Neapolitan pizza originating from Italy, made with tomato sauce, fresh mozzarella, and basil. Known for its simplicity, balanced flavors, and light texture, it highlights the quality of traditional ingredients.",
+        "ingredients": {
+          "list": ["Tomato", "Mozzarella", "Basil"],
+          "icons": ["tomato", "mozzarella", "basil"]
+        },
         "spiceLevel": "none",
         "category": ["Special"],
         "calories": 250,
@@ -25,16 +29,17 @@
         "review": 5,
         "time": 10,
         "image": "/pizza-image/margherita.png",
-        "offered": {
-          "active": true,
-          "percentage": 20
-        }
+        "discount": 20 
       },
+
       "pepperoni": {
         "id": 2,
         "name": "Pepperoni",
-        "description": "Pizza with tomato sauce, mozzarella, and spicy pepperoni",
-        "ingredients": ["tomato_sauce", "mozzarella", "pepperoni"],
+        "description": "A popular American-style pizza topped with tomato sauce, mozzarella, and spicy pepperoni sausage. Its bold, savory flavor and slightly crispy edges make it one of the most loved pizzas worldwide.",
+        "ingredients": {
+          "list": ["Tomato sauce", "Mozzarella", "pepperoni"],
+          "icons": ["tomato_sauce", "mozzarella", "pepperoni"]
+        },
         "spiceLevel": "hot",
         "category": ["Special", "Meat"],
         "calories": 300,
@@ -42,38 +47,35 @@
         "review": 4.5,
         "time": 15,
         "image": "/pizza-image/peperoni.png",
-        "offered": {
-          "active": false,
-          "percentage": 0
-        }
+        "discount": null 
       },
+
       "bbq_chicken": {
         "id": 3,
         "name": "BBQ Chicken",
-        "description": "Pizza with barbecue sauce, chicken breast, onion, and mozzarella",
-        "ingredients": [
-          "barbecue_sauce",
-          "chicken_breast",
-          "onion",
-          "mozzarella"
-        ],
-        "spiceLevel": "Mild",
+        "description": "A modern pizza variation using barbecue sauce instead of tomato sauce, topped with seasoned chicken breast, onion, and mozzarella. It offers a smoky, sweet flavor profile with a hearty, satisfying taste.",
+        "ingredients": {
+          "list": ["Tomato sauce", "Chicken breast", "Onion", "Mozzarella"],
+          "icons": ["tomato_sauce", "chicken_breast", "onion", "mozzarella"]
+        },
+        "spiceLevel": "mild",
         "category": ["Special", "Meat"],
         "calories": 320,
         "price": 10.99,
         "review": 3.8,
         "time": 20,
         "image": "/pizza-image/chicken.png",
-        "offered": {
-          "active": false,
-          "percentage": 0
-        }
+        "discount": null 
       },
+
       "hawaiian": {
         "id": 4,
         "name": "Hawaiian",
-        "description": "Pizza with tomato sauce, mozzarella, ham, and pineapple",
-        "ingredients": ["tomato_sauce", "mozzarella", "ham", "pineapple"],
+        "description": "A controversial yet famous pizza combining tomato sauce, mozzarella, ham, and pineapple. The contrast between sweet pineapple and salty ham creates a distinctive sweet-and-savory flavor experience.",
+        "ingredients": {
+          "list": ["Tomato sauce", "Mozzarella", "Ham", "Pineapple"],
+          "icons": ["tomato_sauce", "mozzarella", "ham", "pineapple"]
+        },
         "spiceLevel": "medium",
         "category": ["Meat"],
         "calories": 290,
@@ -81,22 +83,17 @@
         "review": 4,
         "time": 20,
         "image": "/pizza-image/hawai.png",
-        "offered": {
-          "active": true,
-          "percentage": 20
-        }
+        "discount": 20 
       },
+
       "vegetarian": {
         "id": 5,
         "name": "Vegetarian",
-        "description": "Pizza with tomato sauce, mozzarella, and fresh vegetables",
-        "ingredients": [
-          "tomato_sauce",
-          "mozzarella",
-          "bell_peppers",
-          "onion",
-          "olives"
-        ],
+        "description": "A meat-free pizza topped with tomato sauce, mozzarella, and a selection of fresh vegetables. It’s a lighter option that emphasizes freshness, variety, and natural flavors without sacrificing taste.",
+        "ingredients": {
+          "list": ["Tomato sauce", "Mozzarella", "Bell peppers", "Onion", "Olives"],
+          "icons": ["tomato_sauce", "mozzarella", "bell_peppers", "onion", "olives"]
+        },
         "spiceLevel": "none",
         "category": ["Vegetarian"],
         "calories": 240,
@@ -104,12 +101,8 @@
         "review": 4.1,
         "time": 10,
         "image": "/pizza-image/vegan.png",
-        "offered": {
-          "active": false,
-          "percentage": 0
-        }
+        "discount": null 
       }
     }
   }
-  
 }

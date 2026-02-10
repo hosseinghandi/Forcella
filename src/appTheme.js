@@ -10,6 +10,10 @@ import { createTheme } from "@mui/material";
             fontSize: "var(--textNormal)",
             fontWeight : 400, 
           }, 
+          "textNormalTitles" : {
+            fontSize: "var(--textNormalTitles)",
+            fontWeight : 400, 
+          }, 
           "textLabel" : {
             fontSize: "var(--textLabel)",
             fontWeight : 300, 
@@ -35,6 +39,7 @@ import { createTheme } from "@mui/material";
             fontWeight : "900"
           }, 
 
+          
 
 
 
@@ -59,7 +64,7 @@ import { createTheme } from "@mui/material";
           },
           "textError" : {
             color:"var(--red)",
-            fontSize : "clamp(1rem, var(--initial-16px-at375px), 1.2rem)",
+            fontSize : "clamp(1rem, var(--initial-16px-at375px), 2rem)",
             fontWeight : "400"
           },
           "textHead" : {

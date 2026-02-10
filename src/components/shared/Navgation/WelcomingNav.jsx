@@ -27,7 +27,7 @@ export default function WelcomingNav() {
                         <MUI.Box > 
                         <UI.ButtonBasic
                           title={"next"}
-                          to="/applayout/menu"
+                          to="/menu"
                           shrink={true}
                         />
                                 </MUI.Box>

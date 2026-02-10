@@ -16,94 +16,109 @@ export default memo(function PizzaInOrder({
   onInfoRequest,
   count,
 }) {
-  
-  const price = pizzaData.price 
-  const name = pizzaData.name 
-  const img = pizzaData.image
-  const discount = pizzaData.discount
-  const id = pizzaData.id
-  const time = pizzaData.time
+  const price = pizzaData.price;
+  const name = pizzaData.name;
+  const img = pizzaData.image;
+  const discount = pizzaData.discount;
+  const id = pizzaData.id;
 
   const finalPrice = discount
     ? (price * (1 - discount / 100)).toFixed(2)
     : price;
 
   const iconList = [
-    [<Icon.Add />, handelAdd, "add"],
-    [<Icon.Remove />, handelMinus, "minus"], 
+    [Icon.Add, handelAdd, "add"],
+    [Icon.Info, onInfoRequest, "info"],
+    [Icon.Remove, handelMinus, "minus"]
   ];
 
   const icons = (list) => {
-    return list.map(([el, task, key]) => (
+    return list.map(([Icon, task, key]) => (
       <MUI.IconButton
         key={key}
         onClick={() => task(id)}
-        sx={{ padding: "0", color: "var(--dark)" }}
+        sx={{ "&:hover": {
+          color:"var(--orange)",
+          },
+          padding: "0", color: "var(--dark)" }}
         size="small"
       >
-        {el}
+        <Icon />
       </MUI.IconButton>
     ));
   };
 
   return (
-    // item holder (main wrapper)
-    <MUI.Card
+    // item holder (main wrapper) when the value is not arrived 0 
+      <MUI.Card
       key={id}
       sx={{
-        height: "fit-content",
-        flexDirection: "column",
+        "&:hover": {
+          boxShadow: "0 12px 32px rgba(181, 86, 56, 0.6)",
+          scale: 1.05,
+        },
+        flexDirection:"column",
+        justifyContent:"space-between",
+        height: {xs:'100%', md:"fit-content"},
+        width:"100%"
       }}
     >
-      {/* check if the user reches to order number zero and ask him if 
-      sure to remove that item from main list */}
-      {count !== 0 ? (
-        <>
-        {/* item inner wrapper to not exceed minimum size*/}
-          <MUI.Box
-            sx={{
-              height: "100px",
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              gap: "5px",
-            }}
-          >
+      <MUI.Box
+        sx={{
+          height:"100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: { xs: "row", sm: "column" },
+          alignItems: "center",
+          gap: {
+            xs: "var(--GlobalgapOfGrids)",
+            md: "calc(var(--GlobalgapOfGrids) / 2)",
+          },
+        }}
+       >
             {/* image holder  */}
-            <MUI.Box
-              sx={{
-                height: "100%",
-                width: "50%",
-                position: "relative",
-              }}
-            >
-              <MUI.CardMedia
-                component="img"
-                alt={`A photo of ${name} pizza`}
-                image={img}
-                sx={{ height: "100%", width: "15vw" }}
-              ></MUI.CardMedia>
-            </MUI.Box>
-
-
-            {/* content holder  name , quantity, price, and see more text*/}
-            <MUI.CardContent
-              sx={{
-                display: "grid",
-                padding: "0",
-                gap: "10px",
-                height: "100%",
-                width: "100%",
-              }}
-            >
-
-              {/* name and quantity wrapper as (name x 3) */}
+        <MUI.Box
+          sx={{
+            width: { xs: "30vh", sm:"20vh" , md:"25vh", special: "var(--pizzaImageSizelg)",},
+            height: "100%",
+          }}
+        >
+          <MUI.CardMedia
+            component="img"
+            image={img}
+            alt={`A photo of ${name} pizza`}
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </MUI.Box>
+        
+        {/* text wrapper*/}
+        <MUI.CardContent
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "column" },
+            justifyContent: "space-between" ,
+            padding: {xs:"0 10px", md:"unset"},
+            height: "100%",
+            width: "100%",
+            gap: {md:"calc(var(--GlobalgapOfGrids) / 2)"}
+          }}
+        >
+          <MUI.Box sx={{
+            display:"flex",
+            flexDirection: {xs: "column", sm: "row"},
+            gap:1,
+            justifyContent:"space-between"}}>
+            {/* name and count */}
               <MUI.Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
-                  gap: 2,
-                  alignItems: "center",
+                  flexDirection: {xs: "column", sm: "column",md: "row"},
+                  gap: 1,
+                  alignItems: "felx-start",
                 }}
               >
                 <MUI.Typography variant="pizzaContentBold" component="p">
@@ -113,9 +128,7 @@ export default memo(function PizzaInOrder({
                   {`x ${count}`}
                 </MUI.Typography>
               </MUI.Box>
-
-              {/* price holder  contains also discount percentage implemeneted 
-              number(cross if discount) + real number*/}
+              {/* price and discount */}
               <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
                 <MUI.Typography
                   variant="pizzaContentBold"
@@ -127,104 +140,87 @@ export default memo(function PizzaInOrder({
                     }),
                   }}
                 >
-                  {`${price * count}€`}
+                  {`${price * (count === 0 ? 1 : count)}€`}
                 </MUI.Typography>
                 {discount && (
                   <MUI.Typography
                     sx={{ padding: 0 }}
                     variant="pizzaContentBold"
-                  >{`${finalPrice * count}€`}</MUI.Typography>
+                  >{`${(finalPrice) * (count === 0 ? 1 : count)}€`}</MUI.Typography>
                 )}
               </MUI.Box>
-
-              {/* see more refers to more info requested  */}
-              <MUI.Typography onClick={() => onInfoRequest(id)}>
-                {info ? `Close details` : `See details`}
-              </MUI.Typography>
-            </MUI.CardContent>
-            <MUI.CardActions
-              sx={{
-                padding: "0",
-                height: "100%",
-                width: "10%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "end",
-                justifyContent: "space-between",
-              }}
-            >
-              {icons(iconList)}
-            </MUI.CardActions>
           </MUI.Box>
+        </MUI.CardContent>
 
-          { info &&
-            <MUI.Box sx={{width:"100%", mt:"10px"}}>
-              <MUI.Divider variant="full"/>
-              <UI.PizzaInfo requestedpizzaInfo={pizzaData} setInfo={null} dialog={false}/>
-              <MUI.Typography sx={{width:"100%"}}> </MUI.Typography>
-            </MUI.Box> }
-          
-        </>
-      ) : (
-        <>
-          <MUI.CardActions
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              gap: 2,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <MUI.Typography> Do you want to remove this order?</MUI.Typography>
-            <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 8 }}>
-              <UI.ButtonBasic
-                type="submit"
-                title={"Yes"}
-                id={id}
-                task={handelRemove}
-                shrink={true}
-              />
-              <UI.ButtonBasic
-                type="submit"
-                title={"No"}
-                id={id}
-                task={handelAdd}
-                shrink={true}
-              />
-            </MUI.Box>
-          </MUI.CardActions>
-        </>
-      )}
-    </MUI.Card>
-  );
-});
+        <MUI.CardActions
+          sx={{
+            padding: "0",
+            height: "100%",
+            width: { sm: "100%" },
+            flex: 1,
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+          }}
+        >
+          {icons(iconList)}
+        </MUI.CardActions>
 
-{
-  /* {discount ? (
-            <MUI.Badge
-              badgeContent={
-                <MUI.Typography variant="body5">
-                  {discount}%<br />OFF
-                </MUI.Typography>
-              }
-              anchorOrigin={{ vertical: "right", horizontal: "left" }}
-              sx={{
-                "& .MuiBadge-badge": {
-                  width: "40px",
-                  height: "40px",
-                  backgroundColor: "var(--dark)",
-                  color: "var(--gold)",
-                },
-              }}
-            >
-              <MUI.CardMedia
-                component="img"
-                alt={`A photo of ${name} pizza`}
-                image={img}
-                sx={{ height: "100%", width: "15vh" }}
-              />
-            </MUI.Badge>
-            />} */
-}
+      {
+        count === 0 && 
+        <MUI.Dialog
+        PaperProps={{
+          sx: {
+            padding: "var(--cardPaddingY) var(--cardPaddingX)",
+            borderRadius: "25px",
+          },
+        }}
+        onClose={handelRemove}
+        open={handelRemove}
+        fullWidth
+        maxWidth="sm"
+      >
+
+        <MUI.CardActions
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            gap: 2,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <MUI.Typography> Do you want to remove this order?</MUI.Typography>
+          <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 8 }}>
+            <UI.ButtonBasic
+              type="submit"
+              title={"Yes"}
+              id={id}
+              task={handelRemove}
+              shrink={true}
+            />
+            <UI.ButtonBasic
+              type="submit"
+              title={"No"}
+              id={id}
+              task={handelAdd}
+              shrink={true}
+            />
+          </MUI.Box>
+        </MUI.CardActions>
+      </MUI.Dialog>
+      }
+
+      </MUI.Box>
+
+            { info &&
+            <>
+              <UI.PizzaInfo id={id} setInfo={onInfoRequest} dialog={true}/>
+            </>
+          }
+      </MUI.Card> 
+    )
+      }
+  )

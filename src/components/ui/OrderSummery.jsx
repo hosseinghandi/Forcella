@@ -1,13 +1,23 @@
 import * as MUI from "../../barrels/MUI"
-export default function Ordersummery ({subTotalPrice,shipping, tax,totalToPay}) {
-    function createData(name, value) {
+export default function Ordersummery ({subTotalPrice , shippingPrice, taxPrice, totalToPay, text}) {
+    
+   const {
+      title,
+      subtotal,
+      shipping,
+      tax,
+      total
+    } = text.orderSummary
+
+  function createData(name, value) {
     return { name, value };
-    }
+}
+   
 
     const rows = [
-    createData('Subtotal Price', subTotalPrice.toFixed(2)),
-    createData('Shipping', shipping.toFixed(2)),
-    createData('Tax', tax.toFixed(2)),
+    createData(subtotal, subTotalPrice.toFixed(2)),
+    createData(shipping, shippingPrice.toFixed(2)),
+    createData(tax, taxPrice.toFixed(2)),
     ];
 
     return (
@@ -21,7 +31,7 @@ export default function Ordersummery ({subTotalPrice,shipping, tax,totalToPay}) 
       aria-label="a summery of user order">
         <MUI.TableHead> 
           <MUI.TableRow>
-            <MUI.TableCell scope="title" sx={{fontWeight:900}}>OrderSummery</MUI.TableCell>
+            <MUI.TableCell scope="title"> <MUI.Typography component={"span"} variant="titleBold">{title} </MUI.Typography> </MUI.TableCell>
           </MUI.TableRow>
         </MUI.TableHead>
         <MUI.TableBody>
@@ -31,14 +41,15 @@ export default function Ordersummery ({subTotalPrice,shipping, tax,totalToPay}) 
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <MUI.TableCell component="th" scope="row">
-                {row.name}
+                <MUI.Typography component={"span"} variant="textNormal">{row.name} </MUI.Typography>
+                
               </MUI.TableCell>
-              <MUI.TableCell align="right">{`${row.value}$`}</MUI.TableCell>
+              <MUI.TableCell align="right"><MUI.Typography component={"span"} variant="textNormal">{`${row.value}$`}</MUI.Typography> </MUI.TableCell>
             </MUI.TableRow>
           ))}
-          <MUI.TableRow sx={{borderTop:"1px solid var(--dark)"}}>
-            <MUI.TableCell align="left" sx={{fontWeight:900}}>Total to pays</MUI.TableCell>
-            <MUI.TableCell align="right" sx={{fontWeight:900}}>{`${totalToPay.toFixed(2)}$`}</MUI.TableCell>
+          <MUI.TableRow sx={{borderTop:"1px solid var(--black-bg)"}}>
+            <MUI.TableCell align="left" ><MUI.Typography component={"span"} variant="titleBold">{total}</MUI.Typography> </MUI.TableCell>
+            <MUI.TableCell align="right" > <MUI.Typography component={"span"} variant="titleBold">{`${totalToPay.toFixed(2)}$`}</MUI.Typography>  </MUI.TableCell>
           </MUI.TableRow>
         </MUI.TableBody>
       </MUI.Table>

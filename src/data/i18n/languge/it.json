@@ -103,7 +103,7 @@
       "search": {
         "placeholder": "Cerca la tua pizza preferita"
       },
-      "categories": ["Tutte", "Carne", "Vegetariana", "Speciale", "In offerta"],
+      "categories": ["Tutte", "Carne", "Vegetariana", "Speciale", "offerta"],
       "offer": {
         "title" : "Offerta speciale",
         "note": "di sconto applicato al checkout"
@@ -117,19 +117,31 @@
         "orders": "Cronologia ordini"
       }
     },
-    "cart": {
-      "title": "Carrello",
-      "states": {
-        "empty": "Il tuo carrello è vuoto"
-      }
+   "cart": {
+    "title": "La tua lista ordini",
+    "states": {
+      "empty": "Il tuo carrello è vuoto"
     },
+    "visibility": {
+      "show": "vedi dettagli",
+      "hide": "mostra meno"
+    },
+    "pre_message": "Il tuo ordine sarà pronto entro <strong>{minutes} {minutes, plural, one {minuto} other {minuti}}</strong> e <strong>{workers} {workers, plural, one {operatore} other {operatori}}</strong> saranno dedicati al tuo ordine."
+  },
+  "orderSummary": {
+    "title": "Riepilogo ordine",
+    "subtotal": "Subtotale",
+    "shipping": "Spedizione",
+    "tax": "Tasse",
+    "total": "Totale da pagare"
+  },
 
-    "favorites": {
-      "title": "Pizze preferite",
-      "states": {
-        "empty": "Non hai ancora pizze preferite"
-      }
+  "wish": {
+    "title": "La tua lista dei desideri",
+    "states": {
+      "empty": "Non hai ancora pizze preferite"
     }
+  }
   },
   "ui": {
     "buttons": {
@@ -137,6 +149,7 @@
       "signup": "Registrati",
       "continue": "Continua",
       "orderNow": "Ordina ora",
+      "order" : "Ordina",
       "save": "Salva",
       "cancel": "Annulla"
     },

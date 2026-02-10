@@ -119,14 +119,25 @@
       }
     },
     "cart": {
-      "title": "Shopping bag",
+      "title": "Your order List",
       "states": {
-        "empty": "Your shopping bag is empty"
-      }
+        "empty": "Your cart is empty"
+      },
+      "visibility" : {
+        "show" : "see details",
+        "hide" : "see less"
+      },
+      "pre_message": "Your order will be ready within <strong>{minutes} {minutes, plural, one {minute} other {minutes}} </strong> and <strong>{workers} {workers, plural, one {worker} other {workers}} </strong> will be dedicated to your order."
     },
-
-    "favorites": {
-      "title": "Favorite pizzas",
+     "orderSummary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal Price",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total to pay"
+    },
+    "wish": {
+      "title": "Your wish list",
       "states": {
         "empty": "You have no favorite pizzas yet"
       }
@@ -138,6 +149,7 @@
       "signup": "Sign up",
       "continue": "Continue",
       "orderNow": "Order now",
+      "order" : "Order",
       "save": "Save",
       "cancel": "Cancel"
     },

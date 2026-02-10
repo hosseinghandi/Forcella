@@ -47,7 +47,6 @@ export default memo(function PizzaInList({
         height:"var(--iconsize)",
         "&:hover": {
           color:"var(--orange)",
-            scale:1.05
           },}} />
       </MUI.IconButton>
     ));

@@ -26,12 +26,12 @@ export default function AppRoutes() {
           {/* protected */}
           <Route element={<Routers.ProtectedRoute />}>
             <Route path="/profile" element={<Pages.ProfileUser />} />
-            <Route path="/cart" element={<Pages.Cart />} />
-            {/* <Route path="/wish" element={<Pages.WishList />} /> */}
-            <Route path="/payment" element={<Pages.Payment/>} />
+            <Route path="/cart" element={<Pages.Cart/>} />
+            <Route path="/cart/payment" element={<Pages.Payment/>} />
           </Route>
 
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     )
-}
+  }
+  {/* <Route path="/wish" element={<Pages.WishList />} /> */}

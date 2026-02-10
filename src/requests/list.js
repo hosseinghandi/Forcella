@@ -21,7 +21,7 @@ const list = (request) => {
       case "nav_path_list":
           return[
               { path: "/menu", Icon: Icons.Pizza },
-              { path: "wish", Icon: Icons.Heart },
+              { path: "/menu/wish", Icon: Icons.Heart },
               { path: "/cart", Icon: Icons.ShoppingBag },
               { path: "/profile", Icon: Icons.Person_bold }]    
   }

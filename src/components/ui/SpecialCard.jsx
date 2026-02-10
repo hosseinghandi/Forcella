@@ -15,7 +15,7 @@ const text = useRequestText("offer")
     const offeredPizza = {
         name : offered[0].name,
         img : offered[0].image,
-        discount : offered[0].offered.percentage
+        discount : offered[0].discount
     }
 
 return (<MUI.Card

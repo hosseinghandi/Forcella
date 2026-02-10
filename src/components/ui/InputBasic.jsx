@@ -2,8 +2,6 @@
 // material ui elements
 
 import * as MUI from "../../barrels/MUI"
-import * as Icon from "../../barrels/Icons"
-import {useTheme} from "../../providers/Theme"
 export default function InputBasic({
   name,
   label,
@@ -18,6 +16,7 @@ export default function InputBasic({
   onChange,
 }) {
   
+  console.log(Icon)
 return (
 <MUI.Box sx={{width:"100%"}}>
   <MUI.Typography 

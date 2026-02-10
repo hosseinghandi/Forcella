@@ -1,4 +1,3 @@
-
 import * as UI from "../barrels/UI"
 import * as MUI from "../barrels/MUI"
 import * as Icon from "../barrels/Icons"
@@ -13,32 +12,32 @@ export default function Payment() {
 
     return( 
         <>
-            <UI.SharedNavigation main={true}/>
+            <UI.SharedNavigation varient={"navigation"} photobaner={true} position={"down"} />
             <MUI.Typography> Please provide your bank details.</MUI.Typography>
             <UI.Error message={"here is the invalid"}/>
             <MUI.Box sx={{display:"flex", flexDirection:"column", 
                 gap:"var(--gapOfItems)", marginTop:"20px"}}>
-            {upperInputs.map(([label, Icon, name, placeholder], index) => (
+            {upperInputs.map(([label, icon, name, placeholder], index) => (
                           <UI.InputBasic
                             label={label} 
                             key={`input_${index}`}
                             name={name}
                             type="text"
                             NoBorder={false}
-                            icon={<Icon />}
+                            Icon={icon }
                             placeholder={placeholder}
                             // onChange={helpers.handleChange("personalInfo",(subsection ? subsection : ""), setFormData)}
                           />))
                   }
             <MUI.Box sx={{display:"flex", flexDirection:"row", gap:"var(--gapOfItems)"}}>
-            {belowInputs.map(([label, Icon, name, placeholder], index) => (
+            {belowInputs.map(([label, icon, name, placeholder], index) => (
                           <UI.InputBasic
                             label={label} 
                             key={`input_${index}`}
                             name={name}
                             type="text"
                             NoBorder={false}
-                            icon={<Icon />}
+                            Icon={icon}
                             placeholder={placeholder}
                             // onChange={helpers.handleChange("personalInfo",(subsection ? subsection : ""), setFormData)}
                           />))
@@ -46,13 +45,12 @@ export default function Payment() {
                   </MUI.Box>
                   <UI.ButtonBasic
                               title={"Pay"}
-                              to="/applayout/menu"
+                              to="/menu"
                               color="white"
                               disabled={false}
                             />
             </MUI.Box>
         </>
-
     )
 }
 

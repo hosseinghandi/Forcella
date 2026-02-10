@@ -11,10 +11,11 @@ import pizzaSlice from "/pizza-image/margherita.png";
 import * as MUI from "../../../barrels/MUI";
 export default function NavigationWrapper({ children, position, photobaner }) {
 
-  
+  const positionTop = { left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, top: {xs:"-23vh", sm:"-20vh", md:"-35vh",lg:"-35vw", xl:"-60vh"}, position: "absolute" };
+  const positionDown = { left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, top: {xs:"-23vh", sm:"-20vh", md:"-35vh",lg:"-35vw", xl:"-60vh"}, position: "absolute" };
   const positionValue = !position
     ? { left: {xs:"-15vh", lg:"-20vh", xl:"-15vw"}, top: "-25px", position: "absolute" }
-    : { left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, top: {xs:"-23vh", sm:"-20vh", md:"-35vh",lg:"-35vw", xl:"-60vh"}, position: "absolute" };
+    : position === "top" ?  positionTop : positionDown
 
   return photobaner ?( 
     <MUI.Box

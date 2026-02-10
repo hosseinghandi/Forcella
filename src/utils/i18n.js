@@ -1,12 +1,13 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
+import ICU from "i18next-icu";
 import en_lang from "../data/i18n/languge/en.json"
 import it_lang from "../data/i18n/languge/it.json";
 import en_data from "../data/i18n/data/en.json"
 import it_data from "../data/i18n/data/it.json";
 
 i18n
+  .use(ICU)
   .use(initReactI18next)
   .init({
     resources: {
