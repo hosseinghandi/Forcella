@@ -67,7 +67,7 @@ export default memo(function PizzaInList({
           boxShadow: "0 12px 32px rgba(181, 86, 56, 0.6)",
           scale:1.05
         },
-        height: {xs:"var(--cardSizeMainVertical)", md:"fit-content"},
+        height: {xs:"var(--cardSizeMainVertical)", sm:"fit-content"},
       }}
     >
 
@@ -77,10 +77,11 @@ export default memo(function PizzaInList({
           height: "100%",
           width: "100%",
           display: "flex",
-          flexDirection: {xs:"row", md:"column"},
+          flexDirection: {xs:"row", sm:"column"},
           alignItems: "center",
-          gap: {xs:"calc(var(--GlobalgapOfGrids) / 4)", 
-            md:"calc(var(--GlobalgapOfGrids) / 2)"},
+          gap: 
+          {xs:"calc(var(--GlobalgapOfGrids) / 4)", 
+            sm:"calc(var(--GlobalgapOfGrids) / 2)"},
         }}
       >
 
@@ -88,7 +89,7 @@ export default memo(function PizzaInList({
         {/* image holder  */}
         <MUI.Box
           sx={{
-            width: {xs:"100%", special:"var(--pizzaImageSizelg)"},
+            width: {xs:"100%", sm:"28vw", special:"18vw", lg:"15vw", xl:"13vw"},
             height: "100%",
           }}
          >
@@ -138,11 +139,12 @@ export default memo(function PizzaInList({
             />
           )}
         </MUI.Box>
+
         {/* text wrapper*/}
         <MUI.CardContent
           sx={{
             display: "flex",
-            flexDirection: {xs:"column", md:"row"},
+            flexDirection: {xs:"column", sm:"row"},
             justifyContent: "space-between",
             padding: "0",
             height: "100%",
@@ -178,10 +180,10 @@ export default memo(function PizzaInList({
           sx={{
             padding: "0",
             height: "100%",
-            width:{md:"100%"},
+            width:{sm:"100%"},
             flex:1,
             display: "flex",
-            flexDirection: {xs:"column", md:"row"} ,
+            flexDirection: {xs:"column", sm:"row"} ,
             alignItems:"flex-end",
             justifyContent: "space-between",
           }}

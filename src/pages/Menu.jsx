@@ -1,6 +1,7 @@
 // react imports
 import { useState, useCallback, useMemo } from "react";
 import * as requests from "../barrels/requests";
+import emptyWishlist from "/emptyWish.png"
 // impoprt react router
 import { useParams } from "react-router-dom";
 // impoprt helper
@@ -43,15 +44,20 @@ export default function Menu() {
         <MUI.Box sx={{display:"flex", flexDirection:"column", 
         gap:"var(--GlobalgapOfGrids)", 
         mb:"var(--GlobalgapOfGrids)"}}>
-        <UI.SharedNavigation varient={"main"} filter={ !filterkey === "wish"}/>  
+        <UI.SharedNavigation 
+        varient={"menu"} 
+        filter={ filterkey !== "wish"} 
+        headText={wishList_text.title}
+        />  
         
-        {filterkey === "wish" ?
-          WishList.length > 0  ?
-        <MUI.Typography variant="textNormalTitles">{wishList_text.title}</MUI.Typography> :
-        <MUI.Box>
-          <UI.Error message={wishList_text.state} />
-        </MUI.Box>
-        : null
+        {
+        WishList.length === 0  && filterkey === "wish" && 
+        <UI.EmptyList
+          image={emptyWishlist}
+          title={wishList_text.empty.title}
+          message={wishList_text.empty.message}
+          buttontitle={wishList_text.empty.button}
+        /> 
         }
 
         </MUI.Box>
@@ -67,14 +73,17 @@ export default function Menu() {
           
           {!filterkey && (
             <MUI.Grid
-              size={{xs:12, md:12, special:4, xl:3}}>
+              size={{xs:12,md:12, special:4,lg:3, xl:2}}
+
+              >
               <UI.SpecialCard offered={offeredPizza}/>
               </MUI.Grid> 
           )}
           {pizzaData.map((pizza) => (
+            
             <MUI.Grid 
             key={pizza.name}
-            size={{xs:12, md:6, special:4, xl:3}}>
+            size={{xs:12,sm:6 ,md:6, special:4,lg:3, xl:2}}>
             <UI.PizzaInList
               name={pizza.name}
               price={pizza.price}

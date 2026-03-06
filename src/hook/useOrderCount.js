@@ -12,7 +12,7 @@ export function useOrderCount (key) {
                     ...prev, 
                     pizzaInProcess : {
                         ...prev.pizzaInProcess, 
-                        [id]: prev.pizzaInProcess[id] + 1
+                        [id]: prev?.pizzaInProcess[id] + 1
                     }  
                 };
                 // update the state fro local storage

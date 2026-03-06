@@ -23,9 +23,8 @@ export default memo(function PizzaInOrder({
   const id = pizzaData.id;
 
   const finalPrice = discount
-    ? (price * (1 - discount / 100)).toFixed(2)
+    ? (price * (1 - discount / 100))
     : price;
-
   const iconList = [
     [Icon.Add, handelAdd, "add"],
     [Icon.Info, onInfoRequest, "info"],
@@ -57,10 +56,12 @@ export default memo(function PizzaInOrder({
           boxShadow: "0 12px 32px rgba(181, 86, 56, 0.6)",
           scale: 1.05,
         },
+        
         flexDirection:"column",
         justifyContent:"space-between",
-        height: {xs:'100%', md:"fit-content"},
-        width:"100%"
+        height: {xs:"fit-content", md:"fit-content"},
+        width:"100%",
+        maxWidth:"350px",   
       }}
     >
       <MUI.Box
@@ -72,14 +73,13 @@ export default memo(function PizzaInOrder({
           alignItems: "center",
           gap: {
             xs: "var(--GlobalgapOfGrids)",
-            md: "calc(var(--GlobalgapOfGrids) / 2)",
+            md: "var(--GlobalgapOfGrids)",
           },
         }}
        >
             {/* image holder  */}
         <MUI.Box
-          sx={{
-            width: { xs: "30vh", sm:"20vh" , md:"25vh", special: "var(--pizzaImageSizelg)",},
+          sx={{    
             height: "100%",
           }}
         >
@@ -88,7 +88,7 @@ export default memo(function PizzaInOrder({
             image={img}
             alt={`A photo of ${name} pizza`}
             sx={{
-              width: "100%",
+              width: { xs: "30vw", sm:"25vw" , md:"15vw", special: "13vw",xl:"10vw"},
               height: "100%",
               objectFit: "contain",
             }}
@@ -104,17 +104,24 @@ export default memo(function PizzaInOrder({
             padding: {xs:"0 10px", md:"unset"},
             height: "100%",
             width: "100%",
-            gap: {md:"calc(var(--GlobalgapOfGrids) / 2)"}
+            
+            
+            // gap: {md:"calc(var(--GlobalgapOfGrids) / 2)"}
           }}
         >
           <MUI.Box sx={{
             display:"flex",
-            flexDirection: {xs: "column", sm: "row"},
-            gap:1,
-            justifyContent:"space-between"}}>
+            height:"100%",
+            flexDirection: {
+              xs: "column", 
+              sm: "row", 
+              md:"column"},
+              minHeight:{xs:"100px",sm:"50px"},
+              justifyContent:"space-between"}}>
             {/* name and count */}
               <MUI.Box
                 sx={{
+                  whiteSpace: "nowrap",
                   display: "flex",
                   flexDirection: {xs: "column", sm: "column",md: "row"},
                   gap: 1,
@@ -125,28 +132,34 @@ export default memo(function PizzaInOrder({
                   {name}
                 </MUI.Typography>
                 <MUI.Typography variant="textNormal" component="p">
-                  {`x ${count}`}
+                  {`x ${count === 0 ? 1 : count}`}
                 </MUI.Typography>
               </MUI.Box>
               {/* price and discount */}
-              <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
+              <MUI.Box sx={{ 
+                whiteSpace: "nowrap",
+                display: "flex", 
+                alignItems:{xs:"flex-start", sm:"flex-end"},
+                flexDirection: {xs:"column", sm:"column", md:"row"}, 
+                gap: 2 }}>
                 <MUI.Typography
                   variant="pizzaContentBold"
                   sx={{
                     ...(discount && {
+                      fontSize:"var(--textLabel)",
                       textDecoration: "line-through",
                       textDecorationColor: "var(--red)",
                       textDecorationThickness: 2,
                     }),
                   }}
                 >
-                  {`${price * (count === 0 ? 1 : count)}€`}
+                  {`${(price * (count === 0 ? 1 : count)).toFixed(2)}€`}
                 </MUI.Typography>
                 {discount && (
                   <MUI.Typography
                     sx={{ padding: 0 }}
                     variant="pizzaContentBold"
-                  >{`${(finalPrice) * (count === 0 ? 1 : count)}€`}</MUI.Typography>
+                  >{`${((finalPrice) * (count === 0 ? 1 : count)).toFixed(2)}€`}</MUI.Typography>
                 )}
               </MUI.Box>
           </MUI.Box>
@@ -154,10 +167,12 @@ export default memo(function PizzaInOrder({
 
         <MUI.CardActions
           sx={{
+            minHeight:{xs:"100px",sm:"100%"},
             padding: "0",
             height: "100%",
             width: { sm: "100%" },
             flex: 1,
+            gap:{xs:2},
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
             alignItems: "flex-end",

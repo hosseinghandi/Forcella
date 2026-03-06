@@ -27,6 +27,8 @@ const useRequestText = (request) => {
           title: t("pages.menu.offer.title"),
           description: t("pages.menu.offer.note"),
           button: t("ui.buttons.orderNow")}
+        case "profile" :
+          return requests.getProfileData(userdata, t);
           }
     }
   );

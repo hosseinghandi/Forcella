@@ -4,21 +4,31 @@ import * as MUI from "../barrels/MUI"
 import * as UI from "../barrels/UI"
 
 export default function Welcome() {
+  
+
+
   const text = useRequestText("welcoming")
   return (
     <>
-      <UI.SharedNavigation varient={"welcoming"} photobaner={true}/>
-       <UI.LayoutType1>
+      <UI.SharedNavigation varient={"welcoming"}/>
+       <UI.LayoutHandeler
+       style={
+        {
+                marginTop:{xs:"10vh", lg:"unset"},
+                // margin:"auto",
+                width:"100%", 
+                height:{xs:"50vh" ,lg:"85vh"},
+                }
+       }>
         <MUI.Box
           sx={{
+            maxWidth:"1100px",
             textAlign: "left",
             width: "100%",
-
           }}
         >
           <MUI.Typography
             variant="titleWelcoming"
-            sx={{fontSize:{xl:"5.5rem"}}}
           >
             {text.title}
           </MUI.Typography>
@@ -34,10 +44,10 @@ export default function Welcome() {
             flexDirection: 
             { xs: "column",
               sm: "column",
-              md:"row"
+              special:"row"
             },
             marginTop : "var(--GlobalgapOfItems)",
-            gap: "10px",
+            gap: "var(--GlobalgapOfInputs)",
             width: "100%",
           }}
         >
@@ -54,7 +64,7 @@ export default function Welcome() {
             disabled={false}
           />
         </MUI.Box>
-    </UI.LayoutType1>
+    </UI.LayoutHandeler>
     </>
   );
 }

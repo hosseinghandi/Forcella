@@ -3,13 +3,20 @@
 import * as MUI from "../../barrels/MUI"
 import * as Icon from "../../barrels/Icons"
 import { useTheme } from "../../providers/Theme"
+import useHandelUserPerference from "../../hook/useHandelUserPereference"
 export default function ToggelTheme() {
-  const {colors, mode, setMode} = useTheme()
+  const {colors, mode} = useTheme()
+
+  const updatedPereference = useHandelUserPerference()
+
   return (
     <MUI.Button
       aria-pressed={mode}
       aria-label={`Toggle theme (${mode ? "Dark" : "Light"})`}
-      onClick={() => setMode(prev => !prev)}
+      onClick={() => {
+          updatedPereference("theme", !mode)
+      }}
+      
       variant="contained"
       sx={{
         border: "none",

@@ -5,4 +5,5 @@ export {default as findPizza} from "../utils/findPizza";
 export {default as getMenuData} from "../requests/menu";
 export {default as requestList} from "../requests/list";
 export {default as getCartData} from "../requests/cart";
+export {default as getProfileData} from "../requests/profile"
 

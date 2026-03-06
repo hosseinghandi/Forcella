@@ -8,11 +8,16 @@ export const saveUserState = (state) => {
 }
 
 export const getUserState = () => {
-    return getItem(useStateKey, exampleUser)
+    const saved = getItem(useStateKey)
+
+    if (saved) return saved
+
+    saveUserState(exampleUser)
+
+    return exampleUser
 }
 
-export const updateUserState = (partState) =>{
-    const currentState = getUserState() ?? {};
-    const updatedState = {...currentState , ... partState};
-    saveUserState(updatedState)
+export const updateUserState = (state) =>{
+
+    saveUserState(state)
 }

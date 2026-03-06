@@ -20,10 +20,12 @@ const list = (request) => {
 
       case "nav_path_list":
           return[
-              { path: "/menu", Icon: Icons.Pizza },
-              { path: "/menu/wish", Icon: Icons.Heart },
-              { path: "/cart", Icon: Icons.ShoppingBag },
-              { path: "/profile", Icon: Icons.Person_bold }]    
+              { link: "/menu", Icon: Icons.Pizza, page:"menu" },
+              { link: "/menu/wish", Icon: Icons.Heart, page:"wish" },
+              { link: "/cart", Icon: Icons.ShoppingBag, page:"cart" },
+              { link: "/profile", Icon: Icons.Person_bold , page:"profile"}]
+      case "hints" :
+        return [] 
   }
   });
 };

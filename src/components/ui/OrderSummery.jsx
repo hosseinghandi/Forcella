@@ -31,25 +31,30 @@ export default function Ordersummery ({subTotalPrice , shippingPrice, taxPrice, 
       aria-label="a summery of user order">
         <MUI.TableHead> 
           <MUI.TableRow>
-            <MUI.TableCell scope="title"> <MUI.Typography component={"span"} variant="titleBold">{title} </MUI.Typography> </MUI.TableCell>
+            <MUI.TableCell scope="title"> 
+              <MUI.Typography component={"span"} variant="pizzaContentBold">{title} 
+                </MUI.Typography> </MUI.TableCell>
           </MUI.TableRow>
         </MUI.TableHead>
         <MUI.TableBody>
           {rows.map((row) => (
             <MUI.TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ 
+                '&:last-child td, &:last-child th': { border: 0 } ,
+                borderBottom:"1px dotted var(--black-text)"
+              }}
             >
-              <MUI.TableCell component="th" scope="row">
+              <MUI.TableCell component="th" scope="row" >
                 <MUI.Typography component={"span"} variant="textNormal">{row.name} </MUI.Typography>
                 
               </MUI.TableCell>
-              <MUI.TableCell align="right"><MUI.Typography component={"span"} variant="textNormal">{`${row.value}$`}</MUI.Typography> </MUI.TableCell>
+              <MUI.TableCell align="right"><MUI.Typography component={"span"} variant="titleBold">{`${row.value}$`}</MUI.Typography> </MUI.TableCell>
             </MUI.TableRow>
           ))}
-          <MUI.TableRow sx={{borderTop:"1px solid var(--black-bg)"}}>
-            <MUI.TableCell align="left" ><MUI.Typography component={"span"} variant="titleBold">{total}</MUI.Typography> </MUI.TableCell>
-            <MUI.TableCell align="right" > <MUI.Typography component={"span"} variant="titleBold">{`${totalToPay.toFixed(2)}$`}</MUI.Typography>  </MUI.TableCell>
+          <MUI.TableRow sx={{borderTop:"2px solid var(--black-bg)"}}>
+            <MUI.TableCell align="left" ><MUI.Typography component={"span"} variant="pizzaContentBold">{total}</MUI.Typography> </MUI.TableCell>
+            <MUI.TableCell align="right" > <MUI.Typography component={"span"} variant="pizzaContentBold">{`${totalToPay.toFixed(2)}$`}</MUI.Typography>  </MUI.TableCell>
           </MUI.TableRow>
         </MUI.TableBody>
       </MUI.Table>

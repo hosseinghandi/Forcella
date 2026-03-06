@@ -19,18 +19,36 @@ export default function Signup() {
   const halfWidthInputs  = data.addressInputs.slice(1)
   return (
     <>
-      <UI.SharedNavigation varient={"navigation"} position={"top"}  photobaner={true}/>
-      <MUI.Box sx={{display:"flex", flexDirection:"column", alignItems:"flex-end", justifyContent:"center"}}>
-      
-      
+      <UI.SharedNavigation varient={"signup"}/>
+      <UI.LayoutHandeler 
+      style={{
+                marginTop:{xs:"5vh", lg:"15vh"},
+                width:"100%", 
+                height:{xs:"fit-content"},
+                
+      }}> 
+
+      <MUI.Box sx={{
+        width: {xs:"100%", 
+                special:"clamp(43.75rem, 65.41vi + 1.89rem, 100rem)"},
+                display:"flex", 
+                flexDirection:"column", 
+                alignItems:"flex-end", 
+                justifyContent:"center"}}>
+
       {/* main flex wrapper */}
-      <MUI.Box sx={{display:"flex", flexDirection:{xs:"column", lg:"column"},gap:"calc(var(--GlobalgapOfInputs)*2)", width:{xs:"100%", lg:"70%"}}}>
-      
-      <MUI.Typography variant="textNormal"  >{text.subtitle}</MUI.Typography >
+      <MUI.Box sx={{display:"flex", 
+      flexDirection:{xs:"column", lg:"column"},
+      gap:"calc(var(--GlobalgapOfInputs)*2)", width:"100%"}}>
+      <MUI.Typography variant="textNormal"  >
+        {text.subtitle}</MUI.Typography >
       {/* personal and address wrapper */}
-      <MUI.Box sx={{display:"flex", flexDirection:{xs:"column" ,lg:"row"},gap:"calc(var(--GlobalgapOfInputs) * 10)" }}>
+      <MUI.Box sx={{display:"flex", 
+        flexDirection:{xs:"column" ,lg:"row"},
+        gap:"calc(var(--GlobalgapOfInputs) * 10)" }}>
       {/* personal wrapper */}
-      <MUI.Box sx={{display:"flex", flexDirection:"column", gap:"var(--GlobalgapOfInputs)", width:{xs:"100%", lg:"50%"}} }>
+      <MUI.Box sx={{display:"flex", flexDirection:"column", 
+        gap:"calc(var(--GlobalgapOfInputs)*2)", width:{xs:"100%", lg:"50%"}} }>
         <MUI.Typography variant="textNormal" sx={{fontWeight:"bold"}} >{text.sections.personalInfo.title}</MUI.Typography >
           {personalInputs.map(({label, icon, placeholder}) => (
                         <UI.InputBasic
@@ -46,7 +64,7 @@ export default function Signup() {
         </MUI.Box>
 
         {/*  address wrapper */}
-        <MUI.Box sx={{display:"flex", flexDirection:"column", gap:"var(--GlobalgapOfInputs)", width:{xs:"100%", lg:"50%"} }}>
+        <MUI.Box sx={{display:"flex", flexDirection:"column", gap:"calc(var(--GlobalgapOfInputs)*2)", width:{xs:"100%", lg:"50%"} }}>
           <MUI.Typography variant="textNormal" sx={{fontWeight:"bold"}}  >{text.sections.address.title}</MUI.Typography >
             {fullWidthInput.map(({label, icon, placeholder}) => (
                           <UI.InputBasic
@@ -72,19 +90,20 @@ export default function Signup() {
                           />
                         ))}
             </MUI.Box>     
-              <MUI.Box sx={{marginTop:"calc(var(--textLabel) + 5px)"}}>
+              <MUI.Box sx={{marginTop:"calc(var(--textLabel) + 10px)"}}>
                 <UI.ButtonBasic
                             type="submit"
                             title={text.button.signup}
-                            to={"/applayout/menu"}
+                            to={"/menu"}
                             color={"white"}
+                            disabled={true}
                           />
               </MUI.Box>
       </MUI.Box>
       </MUI.Box>                
       </MUI.Box>
       </MUI.Box>
-      
+      </UI.LayoutHandeler>
     </>
   );
 }

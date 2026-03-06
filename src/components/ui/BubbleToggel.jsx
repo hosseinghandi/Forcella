@@ -5,20 +5,24 @@
 import * as MUI from "../../barrels/MUI"
 // required imports
 import { useState } from "react";
-import { useContext } from "react";
 import { useTheme } from "../../providers/Theme";
 
 export default function BubbleToggle({ dataList}) {
   const [index, setIndex] = useState(0);
   const {colors} = useTheme()
   return (
-    <MUI.Box sx={{ mt: "var(--GlobalgapOfItems)" }}>
+    <MUI.Box sx={{maxWidth:"150ch", mt: "var(--GlobalgapOfItems)" }}>
       {/* Content */}
       <MUI.Box 
       id={`tabpanel${index}`}
       role="tabpanel"
       aria-labelledby={`tab-${index}`}
-      sx={{minHeight: "var(--infoInnerTextHolderSize)"}}
+      sx={{
+        height:{xs:"calc(320px - 20vw)", 
+          special:"calc(320px - 15vw)", 
+          lg:"calc(320px - 13vw)", 
+        xl:"calc(320px - 9vw)"}
+      }}
       >
         <MUI.Typography 
         sx={{lineHeight:1.2}}

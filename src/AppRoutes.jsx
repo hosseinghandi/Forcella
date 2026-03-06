@@ -16,7 +16,6 @@ export default function AppRoutes() {
         <Route path="/signup" element={<Pages.Signup />} />
 
         {/* app layout */}
-
           {/* public inside app */}
           <Route path={"/menu"} >
             <Route index element={<Pages.Menu />}/>  
@@ -25,9 +24,10 @@ export default function AppRoutes() {
 
           {/* protected */}
           <Route element={<Routers.ProtectedRoute />}>
-            <Route path="/profile" element={<Pages.ProfileUser />} />
+            <Route path="/profile" element={<Pages.Profile />} />
             <Route path="/cart" element={<Pages.Cart/>} />
             <Route path="/cart/payment" element={<Pages.Payment/>} />
+            {/* <Route path="/profile" element={<Pages.Profile/>} /> */}
           </Route>
 
         <Route path="*" element={<h1>404</h1>} />

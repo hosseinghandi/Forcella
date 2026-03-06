@@ -6,21 +6,20 @@ import * as providers from "../src/barrels/providers"
 
 
 export default function App() {
-  // localStorage.clear()
-
+  // console.log(localStorage.getItem("userState"))
   return (
   <BrowserRouter>
-    <providers.Theme>
-      <providers.Language>
-        <providers.UserData>
-          <providers.PizzaData>
-              <UI.SiteWrapper>
-                <AppRoutes/>
-              </UI.SiteWrapper>
-          </providers.PizzaData>
-        </providers.UserData>
-      </providers.Language>
-    </providers.Theme>
+      <providers.UserData>
+        <providers.Theme>
+          <providers.Language>
+              <providers.PizzaData>
+                  <UI.SiteWrapper>
+                    <AppRoutes/>
+                  </UI.SiteWrapper>
+              </providers.PizzaData>
+          </providers.Language>
+        </providers.Theme>
+      </providers.UserData>
   </BrowserRouter>
   );
 }

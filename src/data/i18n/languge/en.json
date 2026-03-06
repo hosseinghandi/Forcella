@@ -17,11 +17,10 @@
       "title": "Welcome to Pizzeria Forcella",
       "content": {
         "highlights": [
-          "Neapolitan pizza originated in Naples, Italy, where it became a symbol of traditional Italian cuisine.",
-          "Prepared with carefully selected San Marzano tomatoes, fresh mozzarella, and high-quality local ingredients.",
-          "Baked in a traditional wood-fired oven at very high temperatures in under 90 seconds for a soft, airy crust."
+          "Neapolitan pizza originated in Naples, Italy, and over time it became one of the most famous symbols of traditional Italian cuisine. Its history dates back centuries and reflects the simplicity and authenticity of local cooking traditions. Today it is recognized around the world as a cultural and culinary icon of Italy.",
+          "It is prepared using carefully selected ingredients such as San Marzano tomatoes, fresh mozzarella, extra virgin olive oil, and aromatic basil. Each ingredient plays an important role in creating the balanced and authentic flavor of the pizza. The focus is always on freshness, quality, and respecting traditional preparation methods.",
+          "The pizza is baked in a traditional wood-fired oven at extremely high temperatures, often exceeding 450°C. This intense heat cooks the pizza in about 60–90 seconds, allowing the dough to rise quickly and develop its characteristic soft and airy texture. The result is a light crust with slightly charred edges and a delicate smoky flavor."
         ]
-
       }
     },
 
@@ -70,13 +69,13 @@
                 "error": "Invalid phone number."
               },
               "password": {
-                  "placeholder": "At least 8 characters",
-                  "error": "Password must be at least 8 characters long."
-                },
-                "confirmPassword": {
-                  "placeholder": "Re-enter your password",
-                  "error": "Passwords do not match."
-                }
+                "placeholder": "At least 8 characters",
+                "error": "Password must be at least 8 characters long."
+              },
+              "confirmPassword": {
+                "placeholder": "Re-enter your password",
+                "error": "Passwords do not match."
+              }
             }
           },
           "address": {
@@ -106,40 +105,59 @@
       },
       "categories": ["All", "Meat", "Vegetarian", "Special", "Offered"],
       "offer": {
-        "title" : "Special offer",
+        "title": "Special offer",
         "note": "offer applied at checkout"
       }
     },
 
     "profile": {
-      "title": "My profile",
       "sections": {
         "personalInfo": "Personal information",
-        "orders": "Order history"
+        "orders": "Order history",
+        "orderSummary": {
+          "title": "Your orders",
+          "orderDate": "Order on",
+          "subtotal": "Subtotal Price",
+          "shipping": "Shipping",
+          "tax": "Tax",
+          "total": "Total to pay",
+          "state": {
+            "delivered": "Delivered",
+            "inTheOven": "In the oven",
+            "empty": "You do not have any order"
+          },
+          "delet": "Delet",
+          "showMore": "show More",
+          "showLess": "show Less"
+        },
+        "logOut": {
+          "message": "Wait—leaving already? The pizza will miss you!",
+          "yes": "Yes",
+          "no": "No"
+        }
       }
     },
     "cart": {
       "title": "Your order List",
-      "states": {
-        "empty": "Your cart is empty"
+      "emptyCart": {
+        "title": "Your Shopping bag is empty",
+        "message" : "Let's see what we have in menu"
       },
-      "visibility" : {
-        "show" : "see details",
-        "hide" : "see less"
+      "visibility": {
+        "show": "see details",
+        "hide": "see less"
       },
-      "pre_message": "Your order will be ready within <strong>{minutes} {minutes, plural, one {minute} other {minutes}} </strong> and <strong>{workers} {workers, plural, one {worker} other {workers}} </strong> will be dedicated to your order."
+      "pre_message": "Your order will be ready within <strong>{minutes} {minutes, plural, one {minute} other {minutes}} </strong> and <strong>{workers} {workers, plural, one {worker} other {workers}} </strong> will be dedicated to your order.",
+      "payment": {
+        "title": "Please provide your bank details."
+      }
     },
-     "orderSummary": {
-      "title": "Order Summary",
-      "subtotal": "Subtotal Price",
-      "shipping": "Shipping",
-      "tax": "Tax",
-      "total": "Total to pay"
-    },
+
     "wish": {
-      "title": "Your wish list",
-      "states": {
-        "empty": "You have no favorite pizzas yet"
+      "title": "Your wishlist",
+      "emptyCart": {
+        "title": "Your wishlist is empty",
+        "message": "Add items to your wishlist. You can review them anytime and move them to the cart"
       }
     }
   },
@@ -149,9 +167,12 @@
       "signup": "Sign up",
       "continue": "Continue",
       "orderNow": "Order now",
-      "order" : "Order",
+      "order": "place order",
       "save": "Save",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "pay": "Pay",
+      "add" : "Add items"
     },
     "inputs": {
       "search": "Search",
@@ -170,12 +191,21 @@
       "street": "Street",
       "zipcode": "ZIP code",
       "optional": "Extra info",
-      "language": "Language",
-      "theme": "Theme"
-    },
-    "state" :{
-      "delivered" : "delivered",
-      "inTheOven" : "In the oven"
+      "cardHolder": "Card holder",
+      "cardNum": "Card number",
+      "expiry": "Expiry date",
+      "dateFormat": "mm/dd/yyyy",
+      "ccv": "CCV",
+      "language": {
+        "title": "Language",
+        "en": "English",
+        "it": "Italian"
+      },
+      "theme": {
+        "title": "Theme",
+        "dark": "Dark",
+        "light": "Light"
+      }
     },
     "feedback": {
       "loading": "Loading...",

@@ -8,6 +8,7 @@
 import * as MUI from "../../barrels/MUI"
 // required imports
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../providers/Theme";
 
 // hint
 // id: if required to inform any state baed on the id 
@@ -19,11 +20,13 @@ import { useNavigate } from "react-router-dom";
 // nonctive : make the button transparent to inform the user which button is active 
 // disabled: use for cases that form is not completed or inputs still are not valid 
 
+
 export default function ButtonBasic({
   id,
   type,
   title,
   to,
+  state,
   task,
   disabled,
   shrink,
@@ -31,14 +34,29 @@ export default function ButtonBasic({
 }) {
   // use navigation to guide the user to specific page 
   const navigate = useNavigate();
+  const {mode} = useTheme()
 
   return (
     <MUI.Button
+    
       type={type ?? "button"}
-      onClick={() => task ? id ? task(id) : task() : navigate(to)}
+      onClick={() => task ? id ? task(id) : task() : 
+        navigate(to, state ? {state}: undefined)}
       variant= {shrink ? "text" : "contained"}
       disabled={disabled}
       sx={{
+        "&.Mui-disabled": {
+          
+          ...( mode ? 
+            {opacity:0.2,
+            backgroundColor:"var(--gray)",
+            color: "var(--black-bg)"} :
+            {
+            color: "var(--white-bg)"}
+          ),
+
+
+        },
         fontSize: "var(--butonText)",
         textTransform: "capitalize",
         border: "none",

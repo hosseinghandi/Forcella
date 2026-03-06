@@ -6,7 +6,7 @@ export default function PreparationTime ({totalTimeRequired, totalCount, text}) 
     return (
         <MUI.Card 
         sx={{
-        height: "100%",
+        height: {xs:"100%",lg:"fit-content"},
         borderRadius: "var(--radius)",
         width: "100%",
         backgroundColor: "var(--gray)",

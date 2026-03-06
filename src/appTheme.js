@@ -1,7 +1,7 @@
 
 import { createTheme } from "@mui/material";
-  
   export const appTheme = createTheme({
+    
         typography: {
           fontFamily: "Inter, sans-serif",
 
@@ -30,22 +30,27 @@ import { createTheme } from "@mui/material";
           },
           "textWelcomingInfo" : {
             fontSize: "var(--textWelcomingInfo)",
-            fontWeight : 400, 
-            letterSpacing : 1.5,
+            fontWeight : 200, 
+            letterSpacing : 1.2,
+            lineHeight:1.5,
             textAlign:"left"
           }, 
           "pizzaContentBold" : {
             fontSize : "var(--pizzaContentBold) ",
             fontWeight : "900"
-          }, 
+          },
+          "textError" : {
+            color:"var(--red)",
+            fontSize : "var(--textNormalTitles)",
+            fontWeight : 600
+          },
+          "emptyCart" : {
+             color:"var(--orange)",
+             fontSize: "var(--emptylists)",
+             fontWeight : 900,
 
-          
+          },
 
-
-
-
-          
-          
           "profileWelcoming": {
             fontSize : "34px",
             fontWeight : "400"
@@ -62,11 +67,6 @@ import { createTheme } from "@mui/material";
             fontSize : "14px",
             fontWeight : "200", 
           },
-          "textError" : {
-            color:"var(--red)",
-            fontSize : "clamp(1rem, var(--initial-16px-at375px), 2rem)",
-            fontWeight : "400"
-          },
           "textHead" : {
             fontSize : "17px",
             fontWeight : "400"
@@ -76,7 +76,6 @@ import { createTheme } from "@mui/material";
             fontWeight : "400"
           },
           
-
           "textProfileBold" : {
             fontSize:"15px",
             fontWeight:600,
@@ -84,13 +83,7 @@ import { createTheme } from "@mui/material";
           }
         },
         components: {
-            MuiTypography: {
-              styleOverrides:{
-                root:{
-                  lineHeight: 1
-                }
-              }
-            },
+           
             MuiTableCell: {
               styleOverrides: {
                 root: {
@@ -101,6 +94,7 @@ import { createTheme } from "@mui/material";
              MuiCard:{
               styleOverrides: {
                 root: {         
+                  border: "1px solid var(--black-bg)",
                   borderRadius: "var(--radius)", 
                   width: "100%",
                   backgroundColor: "var(--gray)",

@@ -1,7 +1,6 @@
 // role : takes the user inputs and find it in user database
 
 import useRequestText from "../hook/useRequestText";
-
 import * as MUI from "../barrels/MUI";
 import * as UI from "../barrels/UI";
 
@@ -21,17 +20,23 @@ export default function Login() {
 
   return (
     <>
-      <UI.SharedNavigation varient={"navigation"} photobaner={true} />
-      <UI.LayoutType1>
+      <UI.SharedNavigation varient={"login"}/>
+      <UI.LayoutHandeler 
+      style={ {
+                marginTop:{xs:"20vh", lg:"unset"},
+                width:"100%", 
+                height:{xs:"50vh" ,lg:"85vh"},
+                }}
+      >
         <MUI.FormControl
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "var(--GlobalgapOfItems)",
-            width: { xs: "100%", lg: "60%" },
+            gap: "var(--GlobalgapOfItems)", 
+            width: {xs:"100%", 
+              sm:"clamp(28.13rem, 13.89vi + 22.92rem, 43.75rem)"},
           }}
         >
-          <UI.Error message={"this is a placeholder for error"} />
           <MUI.Typography variant="textNormal">{text.subtitle}</MUI.Typography>
           <MUI.Box
             sx={{
@@ -68,11 +73,12 @@ export default function Login() {
           <UI.ButtonBasic
             type="submit"
             title={text.button.login}
-            to={"/applayout/menu"}
+            to={"/menu"}
             color={"white"}
+            disabled={true}
           />
         </MUI.FormControl>
-      </UI.LayoutType1>
+      </UI.LayoutHandeler>
     </>
   );
 }

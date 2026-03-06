@@ -8,7 +8,7 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum}) {
   
   const pathList = requests.requestList("nav_path_list")
   const {colors} = useTheme()
-  const comparisonTo = (path) => (current.split("/").at(-1).includes(path.split("/").at(-1)))
+  const comparisonTo = (page) => (current.split("/").at(-1) === page)
   return (
     <MUI.Box
       sx={{
@@ -17,7 +17,9 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum}) {
         left: {xs:"0"},
         bottom: {xs:"20px"},
         width: "100%",
-        px: {xs:"var(--spacing-global-padding-x-mobile)", md:"var(--spacing-global-padding-x-tablet)", special:"unset"},
+        px: {xs:"var(--spacing-global-padding-x-mobile)",
+           md:"var(--spacing-global-padding-x-tablet)", 
+           special:"unset"},
         zIndex: 999,
       }}
     >
@@ -35,60 +37,66 @@ export default function NavBar({mode,current,pizzaLikedNum, pizzaInCartNum}) {
           
         }}
       >
-        {pathList.map(({ path, Icon }) => (
-          <Link to={path} key={path} replace>
+        {pathList.map(({ link, page, Icon }) => (
+          <Link to={link} key={page} replace>
               <MUI.Box
 
-                sx={{
+                sx={
+                  {
                   "&:hover" : {
-                           ...( !comparisonTo(path) && {scale: 1.2})
+                           ...( !comparisonTo(page) && {scale: 1.3})
                           },
                   ...(
-                    {color:(comparisonTo(path)) ? 
-                    mode ? "var(--black-bg)" : "var(--orange)" : "var(--white-bg)"}
+                    {color:
+                      (comparisonTo(page)) ? 
+                      mode ? "var(--black-bg)" : "var(--orange)" : 
+                      !current.includes("wish") && current.includes(page) ? "var(--black-bg)" : "var(--white-bg)",                   
+                  }
                   ),
 
-                  transform: comparisonTo(path)
-                  ? "scale(1.3)" : "scale(1)",
+                  transform: comparisonTo(page)
+                  ? "scale(1.25)" : 
+                  !current.includes("wish") && current.includes(page) ? "scale(1.3)" : "scale(1)",
                   transition: "all 0.25s ease-in-out",
-                }}
+                }
+              }
 
               > 
                       {
-                      path.includes("cart") || path.includes("wish") 
-                      ? 
-                      <MUI.Badge 
-                        sx={{
-                          "& .MuiBadge-badge": {
-
-                            backgroundColor: comparisonTo(path) 
-                            ? mode ? "var(--orange)" : "var(--white-bg)" 
-                            : !comparisonTo(path) && mode ? "var(--black-bg)" : "var(--white-bg)",
-                            color: mode ? "var(--white-bg)" : "var(--black-bg)",
-
-                            border: comparisonTo(path) && mode ? "1px solid var(--white-bg)" : "none",
-                            transform: comparisonTo(path) && "scale(0.7)",
+                      page.includes("cart") && pizzaInCartNum !== 0 
+                      || page.includes("wish") && pizzaLikedNum !== 0  ? 
+                        <MUI.Badge 
+                          sx={{
+                            "& .MuiBadge-badge": {
+  
+                              backgroundColor: comparisonTo(page) 
+                              ? mode ? "var(--orange)" : "var(--white-bg)" 
+                              : !comparisonTo(page) && mode ? "var(--black-bg)" : "var(--white-bg)",
+                              color: mode ? "var(--white-bg)" : "var(--black-bg)",
+  
+                              border: comparisonTo(page) && mode ? "1px solid var(--white-bg)" : "none",
+                              transform: comparisonTo(page) && "scale(0.7)",
+                            }
                           }
-                        }
-                        }
-                        showZero={false}
-                        anchorOrigin={{
-                          vertical: 'top',
-                          horizontal: 'left',
-                        }}
-                        badgeContent={
-                        path.includes("cart") ? pizzaInCartNum :   
-                        path.includes("wish") ?  pizzaLikedNum : null
-                        }>
-                          <Icon 
-                          sx={{width:"var(--iconsize)", 
-                          height:"var(--iconsize)", 
-                          "&:hover" : {                            
-                            color : mode ? "var(--black-bg)" : "var(--orange)",
-                            scale: 1.3
                           }
-                          }}/>
-                      </MUI.Badge> : 
+                          showZero={false}
+                          anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                          }}
+                          badgeContent={
+                          page.includes("cart") ? pizzaInCartNum :   
+                          page.includes("wish") ?  pizzaLikedNum : null
+                          }>
+                            <Icon 
+                            sx={{width:"var(--iconsize)", 
+                            height:"var(--iconsize)", 
+                            "&:hover" : {                            
+                              color : mode ? "var(--black-bg)" : "var(--orange)",
+                              scale: 1.3
+                            }
+                            }}/>
+                        </MUI.Badge>  :
                       <Icon 
                       sx={{
                           width:"var(--iconsize)", 

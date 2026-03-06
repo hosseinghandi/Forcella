@@ -1,7 +1,7 @@
 // *Role: Render the logo and the name of app
 
 // logo image
-import * as Icon from "../../barrels/Icons";
+import * as Icons from "../../barrels/Icons";
 import * as MUI from "../../barrels/MUI";
 import { useTheme } from "../../providers/Theme";
 import {Link, useLocation }from "react-router-dom";
@@ -26,7 +26,7 @@ export default function Logo() {
         variant="logoText" 
         sx={{lineHeight:{sm:0.85}}} > FORCELLA </MUI.Typography>
         }
-      <Icon.Pizza aria-hidden={true} focusable={true} sx={{ color: colors.text}} />
+      <Icons.Pizza aria-hidden={true} focusable={true} sx={{ color: colors.text}} />
     </MUI.Box>
   );
 }

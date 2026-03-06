@@ -20,7 +20,7 @@ const text = useRequestText("offer")
 
 return (<MUI.Card
             sx={{
-                position:{xs:"relative", special:"unset"},
+                position:"relative",
                 overflow:"hidden",
                 width:"100%",
                 height:{xs:"var(--cardSizeMain)", sm:"100%"},
@@ -28,7 +28,8 @@ return (<MUI.Card
             >
             {/* main wrapper */}
             <MUI.Box 
-            sx={{width:{xs:"100%", lg:"fit-content"}, height : {xs:"100%", special:"fit-content"}, display: "flex", justifyContent: {xs:"space-between", special:"normal"}, 
+            sx={{width:{xs:"100%", lg:"fit-content"}, 
+            height : {xs:"100%"},display: "flex", justifyContent: {xs:"space-between", special:"flex-end"}, 
             alignItems:"center",flexDirection: {xs:"row", special:"column"}}}>
                 
             <MUI.CardContent 
@@ -58,15 +59,15 @@ return (<MUI.Card
                 alt={`A photo of ${offeredPizza.name} pizza`}
                 image={offeredPizza.img}
                 sx={{ 
+                    position:"absolute",
                     padding:"0", 
-                    width:{xs:"100%", special:"var(--pizzaImageSizelg)"},
-                    height: {xs:"50vw", special:"var(--pizzaImageSizelg)"}, 
-                    position:{xs:"absolute", special:"unset"},
-                    bottom:0,
-                    right:"-30vw",
+                    width:{xs:"100%", special:"40vw", lg:"30vw",xl:"20vw"},
+                    height: {xs:"50vw", special:"40vw",lg:"30vw", xl:"20vw"}, 
+                    bottom:{xs:0, special:"35%",lg:"42%", xl:"43%"},
+                    right:{xs:"-30vw", special:"-10vw", lg:"-8vw", xl:"-5vw"},
                     objectFit:"contain",
                     transformOrigin: "center center",
-                    animation: {xs:"spinIn 50s linear infinite", special:"scalePulse 2s linear infinite"},
+                    animation: {xs:"spinIn 50s linear infinite"},
 
                     "@keyframes spinIn": {
                     from: {
@@ -75,15 +76,8 @@ return (<MUI.Card
                     to: {
                         transform: "rotate(350deg)",
                     }
-                },
-                    "@keyframes scalePulse": {
-                        "0%, 100%": {
-                            transform: "scale(0.9)",
-                        },
-                        "50%": {
-                            transform: "scale(1)",
-                        },
-                    }
+                }
+                    
             }
             }
                 />

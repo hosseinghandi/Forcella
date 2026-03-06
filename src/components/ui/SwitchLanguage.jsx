@@ -1,19 +1,22 @@
 // *role : Make a switch to change the languge state*
 
 import * as MUI from "../../barrels/MUI"
-
 import { useTheme } from "../../providers/Theme";
 import { useLanguage } from "../../providers/Language";
+import useHandelUserPerference from "../../hook/useHandelUserPereference"
 
 export default function SwitchLanguage() {
   const {colors} = useTheme()
-  const {lang, setLang} = useLanguage()
+  const {lang} = useLanguage()
+  const updatedPereference = useHandelUserPerference()
   return (
         <MUI.Switch
           checked={lang === "it"}
           aria-label={`Language: ${lang === "it" ? "Italian" : "English"}`}
           onChange={() => 
-            setLang(prev => prev === "en" ? "it" : "en" )
+            { 
+              updatedPereference("language", lang === "en" ? "it" : "en" )
+            }
           }
           sx={{
             width: "calc(var(--switchDimension) * 3)",

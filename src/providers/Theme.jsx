@@ -1,18 +1,19 @@
 import {createContext, useContext, useMemo, useState } from "react"
+import { useUserData } from "./UserData";
 export const ThemeContext = createContext(null);
 
 export default function ThemeProvider({children}) {
-    const [mode, setMode] = useState(true);
-
+    const {userdata} = useUserData()
+    const mode = userdata.personalInfo.theme;
     const value = useMemo( () => (
         {
         mode, 
-        setMode,
         colors : {
             theme : mode ? "var(--black-bg)" : "var(--white-bg)",
             text :  mode ? "var(--white-text)" : "var(--black-text)" 
         }
     }
+
 ), [mode])
     return(
         <ThemeContext.Provider value={value}>

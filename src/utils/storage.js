@@ -2,9 +2,9 @@ export const setItem = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const getItem = (key, defaultValue = null) => {
+export const getItem = (key) => {
     const item = localStorage.getItem(key);
-    return item ? JSON.parse(item): defaultValue; 
+    return item ? JSON.parse(item) : null;
 }
 export const removeItem = (key) => {
     localStorage.removeItem(key)

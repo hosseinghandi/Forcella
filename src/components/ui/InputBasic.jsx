@@ -15,10 +15,10 @@ export default function InputBasic({
   editMode,
   onChange,
 }) {
-  
-  console.log(Icon)
+
 return (
-<MUI.Box sx={{width:"100%"}}>
+<MUI.Box sx={{width:"100%",display:"flex", flexDirection:"column", 
+  gap:"5px" }}>
   <MUI.Typography 
   variant="textLabel"
   sx={{width:"100%", alignSelf:"left"}}
@@ -31,9 +31,27 @@ return (
       hiddenLabel
       variant="outlined"
       sx={{
+        
+        // delet the calender and spins 
+        "& input[type=number]": {
+              MozAppearance: "textfield",
+            },
+            "& input[type=number]::-webkit-outer-spin-button": {
+              WebkitAppearance: "none",
+              margin: 0,
+            },
+            "& input[type=number]::-webkit-inner-spin-button": {
+              WebkitAppearance: "none",
+              margin: 0,
+            },
+            "& input::-webkit-calendar-picker-indicator": {
+            display: "none",
+          },
+
       width: "100%",
       "& .MuiOutlinedInput-root": {
-        background:"var(--white-text)",
+        border:"1px solid var(--black-bg)",
+        background:"var(--white-bg)",
         height: "var(--buttonAndInputSize)",
         borderRadius: "25px",
         "& fieldset": {
@@ -75,112 +93,3 @@ return (
 }
 
 
-
-// return (
-  //   <MUI.TextField
-  //     required
-  //     label={label && label}
-  //     name={name}
-  //     placeholder={inputProps.placeholder}
-  //     value={defaultValueInput && defaultValueInput}
-  //     fullWidth
-  //     maxRows={4}
-  //     onChange={(event) => onChange(event)}
-  //     InputLabelProps={
-  //       {shrink:false}
-  //     }
-  //     multiline
-  //     InputProps={{
-  //       endAdornment: (
-  //         <MUI.InputAdornment
-  //           sx={{ color: isValid ? "green" : "black" }}
-  //           position= "end"
-  //         >
-  //           {icon}
-  //         </MUI.InputAdornment>
-  //       ),
-  //     }}
-  //     sx={{
-  //       "& .MuiInputLabel-root": {
-  //         width: "100%",
-  //         paddingLeft: 2,
-  //         top: "50%",
-  //         transform: "translateY(-50%)",
-  //         ...(editMode && {paddingLeft: 6}),
-  //         color: colors.text 
-          
-  //       },
-  //       "& .MuiInputLabel-shrink": {
-  //         top: "0",
-  //         fontSize: "1rem",
-  //       },
-  //       "& .MuiOutlinedInput-root": {
-  //         display:"flex",
-  //         backgroundColor: background ? background : "white",
-  //         borderRadius: "25px",
-  //         width:"100%",
-  //         height: "var(--inputSize)",
-  //         ...(editMode && {flexDirection:"row-reverse"})
-  //       },
-  //       "& .MuiOutlinedInput-input": {
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //       },
-  //       ...(!NoBorder && {
-  //         "& .MuiOutlinedInput-notchedOutline": {
-  //           borderWidth: 1,
-  //           borderColor: "black",
-  //         },
-  //         "&:hover .MuiOutlinedInput-notchedOutline": {
-  //           borderWidth: 1,
-  //           borderColor: "black",
-  //         },
-  //         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-  //           {
-  //             borderWidth: 1,
-  //             borderColor: "black",
-  //           },
-  //       }),
-  //     }}
-  //   />
-  // );
-
-
-
-  
-
-  //  <MUI.TextField
-  //       required
-  //         label={"password"}
-  //         name={name}
-  //         placeholder={inputProps.placeholder}
-  //         value={defaultValueInput && defaultValueInput}
-  //         fullWidth
-  //         sx={{
-  //             width: "100%",
-  //             "& .MuiInputLabel-root": {
-  //               width: "100%",
-  //               paddingLeft: 2,
-  //               fontSize:"20px",
-  //               ...(editMode && {paddingLeft: 6}),
-  //               color: colors.text 
-                
-  //             },
-  //             "& .MuiOutlinedInput-root": {
-  //               borderRadius: "var(--radius)", // ✅ border radius goes here
-  //             },
-  //             "& .MuiOutlinedInput-notchedOutline": {
-  //               fontSize:"20px",
-  //               borderRadius: "var(--radius)", // ✅ important for outline shape
-  //             },
-  //           }}
-  //         slotProps={{
-  //           input: {
-  //             startAdornment: 
-  //             <MUI.InputAdornment 
-  //             position="start">
-  //               {label}</MUI.InputAdornment>,
-  //           },
-  //         }}
-  //       />

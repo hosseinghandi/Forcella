@@ -3,11 +3,15 @@
 
 // material ui components
 import * as MUI from "../../barrels/MUI"
+import * as UI from "../../barrels/UI"
 // react imports
 import {useTheme} from  "../../providers/Theme"
 
 export default function SiteWrapper({ children }) {
   const {colors} = useTheme()
+    const positionDefault = { 
+    left: {xs:"-18vh", lg:"-20vh", xl:"-30vh"}, 
+    position: "absolute" }
   return (
       <MUI.Box
         component="main"
@@ -27,11 +31,16 @@ export default function SiteWrapper({ children }) {
           backgroundColor: colors.theme ,
           color: colors.text,
           minHeight: "100vh",
+          position:"relative",
+          zIndex:0
         }}
       >
+        <UI.PhotoBaner 
+        position={"deafult"} 
+        positionValue={positionDefault}/>
+        <MUI.Box sx={{zIndex:999}}>
         {children}
+        </MUI.Box>
       </MUI.Box>
   );
 }
-
-// why paddings are like this?

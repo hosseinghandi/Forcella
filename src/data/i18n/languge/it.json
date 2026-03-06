@@ -17,9 +17,9 @@
       "title": "Benvenuto a Pizzeria Forcella",
       "content": {
         "highlights": [
-          "La pizza napoletana ha origine a Napoli, in Italia, dove è diventata un simbolo della tradizione culinaria italiana.",
-          "Preparata con pomodori San Marzano selezionati con cura, mozzarella fresca e ingredienti locali di alta qualità.",
-          "Cotta in un tradizionale forno a legna ad altissima temperatura in meno di 90 secondi, per ottenere un impasto morbido e alveolato."
+          "La pizza napoletana nasce a Napoli, in Italia, ed è diventata nel tempo uno dei simboli più famosi della cucina tradizionale italiana. La sua storia risale a diversi secoli fa e rappresenta la semplicità e l’autenticità delle tradizioni culinarie locali. Oggi è riconosciuta in tutto il mondo come un’icona culturale e gastronomica dell’Italia.",
+          "Viene preparata con ingredienti accuratamente selezionati come pomodori San Marzano, mozzarella fresca, olio extravergine di oliva e basilico profumato. Ogni ingrediente contribuisce a creare il sapore equilibrato e autentico della pizza. L’attenzione è sempre rivolta alla freschezza, alla qualità e al rispetto della preparazione tradizionale.",
+          "La pizza viene cotta in un forno a legna tradizionale a temperature molto elevate, spesso superiori ai 450°C. Questo calore intenso cuoce la pizza in circa 60–90 secondi, permettendo all’impasto di gonfiarsi rapidamente e sviluppare la sua tipica consistenza morbida e soffice. Il risultato è una crosta leggera con bordi leggermente bruciacchiati e un delicato aroma affumicato."
         ]
       }
     },
@@ -105,43 +105,68 @@
       },
       "categories": ["Tutte", "Carne", "Vegetariana", "Speciale", "offerta"],
       "offer": {
-        "title" : "Offerta speciale",
+        "title": "Offerta speciale",
         "note": "di sconto applicato al checkout"
       }
     },
 
     "profile": {
-      "title": "Il mio profilo",
       "sections": {
         "personalInfo": "Informazioni personali",
-        "orders": "Cronologia ordini"
+        "orders": "Storico ordini",
+        "orderSummary": {
+          "title": "I tuoi ordini",
+          "orderDate": "Ordine del",
+          "subtotal": "Prezzo subtotale",
+          "shipping": "Spedizione",
+          "tax": "Tasse",
+          "total": "Totale da pagare",
+          "state": {
+            "delivered": "Consegnato",
+            "inTheOven": "Nel forno",
+            "empty": "Non hai nessun ordine"
+          },
+          "delet": "Elimina",
+          "showMore": "Mostra di più",
+          "showLess": "Mostra di meno"
+        },
+        "logOut": {
+          "message": "Aspetta—vai già via? La pizza sentirà la tua mancanza!",
+          "yes": "Si",
+          "no": "No"
+        }
       }
     },
-   "cart": {
-    "title": "La tua lista ordini",
-    "states": {
-      "empty": "Il tuo carrello è vuoto"
+    "cart": {
+      "title": "La tua lista ordini",
+      "emptyCart": {
+          "title": "Il tuo carrello è vuoto",
+          "message": "Vediamo cosa abbiamo nel menu"
+        },
+      "visibility": {
+        "show": "vedi dettagli",
+        "hide": "mostra meno"
+      },
+      "pre_message": "Il tuo ordine sarà pronto entro <strong>{minutes} {minutes, plural, one {minuto} other {minuti}}</strong> e <strong>{workers} {workers, plural, one {operatore} other {operatori}}</strong> saranno dedicati al tuo ordine.",
+      "payment": {
+        "title": "Inserisci i tuoi dati bancari."
+      }
     },
-    "visibility": {
-      "show": "vedi dettagli",
-      "hide": "mostra meno"
+    "orderSummary": {
+      "title": "Riepilogo ordine",
+      "subtotal": "Subtotale",
+      "shipping": "Spedizione",
+      "tax": "Tasse",
+      "total": "Totale da pagare"
     },
-    "pre_message": "Il tuo ordine sarà pronto entro <strong>{minutes} {minutes, plural, one {minuto} other {minuti}}</strong> e <strong>{workers} {workers, plural, one {operatore} other {operatori}}</strong> saranno dedicati al tuo ordine."
-  },
-  "orderSummary": {
-    "title": "Riepilogo ordine",
-    "subtotal": "Subtotale",
-    "shipping": "Spedizione",
-    "tax": "Tasse",
-    "total": "Totale da pagare"
-  },
 
-  "wish": {
-    "title": "La tua lista dei desideri",
-    "states": {
-      "empty": "Non hai ancora pizze preferite"
+    "wish": {
+      "title": "La tua lista dei desideri",
+      "emptyCart": {
+        "title": "La tua lista dei desideri è vuota",
+        "message": "Aggiungi articoli alla tua lista dei desideri. Potrai rivederli in qualsiasi momento e spostarli nel carrello"
+      }
     }
-  }
   },
   "ui": {
     "buttons": {
@@ -149,9 +174,12 @@
       "signup": "Registrati",
       "continue": "Continua",
       "orderNow": "Ordina ora",
-      "order" : "Ordina",
+      "order": "Effettua l’ordine",
       "save": "Salva",
-      "cancel": "Annulla"
+      "cancel": "Annulla",
+      "submit": "sottomettere",
+      "pay": "Paga",
+      "add" : "Aggiungi prodotti"
     },
     "inputs": {
       "search": "Cerca",
@@ -170,8 +198,21 @@
       "street": "Via",
       "zipcode": "CAP",
       "optional": "Informazioni aggiuntive",
-      "language": "Lingua",
-      "theme": "Tema"
+      "cardHolder": "Intestatario della carta",
+      "cardNum": "Numero della carta",
+      "expiry": "Data di scadenza",
+      "dateFormat": "gg/mm/aaaa",
+      "ccv": "CCV",
+      "language": {
+        "title": "Lingua",
+        "en": "Inglese",
+        "it": "Italiano"
+      },
+      "theme": {
+        "title": "Tema",
+        "dark": "Scuro",
+        "light": "Chiaro"
+      }
     },
     "state": {
       "delivered": "consegnato",

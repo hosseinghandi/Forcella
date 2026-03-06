@@ -23,7 +23,6 @@ export default function pizzaInfo({ id, setInfo, dialog }) {
     image,
   } = requestedpizzaInfo;
 
-    console.log()
 
 
   const ingredientsList = (ing) => {
@@ -109,7 +108,9 @@ export default function pizzaInfo({ id, setInfo, dialog }) {
           <>
           <MUI.Box sx={{
 
-            width:"100%", height:{xs:"25vh", special :"35vw" , xl:"35vh"}, display:"flex", justifyContent:"center",
+            width:"100%", 
+            height:{xs:"25vh", special :"35vw" ,lg:"25vw", xl:"20vw"}, 
+            display:"flex", justifyContent:"center",
             }}>
             <MUI.Box
               component="img"
@@ -153,7 +154,7 @@ export default function pizzaInfo({ id, setInfo, dialog }) {
                 justifyContent:"space-between"
               }}
             >
-              <MUI.Typography variant="titleBoldInfo" >{name}</MUI.Typography>
+              <MUI.Typography variant="pizzaContentBold" >{name}</MUI.Typography>
 
             </MUI.Box>
 
@@ -181,7 +182,7 @@ export default function pizzaInfo({ id, setInfo, dialog }) {
               sx={{alignItems:"center"}}
               rowSpacing="calc(var(--GlobalgapOfGrids) / 3)" 
               columnSpacing="calc(var(--GlobalgapOfGrids) / 3)">
-              <MUI.Typography variant="titleBoldInfo">{labels_text.ingredients} </MUI.Typography>
+              <MUI.Typography variant="pizzaContentBold">{labels_text.ingredients} </MUI.Typography>
                 {ingredientsList(ingredients.icons)}
               </MUI.Grid>
             </MUI.Box>
@@ -198,14 +199,15 @@ export default function pizzaInfo({ id, setInfo, dialog }) {
     <MUI.Dialog
       PaperProps={{
         sx: {
+          height:{lg:"fit-content"},
           padding: "var(--cardPaddingY) var(--cardPaddingX)",
           borderRadius: "25px",
         },
       }}
       onClose={dialog}
       open={dialog}
-      fullWidth
       maxWidth="special"
+     
     >
       {infoContent}
     </MUI.Dialog>

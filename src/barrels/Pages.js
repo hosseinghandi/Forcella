@@ -1,5 +1,4 @@
 export { default as Payment } from "../pages/Payment";
-export { default as WishList } from "../pages/WishList";
 export { default as Login } from "../pages/Login";
 export { default as Menu } from "../pages/Menu";
 export { default as Profile } from "../pages/Profile";

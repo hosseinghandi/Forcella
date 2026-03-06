@@ -9,7 +9,7 @@ import { appTheme } from "./appTheme.js";
 import { ThemeProvider } from "@mui/material";
 
 createRoot(document.getElementById('root')).render(
-   <StrictMode>
+  <StrictMode>
     <ThemeProvider theme={appTheme}>
       <App />
     </ThemeProvider>

@@ -19,7 +19,11 @@ export default function getMenuData (t){
 
        wishList_text: {
         title: t("pages.wish.title"),
-        state : t("pages.wish.states.empty")
+        empty: {
+          title: t("pages.wish.emptyCart.title"),
+          message : t("pages.wish.emptyCart.message"),
+          button: t("ui.buttons.add"),
+        },
        }
     }
 }
