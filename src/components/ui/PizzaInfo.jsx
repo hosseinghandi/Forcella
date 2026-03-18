@@ -109,7 +109,7 @@ export default function pizzaInfo({ id, setInfo, dialog }) {
           <MUI.Box sx={{
 
             width:"100%", 
-            height:{xs:"25vh", special :"35vw" ,lg:"25vw", xl:"20vw"}, 
+            height:{xs:"25vh",sm:"30vh", special :"30vh" ,lg:"25vw", xl:"20vw"}, 
             display:"flex", justifyContent:"center",
             }}>
             <MUI.Box
@@ -199,15 +199,18 @@ export default function pizzaInfo({ id, setInfo, dialog }) {
     <MUI.Dialog
       PaperProps={{
         sx: {
+
           height:{lg:"fit-content"},
           padding: "var(--cardPaddingY) var(--cardPaddingX)",
           borderRadius: "25px",
+          maxWidth:{xs:"80vw",sm:"65vw",md:"80%", special:"70%", xl:"50%"},
+          minWidth:"375px"
+          
         },
       }}
       onClose={dialog}
       open={dialog}
-      maxWidth="special"
-     
+      // maxWidth="special"
     >
       {infoContent}
     </MUI.Dialog>

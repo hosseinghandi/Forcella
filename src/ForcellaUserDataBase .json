@@ -1,0 +1,64 @@
+{
+  "ForcellaUserDataBase": {
+    "userTemplate": {
+      "personalInfo": {
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "phone": "",
+        "address": "",
+        "zipcode": 0,
+        "language": "",
+        "theme": "",
+        "password":"", 
+        "optional":"" 
+      },
+      "pizzaInCartId": "",
+      "likedPizzasId": "",
+      "orders": {
+        "orderId": {
+          "orderDate": "",
+          "orderState": "",
+          "pizzaId": "",
+          "quantity": "",
+          "totalPrice": 0
+        }
+      },
+      "pizzaInProcess": ""
+    },
+    "user_jackiwl": {
+      "personalInfo": {
+        "firstName": "Jack",
+        "lastName": "Walton",
+        "email": "jackiwl@gamil.com",
+        "phone": "+339 334 159 3024",
+        "address": "124 Maple Grove Avenue",
+        "zipcode": "90211",
+        "password":"12345",
+        "language": "en",
+        "theme": true, 
+        "optional":"second Floor"
+      },
+      "pizzaInCartId": "1,3",
+      "likedPizzasId": "1,5",
+      "orders": {
+        "1242025": {
+          "orderDate": "12/4/2025",
+          "orderState": "delivered",
+          "pizzaId": "2,5",
+          "quantity": "3,4",
+          "totalPrice": 45
+        },
+        "1212026": {
+          "orderDate": "1/5/2025",
+          "orderState": "In the oven",
+          "pizzaId": "2,4",
+          "quantity": "3,6",
+          "totalPrice": 35
+        }
+      },
+      "pizzaInProcess": 
+      {"1": 5, "4": 4 }
+    }
+  }
+}

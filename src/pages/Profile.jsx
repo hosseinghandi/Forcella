@@ -5,14 +5,17 @@ import * as MUI from "../barrels/MUI"
 import { useTheme } from "../providers/Theme" 
 import { useLanguage } from "../providers/Language"
 import { useUserData } from "../providers/UserData"
+import useRequestText from "../hook/useRequestText"
 
 export default function Profile() {
-    const {userdata, setUser} = useUserData()
-    const {mode, setMode, colors} = useTheme()
-    const {lang, setLang} = useLanguage()
+    const {fetchedUserdata, loading} = useUserData()
+    const {mode, colors} = useTheme()
     const [editMode, setEditMode] = useState(false)
-
-    return (
+    const {text} = useRequestText("profile")
+    
+    const capitlize = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+    if (loading) {return <UI.LandingPage loading={loading} error={error}/>}
+    else return (
     <>
     <UI.SharedNavigation 
     varient={"profile"} 
@@ -21,19 +24,17 @@ export default function Profile() {
     
     <MUI.Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
         <MUI.Typography component={"p"} variant="profileWelcoming">
-            {`${lang === "it"? "Ciao" : "Hey" } ,`} 
-            <MUI.Typography component={"span"} variant="titleWelcoming"> {userdata.personalInfo.firstName}</MUI.Typography>
+            {`${text.greeting}, `} 
+            <MUI.Typography component={"span"} variant="titleWelcoming">
+                 {capitlize(fetchedUserdata.personalInfo.firstName)}</MUI.Typography>
         </MUI.Typography>
             {
             editMode && 
             <MUI.Box sx={
                 {display:"flex", flexDirection:"row",gap:"var(--GlobalgapOfGrids)", alignItems:"center" }}>
                 <UI.SwitchLanguage 
-                value={lang} 
-                setValue={setLang} 
                 colorTheme={colors.theme} />
                 <UI.ToggleTheme value={mode} 
-                setValue={setMode} 
                 colorTheme={colors.theme} />
             </MUI.Box>
             }
@@ -47,8 +48,8 @@ export default function Profile() {
                 }}
     >
         <UI.UserInfoHolder
-        userdata={userdata}
-        setUser = {setUser}
+        userdata={fetchedUserdata}
+        // setUser = {setUser}
         setEditMode={setEditMode}
         editMode={editMode}
         />

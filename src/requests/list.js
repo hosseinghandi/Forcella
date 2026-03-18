@@ -24,8 +24,6 @@ const list = (request) => {
               { link: "/menu/wish", Icon: Icons.Heart, page:"wish" },
               { link: "/cart", Icon: Icons.ShoppingBag, page:"cart" },
               { link: "/profile", Icon: Icons.Person_bold , page:"profile"}]
-      case "hints" :
-        return [] 
   }
   });
 };

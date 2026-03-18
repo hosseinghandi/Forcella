@@ -2,14 +2,12 @@ import { useNavigate} from "react-router-dom";
 import * as MUI from "../../../barrels/MUI"
 import * as Icons from "../../../barrels/Icons"
 import * as UI from "../../../barrels/UI"
-import { useLanguage } from "../../../providers/Language";
 import { useTheme } from "../../../providers/Theme";
-import useHandelUserPerference from "../../../hook/useHandelUserPereference";
+import useRequestText from "../../../hook/useRequestText";
 export default function NavigationBasic ({distance, switches}) {
 
-    const {colors, mode, setMode} = useTheme()
-    const {lang, setLang} = useLanguage
-
+    const {colors} = useTheme()
+    const {button} = useRequestText("welcoming")
     const navigate = useNavigate();
     return (     
        <MUI.Box
@@ -52,17 +50,12 @@ export default function NavigationBasic ({distance, switches}) {
                       color={colors.theme}/>
                       { switches ? 
                         <>
-                        <UI.SwitchLanguage 
-                        setValue={setLang} 
-                        colorTheme={colors.theme} />
+                        <UI.SwitchLanguage />
                         
-                        <UI.ToggleTheme 
-                        value={mode} 
-                        setValue={setMode} 
-                        colorTheme={colors.theme} />
+                        <UI.ToggleTheme />
                         <MUI.Box > 
                         <UI.ButtonBasic
-                          title={"next"}
+                          title={button.goToMenu}
                           to="/menu"
                           shrink={true}
                         />

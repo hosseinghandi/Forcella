@@ -3,22 +3,44 @@
 import useRequestText from "../hook/useRequestText";
 import * as MUI from "../barrels/MUI";
 import * as UI from "../barrels/UI";
-
-// import * as provider from "../barrels/providers"
+import { useState } from "react";
 import { useTheme } from "../providers/Theme";
+import { useForm} from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useUserData } from "../providers/UserData";
 
 // utiles
 // import {isValid} from "../utils/validator";
 
 export default function Login() {
   // required context to render ui elements
+  const navigate = useNavigate()
   const { colors } = useTheme();
   // text to render
   const data =  useRequestText("login")
+  const {fetchedUserdata} = useUserData()
   const text = data.text
   const listOfInputs = data.inputsList
+  const [show, setshow] = useState(false)
+  const [notFound, setNotFound] = useState(false)
+  const [loading, setIsLoading] = useState(false)
 
-  return (
+   const {
+    control,
+    // register,
+    handleSubmit,
+    formState: { errors},
+  } = useForm({
+      defaultValues: Object.fromEntries(data.inputsList.map( input => [input.name, ""]))
+  })
+
+  const onSubmit = () => {
+    setshow(true)
+  }
+  
+  const capitlize = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+
+  return false ? (
     <>
       <UI.SharedNavigation varient={"login"}/>
       <UI.LayoutHandeler 
@@ -28,16 +50,21 @@ export default function Login() {
                 height:{xs:"50vh" ,lg:"85vh"},
                 }}
       >
-        <MUI.FormControl
+        <MUI.Box
+        component={"form"}
+        onSubmit={handleSubmit(onSubmit)}
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: "var(--GlobalgapOfItems)", 
             width: {xs:"100%", 
               sm:"clamp(28.13rem, 13.89vi + 22.92rem, 43.75rem)"},
-          }}
+            }}
         >
-          <MUI.Typography variant="textNormal">{text.subtitle}</MUI.Typography>
+            <MUI.Box sx={{minHeight:"60px", display:"flex", flexDirection:"column", gap:"calc(var(--GlobalgapOfItems)/2)"}}>
+              <MUI.Typography variant="textNormal">{text.subtitle}</MUI.Typography>
+              { notFound && <UI.Error message={text.error}/>}
+            </MUI.Box>
           <MUI.Box
             sx={{
               display: "flex",
@@ -47,20 +74,15 @@ export default function Login() {
               gap: "var(--GlobalgapOfInputs)",
             }}
           >
-            {listOfInputs.map(({label, icon, placeholder}) => (
-              <UI.InputBasic
-                label={label}
-                key={label}
-                name={label}
-                type={label}
-                Icon={icon}
-                placeholder={placeholder}
-                // onChange={helpers.handleChange("personalInfo",(subsection ? subsection : ""), setFormData)}
-              />
-            ))}
+          <UI.InputControllerGroup
+              inputs={listOfInputs}
+              control={control}
+              errors={errors}
+            />
+
           </MUI.Box>
-          <MUI.Typography
-          variant="textNormal"
+          <MUI.Link
+           href=""
             sx={{
               color: colors.text,
               width: "100%",
@@ -68,24 +90,48 @@ export default function Login() {
             }}
           >
             {text.forget}
-          </MUI.Typography>
+          </MUI.Link>
 
+          <UI.ConfirmationDialog 
+            onClose={!show}
+            open={show}
+            actOnPositive={() => 
+             {  setIsLoading(true)
+                setTimeout(() => {
+                    setIsLoading(false)
+                    navigate("/menu")
+                }, 2000 ) 
+             }
+             
+            }
+            actOnNegative={() => {
+              setshow(!show) 
+              setNotFound(true)
+            }}
+            message={text.userCommunication}
+            positiveBtnName={text.button.goToMenu}
+            negativeBtnName={text.button.stayHere}
+          
+          />
           <UI.ButtonBasic
             type="submit"
             title={text.button.login}
-            to={"/menu"}
             color={"white"}
-            disabled={true}
           />
-        </MUI.FormControl>
+        </MUI.Box>
       </UI.LayoutHandeler>
     </>
-  );
+  ) : (
+      <UI.WelcomingToUser 
+          greeting={text.LandingPage.greeting}
+          mainMessage={text.LandingPage.message}
+          subMessage={text.LandingPage.subMessage}
+          userName={capitlize(fetchedUserdata.personalInfo.firstName)}
+      />
+    )
 }
 
-// //states
-// const [formData, setFormData] = useState({email: "",password: ""});
-// const [error, setError] = useState("");
+
 
 // // validator
 // const validation = useMemo( () => {
@@ -94,14 +140,3 @@ export default function Login() {
 //     validation[key] = isValid(key,value)};
 //   return {validation}
 // }, [formData]);
-
-// // form handeler
-// const handleChange = (event) => {
-//   const { name, value } = event.target;
-//   setFormData((prevFormData) =>
-//       ({ ...prevFormData, [name]: value }));
-// };
-
-// const handleSubmit = (event) => {
-//   event.preventDefault();
-// };

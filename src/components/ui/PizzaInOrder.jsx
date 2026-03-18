@@ -2,40 +2,52 @@
 import * as MUI from "../../barrels/MUI";
 import * as UI from "../../barrels/UI";
 import * as Icon from "../../barrels/Icons";
+import useUpdateUser from "../../hook/useUserUpdate";
 
 // react import
-import { memo, useMemo } from "react";
+import { memo} from "react";
+import useRequestText from "../../hook/useRequestText";
 // import material ui icons for pizza holder
 
 export default memo(function PizzaInOrder({
   pizzaData,
   info,
-  handelAdd,
-  handelMinus,
-  handelRemove,
   onInfoRequest,
   count,
 }) {
+
+  const {cart_text,button} = useRequestText("cart")
   const price = pizzaData.price;
   const name = pizzaData.name;
   const img = pizzaData.image;
   const discount = pizzaData.discount;
   const id = pizzaData.id;
-
+  
   const finalPrice = discount
-    ? (price * (1 - discount / 100))
-    : price;
-  const iconList = [
-    [Icon.Add, handelAdd, "add"],
-    [Icon.Info, onInfoRequest, "info"],
-    [Icon.Remove, handelMinus, "minus"]
-  ];
+    ? (price * (1 - discount/ 100)).toFixed(2)
+    :  price.toFixed(2);
+  
+  const {changeQuantity, removeItem} = useUpdateUser()
 
+  const iconList = [
+    [Icon.Add, "add"],
+    [Icon.Remove, "minus"],
+    [Icon.Info,"info"]
+  ];
+  
   const icons = (list) => {
-    return list.map(([Icon, task, key]) => (
+    return list.map(([Icon, key]) => (
       <MUI.IconButton
         key={key}
-        onClick={() => task(id)}
+        onClick={ () => {
+          switch(key) 
+          {
+            case "add" : return changeQuantity(id, + 1) 
+            case "minus" : return changeQuantity(id, - 1)
+            case "info" : return onInfoRequest(id)
+          }
+        }
+        }
         sx={{ "&:hover": {
           color:"var(--orange)",
           },
@@ -61,7 +73,7 @@ export default memo(function PizzaInOrder({
         justifyContent:"space-between",
         height: {xs:"fit-content", md:"fit-content"},
         width:"100%",
-        maxWidth:"350px",   
+        maxWidth:{xs:"93vw", md:"unset"},   
       }}
     >
       <MUI.Box
@@ -104,10 +116,7 @@ export default memo(function PizzaInOrder({
             padding: {xs:"0 10px", md:"unset"},
             height: "100%",
             width: "100%",
-            
-            
-            // gap: {md:"calc(var(--GlobalgapOfGrids) / 2)"}
-          }}
+                      }}
         >
           <MUI.Box sx={{
             display:"flex",
@@ -143,24 +152,21 @@ export default memo(function PizzaInOrder({
                 flexDirection: {xs:"column", sm:"column", md:"row"}, 
                 gap: 2 }}>
                 <MUI.Typography
-                  variant="pizzaContentBold"
-                  sx={{
-                    ...(discount && {
-                      fontSize:"var(--textLabel)",
-                      textDecoration: "line-through",
-                      textDecorationColor: "var(--red)",
-                      textDecorationThickness: 2,
-                    }),
-                  }}
-                >
-                  {`${(price * (count === 0 ? 1 : count)).toFixed(2)}€`}
-                </MUI.Typography>
-                {discount && (
-                  <MUI.Typography
-                    sx={{ padding: 0 }}
                     variant="pizzaContentBold"
-                  >{`${((finalPrice) * (count === 0 ? 1 : count)).toFixed(2)}€`}</MUI.Typography>
-                )}
+                    sx={{
+                      ...(!!discount && {
+                        textDecoration: "line-through",
+                        textDecorationColor: "var(--orange)",
+                        textDecorationThickness: 2,
+                      }),
+                    }}
+                  >
+                    {`${price}€`}
+                  </MUI.Typography>
+                  {!!discount && (
+                    <MUI.Typography variant="pizzaContentBold">
+                      {`${finalPrice}€`}</MUI.Typography>
+                  )}
               </MUI.Box>
           </MUI.Box>
         </MUI.CardContent>
@@ -181,53 +187,16 @@ export default memo(function PizzaInOrder({
         >
           {icons(iconList)}
         </MUI.CardActions>
-
-      {
-        count === 0 && 
-        <MUI.Dialog
-        PaperProps={{
-          sx: {
-            padding: "var(--cardPaddingY) var(--cardPaddingX)",
-            borderRadius: "25px",
-          },
-        }}
-        onClose={handelRemove}
-        open={handelRemove}
-        fullWidth
-        maxWidth="sm"
-      >
-
-        <MUI.CardActions
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            gap: 2,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <MUI.Typography> Do you want to remove this order?</MUI.Typography>
-          <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 8 }}>
-            <UI.ButtonBasic
-              type="submit"
-              title={"Yes"}
-              id={id}
-              task={handelRemove}
-              shrink={true}
-            />
-            <UI.ButtonBasic
-              type="submit"
-              title={"No"}
-              id={id}
-              task={handelAdd}
-              shrink={true}
-            />
-          </MUI.Box>
-        </MUI.CardActions>
-      </MUI.Dialog>
-      }
-
+        <UI.ConfirmationDialog 
+          onClose={count > 0}
+          open={count === 0} 
+          message={cart_text.remove} 
+          actOnPositive={() => removeItem(id)}
+          positiveBtnName={button.sure}
+          actOnNegative={() => changeQuantity(id, +1)}
+          negativeBtnName={button.no}
+        />
+        
       </MUI.Box>
 
             { info &&

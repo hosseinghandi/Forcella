@@ -27,35 +27,3 @@ export default function PhotoBaner() {
     )
 }
 
-
-
-    // const positionTop = { 
-    //     left: {xs:"-15vh", lg:"-20vh", xl:"-25vh"}, 
-    //     top: {xs:"-23vh", sm:"-20vh", md:"-35vh",lg:"-35vw", xl:"-60vh"}, 
-    //     position: "absolute" };
-    
-    // const positionDown = { 
-    // left: {xs:"unset", lg:"-40vh", xl:"-25vh"}, 
-    // bottom: {xs:"unset", lg:"calc(var(--Size-pizzaBaner-desktop) * -1)", xl:"-60vh"}, 
-    // position: "absolute" };
-
-    // const positionDefault = { 
-    //     left: {xs:"-18vh", lg:"-20vh", xl:"-20vh"}, 
-    //     top: {xs:"0", lg: "75px"}}
-
-    // const {pathname} = useLocation()
-    // console.log(pathname)
-
-    // const positionSetup = {
-    // "/login" : {
-    //   position : positionDefault
-    // },
-    // "/signup" : {
-    //   position : "top"
-    // }, 
-    // "/welcoming" : {
-    //   distance:false,
-    //   photobaner:true,
-    //   switches : true,
-    //   position : "default"
-    // }

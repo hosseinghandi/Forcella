@@ -4,8 +4,8 @@
       "ingredients": "Ingredienti : ",
       "calories": "Calorie",
       "preparationTime": "Tempo di preparazione",
-      "time": "Tempo",
-      "spiceLevel": "Livello di piccantezza"
+      "time": "tempo",
+      "spiceLevel": "Piccantezza"
     },
     "spiceLevels": {
       "none": "Non piccante",
@@ -17,91 +17,91 @@
       "margherita": {
         "id": 1,
         "name": "Margherita",
-        "description": "La pizza napoletana più famosa, preparata con salsa di pomodoro, mozzarella fresca e basilico. Simbolo della tradizione italiana, è apprezzata per la sua semplicità e l’equilibrio dei sapori.",
+        "description": "L'anima della pizza napoletana. Un'armonia perfetta di salsa di pomodoro San Marzano, mozzarella fresca e basilico profumato su un impasto leggero e soffice. Semplice, senza tempo, e impossibile da migliorare.",
         "ingredients": {
-          "list": ["Pomodoro", "mozzarella", "Basilico"],
+          "list": ["Pomodoro", "Mozzarella", "Basilico"],
           "icons": ["tomato", "mozzarella", "basil"]
         },
         "spiceLevel": "none",
-        "category": ["Speciale"],
+        "category": ["Special"],
         "calories": 250,
         "price": 8.99,
         "review": 5,
         "time": 10,
         "image": "/pizza-image/margherita.png",
-        "discount":  20 
+        "discount": 20
       },
 
       "pepperoni": {
         "id": 2,
         "name": "Pepperoni",
-        "description": "Una pizza in stile americano con salsa di pomodoro, mozzarella e salame piccante. Dal gusto deciso e leggermente speziato, è una delle pizze più popolari al mondo.",
+        "description": "Decisa, affumicata e irresistibilmente golosa. Generosi strati di pepperoni piccante si arricciano e diventano croccanti sulla mozzarella filante e la ricca salsa di pomodoro — amatissima, e non è difficile capire perché.",
         "ingredients": {
-          "list": ["Salsa di pomodoro", "mozzarella", "Salame piccante"],
+          "list": ["Salsa di pomodoro", "Mozzarella", "Pepperoni"],
           "icons": ["tomato_sauce", "mozzarella", "pepperoni"]
         },
         "spiceLevel": "hot",
-        "category": ["Speciale", "Carne"],
+        "category": ["Special", "Meat"],
         "calories": 300,
         "price": 9.99,
         "review": 4.5,
         "time": 15,
         "image": "/pizza-image/peperoni.png",
-        "discount": 0 
+        "discount": null
       },
 
       "bbq_chicken": {
         "id": 3,
-        "name": "Pollo BBQ",
-        "description": "Una variante moderna preparata con salsa barbecue al posto del pomodoro, pollo condito, cipolla e mozzarella. Offre un sapore affumicato e dolce, ricco e molto saporito.",
+        "name": "BBQ Chicken",
+        "description": "Dove l'affumicato incontra il saporito. Tenero pollo marinato e cipolla caramellata su una base ricca di salsa barbecue con mozzarella filante — un'alternativa sostanziosa e soddisfacente al classico.",
         "ingredients": {
-          "list": ["tomato sauce", "Petto di pollo", "Cipolla", "mozzarella"],
+          "list": ["Salsa BBQ", "Petto di pollo", "Cipolla", "Mozzarella"],
           "icons": ["tomato_sauce", "chicken_breast", "onion", "mozzarella"]
         },
         "spiceLevel": "mild",
-        "category": ["Speciale", "Carne"],
+        "category": ["Special", "Meat"],
         "calories": 320,
         "price": 10.99,
         "review": 3.8,
         "time": 20,
         "image": "/pizza-image/chicken.png",
-        "discount": 0 
+        "discount": null
       },
 
       "hawaiian": {
         "id": 4,
-        "name": "Hawaiana",
-        "description": "Una pizza conosciuta per l’abbinamento di salsa di pomodoro, mozzarella, prosciutto e ananas. Il contrasto tra dolce e salato crea un gusto unico e riconoscibile.",
+        "name": "Hawaiian",
+        "description": "La pizza che divide — e continua a conquistare fan. L'ananas succoso e il prosciutto saporito creano un equilibrio dolce-salato sorprendentemente irresistibile su una base classica di pomodoro e mozzarella.",
         "ingredients": {
-          "list": ["Salsa di pomodoro", "mozzarella", "Prosciutto", "Ananas"],
+          "list": ["Salsa di pomodoro", "Mozzarella", "Prosciutto", "Ananas"],
           "icons": ["tomato_sauce", "mozzarella", "ham", "pineapple"]
         },
         "spiceLevel": "medium",
-        "category": ["Carne"],
+        "category": ["Meat"],
         "calories": 290,
         "price": 9.99,
         "review": 4,
         "time": 20,
         "image": "/pizza-image/hawai.png",
-        "discount": 20 
+        "discount": 20
       },
 
       "vegetarian": {
         "id": 5,
-        "name": "Vegetariana",
-        "description": "Una pizza senza carne, con salsa di pomodoro, mozzarella e verdure fresche di stagione. Leggera e colorata, valorizza la freschezza degli ingredienti e i sapori naturali.",
+        "name": "Vegetarian",
+        "description": "Fresca, colorata e piena di carattere. Peperoni croccanti, olive e cipolla dolce si stratificano su salsa di pomodoro e mozzarella per una pizza vivace e senza carne che non fa mai rimpiangere nulla.",
         "ingredients": {
-          "list": ["Salsa di pomodoro", "mozzarella", "Peperoni", "Cipolla", "Olive"],
+          "list": ["Salsa di pomodoro", "Mozzarella", "Peperoni", "Cipolla", "Olive"],
           "icons": ["tomato_sauce", "mozzarella", "bell_peppers", "onion", "olives"]
         },
         "spiceLevel": "none",
-        "category": ["Vegetariana"],
+        "category": ["Vegetarian"],
         "calories": 240,
         "price": 8.99,
         "review": 4.1,
         "time": 10,
         "image": "/pizza-image/vegan.png",
-        "discount": 0 
+        "discount": null
       }
     }
   }

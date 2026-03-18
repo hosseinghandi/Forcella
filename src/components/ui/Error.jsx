@@ -5,7 +5,7 @@
 import * as Icon from "../../barrels/Icons"
 import * as MUI from "../../barrels/MUI"
 
-export default function Error({ message, colorText}) {
+export default function Error({ message}) {
 
   return (
     message !== "" && (

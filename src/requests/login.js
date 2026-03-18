@@ -1,28 +1,38 @@
-import * as Icons from "../barrels/Icons"
+import * as requests from "../barrels/requests";
+import { LandingPage } from "../barrels/UI";
 export default function getLoginData(t) {
-    const text = {
-            subtitle: t("pages.login.subtitle"),
-            inputs: {
-              email: {
-                label: t("ui.labels.email"),
-                placeholder: t("pages.login.form.fields.email.placeholder"),
-                error: t("pages.login.form.fields.email.error"),
-                icon:  Icons.Email,
-              },
-              password: {
-                label: t("ui.labels.password"),
-                placeholder: t("pages.login.form.fields.password.placeholder"),
-                error: t("pages.login.form.fields.password.error"),
-                icon:  Icons.Key
-              },
-            },
-            button: {
-              login: t("ui.buttons.login"),
-            },
-            forget: t("pages.login.form.links.forgotPassword")
-          };
+  
+  const cartFieldKeys = t("pages.login.form.fields", { returnObjects: true });
+  const allFields     = t("forms.fields", { returnObjects: true });
+  const fields        = requests.buildInputData(
+    Object.fromEntries(cartFieldKeys.map((key) => [key, allFields[key]]))
+  );
+  
+  const text = {
+    title:             t("pages.login.title"),
+    subtitle:          t("pages.login.subtitle"),
+    userCommunication: t("pages.login.userCommunication"),
+    error: t("pages.login.form.fieldError"),
+    inputs: {
+      email:    fields.email,
+      password: fields.password,
+    },
 
-    const inputsList = Object.values(text.inputs)
+    button: {
+      login: t("ui.buttons.login"),
+      goToMenu : t("ui.buttons.goToMenu"),
+      stayHere : t("ui.buttons.stayHere")
 
-    return {text, inputsList}
+    },
+    forget: t("pages.login.form.links.forgotPassword"),
+    LandingPage: {
+      greeting: t("pages.landingPage.greeting"),
+      message: t("pages.landingPage.login.message"),
+      subMessage: t("pages.landingPage.login.subMessage")
+    }
+  };
+
+  const inputsList = Object.values(text.inputs);
+
+  return { text, inputsList };
 }

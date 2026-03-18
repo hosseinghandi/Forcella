@@ -3,161 +3,224 @@
     "name": "Pizzeria Forcella",
     "description": "Order authentic Neapolitan pizza made with fresh ingredients."
   },
-  "navigation": {
-    "menu": "Menu",
-    "favorites": "Favorites",
-    "shoppingBag": "Shopping bag",
-    "profile": "Profile",
-    "login": "Log in",
-    "signup": "Sign up"
+  "forms": {
+    "fields": {
+      "firstName": {
+        "name": "firstName",
+        "type": "text",
+        "label": "First name",
+        "placeholder": "e.g. John",
+        "error": "Please enter your first name.",
+        "rules": { "required": true, "minLength": 2 }
+      },
+      "lastName": {
+        "name": "lastName",
+        "type": "text",
+        "label": "Last name",
+        "placeholder": "e.g. Doe",
+        "error": "Please enter your last name.",
+        "rules": { "required": true, "minLength": 2 }
+      },
+      "email": {
+        "name": "email",
+        "type": "email",
+        "label": "Email",
+        "placeholder": "e.g. john.doe@email.com",
+        "error": "Please enter a valid email address.",
+        "rules": { "required": true, "pattern": "email" }
+      },
+      "phone": {
+        "name": "phone",
+        "type": "tel",
+        "label": "Phone",
+        "placeholder": "e.g. +1 555 123 4567",
+        "error": "Please enter a valid phone number.",
+        "rules": { "required": true, "pattern": "phone" }
+      },
+      "password": {
+        "name": "password",
+        "type": "password",
+        "label": "Password",
+        "placeholder": "Minimum 8 characters",
+        "error": "Password must be at least 8 characters long.",
+        "rules": { "required": true, "minLength": 8 }
+      },
+      "confirmPassword": {
+        "name": "confirmPassword",
+        "type": "password",
+        "label": "Confirm password",
+        "placeholder": "Re-enter your password",
+        "error": "Passwords do not match.",
+        "rules": { "required": true, "validate": "matchPassword" }
+      },
+      "address": {
+        "name": "address",
+        "type": "text",
+        "label": "Address",
+        "placeholder": "e.g. 123 Main Street",
+        "error": "Street address is required.",
+        "rules": { "required": true, "minLength": 5 }
+      },
+      "zipcode": {
+        "name": "zipcode",
+        "type": "text",
+        "label": "ZIP code",
+        "placeholder": "e.g. 90210",
+        "error": "Please enter a valid ZIP code.",
+        "rules": { "required": true, "pattern": "zipcode" }
+      },
+      "addressExtra": {
+        "name": "optional",
+        "type": "text",
+        "label": "Additional information",
+        "placeholder": "e.g. Apartment 4B",
+        "rules": {}
+      },
+      "cardHolder": {
+        "name": "cardHolder",
+        "type": "text",
+        "label": "Cardholder name",
+        "placeholder": "Name on the card",
+        "error": "Please enter the cardholder name.",
+        "rules": { "required": true, "minLength": 3 }
+      },
+      "cardNumber": {
+        "name": "cardNumber",
+        "type": "text",
+        "label": "Card number",
+        "placeholder": "1234 5678 9012 3456",
+        "error": "Please enter a valid card number.",
+        "rules": { "required": true, "pattern": "cardNumber" }
+      },
+      "expiryDate": {
+        "name": "expiryDate",
+        "type": "text",
+        "label": "Expiry date",
+        "placeholder": "mm/dd/yyyy",
+        "error": "Please enter a valid date.",
+        "rules": { "required": true }
+      },
+      "cvv": {
+        "name": "cvv",
+        "type": "text",
+        "label": "CVV",
+        "placeholder": "123",
+        "error": "Please enter your CVV ",
+        "rules": { "required": true, "pattern": "cvv" }
+      }
+    }
   },
-
   "pages": {
     "welcoming": {
       "title": "Welcome to Pizzeria Forcella",
       "content": {
         "highlights": [
-          "Neapolitan pizza originated in Naples, Italy, and over time it became one of the most famous symbols of traditional Italian cuisine. Its history dates back centuries and reflects the simplicity and authenticity of local cooking traditions. Today it is recognized around the world as a cultural and culinary icon of Italy.",
-          "It is prepared using carefully selected ingredients such as San Marzano tomatoes, fresh mozzarella, extra virgin olive oil, and aromatic basil. Each ingredient plays an important role in creating the balanced and authentic flavor of the pizza. The focus is always on freshness, quality, and respecting traditional preparation methods.",
-          "The pizza is baked in a traditional wood-fired oven at extremely high temperatures, often exceeding 450°C. This intense heat cooks the pizza in about 60–90 seconds, allowing the dough to rise quickly and develop its characteristic soft and airy texture. The result is a light crust with slightly charred edges and a delicate smoky flavor."
+          "Neapolitan pizza originated in Naples, Italy, and over time became one of the most celebrated symbols of traditional Italian cuisine. Its history spans centuries and reflects the simplicity and authenticity of local culinary traditions. Today it is recognized worldwide as a cultural and gastronomic icon of Italy.",
+          "It is prepared using carefully selected ingredients — San Marzano tomatoes, fresh mozzarella, extra virgin olive oil, and fragrant basil. Each ingredient plays an essential role in creating the balanced, authentic flavor of the pizza. The focus is always on freshness, quality, and respect for traditional preparation methods.",
+          "The pizza is baked in a traditional wood-fired oven at extremely high temperatures, often exceeding 450°C. This intense heat cooks the pizza in just 60–90 seconds, allowing the dough to rise quickly and develop its characteristic soft, airy texture. The result is a light crust with slightly charred edges and a delicate smoky flavor."
         ]
       }
     },
-
     "login": {
       "title": "Log in",
-      "subtitle": "Log in with the data you entered during registration.",
+      "subtitle": "Log in with the credentials you used when registering.",
       "form": {
-        "fields": {
-          "email": {
-            "placeholder": "e.g. john.doe@email.com",
-            "error": "Please enter a valid email address."
-          },
-          "password": {
-            "placeholder": "********",
-            "error": "Password is required."
-          }
-        },
+        "fields": ["email", "password"],
         "links": {
           "forgotPassword": "Forgot your password?"
-        }
-      }
+        },
+        "fieldError": "No account found with this email."
+      },
+      "userCommunication": "This login page is part of a demo and does not connect to a real user database. If you click \"Go to menu\", you will be taken directly to the menu to explore the rest of the app. If you choose \"Stay here\", you will remain on this page and a \"User not found\" message will be displayed, since no real user accounts exist in this demo."
     },
-
     "signup": {
-      "title": "Sign up",
-      "subtitle": "Please enter your information to register.",
+      "title": "Create an account",
+      "subtitle": "Please fill in your details to register.",
       "form": {
         "sections": {
           "personal": {
             "title": "Personal information",
-            "fields": {
-              "firstName": {
-                "placeholder": "e.g. John",
-                "error": "First name is required."
-              },
-              "lastName": {
-                "placeholder": "e.g. Doe",
-                "error": "Last name is required."
-              },
-              "email": {
-                "placeholder": "e.g. john.doe@email.com",
-                "error": "Invalid email address."
-              },
-              "phone": {
-                "placeholder": "e.g. +1 555 123 4567",
-                "error": "Invalid phone number."
-              },
-              "password": {
-                "placeholder": "At least 8 characters",
-                "error": "Password must be at least 8 characters long."
-              },
-              "confirmPassword": {
-                "placeholder": "Re-enter your password",
-                "error": "Passwords do not match."
-              }
-            }
+            "fields": ["firstName", "lastName", "email", "phone", "password", "confirmPassword"]
           },
           "address": {
-            "title": "Address",
-            "fields": {
-              "street": {
-                "placeholder": "e.g. 123 Main Street",
-                "error": "Street is required."
-              },
-              "zipcode": {
-                "placeholder": "e.g. 90210",
-                "error": "Invalid ZIP code."
-              },
-              "optional": {
-                "placeholder": "e.g. Apartment 4B"
-              }
-            }
+            "title": "Delivery address",
+            "fields": ["address", "zipcode", "addressExtra"]
           }
         }
       }
     },
-
     "menu": {
       "title": "Menu",
-      "search": {
-        "placeholder": "Search your favorite pizza"
-      },
-      "categories": ["All", "Meat", "Vegetarian", "Special", "Offered"],
+      "categories": ["All", "Meat", "Vegetarian", "Special", "Offers"],
       "offer": {
         "title": "Special offer",
-        "note": "offer applied at checkout"
+        "note": "Offer applied at checkout",
+        "alreadyAdded": "You're quick! Looks like you've already added the special offer to your cart."
       }
     },
-
     "profile": {
+      "greeting":"Hey",
       "sections": {
         "personalInfo": "Personal information",
         "orders": "Order history",
         "orderSummary": {
-          "title": "Your orders",
-          "orderDate": "Order on",
-          "subtotal": "Subtotal Price",
-          "shipping": "Shipping",
-          "tax": "Tax",
-          "total": "Total to pay",
+          "title": "Your orders state",
+          "orderIn": "Order in",
+          "total": "Total paid",
+          "removeItem": "Are you sure that you want to remove this order?",
           "state": {
             "delivered": "Delivered",
             "inTheOven": "In the oven",
-            "empty": "You do not have any order"
+            "empty": "You haven't placed any orders yet."
           },
-          "delet": "Delet",
-          "showMore": "show More",
-          "showLess": "show Less"
+          "delet": "Delete",
+          "showMore": "Show more",
+          "showLess": "Show less"
         },
         "logOut": {
-          "message": "Wait—leaving already? The pizza will miss you!",
-          "yes": "Yes",
-          "no": "No"
+          "message": "Leaving already? The pizza will miss you!"
         }
       }
     },
     "cart": {
-      "title": "Your order List",
+      "title": "Your order",
       "emptyCart": {
-        "title": "Your Shopping bag is empty",
-        "message" : "Let's see what we have in menu"
+        "title": "Your shopping bag is empty",
+        "message": "Let's see what we have on the menu."
       },
-      "visibility": {
-        "show": "see details",
-        "hide": "see less"
-      },
-      "pre_message": "Your order will be ready within <strong>{minutes} {minutes, plural, one {minute} other {minutes}} </strong> and <strong>{workers} {workers, plural, one {worker} other {workers}} </strong> will be dedicated to your order.",
+      "removeItem": "Are you sure that you want to remove this item?",
+      "pre_message": "Your order will be ready in <strong>{minutes} {minutes, plural, one {minute} other {minutes}}</strong> and <strong>{workers} {workers, plural, one {worker} other {workers}}</strong> will be dedicated to your order.",
       "payment": {
-        "title": "Please provide your bank details."
+        "title": "Please enter your payment details.",
+        "form": {
+          "fields": ["cardHolder", "cardNumber", "expiryDate", "cvv"]
+        }
+      },
+      "orderSummery": {
+        "title": "Your orders",
+        "orderDate": "Ordered on",
+        "subtotal": "Subtotal",
+        "shipping": "Shipping",
+        "tax": "Tax",
+        "total": "Total paid"
       }
     },
-
-    "wish": {
+    "wishlist": {
       "title": "Your wishlist",
       "emptyCart": {
         "title": "Your wishlist is empty",
-        "message": "Add items to your wishlist. You can review them anytime and move them to the cart"
+        "message": "Add items to your wishlist. You can review them anytime and move them to your cart."
+      }
+    },
+    "landingPage" : {
+      "greeting":"Hey",
+      "login":{
+        "message": "Welcome back",
+        "subMessage" : "Your favorite pizza is waiting you."
+      },
+      "signup":{
+        "mainMessage": "We’re bribing the chef to hurry",
+        "subMessage" : "menu coming soon..."
       }
     }
   },
@@ -165,37 +228,23 @@
     "buttons": {
       "login": "Log in",
       "signup": "Sign up",
-      "continue": "Continue",
-      "orderNow": "Order now",
-      "order": "place order",
-      "save": "Save",
-      "cancel": "Cancel",
-      "submit": "Submit",
+      "addToBag": "Add to cart",
+      "order": "Place order",
+      "submit": "Save changes",
       "pay": "Pay",
-      "add" : "Add items"
-    },
-    "inputs": {
-      "search": "Search",
-      "email": "Email",
-      "password": "Password"
+      "add": "Add items",
+      "goToMenu": "Go to menu",
+      "stayHere": "Stay here",
+      "gotIt": "Got it",
+      "refreshPage": "Refresh the page",
+      "sure" : "Sure",
+      "no" : "Noooo!",
+      "edite": "Edite",
+      "seeYouSoon": "See you soon!",
+      "no_stay": "No, I'll stay"
+
     },
     "labels": {
-      "firstName": "First name",
-      "lastName": "Last name",
-      "password": "Password",
-      "confirmPassword": "Confirm password",
-      "email": "Email",
-      "phone": "Phone",
-      "address": "Address",
-      "city": "City",
-      "street": "Street",
-      "zipcode": "ZIP code",
-      "optional": "Extra info",
-      "cardHolder": "Card holder",
-      "cardNum": "Card number",
-      "expiry": "Expiry date",
-      "dateFormat": "mm/dd/yyyy",
-      "ccv": "CCV",
       "language": {
         "title": "Language",
         "en": "English",
@@ -209,8 +258,12 @@
     },
     "feedback": {
       "loading": "Loading...",
-      "error": "Something went wrong",
-      "noData": "No data available"
+      "error": "Something went wrong. Please try again.",
+      "noData": "No data available."
+    },
+    "error404": {
+      "title": "Page not found",
+      "message": "Oops! The page you're looking for doesn't exist or has been moved."
     }
   }
 }

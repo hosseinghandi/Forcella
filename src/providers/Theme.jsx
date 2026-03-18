@@ -3,8 +3,9 @@ import { useUserData } from "./UserData";
 export const ThemeContext = createContext(null);
 
 export default function ThemeProvider({children}) {
-    const {userdata} = useUserData()
-    const mode = userdata.personalInfo.theme;
+    const {fetchedUserdata, loading, error} = useUserData()
+    const mode = fetchedUserdata?.personalInfo.theme
+    
     const value = useMemo( () => (
         {
         mode, 

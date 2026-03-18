@@ -14,7 +14,7 @@ export default function SharedNavigation({
 }) 
 {
     // handel logout 
-    const [exit, setExit] = useState(false)
+  const [exit, setExit] = useState(false)
 
   const NavSetup = {
     "login" : {
@@ -56,7 +56,6 @@ export default function SharedNavigation({
 
   }
 
-
     const html = (varient) => {
       switch(varient) {
 
@@ -83,6 +82,8 @@ export default function SharedNavigation({
    
         case  "profile" :    
         return  <UI.NavProfile {...NavSetup[varient]}/>
+        case "error":
+        return <UI.NavBar />
         default: 
               <UI.Navigation varient={"navigation"}/>
       }

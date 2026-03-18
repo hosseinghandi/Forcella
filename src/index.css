@@ -12,6 +12,15 @@ body, html {
   box-sizing: border-box;
 }
 
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 :root {
 
   /*************************************************
@@ -32,6 +41,7 @@ body, html {
    * GLOBAL border radius 
    *************************************************/
   --radius: 25px;
+  --loadingEl :clamp(2rem, 3.95vi + 1.07rem, 7rem); 
 
   /*************************************************
    * GLOBAL LAYOUT PADDING
@@ -61,7 +71,8 @@ body, html {
   --pizzaContentBold : clamp(1rem, 0.2vi + 0.95rem, 1.25rem);
   --textNormalTitles : clamp(1rem, 0.49vi + 0.88rem, 1.63rem);
   --emptylists : clamp(1.13rem, 2.07vi + 0.64rem, 3.75rem);
-
+  --E404 :clamp(6.25rem, 7.41vi + 4.51rem, 15.63rem);
+  --welcomingToUserName : clamp(1.63rem, 3.65vi + 0.77rem, 6.25rem);
   /*************************************************
    * INPUTS & BUTTONS
    *************************************************/
@@ -119,7 +130,6 @@ body, html {
   --starDimension: clamp(0.88rem, 0.15vi + 0.84rem, 1.06rem);
   --cardSizeMainVertical: clamp(9.38rem, 0.49vi + 9.26rem, 10rem);
   --specialGap : 15px;
-  --pizzaImageSizelg : 13vw; 
 }
 
 body {

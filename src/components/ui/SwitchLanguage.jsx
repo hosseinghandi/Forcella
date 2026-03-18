@@ -2,22 +2,23 @@
 
 import * as MUI from "../../barrels/MUI"
 import { useTheme } from "../../providers/Theme";
-import { useLanguage } from "../../providers/Language";
-import useHandelUserPerference from "../../hook/useHandelUserPereference"
+import { useTranslation } from "react-i18next";
+import useUpdateUser from "../../hook/useUserUpdate"
 
 export default function SwitchLanguage() {
   const {colors} = useTheme()
-  const {lang} = useLanguage()
-  const updatedPereference = useHandelUserPerference()
+
+  const { i18n } = useTranslation()
+  const lang = i18n.language
+  const shownLang = lang === "it" ? "en" : "it" 
+  console.log(lang)
+  const {changeLanguage} = useUpdateUser()
+
   return (
         <MUI.Switch
           checked={lang === "it"}
           aria-label={`Language: ${lang === "it" ? "Italian" : "English"}`}
-          onChange={() => 
-            { 
-              updatedPereference("language", lang === "en" ? "it" : "en" )
-            }
-          }
+          onChange={() => changeLanguage()}
           sx={{
             width: "calc(var(--switchDimension) * 3)",
             height: "var(--switchDimension)",
@@ -55,11 +56,12 @@ export default function SwitchLanguage() {
               position: "relative",
 
               "&::before": {
-                content: `"${lang.toUpperCase()}"`,
+                content: `"${shownLang.toUpperCase()}"`,
                 color: colors.text,
                 position: "absolute",
                 top: "50%",
-                transform: "translateY(-50%) translateX(calc(var(--switchDimension) + 2.5px))",
+                ...(shownLang === "it" ?{left :"30%"} : { right:"90%"}),
+                transform: "translateY(-50%) translateX(calc(var(--switchDimension)))",
                 fontSize: "var(--butonText)",
                 fontWeight: 400,
                 pointerEvents: "none",

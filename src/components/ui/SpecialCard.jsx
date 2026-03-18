@@ -3,20 +3,29 @@
 import * as MUI from "../../barrels/MUI"
 import * as UI from "../../barrels/UI"
 
-import { memo } from "react"
+import { memo, useState } from "react"
 // ui component
 
 import { useTheme } from "../../providers/Theme";
 import useRequestText from "../../hook/useRequestText";
-export default memo(function SpecialCard({ offered, colorText}) {
-const{colors} = useTheme() 
-const text = useRequestText("offer")
+import useUpdateUser from "../../hook/useUserUpdate";
+import { useUserData } from "../../providers/UserData";
 
-    const offeredPizza = {
+export default memo(function SpecialCard({ offered}) {
+const{colors} = useTheme() 
+const {toggleCart} = useUpdateUser()
+const text = useRequestText("menu")
+const {fetchedUserdata} = useUserData()
+const [alreadyExist, setAlreadyExist] = useState(false)
+    
+const offeredPizza = {
         name : offered[0].name,
         img : offered[0].image,
-        discount : offered[0].discount
+        discount : offered[0].discount,
+        id:offered[0].id
     }
+
+const isInCart = fetchedUserdata.pizzaInCartId.includes(offeredPizza.id)
 
 return (<MUI.Card
             sx={{
@@ -38,14 +47,19 @@ return (<MUI.Card
             gap:{xs:"var(--specialGap)"},order:{special:2}
             }}>
                 <MUI.Box sx={{display:"flex", flexDirection:"column", gap:"var(--specialGap)"}}>
-                    <MUI.Typography variant="pizzaContentBold">{text.title}</MUI.Typography>
-                    <MUI.Typography variant="textNormal"><strong>{`${offeredPizza.discount}%`}</strong> {text.description}</MUI.Typography>
+                    <MUI.Typography variant="pizzaContentBold">{text.offer.title}</MUI.Typography>
+                    <MUI.Typography variant="textNormal"><strong>{`${offeredPizza.discount}%`}</strong> {text.offer.note}</MUI.Typography>
                 </MUI.Box>
                 <MUI.CardActions sx={{padding:"0"}}>
                     <UI.ButtonBasic 
                     type="submit"
-                    title={text.button}
-                    to={"/applayout/shoppingbag"}
+                    title={text.offer.button.addToBag}
+                    task={ () => 
+                        { isInCart ? 
+                            setAlreadyExist(true) :
+                            toggleCart(offeredPizza.id) }
+                    }
+                        
                     color={colors.text}
                     shrink={true}
                     nonActive ={false}
@@ -63,7 +77,7 @@ return (<MUI.Card
                     padding:"0", 
                     width:{xs:"100%", special:"40vw", lg:"30vw",xl:"20vw"},
                     height: {xs:"50vw", special:"40vw",lg:"30vw", xl:"20vw"}, 
-                    bottom:{xs:0, special:"35%",lg:"42%", xl:"43%"},
+                    bottom:{xs:0, special:"40%",lg:"42%", xl:"43%"},
                     right:{xs:"-30vw", special:"-10vw", lg:"-8vw", xl:"-5vw"},
                     objectFit:"contain",
                     transformOrigin: "center center",
@@ -76,11 +90,18 @@ return (<MUI.Card
                     to: {
                         transform: "rotate(350deg)",
                     }
-                }
-                    
+                }   
             }
             }
                 />
+            
+            <UI.ConfirmationDialog 
+                      onClose={!alreadyExist}
+                      open={alreadyExist}
+                      actOnPositive={() => setAlreadyExist(false)}
+                      message={text.offer.alreadyAdded}
+                      positiveBtnName={text.offer.button.gotIt}
+                      />
             </MUI.Box>
             </MUI.Card>
     )

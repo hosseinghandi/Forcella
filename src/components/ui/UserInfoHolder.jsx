@@ -3,27 +3,37 @@
 import * as Icon from "../../barrels/Icons";
 import * as MUI from "../../barrels/MUI";
 import * as UI from "../../barrels/UI";
-import * as helpers from "../../barrels/helpers";
-import { useOrderCount } from "../../hook/useOrderCount";
+import { useForm} from "react-hook-form";
 import useRequestText from "../../hook/useRequestText";
 import { memo, useState } from "react";
-
+import useUpdateUser from "../../hook/useUserUpdate";
 export default memo(function UserInfoHolder({
-  userdata,
-  setUser,
   editMode,
   setEditMode,
 }) {
-  const dataPrepration = useRequestText("profile");
-  const pizzaRawData = dataPrepration.pizzaRawData;
-  const listItems = dataPrepration.listItems;
-  const orderSum = dataPrepration.orderSum
-
+  const {updateProfile, handleOrder} = useUpdateUser()
+  const {text,inputs,pizzaRawData, isOrder} = useRequestText("profile");
+  const listItems = text.listItems;
+  const orderSum = text.orderSum
+  const {
+    control,  
+    // register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm(
+    {defaultValues: Object.fromEntries(inputs.map(input => [input.name, input.placeholder]))}
+  );
+// *****here theme and languges are missed
+  const onsubmit= (formData) => {
+      console.log(formData)
+      updateProfile(formData)
+      setEditMode(false) 
+  }
 
   const [showMore, setShowMore] = useState(false);
+  const [delet, setDelet] = useState(false)
   //   get passed data and make react nodes
   // const [formData, setFormData] = useState(userdata);
-  const handelDelet = useOrderCount("delet");
 
   // prepare user data
   const personalDetail = (listItems) => {
@@ -41,7 +51,7 @@ export default memo(function UserInfoHolder({
               justifyContent: "center",
             }}
           >
-            {/* Item wrapper */}
+            {/* single input wrapper */}
             <MUI.Box
               sx={{
                 display: "flex",
@@ -80,33 +90,27 @@ export default memo(function UserInfoHolder({
             </MUI.Box>
           </MUI.Card>
         ))
-      : list.map(([data, Icon, name, subsection], index) => (
-          <UI.InputBasic
-            key={`editItem_${index}`}
-            name={name}
-            // label={name}
-            type="text"
-            NoBorder={false}
-            editMode={true}
-            // defaultValueInput={data}
-            Icon={Icon}
-            placeholder={data}
-            // onChange={helpers.handleChange("personalInfo",(subsection ? subsection : null), setFormData)}
-          />
-        ));
+      : 
+        <UI.InputControllerGroup 
+          inputs={inputs}
+          control={control}
+          errors={errors}
+        />
   };
   //   get passed object to render order states
   const orderState = (orders) => {
+
     const keys = showMore ? Object?.keys(orders) : [Object?.keys(orders)[0]];
     const list = showMore
       ? Object?.values(orders)
       : [Object?.values(orders)[0]];
+
     return list[0] ? (
       list.map((el, index) => {
         const { pizzaId, quantity, totalPrice, orderState, orderDate } = el;
         return (
-          <MUI.Box id={keys[index]} key={keys[index]}>
-            <MUI.TableContainer>
+          <MUI.Box id={keys[index]} key={keys[index]} >
+            <MUI.TableContainer >
               <MUI.Table
                 sx={{
                   width: "full",
@@ -116,7 +120,7 @@ export default memo(function UserInfoHolder({
                   },
                 }}
                 size="small"
-                aria-label="a summery of the ordr made by user"
+                aria-label="a summery of the orderd and its state"
               >
                 <MUI.TableHead>
                   <MUI.TableRow>
@@ -142,44 +146,65 @@ export default memo(function UserInfoHolder({
                         />
                       )}
                       <MUI.Typography variant="textNormal">
-                        {`${orderSum.orderDate}  ${orderDate}`}
+                        {`${orderSum.orderedIn}  ${orderDate}`}
                       </MUI.Typography>
                     </MUI.TableCell>
                     {editMode && (
                       <MUI.TableCell sx={{ padding: "0" }}>
-                        <MUI.Box
+                        
+                        <MUI.IconButton
+                        disableRipple
+                        aria-label="Delet order"
                           onClick={() => {
-                            handelDelet(keys[index]);
+                            setDelet(true)
                           }}
                           sx={{
+                            borderRadius:"0",
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "flex-end",
                             alignItems: "center",
                             gap: "2px",
+                            padding:"0",
+                            width:"100%",
+                            color:("var(--black-bg)")
+
                           }}
                         >
                           <MUI.Typography variant="textNormal">
                             {orderSum.delet}
                           </MUI.Typography>
                           <Icon.Trash />
-                        </MUI.Box>
+                        </MUI.IconButton>
                       </MUI.TableCell>
                     )}
+                    <UI.ConfirmationDialog 
+                                  onClose={!delet}
+                                  open={delet} 
+                                  message={orderSum.removeItem} 
+                                  actOnPositive={() => 
+                                  {
+                                    handleOrder(keys[index])
+                                    setDelet(false)
+                                  }}
+                                  positiveBtnName={text.button.sure}
+                                  actOnNegative={() => setDelet(false)}
+                                  negativeBtnName={text.button.no}
+                                />                    
                   </MUI.TableRow>
                 </MUI.TableHead>
 
                 <MUI.TableBody>
-                  {pizzaId.map((i, index) => (
+                  {pizzaId.split(",").map(Number).map((i, index) => (
                     <MUI.TableRow key={`numberHolder${i}`}>
                       <MUI.TableCell scope="row" sx={{ padding: "5px 30px" }}>
                         <MUI.Typography variant="textNormal">
-                          {`${pizzaRawData[i].name}`}
+                          {`${pizzaRawData.find( el => el.id === i).name}`}
                         </MUI.Typography>
                       </MUI.TableCell>
                       <MUI.TableCell align="right">
                         <MUI.Typography variant="textNormal">
-                          {`x ${quantity[index]}`}
+                          {`x ${quantity.split(",").map(Number)[index]}`}
                         </MUI.Typography>
                       </MUI.TableCell>
                     </MUI.TableRow>
@@ -248,18 +273,21 @@ export default memo(function UserInfoHolder({
   return (
     <>
       <MUI.Box
+        component={editMode ? "form" : "section"}
+        onSubmit={handleSubmit(onsubmit)}
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", special: "row" },
-          width: "95vw",
+          flexDirection: { xs: "column", lg: "row" },
+          width: {xs:"95vw", md:"70vw",lg:"95vw"},
           height: "fit-content",
+          maxHeight:{lg:"65vh"},
           px: {
             xs: "calc(var(--spacing-global-padding-x-mobile) - 3vw)",
             md: "calc(var(--spacing-global-padding-x-tablet) - 2.5vw)",
             special: "calc(var(--spacing-global-padding-x-desktop) - 2.8vw)",
           },
-
-          mt: { special: "1vh", lg: "0" },
+          
+          mt: { md: "2vw", xl:"0" },
           alignItems: {special: "flex-start" },
           gap: "calc(var(--GlobalgapOfGrids)*2)",
         }}
@@ -271,22 +299,29 @@ export default memo(function UserInfoHolder({
             display: "flex",
             flexDirection: "column",
             width:"100%",
-            gap: "calc(var(--GlobalgapOfGrids)  )",
+            gap: "calc(var(--GlobalgapOfGrids)/2)",
           }}
         >
           {personalDetail(listItems)}
         </MUI.Box>
         {/* summery and submit wrapper */}
-        <MUI.Box sx={{display:"flex",flexDirection:"column", height:"100%", width:"100%"}}>
 
-        
+        <MUI.Box sx={{
+          display:"flex",
+          flexDirection:"column", 
+          width:"100%", 
+          justifyContent:"space-between",
+          
+          }}>
         <MUI.Card
           sx={{
             ...(!editMode
               ? { marginBottom: "70px" }
               : { marginBottom: "10px" }),
             width: "100%",
-            height: "fit-content",
+            height: "100%",
+            maxHeight:"40vh",
+            overflow:"scroll",
             padding: "20px 10px",
             flexDirection: "row",
             alignItems: "flex-start",
@@ -294,6 +329,8 @@ export default memo(function UserInfoHolder({
             ...(editMode && {
               backgroundColor: "var(--white-bg)",
               border: "1px solid black",
+              marginTop:"var(--GlobalgapOfGrids)"
+              
             }),
           }}
         >
@@ -301,13 +338,16 @@ export default memo(function UserInfoHolder({
             <Icon.ShoppingBag_outlined />
           </MUI.Box>
             
-          {userdata?.orders && (
+          {text?.orders && (
             <MUI.Box
               sx={{
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
                 gap: "var(--GlobalgapOfGrids)",
+                overflowY:"scroll",
+                
+               
                 
               }}
             >
@@ -324,33 +364,35 @@ export default memo(function UserInfoHolder({
                 <MUI.Typography variant="textProfileBold">
                   {orderSum.title.toUpperCase()}
                 </MUI.Typography>
-                <MUI.Typography
-                  variant="textNormal"
-                  onClick={() => setShowMore((prev) => !prev)}
-                >{showMore ? orderSum.showMore : orderSum.showLess}</MUI.Typography>
+                <MUI.IconButton 
+                disableRipple
+                sx={{padding:"0", color:"var(--black-bg)"}}>
+                  <MUI.Typography
+                    variant="textNormal"
+                    onClick={() => setShowMore((prev) => !prev)}
+                  >
+                    { isOrder > 1 ? 
+                    !showMore ? orderSum.showMore : 
+                    orderSum.showLess: null}
+                    </MUI.Typography>
+                
+                  </MUI.IconButton>
               </MUI.Box>
               {hint()}
-              {orderState(userdata.orders)}
+              {orderState(text.orders)}
             </MUI.Box>
           )}
         </MUI.Card>
 
-        {editMode && (
+          {editMode && (
             <MUI.Box
               component={"div"}
-              sx={{ ...(editMode && { marginBottom: "70px" }) }}
+              sx={{ ...(editMode && { marginBottom: {xs:"70px", special:"0" } }) }}
             >
+              
               <UI.ButtonBasic
-                task={() => {
-                  helpers.handelSubmit(
-                    "personalInfo",
-                    formData.personalInfo,
-                    setUser,
-                  );
-                  setEditMode((prev) => !prev);
-                }}
                 type="submit"
-                title={dataPrepration.button.submit}
+                title={text.button.submit}
                 // to={ "/signup" }
                 color={"white"}
               />

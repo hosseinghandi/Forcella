@@ -1,9 +1,11 @@
 import * as Routers from "./barrels/Routers"
 import * as Pages from "./barrels/Pages"
-import {Routes, Route} from "react-router-dom"
-
+import * as UI from "./barrels/UI"
+ 
+import {Routes, Route, useLocation} from "react-router-dom"
 
 export default function AppRoutes() {
+    const {pathname} = useLocation() 
     return(
         <Routes>
         {/* entry */}
@@ -27,10 +29,11 @@ export default function AppRoutes() {
             <Route path="/profile" element={<Pages.Profile />} />
             <Route path="/cart" element={<Pages.Cart/>} />
             <Route path="/cart/payment" element={<Pages.Payment/>} />
-            {/* <Route path="/profile" element={<Pages.Profile/>} /> */}
           </Route>
 
-        <Route path="*" element={<h1>404</h1>} />
+        <Route path="*" element={
+          <UI.E404 pathname={pathname} />
+          } />
       </Routes>
     )
   }

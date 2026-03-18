@@ -3,18 +3,16 @@
 
 import * as MUI from "../../barrels/MUI"
 import * as UI from "../../barrels/UI"
-import useRequestData from "../../hook/useRequestText";
+import useRequestText  from "../../hook/useRequestText";
 
 import { useParams } from "react-router-dom";
 export default function Filter({colorText}) {
 
-  const categories = useRequestData("categories")
-
+  const categories = useRequestText("categories")
   const {filterkey} = useParams()
-
   const categoriesBtn = () =>
       categories.map((category) => {
-      const path = category === "All" || category === "Tutte" ?  
+      const path = category === "All" || category === "Tutti" ?  
       `/menu` : 
       `/menu/${category}` 
 
@@ -45,7 +43,7 @@ export default function Filter({colorText}) {
           sx={{
             // this gap the spac for mobiole which put space within the arrow and filter 
             mt:{xs:"var(--GlobalgapOfGrids)",md:"unset"},
-            height:{xs:"fit-content", special:"var(--filterAndNavSize)" },
+            height:{xs:"fit-content", md:"var(--filterAndNavSize)" },
             flexDirection: "column",
             justifyContent:"center",
             width: "100%",

@@ -26,3 +26,5 @@ export {default as Slide} from "@mui/material/Slide";
 export {default as InputLabel} from "@mui/material/InputLabel";
 export {default as InputBase} from "@mui/material/InputBase";
 export {default as Grid} from "@mui/material/Grid";
+export {default as CircularProgress} from "@mui/material/CircularProgress";
+export {default as Link} from "@mui/material/Link"

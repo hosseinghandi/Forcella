@@ -10,17 +10,6 @@ import * as MUI from "../../barrels/MUI"
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../providers/Theme";
 
-// hint
-// id: if required to inform any state baed on the id 
-// type : the type of the button such as submit, if null => button 
-// title : the title by which the button is presented 
-// to : this uses mostly to navigate the user specific page 
-// task : the funtion passed through props to be called when clicked
-// shtink : shrink the size of element to fit content 
-// nonctive : make the button transparent to inform the user which button is active 
-// disabled: use for cases that form is not completed or inputs still are not valid 
-
-
 export default function ButtonBasic({
   id,
   type,
@@ -35,13 +24,13 @@ export default function ButtonBasic({
   // use navigation to guide the user to specific page 
   const navigate = useNavigate();
   const {mode} = useTheme()
-
+  console.log(task)
   return (
     <MUI.Button
-    
+      
       type={type ?? "button"}
       onClick={() => task ? id ? task(id) : task() : 
-        navigate(to, state ? {state}: undefined)}
+        to && navigate(to)}
       variant= {shrink ? "text" : "contained"}
       disabled={disabled}
       sx={{

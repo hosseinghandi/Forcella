@@ -4,8 +4,10 @@
 
 import * as MUI from "../../barrels/MUI"
 import * as Icons from "../../barrels/Icons"
+import useUpdateUser from "../../hook/useUserUpdate";
+import { useUserData } from "../../providers/UserData";
 // react import 
-import { memo } from "react";
+import { memo} from "react";
 
 export default memo(function PizzaInList({
   price,
@@ -14,8 +16,6 @@ export default memo(function PizzaInList({
   discount,
   id,
   review,
-  onToggelCart,
-  onTogglePizza,
   onInfoRequest,
   liked,
   added
@@ -26,17 +26,29 @@ export default memo(function PizzaInList({
     : price.toFixed(2);
 
   const iconList = [
-    [Icons.Add, onToggelCart, added ? "var(--orange)" : "var(--black)" ,"add"],
-    [Icons.Heart  , onTogglePizza, liked ? "var(--orange)" : "var(--black)", "fav"],
-    [Icons.Info , onInfoRequest,"var(--black)" ,"info"],
+    [Icons.Add, added ? "var(--orange)" : "var(--black)" ,"add"],
+    [Icons.Heart, liked ? "var(--orange)" : "var(--black)", "like"],
+    [Icons.Info ,"var(--black)" ,"info"],
   ];
 
+  const {toggleLike, toggleCart} = useUpdateUser()
 
   const icons = (list) => {
-    return list.map(([Icon, task, color, key]) => (
+    return list.map(([Icon, color, key]) => (
       <MUI.IconButton
         key={key}
-        onClick={() => task(id)}
+        onClick={() => 
+        {
+          switch(key){
+            case("add"):
+            return toggleCart(id)
+            case("like"):
+            return toggleLike(id)
+            case("info"):
+            return onInfoRequest(id)
+          }
+        }
+      }
         sx={{ 
           padding: "0", color: "var(--black)",
         }}
@@ -161,7 +173,7 @@ export default memo(function PizzaInList({
               <MUI.Typography
                 variant="pizzaContentBold"
                 sx={{
-                  ...(discount && {
+                  ...(!!discount && {
                     textDecoration: "line-through",
                     textDecorationColor: "var(--orange)",
                     textDecorationThickness: 2,
@@ -170,7 +182,7 @@ export default memo(function PizzaInList({
               >
                 {`${price}€`}
               </MUI.Typography>
-              {discount && (
+              {!!discount && (
                 <MUI.Typography variant="pizzaContentBold">{`${finalPrice}€`}</MUI.Typography>
               )}
             

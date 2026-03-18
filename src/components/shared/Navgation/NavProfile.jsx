@@ -15,54 +15,16 @@ export default function NavProfile({
   navBar,
 }) {
   const { mode, colors } = useTheme();
-  const { userdata } = useUserData();
+  const { fetchedUserdata} = useUserData();
   const {lang} = useLanguage()
-  const pizzaLikedNum = userdata["likedPizzasId"].length;
-  const pizzaInCartNum = userdata["pizzaInCartId"].length;
+  const pizzaLikedNum = fetchedUserdata["likedPizzasId"].length;
+  const pizzaInCartNum = fetchedUserdata["pizzaInCartId"].length;
   const navigate = useNavigate();
   const location = useLocation();
-  const {logOut} = useRequestText("profile");
+  const {text} = useRequestText("profile");
 
   return (
     <>
-      <MUI.Dialog
-        PaperProps={{
-          sx: {
-            borderRadius: "25px",
-            padding: "28px 32px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "var(--gapClickableSetup)",
-            height: "fit-content",
-          },
-        }}
-        onClose={exit}
-        open={exit}
-        fullWidth
-        maxWidth="md"
-      >
-        <MUI.Typography>
-          {logOut.message}
-        </MUI.Typography>
-        <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 8 }}>
-          <UI.ButtonBasic
-            type="submit"
-            title={logOut.yes}
-            to={"/welcome"}
-            //  task={setExit}
-            shrink={true}
-          />
-          <UI.ButtonBasic
-            type="submit"
-            title={logOut.no}
-            task={setExit}
-            shrink={true}
-          />
-        </MUI.Box>
-      </MUI.Dialog>
-
       {/* navigation main holder */}
       <MUI.Box
         sx={{
@@ -147,10 +109,10 @@ export default function NavProfile({
             display: "flex",
             flexDirection: "row",
             width: "100%",
-            padding:`0 ${ lang === "it" ? "60px": "40px"}`,
+            padding:"0 60px",
             justifyContent: "flex-end",
             alignItems: "center",
-            gap: `${ lang === "it" ? "60px": "40px"}`,
+            gap: "50px",
           }}
         >
             <MUI.IconButton
@@ -186,11 +148,20 @@ export default function NavProfile({
               <MUI.Typography 
               variant="textNormal" 
               sx={{ marginLeft: "calc(var(--GlobalgapOfGrids) /2 )" }}>
-                {`${lang === "it" ? "Modifica" : "Edit" }`}
+                {`${text.button.edite}`}
               </MUI.Typography>
             </MUI.IconButton>
         </MUI.Box>
       </MUI.Box>
+      <UI.ConfirmationDialog 
+          onClose={exit}
+          open={exit} 
+          message={text.logOut.message} 
+          actOnPositive={() => navigate("/welcome")}
+          positiveBtnName={text.button.seeYouSoon}
+          actOnNegative={() => setExit(false)}
+          negativeBtnName={text.button.no_stay}
+        />
     </>
   );
 }

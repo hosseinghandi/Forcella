@@ -1,25 +1,25 @@
 {
   "pizzas": {
     "labels": {
-      "ingredients": "Ingredients : ",
-      "calories": "Calories",
-      "preparationTime": "Preparation time",
-      "time": "time",
-      "spiceLevel": "Spice level"
+      "ingredients": "Ingredienti : ",
+      "calories": "Calorie",
+      "preparationTime": "Tempo di preparazione",
+      "time": "tempo",
+      "spiceLevel": "Piccantezza"
     },
     "spiceLevels": {
-      "none": "Not spicy",
-      "mild": "Mild",
-      "medium": "Medium",
-      "hot": "Hot"
+      "none": "Non piccante",
+      "mild": "Leggero",
+      "medium": "Medio",
+      "hot": "Piccante"
     },
     "items": {
       "margherita": {
         "id": 1,
         "name": "Margherita",
-        "description": "The iconic Neapolitan pizza originating from Italy, made with tomato sauce, fresh mozzarella, and basil. Known for its simplicity, balanced flavors, and light texture, it highlights the quality of traditional ingredients.",
+        "description": "L'anima della tradizione napoletana, ridotta alla sua forma più pura. Salsa di pomodoro San Marzano, mozzarella fresca e basilico profumato si incontrano su un impasto leggero e soffice, cotto a temperature altissime. I bordi si bruciacchiano leggermente, la mozzarella si scioglie alla perfezione e il basilico sprigiona il suo aroma al momento giusto. Tre ingredienti, secoli di storia e un sapore così equilibrato da non stancare mai. È qui che inizia la grande pizza — e per molti, è qui che finisce.",
         "ingredients": {
-          "list": ["Tomato", "Mozzarella", "Basil"],
+          "list": ["Pomodoro", "Mozzarella", "Basilico"],
           "icons": ["tomato", "mozzarella", "basil"]
         },
         "spiceLevel": "none",
@@ -29,15 +29,15 @@
         "review": 5,
         "time": 10,
         "image": "/pizza-image/margherita.png",
-        "discount": 20 
+        "discount": 20
       },
 
       "pepperoni": {
         "id": 2,
         "name": "Pepperoni",
-        "description": "A popular American-style pizza topped with tomato sauce, mozzarella, and spicy pepperoni sausage. Its bold, savory flavor and slightly crispy edges make it one of the most loved pizzas worldwide.",
+        "description": "Affumicata, piccante e impossibile da resistere. Generose fette di pepperoni stagionato si arricciano e diventano croccanti in forno, rilasciando i loro oli intensi sulla mozzarella filante e la ricca salsa di pomodoro. Ogni morso offre un contrasto di consistenze soddisfacente — impasto morbido, formaggio filante e bordi perfettamente croccanti. È decisa senza essere eccessiva, golosa senza chiedere scusa. Il tipo di pizza che sparisce dal tavolo prima che qualcuno si accorga di quanto ne ha mangiata.",
         "ingredients": {
-          "list": ["Tomato sauce", "Mozzarella", "pepperoni"],
+          "list": ["Salsa di pomodoro", "Mozzarella", "Pepperoni"],
           "icons": ["tomato_sauce", "mozzarella", "pepperoni"]
         },
         "spiceLevel": "hot",
@@ -47,15 +47,15 @@
         "review": 4.5,
         "time": 15,
         "image": "/pizza-image/peperoni.png",
-        "discount": null 
+        "discount": null
       },
 
       "bbq_chicken": {
         "id": 3,
         "name": "BBQ Chicken",
-        "description": "A modern pizza variation using barbecue sauce instead of tomato sauce, topped with seasoned chicken breast, onion, and mozzarella. It offers a smoky, sweet flavor profile with a hearty, satisfying taste.",
+        "description": "Un'audace alternativa alla tradizione che conquista il suo posto su qualsiasi menu. La salsa barbecue sostituisce il pomodoro, creando una base ricca e leggermente dolce per il tenero pollo marinato, la cipolla caramellata e la mozzarella filante. I sapori si stratificano magnificamente — affumicato, saporito e con una punta di dolcezza — costruendo qualcosa di sostanzioso e profondamente soddisfacente. Se avete mai dubitato che la pizza potesse funzionare senza salsa di pomodoro, questa è quella che chiuderà il dibattito una volta per tutte.",
         "ingredients": {
-          "list": ["Tomato sauce", "Chicken breast", "Onion", "Mozzarella"],
+          "list": ["Salsa BBQ", "Petto di pollo", "Cipolla", "Mozzarella"],
           "icons": ["tomato_sauce", "chicken_breast", "onion", "mozzarella"]
         },
         "spiceLevel": "mild",
@@ -65,15 +65,15 @@
         "review": 3.8,
         "time": 20,
         "image": "/pizza-image/chicken.png",
-        "discount": null 
+        "discount": null
       },
 
       "hawaiian": {
         "id": 4,
         "name": "Hawaiian",
-        "description": "A controversial yet famous pizza combining tomato sauce, mozzarella, ham, and pineapple. The contrast between sweet pineapple and salty ham creates a distinctive sweet-and-savory flavor experience.",
+        "description": "La pizza che divide le opinioni e conquista i cuori in egual misura. Ananas succoso e prosciutto saporito riposano insieme su una base classica di pomodoro e mozzarella, creando un contrasto dolce-salato molto più convincente di quanto sembri. L'ananas alleggerisce la ricchezza del formaggio, il prosciutto aggiunge profondità e ogni morso sorprende un poco. Discutetene quanto volete — ma provatela prima. La maggior parte di chi lo fa smette di discutere e inizia a ordinare.",
         "ingredients": {
-          "list": ["Tomato sauce", "Mozzarella", "Ham", "Pineapple"],
+          "list": ["Salsa di pomodoro", "Mozzarella", "Prosciutto", "Ananas"],
           "icons": ["tomato_sauce", "mozzarella", "ham", "pineapple"]
         },
         "spiceLevel": "medium",
@@ -83,15 +83,15 @@
         "review": 4,
         "time": 20,
         "image": "/pizza-image/hawai.png",
-        "discount": 20 
+        "discount": 20
       },
 
       "vegetarian": {
         "id": 5,
         "name": "Vegetarian",
-        "description": "A meat-free pizza topped with tomato sauce, mozzarella, and a selection of fresh vegetables. It’s a lighter option that emphasizes freshness, variety, and natural flavors without sacrificing taste.",
+        "description": "Colorata, fresca e piena di carattere — la prova che la migliore pizza non ha bisogno di carne per essere indimenticabile. Peperoni croccanti, cipolla dolce e olive saporite si stratificano su una base classica di pomodoro e mozzarella cremosa, con ogni ingrediente che aggiunge la propria nota distintiva all'insieme. Il risultato è una pizza che sembra leggera e vivace senza mai sembrare un compromesso. Abbastanza fresca da sorprendervi, abbastanza saporita da farvi tornare ogni volta.",
         "ingredients": {
-          "list": ["Tomato sauce", "Mozzarella", "Bell peppers", "Onion", "Olives"],
+          "list": ["Salsa di pomodoro", "Mozzarella", "Peperoni", "Cipolla", "Olive"],
           "icons": ["tomato_sauce", "mozzarella", "bell_peppers", "onion", "olives"]
         },
         "spiceLevel": "none",
@@ -101,7 +101,7 @@
         "review": 4.1,
         "time": 10,
         "image": "/pizza-image/vegan.png",
-        "discount": null 
+        "discount": null
       }
     }
   }

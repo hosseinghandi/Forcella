@@ -1,13 +1,11 @@
-
 import useRequestText from "../hook/useRequestText";
 import * as MUI from "../barrels/MUI"
 import * as UI from "../barrels/UI"
 
 export default function Welcome() {
   
-
-
   const text = useRequestText("welcoming")
+  
   return (
     <>
       <UI.SharedNavigation varient={"welcoming"}/>

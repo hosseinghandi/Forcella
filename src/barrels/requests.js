@@ -6,4 +6,4 @@ export {default as getMenuData} from "../requests/menu";
 export {default as requestList} from "../requests/list";
 export {default as getCartData} from "../requests/cart";
 export {default as getProfileData} from "../requests/profile"
-
+export {default as buildInputData} from "../utils/buildInputData"

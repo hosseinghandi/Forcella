@@ -1,40 +1,54 @@
-export default function getCartData (t){
+import * as requests from "../barrels/requests";
 
-return {
-  pizzaRawData: Object.values(
-    t("data:pizzas.items", { returnObjects: true })
-  ),
+export default function getCartData(t) {
+  const cartFieldKeys = t("pages.cart.payment.form.fields", {
+    returnObjects: true,
+  });
+  const allFields = t("forms.fields", { returnObjects: true });
+  const fields = requests.buildInputData(
+    Object.fromEntries(cartFieldKeys.map((key) => [key, allFields[key]])),
+  );
 
-  cart_text: {
-        title: t("pages.cart.title"),
-        empty: {
-          title: t("pages.cart.emptyCart.title"),
-          message : t("pages.cart.emptyCart.message"),
-          button: t("ui.buttons.orderNow"),
-        },
-        pre_message: "pages.cart.pre_message",
-        orderSummary: {
-              title: t("pages.profile.sections.orderSummary.title"),
-              subtotal: t("pages.profile.sections.orderSummary.subtotal"),
-              shipping: t("pages.profile.sections.orderSummary.shipping"),
-              tax: t("pages.profile.sections.orderSummary.tax"),
-              total: t("pages.profile.sections.orderSummary.total"),
-            },
-          },
-          button:{
-            order:  t("ui.buttons.order"),
-            pay:  t("ui.buttons.pay")
-          },
-          payment: {
-              title : t("pages.cart.payment.title"),
-              cardHolder : t("ui.labels.cardHolder"),
-              cardNum : t("ui.labels.cardNum"),
-              expiry : t("ui.labels.expiry"),
-              dateFormat : t("ui.labels.dateFormat"),
-              ccv : t("ui.labels.ccv")
-          },
+  return {
+    pizzaRawData: Object.values(
+      t("data:pizzas.items", { returnObjects: true }),
+    ),
 
-  
+    cart_text: {
+      title: t("pages.cart.title"),
+      remove: t("pages.cart.removeItem"),
+      pre_message: t("pages.cart.pre_message"),
+      empty: {
+        title: t("pages.cart.emptyCart.title"),
+        message: t("pages.cart.emptyCart.message"),
+      },
+      orderSummary: {
+        title: t("pages.cart.orderSummery.title"),
+        subtotal: t("pages.cart.orderSummery.subtotal"),
+        shipping: t("pages.cart.orderSummery.shipping"),
+        tax: t("pages.cart.orderSummery.tax"),
+        total: t("pages.cart.orderSummery.total"),
+      },
+    },
+
+    button: {
+      order: t("ui.buttons.order"),
+      pay: t("ui.buttons.pay"),
+      goToMenu: t("ui.buttons.goToMenu"),
+      sure: t("ui.buttons.sure"),
+      no: t("ui.buttons.no"),
+    },
+
+    payment: {
+      title: t("pages.cart.payment.title"),
+      fullWidth: {
+        cardHolder: fields.cardHolder,
+        cardNumber: fields.cardNumber,
+      },
+      halfWidth: {
+        expiryDate: fields.expiryDate,
+        cvv: fields.cvv,
+      },
+    },
+  };
 }
-}
-

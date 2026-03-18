@@ -1,21 +1,34 @@
-import {createContext, useContext,useState, useMemo } from "react"
-import {getUserState} from "../utils/userStateTracker";
-
+import { createContext, useContext, useMemo, useState } from "react";
+import useUser from "../hook/useUser";
 export const UserDataContext = createContext(null);
 
+export default function UserDataProvider({ children }) {
 
-export default function UserDataProvider({children}) {
+  const [userId, setUserId] = useState(
+    () => JSON.parse(localStorage.getItem("userId"))
+  );
+  const { fetchedUserdata, loading, error } = useUser(userId);
 
-    const [userdata, setUser] = useState(() => getUserState())
-    const value = useMemo(() => ({
-        userdata,
-        setUser
-    }), [userdata])
-    return(
-        <UserDataContext.Provider value={value}>
-            {children}
-        </UserDataContext.Provider>
-    )
+  const value = useMemo(
+    () => ({
+      userId,
+      setUserId,
+      fetchedUserdata,
+      loading,
+      error,
+    }),
+    [fetchedUserdata, loading, error, userId],
+  );
+
+  return (
+    <UserDataContext.Provider value={value}>
+      {children}
+    </UserDataContext.Provider>
+  );
 }
-export const useUserData= () => useContext(UserDataContext)
-
+export const useUserData = () => {
+  const context = useContext(UserDataContext);
+  if (!context) return { fetchedUserdata: null, loading: true, error: null };
+  if (!context.fetchedUserdata) return { ...context, loading: true };
+  return context;
+};

@@ -24,7 +24,6 @@ const handleChange =
                 [name] : value
               }
 
-              console.log(updatedState)
               // extend teh whole object and (apply the changes) to that (main section) which is asked
               return {...prev, [section]: updatedState }
             })

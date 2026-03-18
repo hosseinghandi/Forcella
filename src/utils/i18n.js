@@ -13,11 +13,11 @@ i18n
     resources: {
       en: { 
         lang: en_lang, 
-        data  :en_data
+        data: en_data
        },
       it: {  
         lang: it_lang, 
-        data  :it_data 
+        data: it_data 
       }
     },
     lng: "en",
@@ -28,5 +28,6 @@ i18n
       escapeValue: false
     }
   });
+
 
 export default i18n;

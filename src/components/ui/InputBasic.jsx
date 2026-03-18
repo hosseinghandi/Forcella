@@ -1,6 +1,5 @@
 // *role :  on reuqest make input *
 // material ui elements
-
 import * as MUI from "../../barrels/MUI"
 export default function InputBasic({
   name,
@@ -8,13 +7,13 @@ export default function InputBasic({
   type,
   placeholder,
   Icon,
-  error,
   isValid,
-  background,
-  defaultValueInput,
-  editMode,
+  value,
   onChange,
+  inputRef,
+  error,
 }) {
+
 
 return (
 <MUI.Box sx={{width:"100%",display:"flex", flexDirection:"column", 
@@ -24,12 +23,22 @@ return (
   sx={{width:"100%", alignSelf:"left"}}
   component={"label"} htmlFor={name}>{label}</MUI.Typography>
     <MUI.TextField
-      id={name}
-      name={name}
+      error={!!error}
+      id= {error ? "outlined-error" : name}
+      helperText={!!error && error?.message}
       type={type}
       placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      inputRef={inputRef}
       hiddenLabel
+
       variant="outlined"
+      FormHelperTextProps={{
+        sx: {
+          fontSize: "var(--textLabel)",
+        }
+      }}
       sx={{
         
         // delet the calender and spins 
@@ -50,7 +59,7 @@ return (
 
       width: "100%",
       "& .MuiOutlinedInput-root": {
-        border:"1px solid var(--black-bg)",
+        border: "1px solid var(--black-bg)",
         background:"var(--white-bg)",
         height: "var(--buttonAndInputSize)",
         borderRadius: "25px",

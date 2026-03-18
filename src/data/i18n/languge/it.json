@@ -3,206 +3,256 @@
     "name": "Pizzeria Forcella",
     "description": "Ordina autentica pizza napoletana preparata con ingredienti freschi."
   },
-  "navigation": {
-    "menu": "Menu",
-    "favorites": "Preferiti",
-    "shoppingBag": "Carrello",
-    "profile": "Profilo",
-    "login": "Accedi",
-    "signup": "Registrati"
+  "forms": {
+    "fields": {
+      "firstName": {
+        "name": "firstName",
+        "type": "text",
+        "label": "Nome",
+        "placeholder": "es. Mario",
+        "error": "Inserisci il tuo nome.",
+        "rules": { "required": true, "minLength": 2 }
+      },
+      "lastName": {
+        "name": "lastName",
+        "type": "text",
+        "label": "Cognome",
+        "placeholder": "es. Rossi",
+        "error": "Inserisci il tuo cognome.",
+        "rules": { "required": true, "minLength": 2 }
+      },
+      "email": {
+        "name": "email",
+        "type": "email",
+        "label": "Email",
+        "placeholder": "es. mario.rossi@email.com",
+        "error": "Inserisci un indirizzo email valido.",
+        "rules": { "required": true, "pattern": "email" }
+      },
+      "phone": {
+        "name": "phone",
+        "type": "tel",
+        "label": "Telefono",
+        "placeholder": "es. +39 345 123 4567",
+        "error": "Inserisci un numero di telefono valido.",
+        "rules": { "required": true, "pattern": "phone" }
+      },
+      "password": {
+        "name": "password",
+        "type": "password",
+        "label": "Password",
+        "placeholder": "Minimo 8 caratteri",
+        "error": "La password deve contenere almeno 8 caratteri.",
+        "rules": { "required": true, "minLength": 8 }
+      },
+      "confirmPassword": {
+        "name": "confirmPassword",
+        "type": "password",
+        "label": "Conferma password",
+        "placeholder": "Reinserisci la tua password",
+        "error": "Le password non coincidono.",
+        "rules": { "required": true, "validate": "matchPassword" }
+      },
+      "address": {
+        "name": "address",
+        "type": "text",
+        "label": "Indirizzo",
+        "placeholder": "es. Via Roma 12",
+        "error": "L'indirizzo è obbligatorio.",
+        "rules": { "required": true, "minLength": 5 }
+      },
+      "zipcode": {
+        "name": "zipcode",
+        "type": "text",
+        "label": "CAP",
+        "placeholder": "es. 80100",
+        "error": "Inserisci un CAP valido.",
+        "rules": { "required": true, "pattern": "zipcode" }
+      },
+      "addressExtra": {
+        "name": "optional",
+        "type": "text",
+        "label": "Informazioni aggiuntive",
+        "placeholder": "es. Interno 4B",
+        "rules": {}
+      },
+      "cardHolder": {
+        "name": "cardHolder",
+        "type": "text",
+        "label": "Intestatario carta",
+        "placeholder": "Nome sulla carta",
+        "error": "Inserisci il nome dell'intestatario della carta.",
+        "rules": { "required": true, "minLength": 2 }
+      },
+      "cardNumber": {
+        "name": "cardNumber",
+        "type": "text",
+        "label": "Numero carta",
+        "placeholder": "1234 5678 9012 3456",
+        "error": "Inserisci un numero di carta valido.",
+        "rules": { "required": true, "pattern": "cardNumber" }
+      },
+      "expiryDate": {
+        "name": "expiryDate",
+        "type": "text",
+        "label": "Data di scadenza",
+        "placeholder": "gg/mm/aaaa",
+        "error": "Inserisci una data valida.",
+        "rules": { "required": true}
+      },
+      "cvv": {
+        "name": "cvv",
+        "type": "text",
+        "label": "CVV",
+        "placeholder": "123",
+        "error": "Inserisci il tuo CVV.",
+        "rules": { "required": true, "pattern": "cvv" }
+      }
+    }
   },
-
   "pages": {
     "welcoming": {
-      "title": "Benvenuto a Pizzeria Forcella",
+      "title": "Benvenuto alla Pizzeria Forcella",
       "content": {
         "highlights": [
-          "La pizza napoletana nasce a Napoli, in Italia, ed è diventata nel tempo uno dei simboli più famosi della cucina tradizionale italiana. La sua storia risale a diversi secoli fa e rappresenta la semplicità e l’autenticità delle tradizioni culinarie locali. Oggi è riconosciuta in tutto il mondo come un’icona culturale e gastronomica dell’Italia.",
-          "Viene preparata con ingredienti accuratamente selezionati come pomodori San Marzano, mozzarella fresca, olio extravergine di oliva e basilico profumato. Ogni ingrediente contribuisce a creare il sapore equilibrato e autentico della pizza. L’attenzione è sempre rivolta alla freschezza, alla qualità e al rispetto della preparazione tradizionale.",
-          "La pizza viene cotta in un forno a legna tradizionale a temperature molto elevate, spesso superiori ai 450°C. Questo calore intenso cuoce la pizza in circa 60–90 secondi, permettendo all’impasto di gonfiarsi rapidamente e sviluppare la sua tipica consistenza morbida e soffice. Il risultato è una crosta leggera con bordi leggermente bruciacchiati e un delicato aroma affumicato."
+          "La pizza napoletana è nata a Napoli e nel corso del tempo è diventata uno dei simboli più celebri della cucina tradizionale italiana. La sua storia abbraccia secoli e riflette la semplicità e l'autenticità delle tradizioni culinarie locali. Oggi è riconosciuta in tutto il mondo come icona culturale e gastronomica dell'Italia.",
+          "Viene preparata con ingredienti selezionati con cura — pomodori San Marzano, mozzarella fresca, olio extravergine di oliva e basilico profumato. Ogni ingrediente svolge un ruolo essenziale nel creare il sapore equilibrato e autentico della pizza. L'attenzione è sempre rivolta alla freschezza, alla qualità e al rispetto dei metodi di preparazione tradizionali.",
+          "La pizza viene cotta in un forno a legna tradizionale a temperature molto elevate, spesso superiori ai 450°C. Questo calore intenso cuoce la pizza in soli 60–90 secondi, permettendo all'impasto di lievitare rapidamente e sviluppare la sua caratteristica consistenza morbida e ariosa. Il risultato è un cornicione leggero con bordi leggermente bruciacchiati e un delicato aroma affumicato."
         ]
       }
     },
 
     "login": {
       "title": "Accedi",
-      "subtitle": "Accedi con i dati inseriti durante la registrazione.",
+      "subtitle": "Accedi con le credenziali utilizzate durante la registrazione.",
       "form": {
-        "fields": {
-          "email": {
-            "placeholder": "es. john.doe@email.com",
-            "error": "Inserisci un indirizzo email valido."
-          },
-          "password": {
-            "placeholder": "********",
-            "error": "La password è obbligatoria."
-          }
-        },
+        "fields": ["email", "password"],
         "links": {
           "forgotPassword": "Hai dimenticato la password?"
-        }
-      }
+        },
+        "fieldError": "Nessun account trovato con questa email."
+      },
+      "userCommunication": "Questa pagina di accesso fa parte di una demo e non si collega a un database reale. Se clicchi su \"Vai al menu\", verrai portato direttamente al menu per esplorare il resto dell'app. Se scegli \"Rimani qui\", resterai su questa pagina e verrà mostrato il messaggio \"Utente non trovato\", poiché non esistono account reali in questa demo."
     },
 
     "signup": {
-      "title": "Registrati",
-      "subtitle": "Inserisci le tue informazioni per registrarti.",
+      "title": "Crea un account",
+      "subtitle": "Compila i tuoi dati per completare la registrazione.",
       "form": {
         "sections": {
           "personal": {
             "title": "Informazioni personali",
-            "fields": {
-              "firstName": {
-                "placeholder": "es. John",
-                "error": "Il nome è obbligatorio."
-              },
-              "lastName": {
-                "placeholder": "es. Doe",
-                "error": "Il cognome è obbligatorio."
-              },
-              "email": {
-                "placeholder": "es. john.doe@email.com",
-                "error": "Indirizzo email non valido."
-              },
-              "phone": {
-                "placeholder": "es. +1 555 123 4567",
-                "error": "Numero di telefono non valido."
-              },
-              "password": {
-                "placeholder": "Almeno 8 caratteri",
-                "error": "La password deve contenere almeno 8 caratteri."
-              },
-              "confirmPassword": {
-                "placeholder": "Reinserisci la password",
-                "error": "Le password non coincidono."
-              }
-            }
+            "fields": [
+              "firstName",
+              "lastName",
+              "email",
+              "phone",
+              "password",
+              "confirmPassword"
+            ]
           },
           "address": {
-            "title": "Indirizzo",
-            "fields": {
-              "street": {
-                "placeholder": "es. Via Roma 123",
-                "error": "La via è obbligatoria."
-              },
-              "zipCode": {
-                "placeholder": "es. 90210",
-                "error": "CAP non valido."
-              },
-              "optional": {
-                "placeholder": "es. Interno 4B"
-              }
-            }
+            "title": "Indirizzo di consegna",
+            "fields": ["address", "zipcode", "addressExtra"]
           }
         }
       }
     },
-
     "menu": {
       "title": "Menu",
-      "search": {
-        "placeholder": "Cerca la tua pizza preferita"
-      },
-      "categories": ["Tutte", "Carne", "Vegetariana", "Speciale", "offerta"],
+      "categories": ["Tutti", "Carne", "Vegetariana", "Speciale", "In offerta"],
       "offer": {
         "title": "Offerta speciale",
-        "note": "di sconto applicato al checkout"
+        "note": "Offerta applicata al momento del pagamento",
+        "alreadyAdded": "Che velocità! Hai già aggiunto l'offerta speciale al carrello."
       }
     },
-
     "profile": {
+      "greeting":"Ciao",
       "sections": {
         "personalInfo": "Informazioni personali",
-        "orders": "Storico ordini",
+        "orders": "Cronologia ordini",
         "orderSummary": {
-          "title": "I tuoi ordini",
-          "orderDate": "Ordine del",
-          "subtotal": "Prezzo subtotale",
-          "shipping": "Spedizione",
-          "tax": "Tasse",
-          "total": "Totale da pagare",
+          "title": "Stato dell'ordine",
+          "orderIn" : "Ordinato il",
+          "total": "Totale pagato",
+          "removeItem": "Sei sicuro di voler rimuovere questo ordine?",
           "state": {
             "delivered": "Consegnato",
-            "inTheOven": "Nel forno",
-            "empty": "Non hai nessun ordine"
+            "inTheOven": "In forno",
+            "empty": "Non hai ancora effettuato nessun ordine."
           },
           "delet": "Elimina",
           "showMore": "Mostra di più",
-          "showLess": "Mostra di meno"
+          "showLess": "Mostra meno"
         },
         "logOut": {
-          "message": "Aspetta—vai già via? La pizza sentirà la tua mancanza!",
-          "yes": "Si",
-          "no": "No"
+          "message": "Stai già andando via? La pizza sentirà la tua mancanza!"
         }
       }
     },
     "cart": {
-      "title": "La tua lista ordini",
+      "title": "Il tuo ordine",
       "emptyCart": {
-          "title": "Il tuo carrello è vuoto",
-          "message": "Vediamo cosa abbiamo nel menu"
-        },
-      "visibility": {
-        "show": "vedi dettagli",
-        "hide": "mostra meno"
+        "title": "Il tuo carrello è vuoto",
+        "message": "Scopri cosa abbiamo nel menu."
       },
-      "pre_message": "Il tuo ordine sarà pronto entro <strong>{minutes} {minutes, plural, one {minuto} other {minuti}}</strong> e <strong>{workers} {workers, plural, one {operatore} other {operatori}}</strong> saranno dedicati al tuo ordine.",
+      "removeItem": "Sei sicuro di voler rimuovere questo articolo?",
+      "pre_message": "Il tuo ordine sarà pronto in <strong>{minutes} {minutes, plural, one {minuto} other {minuti}}</strong> e <strong>{workers} {workers, plural, one {pizzaiolo si occuperà} other {pizzaioli si occuperanno}}</strong> del tuo ordine.",
       "payment": {
-        "title": "Inserisci i tuoi dati bancari."
+        "title": "Inserisci i dati di pagamento.",
+        "form": {
+          "fields": ["cardHolder", "cardNumber", "expiryDate", "cvv"]
+        }
+      },
+      "orderSummery": {
+        "title": "Il tuo ordine",
+        "orderDate": "Ordinato il",
+        "subtotal": "Subtotale",
+        "shipping": "Spedizione",
+        "tax": "Tasse",
+        "total": "Totale pagato"
       }
     },
-    "orderSummary": {
-      "title": "Riepilogo ordine",
-      "subtotal": "Subtotale",
-      "shipping": "Spedizione",
-      "tax": "Tasse",
-      "total": "Totale da pagare"
-    },
-
-    "wish": {
+    "wishlist": {
       "title": "La tua lista dei desideri",
       "emptyCart": {
         "title": "La tua lista dei desideri è vuota",
-        "message": "Aggiungi articoli alla tua lista dei desideri. Potrai rivederli in qualsiasi momento e spostarli nel carrello"
+        "message": "Aggiungi articoli alla lista. Potrai rivederli in qualsiasi momento e spostarli nel carrello."
       }
+    },
+    "landingPage": {
+    "greeting": "Ciao",
+    "login": {
+      "message": "Di nuovo qui",
+      "subMessage" : "La tua pizza preferita ti aspetta."
+    },
+    "signup": {
+      "mainMessage": "Stiamo convincendo il pizzaiolo ad affrettarsi",
+      "subMessage": "il menu arriva presto..."
     }
+}
   },
   "ui": {
     "buttons": {
       "login": "Accedi",
       "signup": "Registrati",
-      "continue": "Continua",
-      "orderNow": "Ordina ora",
-      "order": "Effettua l’ordine",
-      "save": "Salva",
-      "cancel": "Annulla",
-      "submit": "sottomettere",
+      "addToBag": "Aggiungi al carrello",
+      "order": "Effettua ordine",
+      "submit": "Salva modifiche",
       "pay": "Paga",
-      "add" : "Aggiungi prodotti"
-    },
-    "inputs": {
-      "search": "Cerca",
-      "email": "Email",
-      "password": "Password"
+      "add": "Aggiungi articoli",
+      "goToMenu": "Vai al menu",
+      "stayHere": "Rimani qui",
+      "gotIt": "Ho capito",
+      "refreshPage": "Aggiorna la pagina",
+      "sure" : "Sicurissimo",
+      "no" : "Noooo!",
+      "edite": "Modifica",
+      "seeYouSoon": "A presto!",
+      "no_stay": "No, resto qui"
     },
     "labels": {
-      "firstName": "Nome",
-      "lastName": "Cognome",
-      "password": "Password",
-      "confirmPassword": "Conferma password",
-      "email": "Email",
-      "phone": "Telefono",
-      "address": "Indirizzo",
-      "city": "Città",
-      "street": "Via",
-      "zipcode": "CAP",
-      "optional": "Informazioni aggiuntive",
-      "cardHolder": "Intestatario della carta",
-      "cardNum": "Numero della carta",
-      "expiry": "Data di scadenza",
-      "dateFormat": "gg/mm/aaaa",
-      "ccv": "CCV",
       "language": {
         "title": "Lingua",
         "en": "Inglese",
@@ -214,28 +264,14 @@
         "light": "Chiaro"
       }
     },
-    "state": {
-      "delivered": "consegnato",
-      "inTheOven": "In forno"
-    },
     "feedback": {
       "loading": "Caricamento...",
-      "error": "Qualcosa è andato storto",
-      "noData": "Nessun dato disponibile"
-    }
-  },
-  "pizza": {
-    "labels": {
-      "ingredients": "Ingredienti",
-      "calories": "Calorie",
-      "preparationTime": "Tempo di preparazione",
-      "spiceLevel": "Livello di piccantezza"
+      "error": "Qualcosa è andato storto. Riprova.",
+      "noData": "Nessun dato disponibile."
     },
-    "spiceLevels": {
-      "none": "Non piccante",
-      "mild": "Leggero",
-      "medium": "Medio",
-      "hot": "Piccante"
+    "error404": {
+      "title": "Pagina non trovata",
+      "message": "Oops! La pagina che stai cercando non esiste o è stata spostata."
     }
   }
 }

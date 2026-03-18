@@ -30,7 +30,7 @@ import { createTheme } from "@mui/material";
           },
           "textWelcomingInfo" : {
             fontSize: "var(--textWelcomingInfo)",
-            fontWeight : 200, 
+            fontWeight : 400, 
             letterSpacing : 1.2,
             lineHeight:1.5,
             textAlign:"left"
@@ -48,8 +48,34 @@ import { createTheme } from "@mui/material";
              color:"var(--orange)",
              fontSize: "var(--emptylists)",
              fontWeight : 900,
-
           },
+          "Error404": {
+            fontSize : "var(--E404)",
+            color:"var(--orange)",
+            lineHeight:1,
+            fontWeight : 900, 
+            textAlign:"left"
+          },
+          "welcomingToUserName": {
+            fontSize: "var(--welcomingToUserName)",
+            fontWeight : 900, 
+          },
+          "welcomingToUserNormal": {
+            fontSize: "calc(var(--welcomingToUserName) /1.5)",
+            fontWeight : 400, 
+          },
+
+
+
+
+
+
+
+
+
+
+
+          
 
           "profileWelcoming": {
             fontSize : "34px",

@@ -1,57 +1,69 @@
-import { useMemo } from "react"
+import { useMemo } from "react";
+import * as request from "../barrels/requests";
+import { useUserData } from "../providers/UserData";
+import useRequestText from "./useRequestText";
+export function useOrderSummery() {
+    const { fetchedUserdata } = useUserData();
+    const { pizzaRawData } = useRequestText("cart");
 
-export function useOrderSummery (pizzaInCart, pizzaInProcess) {
-    return useMemo( () => {
-        
-        if (!pizzaInCart.length) {
-            return {
-                timeList: [], 
-                pizzaQtyList: [], 
-                priceList: [], 
-                totalCount: 0, 
-                totalTimeRequired: 0
-            }
-        }
-
-              
-        const pizzaQtyList = pizzaInCart.map(
-        pizza => pizzaInProcess[pizza.id] ?? 1
-        );
-
-        const timeList = pizzaInCart.map(pizza => pizza.time);
-
-        const priceList = pizzaInCart.map(
-        (pizza, index) => pizza.price * pizzaQtyList[index]
-        );
-
-        const totalCount = pizzaQtyList.reduce(
-        (sum, qty) => sum + qty,0);
-
-         const subTotal = priceList.reduce(
-        (sum, qty) => sum + qty,0);
-
-        const totalTimeRequired = Math.floor(
-        Math.max(...timeList) + Math.log2(totalCount || 1) * 5
-        );
-
-        const shipping = totalCount > 5 ? totalCount * 0.5 : 3 
-
-        const tax = totalCount > 5 ? totalCount * 0.3 : 2 
-
-        const totalToPay = subTotal + shipping + tax
-
-        return {
-                timeList, 
-                pizzaQtyList, 
-                priceList, 
-                totalCount, 
-                totalTimeRequired,
-                subTotal,
-                shipping, 
-                tax,
-                totalToPay
-        }
+    const pizzaInCart = request.findPizza(
+      pizzaRawData,
+      "cart",
+      fetchedUserdata["pizzaInCartId"],
+    );
+    const pizzaInProcess = fetchedUserdata?.pizzaInProcess;
+  return useMemo(() => {
+    if (!pizzaInCart || !pizzaInProcess) {
+      return {
+        pizzaIdlist: [],
+        pizzaQtyList: [],
+        totalCount: 0,
+        totalTimeRequired: 0,
+        subTotal: 0,
+        shipping: 0,
+        tax: 0,
+        totalToPay: 0,
+      };
     }
-    ,[pizzaInCart, pizzaInProcess] )
 
+    let pizzaIdlist = [];
+    let pizzaQtyList = [];
+    let totalCount = 0;
+    let subTotal = 0;
+    let maxTime = 0;
+
+    for (const pizza of pizzaInCart) {
+      const qty = pizzaInProcess[pizza.id] ?? 1;
+
+      pizzaIdlist.push(pizza.id);
+      pizzaQtyList.push(qty);
+
+      totalCount += qty;
+      subTotal += pizza.price * qty;
+
+      if (pizza.time > maxTime) {
+        maxTime = pizza.time;
+      }
+    }
+
+    const totalTimeRequired = Math.floor(
+      maxTime + Math.log2(totalCount || 1) * 5,
+    );
+
+    const shipping = totalCount > 5 ? totalCount * 0.5 : 3;
+    const tax = totalCount > 5 ? totalCount * 0.3 : 2;
+    const totalToPay = parseFloat(Number(subTotal + shipping + tax).toFixed(2));
+    return {
+    pizzaInCart,
+    pizzaInProcess,
+      pizzaIdlist,
+      pizzaQtyList,
+      totalCount,
+      totalTimeRequired,
+      subTotal,
+      shipping,
+      tax,
+      totalToPay,
+    };
+  }, [pizzaInCart, pizzaInProcess]);
 }

@@ -8,11 +8,10 @@ import {useUserData} from "../../../providers/UserData"
 export default function NavigationComplex({filter, navBar, headText}) {
     const navigate = useNavigate();
     const {mode, colors} = useTheme()
-    const {userdata} = useUserData()
-    const pizzaLikedNum = userdata["likedPizzasId"].length
-    const pizzaInCartNum = userdata["pizzaInCartId"].length
+    const {fetchedUserdata} = useUserData()
+    const pizzaLikedNum = fetchedUserdata["likedPizzasId"].length
+    const pizzaInCartNum = fetchedUserdata["pizzaInCartId"].length
     const location = useLocation()
-
 
     return (     
               <MUI.Box 
@@ -41,7 +40,7 @@ export default function NavigationComplex({filter, navBar, headText}) {
                       md: `max-content ${filter ? "20vw 1fr" : "1fr max-content"}`, 
                       special:`max-content ${filter ? "max-content max-content" : "max-content 2fr"} 1.35fr`,
                       lg:`max-content  ${filter ? "1fr max-content" : "max-content 2fr"} 30vw`,
-                      xl:`max-content ${filter ? "1fr 2fr" : "max-content 2fr"} 40vw`
+                      xl:`max-content ${filter ? "1fr max-content" : "max-content 2fr"} 40vw`
                     },
                     alignItems:"center",
                   }}>
@@ -50,7 +49,7 @@ export default function NavigationComplex({filter, navBar, headText}) {
                       {
                       width:"100%", gridArea:"logo",
                       display:{xs:"flex",md:"flex",special:"flex", lg:"flex"}, 
-                      justifyContent:"flex-end"}}>
+                      justifyContent:{xs:"flex-end",md:"center",special:"flex-end"}}}>
                       <UI.Logo color={colors.text}/>
                     </MUI.Box>
 
