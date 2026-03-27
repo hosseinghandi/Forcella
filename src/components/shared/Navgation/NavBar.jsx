@@ -1,13 +1,20 @@
 // *role: help user to navigate through app*
 import { Link } from "react-router-dom";
-import * as MUI from "../../../barrels/MUI"
-import * as requests from "../../../barrels/requests"
-import { useTheme } from "../../../providers/Theme"
+import * as MUI from "../../../barrels/MUI";
+import * as Icons from "../../../barrels/Icons";
+import { useTheme } from "../../../providers/Theme";
 
 export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
-  const pathList = requests.requestList("nav_path_list")
-  const { mode } = useTheme()
+  // path to create for navigation
+  const pathList = [
+    { link: "/menu", Icon: Icons.Pizza, page: "menu" },
+    { link: "/menu/wish", Icon: Icons.Heart, page: "wish" },
+    { link: "/cart", Icon: Icons.ShoppingBag, page: "cart" },
+    { link: "/profile", Icon: Icons.Person_bold, page: "profile" },
+  ];
+  const { mode } = useTheme();
 
+  // navigation in varation based on mode "dark" and "light"
   const navBarSetup = {
     dark: {
       background: "var(--orange)",
@@ -17,8 +24,12 @@ export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
         hover: "var(--black-bg)",
       },
       badge: {
-        active: { background: "var(--white-bg)", text: "var(--black-bg)"},
-        inactive: { background: "var(--black-bg)", border: "none",  text:"var(--white-bg)" },
+        active: { background: "var(--white-bg)", text: "var(--black-bg)" },
+        inactive: {
+          background: "var(--black-bg)",
+          border: "none",
+          text: "var(--white-bg)",
+        },
         hover: { background: "var(--white-bg)", text: "var(--black-bg)" },
       },
     },
@@ -30,27 +41,37 @@ export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
         hover: "var(--orange)",
       },
       badge: {
-        active: { background: "var(--white-bg)", border: "none", text: "var(--black-bg)" },
-        inactive: { background: "var(--orange)", border: "none", text:"var(--white-bg)" },
+        active: {
+          background: "var(--white-bg)",
+          border: "none",
+          text: "var(--black-bg)",
+        },
+        inactive: {
+          background: "var(--orange)",
+          border: "none",
+          text: "var(--white-bg)",
+        },
         hover: { background: "var(--white-bg)", text: "var(--black-bg)" },
       },
     },
-  }
+  };
 
-  const theme = mode ? navBarSetup.dark : navBarSetup.light
-  
-  const isActivePage = (page) => 
-  page === "cart" ? 
-  current.split("/").at(-1) === "payment" || current.split("/").at(-1) === page :  
-  current.split("/").at(-1) === page 
+  const theme = mode ? navBarSetup.dark : navBarSetup.light;
+  const isActivePage = (page) =>
+    page === "cart"
+      ? current.split("/").at(-1) === "payment" ||
+        current.split("/").at(-1) === page
+      : current.split("/").at(-1) === page;
 
-  const isParentPage = (page) => !current.includes("wish") && current.includes(page)
+  const isParentPage = (page) =>
+    !current.includes("wish") && current.includes(page);
   const showBadge = (page) =>
     (page.includes("cart") && pizzaInCartNum !== 0) ||
-    (page.includes("wish") && pizzaLikedNum !== 0)
+    (page.includes("wish") && pizzaLikedNum !== 0);
 
   return (
     <MUI.Box
+      aria-label="Page navigation"
       sx={{
         height: "var(--filterAndNavSize)",
         position: { xs: "fixed", special: "unset", lg: "unset" },
@@ -60,14 +81,12 @@ export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
         px: {
           xs: "var(--spacing-global-padding-x-mobile)",
           md: "var(--spacing-global-padding-x-tablet)",
-          special: "unset"
+          special: "unset",
         },
         zIndex: 999,
       }}
     >
       <MUI.Box
-        component="nav"
-        role="navigation"
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -79,63 +98,83 @@ export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
         }}
       >
         {pathList.map(({ link, page, Icon }) => {
-          const active = isActivePage(page)
-          const parent = isParentPage(page)
+          const active = isActivePage(page);
+          const parent = isParentPage(page);
 
-          const iconColor = active || parent ? theme.icon.active : theme.icon.inactive
-          const badgeSetup = active ? theme.badge.active : theme.badge.inactive
+          const iconColor =
+            active || parent ? theme.icon.active : theme.icon.inactive;
+          const badgeSetup = active ? theme.badge.active : theme.badge.inactive;
           return (
-            <Link to={link} key={page} replace>
+            <Link
+              aria-label={`Go to ${page}`}
+              aria-current={active ? "page" : undefined}
+              to={link}
+              key={page}
+            >
               <MUI.Box
                 sx={{
                   color: iconColor,
-                  transform: active ? "scale(1.25)" : parent ? "scale(1.3)" : "scale(1)",
+                  transform: active
+                    ? "scale(1.25)"
+                    : parent
+                      ? "scale(1.3)"
+                      : "scale(1)",
                   transition: "all 0.25s ease-in-out",
                   "&:hover": {
                     ...(!active && { scale: 1.3 }),
                     color: theme.icon.hover,
                     "& .MuiBadge-badge": {
                       backgroundColor: theme.badge.hover.background,
-                      color:  theme.badge.hover.text,
-                    }
+                      color: theme.badge.hover.text,
+                    },
                   },
                 }}
               >
                 {showBadge(page) ? (
                   <MUI.Badge
                     showZero={false}
-                    // anchorOrigin={{ vertical: "top", horizontal: "left" }}               
                     badgeContent={
-                      page.includes("cart") ? pizzaInCartNum :
-                      page.includes("wish") ? pizzaLikedNum : null
+                      page.includes("cart")
+                        ? pizzaInCartNum
+                        : page.includes("wish")
+                          ? pizzaLikedNum
+                          : null
                     }
+                    aria-label={`${page}, has ${
+                      page.includes("cart") ? pizzaInCartNum : pizzaLikedNum
+                    } items`}
                     sx={{
                       "& .MuiBadge-badge": {
                         right: "60%",
-                        bottom:"100%",
+                        bottom: "100%",
                         backgroundColor: badgeSetup.background,
                         color: badgeSetup.text,
                         transform: active ? "scale(0.7)" : "scale(0.8)",
-
                       },
                     }}
                   >
-                    <Icon sx={{
-                      width: "var(--iconsize)",
-                      height: "var(--iconsize)",
-                    }} />
+                    <Icon
+                      aria-hidden="true"
+                      sx={{
+                        width: "var(--iconsize)",
+                        height: "var(--iconsize)",
+                      }}
+                    />
                   </MUI.Badge>
                 ) : (
-                  <Icon sx={{
-                    width: "var(--iconsize)",
-                    height: "var(--iconsize)",
-                  }} />
+                  <Icon
+                    aria-hidden="true"
+                    sx={{
+                      width: "var(--iconsize)",
+                      height: "var(--iconsize)",
+                    }}
+                  />
                 )}
               </MUI.Box>
             </Link>
-          )
+          );
         })}
       </MUI.Box>
     </MUI.Box>
-  )
+  );
 }

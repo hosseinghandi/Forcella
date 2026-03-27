@@ -1,7 +1,7 @@
 {
   "app": {
-    "name": "Pizzeria Forcella",
-    "description": "Order authentic Neapolitan pizza made with fresh ingredients."
+    "title": "Pizzeria Forcella | Neapolitan Pizza Delivery",
+    "description": "Order authentic Neapolitan pizza online. Fresh ingredients, wood-fired ovens, and fast delivery across Italy."
   },
   "forms": {
     "fields": {
@@ -11,7 +11,10 @@
         "label": "First name",
         "placeholder": "e.g. John",
         "error": "Please enter your first name.",
-        "rules": { "required": true, "minLength": 2 }
+        "rules": {
+          "required": true,
+          "minLength": 2
+        }
       },
       "lastName": {
         "name": "lastName",
@@ -19,7 +22,10 @@
         "label": "Last name",
         "placeholder": "e.g. Doe",
         "error": "Please enter your last name.",
-        "rules": { "required": true, "minLength": 2 }
+        "rules": {
+          "required": true,
+          "minLength": 2
+        }
       },
       "email": {
         "name": "email",
@@ -27,7 +33,10 @@
         "label": "Email",
         "placeholder": "e.g. john.doe@email.com",
         "error": "Please enter a valid email address.",
-        "rules": { "required": true, "pattern": "email" }
+        "rules": {
+          "required": true,
+          "pattern": "email"
+        }
       },
       "phone": {
         "name": "phone",
@@ -35,7 +44,10 @@
         "label": "Phone",
         "placeholder": "e.g. +1 555 123 4567",
         "error": "Please enter a valid phone number.",
-        "rules": { "required": true, "pattern": "phone" }
+        "rules": {
+          "required": true,
+          "pattern": "phone"
+        }
       },
       "password": {
         "name": "password",
@@ -43,7 +55,10 @@
         "label": "Password",
         "placeholder": "Minimum 8 characters",
         "error": "Password must be at least 8 characters long.",
-        "rules": { "required": true, "minLength": 8 }
+        "rules": {
+          "required": true,
+          "minLength": 8
+        }
       },
       "confirmPassword": {
         "name": "confirmPassword",
@@ -51,15 +66,28 @@
         "label": "Confirm password",
         "placeholder": "Re-enter your password",
         "error": "Passwords do not match.",
-        "rules": { "required": true, "validate": "matchPassword" }
+        "rules": {
+          "required": true,
+          "validate": "matchPassword"
+        }
       },
       "address": {
         "name": "address",
         "type": "text",
         "label": "Address",
         "placeholder": "e.g. 123 Main Street",
-        "error": "Street address is required.",
-        "rules": { "required": true, "minLength": 5 }
+        "error": "Street address is not valid.",
+        "rules": {
+          "required": true,
+          "minLength": {
+            "value": 5,
+            "message": "Address is too short."
+          },
+          "maxLength": {
+            "value": 25,
+            "message": "Address is too long."
+          }
+        }
       },
       "zipcode": {
         "name": "zipcode",
@@ -67,7 +95,10 @@
         "label": "ZIP code",
         "placeholder": "e.g. 90210",
         "error": "Please enter a valid ZIP code.",
-        "rules": { "required": true, "pattern": "zipcode" }
+        "rules": {
+          "required": true,
+          "pattern": "zipcode"
+        }
       },
       "addressExtra": {
         "name": "optional",
@@ -82,7 +113,10 @@
         "label": "Cardholder name",
         "placeholder": "Name on the card",
         "error": "Please enter the cardholder name.",
-        "rules": { "required": true, "minLength": 3 }
+        "rules": {
+          "required": true,
+          "minLength": 3
+        }
       },
       "cardNumber": {
         "name": "cardNumber",
@@ -90,7 +124,10 @@
         "label": "Card number",
         "placeholder": "1234 5678 9012 3456",
         "error": "Please enter a valid card number.",
-        "rules": { "required": true, "pattern": "cardNumber" }
+        "rules": {
+          "required": true,
+          "pattern": "cardNumber"
+        }
       },
       "expiryDate": {
         "name": "expiryDate",
@@ -98,7 +135,9 @@
         "label": "Expiry date",
         "placeholder": "mm/dd/yyyy",
         "error": "Please enter a valid date.",
-        "rules": { "required": true }
+        "rules": {
+          "required": true
+        }
       },
       "cvv": {
         "name": "cvv",
@@ -106,7 +145,10 @@
         "label": "CVV",
         "placeholder": "123",
         "error": "Please enter your CVV ",
-        "rules": { "required": true, "pattern": "cvv" }
+        "rules": {
+          "required": true,
+          "pattern": "cvv"
+        }
       }
     }
   },
@@ -125,7 +167,10 @@
       "title": "Log in",
       "subtitle": "Log in with the credentials you used when registering.",
       "form": {
-        "fields": ["email", "password"],
+        "fields": [
+          "email",
+          "password"
+        ],
         "links": {
           "forgotPassword": "Forgot your password?"
         },
@@ -140,18 +185,35 @@
         "sections": {
           "personal": {
             "title": "Personal information",
-            "fields": ["firstName", "lastName", "email", "phone", "password", "confirmPassword"]
+            "fields": [
+              "firstName",
+              "lastName",
+              "email",
+              "phone",
+              "password",
+              "confirmPassword"
+            ]
           },
           "address": {
             "title": "Delivery address",
-            "fields": ["address", "zipcode", "addressExtra"]
+            "fields": [
+              "address",
+              "zipcode",
+              "addressExtra"
+            ]
           }
         }
       }
     },
     "menu": {
       "title": "Menu",
-      "categories": ["All", "Meat", "Vegetarian", "Special", "Offers"],
+      "categories": [
+        "All",
+        "Meat",
+        "Vegetarian",
+        "Special",
+        "Offered"
+      ],
       "offer": {
         "title": "Special offer",
         "note": "Offer applied at checkout",
@@ -159,7 +221,8 @@
       }
     },
     "profile": {
-      "greeting":"Hey",
+      "greeting": "Hey",
+      "toast": "Profile updated successfully.",
       "sections": {
         "personalInfo": "Personal information",
         "orders": "Order history",
@@ -193,8 +256,14 @@
       "payment": {
         "title": "Please enter your payment details.",
         "form": {
-          "fields": ["cardHolder", "cardNumber", "expiryDate", "cvv"]
-        }
+          "fields": [
+            "cardHolder",
+            "cardNumber",
+            "expiryDate",
+            "cvv"
+          ]
+        },
+        "toast": "The payment was successful."
       },
       "orderSummery": {
         "title": "Your orders",
@@ -212,15 +281,15 @@
         "message": "Add items to your wishlist. You can review them anytime and move them to your cart."
       }
     },
-    "landingPage" : {
-      "greeting":"Hey",
-      "login":{
+    "landingPage": {
+      "greeting": "Hey",
+      "login": {
         "message": "Welcome back",
-        "subMessage" : "Your favorite pizza is waiting you."
+        "subMessage": "Your favorite pizza is waiting you"
       },
-      "signup":{
+      "signup": {
         "mainMessage": "We’re bribing the chef to hurry",
-        "subMessage" : "menu coming soon..."
+        "subMessage": "menu coming soon"
       }
     }
   },
@@ -237,12 +306,11 @@
       "stayHere": "Stay here",
       "gotIt": "Got it",
       "refreshPage": "Refresh the page",
-      "sure" : "Sure",
-      "no" : "Noooo!",
-      "edite": "Edite",
+      "sure": "Sure",
+      "no": "Noooo!",
+      "edit": "Edit",
       "seeYouSoon": "See you soon!",
       "no_stay": "No, I'll stay"
-
     },
     "labels": {
       "language": {
@@ -262,8 +330,13 @@
       "noData": "No data available."
     },
     "error404": {
-      "title": "Page not found",
-      "message": "Oops! The page you're looking for doesn't exist or has been moved."
+      "title": "404",
+      "mainMessage": "Oops! It looks like you're lost.",
+      "subMessage": "It might have been moved or deleted.",
+      "buttonMessage": {
+        "goto": "GO to",
+        "refresh": "Refresh the page"
+      }
     }
   }
 }

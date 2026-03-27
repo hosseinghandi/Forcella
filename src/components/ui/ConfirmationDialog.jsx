@@ -13,6 +13,8 @@ export default function ConfirmationDialog({
   return (
     <MUI.Dialog
     disableRestoreFocus
+    aria-modal="true"
+    aria-labelledby="dialog-message"
       PaperProps={{
         sx: {
           padding: "var(--cardPaddingY) var(--cardPaddingX)",
@@ -34,23 +36,20 @@ export default function ConfirmationDialog({
           alignItems: "center",
         }}
       >
-        <MUI.Typography variant="textNormal" > {message}</MUI.Typography>
+        <MUI.Typography variant="textNormal" id="dialog-message"> {message}</MUI.Typography>
         <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 8 }}>
           {
             positiveBtnName &&
           <UI.ButtonBasic
-            type="submit"
+            autoFocus
             title={positiveBtnName}
-            key={positiveBtnName}
             task={actOnPositive}
             shrink={true}
           />
           }
           {negativeBtnName &&
             <UI.ButtonBasic
-            type="submit"
             title={negativeBtnName}
-            key={negativeBtnName}
             task={actOnNegative}
             shrink={true}
           />}

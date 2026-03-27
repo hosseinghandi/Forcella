@@ -1,46 +1,43 @@
-// *role: embrace the site context, implement global paddong*
-// and take care of theme mode as well
-
-// material ui components
-import * as MUI from "../../barrels/MUI"
-import * as UI from "../../barrels/UI"
-// react imports
-import {useTheme} from  "../../providers/Theme"
+// *role: act as sitewrapper and rendered of background
+import * as MUI from "../../barrels/MUI";
+import * as UI from "../../barrels/UI";
+import { useTheme } from "../../providers/Theme";
+import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 
 export default function SiteWrapper({ children }) {
-  const {colors} = useTheme()
-    const positionDefault = { 
-    left: {xs:"-18vh", lg:"-20vh", xl:"-30vh"}, 
-    position: "absolute" }
+  const { colors } = useTheme();
+  const {t} = useTranslation()
+  console.log()
   return (
+    <>
+      <Helmet>
+        <title>{t("app.title")}</title>
+        <meta name="description" content={t("app.description")} />
+      </Helmet>
       <MUI.Box
         component="main"
         sx={{
           py: {
-            xs : "var(--spacing-global-padding-y-mobile)",
+            xs: "var(--spacing-global-padding-y-mobile)",
             md: "var(--spacing-global-padding-y-tablet)",
             special: "var(--spacing-global-padding-y-desktop)",
           },
           px: {
-            xs:"var(--spacing-global-padding-x-mobile)",
-            md:"var(--spacing-global-padding-x-tablet)",
+            xs: "var(--spacing-global-padding-x-mobile)",
+            md: "var(--spacing-global-padding-x-tablet)",
             special: "var(--spacing-global-padding-x-desktop)",
           },
-
-          fontFamily: "Inter, sans-serif",
-          backgroundColor: colors.theme ,
+          backgroundColor: colors.theme,
           color: colors.text,
           minHeight: "100vh",
-          position:"relative",
-          zIndex:0
+          position: "relative",
+          zIndex: 0,
         }}
       >
-        <UI.PhotoBaner 
-        position={"deafult"} 
-        positionValue={positionDefault}/>
-        <MUI.Box sx={{zIndex:999}}>
-        {children}
-        </MUI.Box>
+        <UI.PhotoBaner />
+        <MUI.Box sx={{ position: "relative", zIndex: 999 }}>{children}</MUI.Box>
       </MUI.Box>
+    </>
   );
 }

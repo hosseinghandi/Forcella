@@ -1,9 +1,10 @@
-
-body, html {
-    font-family: "Inter", sans-serif;
-    box-sizing: border-box;
-     margin: 0;
-     padding: 0;
+body,
+html {
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-width: 375px;
 }
 
 *,
@@ -13,130 +14,116 @@ body, html {
 }
 
 * {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 *::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 :root {
 
-  /*************************************************
-   * COLORS
-   *************************************************/
-  --orange:      #B55638;
-  --red:         #740202;
-  --red:  #FF6B6B;
-  --black:       #212121;
-  --black-bg:    #1A1A1A;
-  --black-text:  #333333;
-  --white-bg:    #f5f5f5;
-  --white-text:  #F8F9FA;
-  --gray:        rgb(240, 238, 238);
-  --gold:        #cfa500;
+  /* COLORS */
+  --orange: #B55638;
+  --red-dark: #740202;
+  --red: #FF6B6B;
+  --black: #212121;
+  --black-bg: #1A1A1A;
+  --black-text: #333333;
+  --white-bg: #f5f5f5;
+  --white-text: #F8F9FA;
+  --gray: rgb(240, 238, 238);
+  --gold: #cfa500;
 
-  /*************************************************
-   * GLOBAL border radius 
-   *************************************************/
+  /* GLOBAL border radius  */
+
   --radius: 25px;
-  --loadingEl :clamp(2rem, 3.95vi + 1.07rem, 7rem); 
+  --loadingEl: clamp(2rem, 3.95vi + 1.07rem, 7rem);
 
-  /*************************************************
-   * GLOBAL LAYOUT PADDING
-   *************************************************/
-  --spacing-global-padding-x-mobile:   30px;
-  --spacing-global-padding-y-mobile:   15px;
-  --spacing-global-padding-x-tablet:   35px;
-  --spacing-global-padding-y-tablet:   30px;
-  --spacing-global-padding-x-desktop:  60px;
-  --spacing-global-padding-y-desktop:  40px;
+  /* GLOBAL LAYOUT PADDING */
 
-  /*************************************************
-   * CARD / ITEM PADDING
-   *************************************************/
+  --spacing-global-padding-x-mobile: 30px;
+  --spacing-global-padding-y-mobile: 15px;
+  --spacing-global-padding-x-tablet: 35px;
+  --spacing-global-padding-y-tablet: 30px;
+  --spacing-global-padding-x-desktop: 60px;
+  --spacing-global-padding-y-desktop: 40px;
+
+  /* CARD / ITEM PADDING */
+
   --cardPaddingY: clamp(0.88rem, 0.1vi + 0.85rem, 1rem);
   --cardPaddingX: clamp(0.88rem, 0.3vi + 0.81rem, 1.25rem);
 
-  /*************************************************
-   * TYPOGRAPHY
-   *************************************************/
+  /* TYPOGRAPHY */
+
   --butonText: clamp(1rem, 0.32vi + 0.92rem, 1.41rem);
-  --textNormal :clamp(1rem, 0.21vi + 0.95rem, 1.26rem);
+  --textNormal: clamp(1rem, 0.21vi + 0.95rem, 1.26rem);
   --textLabel: clamp(0.88rem, 0.2vi + 0.83rem, 1.13rem);
   --logoText: clamp(1rem, 0.4vi + 0.91rem, 1.5rem);
-  --titleWelcoming :  clamp(2rem, 3.95vi + 1.07rem, 7rem);
-  --textWelcomingInfo : clamp(1rem, 0.4vi + 0.91rem, 1.5rem);
-  --pizzaContentBold : clamp(1rem, 0.2vi + 0.95rem, 1.25rem);
-  --textNormalTitles : clamp(1rem, 0.49vi + 0.88rem, 1.63rem);
-  --emptylists : clamp(1.13rem, 2.07vi + 0.64rem, 3.75rem);
-  --E404 :clamp(6.25rem, 7.41vi + 4.51rem, 15.63rem);
-  --welcomingToUserName : clamp(1.63rem, 3.65vi + 0.77rem, 6.25rem);
-  /*************************************************
-   * INPUTS & BUTTONS
-   *************************************************/
+  --titleWelcoming: clamp(2rem, 3.95vi + 1.07rem, 7rem);
+  --textWelcomingInfo: clamp(1rem, 0.4vi + 0.91rem, 1.5rem);
+  --pizzaContentBold: clamp(1rem, 0.2vi + 0.95rem, 1.25rem);
+  --textNormalTitles: clamp(1rem, 0.49vi + 0.88rem, 1.63rem);
+  --emptylists: clamp(1.13rem, 2.07vi + 0.64rem, 3.75rem);
+  --E404: clamp(6.25rem, 7.41vi + 4.51rem, 15.63rem);
+  --welcomingToUserName: clamp(1.63rem, 3.65vi + 0.77rem, 6.25rem);
+
+  /* * INPUTS & BUTTONS */
+
   --buttonAndInputSize: clamp(2.81rem, 0.25vi + 2.75rem, 3.13rem);
 
-    /*************************************************
-   * Wrapper card for filter and nav
-   *************************************************/
+
+  /* * Wrapper card for filter and nav */
+
   --filterAndNavSize: clamp(3.13rem, 0.49vi + 3.01rem, 3.75rem);
-  /*************************************************
-   * GLOBAL GAPS
-   *************************************************/
-  --GlobalgapOfItems:  clamp(1.25rem, 0.49vi + 1.13rem, 1.88rem);
-  --GlobalgapOfGrids:  clamp(0.63rem, 0.99vi + 0.39rem, 1.88rem);
-  --GlobalgapOfInputs:   clamp(0.31rem, 0.25vi + 0.25rem, 0.63rem);
-  --GlobalgapOfeditMode:   clamp(0.31rem, 0.25vi + 0.25rem, 0.63rem);
-  /*************************************************
-   * NAVIGATION
-   *************************************************/
+
+  /* * GLOBAL GAPS */
+
+  --GlobalgapOfItems: clamp(1.25rem, 0.49vi + 1.13rem, 1.88rem);
+  --GlobalgapOfGrids: clamp(0.63rem, 0.99vi + 0.39rem, 1.88rem);
+  --GlobalgapOfInputs: clamp(0.31rem, 0.25vi + 0.25rem, 0.63rem);
+  --GlobalgapOfeditMode: clamp(0.31rem, 0.25vi + 0.25rem, 0.63rem);
+
+  /* * NAVIGATION */
+
   --gapOfLogoAndArrow: clamp(1rem, 0.79vi + 0.81rem, 2rem);
   --iconsize: clamp(1.25rem, 0.3vi + 1.18rem, 1.63rem);
 
-  /*************************************************
-   * HERO / BANNERS
-   *************************************************/
-  --Size-pizzaBaner-mobile:     44vh;
-  --Size-pizzaBaner-tablet:     55vh;
-  --Size-pizzaBaner-desktop:    80vh;
+
+  /* * HERO / BANNERS */
+
+  --Size-pizzaBaner-mobile: 44vh;
+  --Size-pizzaBaner-tablet: 55vh;
+  --Size-pizzaBaner-desktop: 80vh;
   --Size-pizzaBaner-bigDesktop: 80vw;
 
-  /*************************************************
-   * WELCOME PAGE
-   *************************************************/
-  --welcome-content-padding-tablet: calc(
-    100px - var(--spacing-global-padding-x-mobile)
-  );
 
-  --infoItemHolderGap:       clamp(1.25rem, 0.99vi + 1.02rem, 2.5rem);
-  --gapClickableSetup:       clamp(1rem, 0.2vi + 0.95rem, 1.25rem);
+  /* * WELCOME PAGE */
+
+  --welcome-content-padding-tablet: calc(100px - var(--spacing-global-padding-x-mobile));
+
+  --infoItemHolderGap: clamp(1.25rem, 0.99vi + 1.02rem, 2.5rem);
+  --gapClickableSetup: clamp(1rem, 0.2vi + 0.95rem, 1.25rem);
 
 
   --bubbleDimension: clamp(1rem, 0.3vi + 0.93rem, 1.38rem);
   --switchDimension: clamp(1.56rem, 0.35vi + 1.48rem, 2rem);
   --toggleDimension: clamp(1.88rem, 0.49vi + 1.76rem, 2.5rem);
 
-  /*************************************************
-   * LOGIN / FORMS
-   *************************************************/
+
+  /* * LOGIN / FORMS */
+
   /* in order to have equal space */
   --gapOfButtonSubmitSignup: var(--textLabel);
 
-  /*************************************************
-   * MENU / CARDS
-   *************************************************/
+
+  /* MENU / CARDS */
+
   --starDimension: clamp(0.88rem, 0.15vi + 0.84rem, 1.06rem);
   --cardSizeMainVertical: clamp(9.38rem, 0.49vi + 9.26rem, 10rem);
-  --specialGap : 15px;
+  --specialGap: 15px;
 }
-
-body {
-  margin: 0;
-  min-width: 375px;
-}
-
-
-/* later i should check these: */
-/* is tehre anyway to handel the text of bubbles to be moe effecnt? */

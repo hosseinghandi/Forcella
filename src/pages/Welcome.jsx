@@ -1,68 +1,54 @@
+// role: render welcome page using its components
 import useRequestText from "../hook/useRequestText";
-import * as MUI from "../barrels/MUI"
-import * as UI from "../barrels/UI"
-
+import * as MUI from "../barrels/MUI";
+import * as UI from "../barrels/UI";
 export default function Welcome() {
-  
-  const text = useRequestText("welcoming")
-  
+  const text = useRequestText("welcoming");
   return (
     <>
-      <UI.SharedNavigation varient={"welcoming"}/>
-       <UI.LayoutHandeler
-       style={
-        {
-                marginTop:{xs:"10vh", lg:"unset"},
-                // margin:"auto",
-                width:"100%", 
-                height:{xs:"50vh" ,lg:"85vh"},
-                }
-       }>
+      <UI.SharedNavigation variant={"welcoming"} />
+      <UI.LayoutHandeler
+        style={{
+          marginTop: { xs: "10vh", lg: "unset" },
+          width: "100%",
+          height: { xs: "50vh", lg: "85vh" },
+        }}
+      >
         <MUI.Box
           sx={{
-            maxWidth:"1100px",
+            maxWidth: "1100px",
             textAlign: "left",
             width: "100%",
           }}
         >
-          <MUI.Typography
-            variant="titleWelcoming"
-          >
+          <MUI.Typography component={"h1"} variant="titleWelcoming">
             {text.title}
           </MUI.Typography>
-
-          <UI.BubbleToggel 
-          dataList={text.highlights} />
+          <UI.BubbleToggel dataList={text.highlights} />
         </MUI.Box>
 
-        {/* Buttons */}
+        {/* Buttons wrapper*/}
         <MUI.Box
           sx={{
             display: "flex",
-            flexDirection: 
-            { xs: "column",
-              sm: "column",
-              special:"row"
-            },
-            marginTop : "var(--GlobalgapOfItems)",
+            flexDirection: { xs: "column", sm: "column", special: "row" },
+            marginTop: "var(--GlobalgapOfItems)",
             gap: "var(--GlobalgapOfInputs)",
             width: "100%",
           }}
         >
           <UI.ButtonBasic
+            aria-label="Go to login page"
             title={text.button.login}
             to="/login"
-            color="white"
-            disabled={false}
           />
           <UI.ButtonBasic
+            aria-label="Go to sign up page"
             title={text.button.signup}
             to="/signup"
-            color="white"
-            disabled={false}
           />
         </MUI.Box>
-    </UI.LayoutHandeler>
+      </UI.LayoutHandeler>
     </>
   );
 }

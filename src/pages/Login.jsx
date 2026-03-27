@@ -1,70 +1,76 @@
-// role : takes the user inputs and find it in user database
-
+// role : Login page
 import useRequestText from "../hook/useRequestText";
 import * as MUI from "../barrels/MUI";
 import * as UI from "../barrels/UI";
 import { useState } from "react";
 import { useTheme } from "../providers/Theme";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useUserData } from "../providers/UserData";
 
-// utiles
-// import {isValid} from "../utils/validator";
-
 export default function Login() {
-  // required context to render ui elements
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { colors } = useTheme();
-  // text to render
-  const data =  useRequestText("login")
-  const {fetchedUserdata} = useUserData()
-  const text = data.text
-  const listOfInputs = data.inputsList
-  const [show, setshow] = useState(false)
-  const [notFound, setNotFound] = useState(false)
-  const [loading, setIsLoading] = useState(false)
+  const { text, inputsList } = useRequestText("login");
+  const { fetchedUserdata } = useUserData();
+  const [show, setshow] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [loading, setIsLoading] = useState(false);
 
-   const {
+  const {
     control,
-    // register,
     handleSubmit,
-    formState: { errors},
+    formState: { errors },
   } = useForm({
-      defaultValues: Object.fromEntries(data.inputsList.map( input => [input.name, ""]))
-  })
+    defaultValues: Object.fromEntries(
+      inputsList.map((input) => [input.name, ""]),
+    ),
+  });
 
   const onSubmit = () => {
-    setshow(true)
-  }
-  
-  const capitlize = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+    setshow(true);
+  };
+  const capitalize = (name = "") =>
+    name.charAt(0).toUpperCase() + name.slice(1);
 
-  return false ? (
+  return !loading ? (
     <>
-      <UI.SharedNavigation varient={"login"}/>
-      <UI.LayoutHandeler 
-      style={ {
-                marginTop:{xs:"20vh", lg:"unset"},
-                width:"100%", 
-                height:{xs:"50vh" ,lg:"85vh"},
-                }}
+      <UI.SharedNavigation variant="login" />
+      <UI.LayoutHandeler
+        style={{
+          marginTop: { xs: "20vh", lg: "unset" },
+          width: "100%",
+          height: { xs: "50vh", lg: "85vh" },
+        }}
       >
         <MUI.Box
-        component={"form"}
-        onSubmit={handleSubmit(onSubmit)}
+          component={"form"}
+          onSubmit={handleSubmit(onSubmit)}
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "var(--GlobalgapOfItems)", 
-            width: {xs:"100%", 
-              sm:"clamp(28.13rem, 13.89vi + 22.92rem, 43.75rem)"},
-            }}
+            gap: "var(--GlobalgapOfItems)",
+            width: {
+              xs: "100%",
+              sm: "clamp(28.13rem, 13.89vi + 22.92rem, 43.75rem)",
+            },
+          }}
         >
-            <MUI.Box sx={{minHeight:"60px", display:"flex", flexDirection:"column", gap:"calc(var(--GlobalgapOfItems)/2)"}}>
-              <MUI.Typography variant="textNormal">{text.subtitle}</MUI.Typography>
-              { notFound && <UI.Error message={text.error}/>}
-            </MUI.Box>
+          <MUI.Box
+            role="status"
+            aria-live="polite"
+            sx={{
+              minHeight: "60px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "calc(var(--GlobalgapOfItems)/2)",
+            }}
+          >
+            <MUI.Typography component={"p"} variant="textNormal">
+              {text.subtitle}
+            </MUI.Typography>
+            {notFound && <UI.Error message={text.error} />}
+          </MUI.Box>
           <MUI.Box
             sx={{
               display: "flex",
@@ -74,15 +80,15 @@ export default function Login() {
               gap: "var(--GlobalgapOfInputs)",
             }}
           >
-          <UI.InputControllerGroup
-              inputs={listOfInputs}
+            <UI.InputControllerGroup
+              inputs={inputsList}
               control={control}
               errors={errors}
             />
-
           </MUI.Box>
           <MUI.Link
-           href=""
+            aria-label="Forgot password"
+            href="/login"
             sx={{
               color: colors.text,
               width: "100%",
@@ -92,51 +98,38 @@ export default function Login() {
             {text.forget}
           </MUI.Link>
 
-          <UI.ConfirmationDialog 
-            onClose={!show}
+          <UI.ConfirmationDialog
+            onClose={() => setshow(false)}
             open={show}
-            actOnPositive={() => 
-             {  setIsLoading(true)
-                setTimeout(() => {
-                    setIsLoading(false)
-                    navigate("/menu")
-                }, 2000 ) 
-             }
-             
-            }
+            actOnPositive={() => {
+              setIsLoading(true);
+              setTimeout(() => {
+                setIsLoading(false);
+                navigate("/menu");
+              }, 2000);
+            }}
             actOnNegative={() => {
-              setshow(!show) 
-              setNotFound(true)
+              setshow(false);
+              setNotFound(true);
             }}
             message={text.userCommunication}
             positiveBtnName={text.button.goToMenu}
             negativeBtnName={text.button.stayHere}
-          
           />
           <UI.ButtonBasic
             type="submit"
             title={text.button.login}
-            color={"white"}
+            aria-label="login to your profile"
           />
         </MUI.Box>
       </UI.LayoutHandeler>
     </>
   ) : (
-      <UI.WelcomingToUser 
-          greeting={text.LandingPage.greeting}
-          mainMessage={text.LandingPage.message}
-          subMessage={text.LandingPage.subMessage}
-          userName={capitlize(fetchedUserdata.personalInfo.firstName)}
-      />
-    )
+    <UI.WelcomingToUser
+      greeting={text.LandingPage.greeting}
+      mainMessage={text.LandingPage.message}
+      subMessage={text.LandingPage.subMessage}
+      userName={capitalize(fetchedUserdata?.personalInfo?.firstName)}
+    />
+  );
 }
-
-
-
-// // validator
-// const validation = useMemo( () => {
-//   const validation = {};
-//   for (const [key, value] of Object.entries(formData)) {
-//     validation[key] = isValid(key,value)};
-//   return {validation}
-// }, [formData]);

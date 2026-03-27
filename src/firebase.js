@@ -1,10 +1,8 @@
-
+// role: setting up the fireBase configuration 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth, signInAnonymously } from "firebase/auth";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBd-z-FRd2AK7nQ3u6mgry-Z0vCGt0MFWk",
   authDomain: "forcella-2690c.firebaseapp.com",
@@ -17,3 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app)
+// using auth to generate random userID 
+// and creating stronger rules 
+export const auth = getAuth(app)
+signInAnonymously(auth)

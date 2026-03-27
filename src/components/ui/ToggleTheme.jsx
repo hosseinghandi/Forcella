@@ -1,20 +1,16 @@
-// role: on request inform the app context to change the theme mode
-
-import * as MUI from "../../barrels/MUI"
-import * as Icon from "../../barrels/Icons"
-import { useTheme } from "../../providers/Theme"
-import useUpdateUser from "../../hook/useUserUpdate"
-
-
+// role: toggle the theme
+import * as MUI from "../../barrels/MUI";
+import * as Icon from "../../barrels/Icons";
+import { useTheme } from "../../providers/Theme";
+import useUpdateUser from "../../hook/useUserUpdate";
 export default function ToggelTheme() {
-  const {colors, mode} = useTheme()
-  const {toggleTheme} = useUpdateUser()
+  const { colors, mode } = useTheme();
+  const { toggleTheme } = useUpdateUser();
   return (
     <MUI.Button
       aria-pressed={mode}
-      aria-label={`Toggle theme (${mode ? "Dark" : "Light"})`}
-      onClick={() => {toggleTheme()}}
-      
+      aria-label={`Toggle theme (${mode ? "Light" : "Dark"})`}
+      onClick={() => toggleTheme()}
       variant="contained"
       sx={{
         border: "none",
@@ -31,15 +27,17 @@ export default function ToggelTheme() {
         justifyContent: "center",
       }}
     >
-      {mode ? 
-      <Icon.BrightnessHigh
-          sx={{width: "calc(var(--toggleDimension) / 1.65)",}}
+      {mode ? (
+        <Icon.BrightnessHigh
+          aria-hidden="true"
+          sx={{ width: "calc(var(--toggleDimension) / 1.65)" }}
         />
-        :
+      ) : (
         <Icon.Bedtime
-          sx={{width: "calc(var(--toggleDimension) / 1.65)",}}
-        /> 
-      }
+          aria-hidden="true"
+          sx={{ width: "calc(var(--toggleDimension) / 1.65)" }}
+        />
+      )}
     </MUI.Button>
   );
 }

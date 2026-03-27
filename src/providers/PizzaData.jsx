@@ -1,13 +1,17 @@
+// role : provide the rawPizzaData requird to render the UIs
 import { useTranslation } from "react-i18next";
-import { createContext , useContext} from "react";
+import { createContext , useContext, useMemo} from "react";
 
-export const PizzaDataContext = createContext(null);
+const PizzaDataContext = createContext(null);
 
 
 export default function PizzaDataProvider({children}) {
 
     const {t} = useTranslation()
-    const pizzaRawData = t("pizza.items", { returnObjects: true });
+    // do not change unless the language changes
+    const pizzaRawData = useMemo( () => 
+        t("pizza.items", { returnObjects: true }), 
+        [t]) ;
     
     return(
         <PizzaDataContext.Provider value={pizzaRawData}>

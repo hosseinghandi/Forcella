@@ -1,5 +1,5 @@
+// role: provide translated data for cart page and related componenets
 import * as requests from "../barrels/requests";
-
 export default function getCartData(t) {
   const cartFieldKeys = t("pages.cart.payment.form.fields", {
     returnObjects: true,
@@ -14,7 +14,7 @@ export default function getCartData(t) {
       t("data:pizzas.items", { returnObjects: true }),
     ),
 
-    cart_text: {
+    text: {
       title: t("pages.cart.title"),
       remove: t("pages.cart.removeItem"),
       pre_message: t("pages.cart.pre_message"),
@@ -49,6 +49,7 @@ export default function getCartData(t) {
         expiryDate: fields.expiryDate,
         cvv: fields.cvv,
       },
+      toast: t("pages.cart.payment.toast"),
     },
   };
 }

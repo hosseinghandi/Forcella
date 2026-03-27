@@ -1,32 +1,37 @@
+// role: using in sign up should
+// A)   get userid from auth
+// B)   create the user object
+// C)   save the form data to the uniqe UID on firebase
+
 import { ref, set } from "firebase/database";
-import { db } from "../firebase";
-import { useUserData } from "../providers/UserData";
+import { db, auth } from "../firebase";
 
 function useAddUser() {
-    const{setUserId} = useUserData()
-    async function addUser(formData) {
-        const {confirmPassword, ...rest} = formData
-        const username = formData?.email.split("@")[0];
-        const UserDataPreparation = {
-            likedPizzasId: "",
-            orders: {},
-            personalInfo: {
-            ...rest,
-            language: "it",
-            theme: false
-            },
-            pizzaInCartId: "",
-            pizzaInProcess: {}
-        }
-        
-
-        const userRef = ref(db, `/ForcellaUserDataBase/user_${username}`)
-        await set(userRef, UserDataPreparation)
-        setUserId(`user_${username}`)
-        // save in the local storage the userId to log in with 
-        localStorage.setItem("userId", JSON.stringify(`user_${username}`));
+  async function addUser(formData) {
+    try {
+      const { confirmPassword, password, ...rest } = formData;
+      // check if the user id is made otherwise return
+      const uid = auth.currentUser?.uid;
+      const userDataPreparation = {
+        likedPizzasId: "",
+        orders: {},
+        personalInfo: {
+          ...rest,
+          language: "it",
+          theme: false,
+        },
+        pizzaInCartId: "",
+        pizzaInProcess: {},
+      };
+      if (!uid) return;
+      // reset all teh default values
+      const userRef = ref(db, `ForcellaUserDataBase/${uid}`);
+      await set(userRef, userDataPreparation);
+    } catch (err) {
+      console.log(err);
     }
-return addUser
+  }
+  return addUser;
 }
 
-export default useAddUser
+export default useAddUser;

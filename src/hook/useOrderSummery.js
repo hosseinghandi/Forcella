@@ -1,18 +1,19 @@
+// role: gets teh pizzaIn process and make a meaningful use of data to create
+// requird data to render the summery of the order for page cart
 import { useMemo } from "react";
 import * as request from "../barrels/requests";
 import { useUserData } from "../providers/UserData";
 import useRequestText from "./useRequestText";
 export function useOrderSummery() {
-    const { fetchedUserdata } = useUserData();
-    const { pizzaRawData } = useRequestText("cart");
+  const { fetchedUserdata } = useUserData();
+  const { pizzaRawData } = useRequestText("cart");
 
-    const pizzaInCart = request.findPizza(
-      pizzaRawData,
-      "cart",
-      fetchedUserdata["pizzaInCartId"],
-    );
-    const pizzaInProcess = fetchedUserdata?.pizzaInProcess;
   return useMemo(() => {
+    const {getPizzaList} = request.findPizza()
+    const pizzaInCart = getPizzaList(pizzaRawData, fetchedUserdata?.pizzaInCartId ?? [])
+    const pizzaInProcess = fetchedUserdata?.pizzaInProcess ?? {};
+
+    // check if there is nothing , keep the structure and give deafult value
     if (!pizzaInCart || !pizzaInProcess) {
       return {
         pizzaIdlist: [],
@@ -53,9 +54,10 @@ export function useOrderSummery() {
     const shipping = totalCount > 5 ? totalCount * 0.5 : 3;
     const tax = totalCount > 5 ? totalCount * 0.3 : 2;
     const totalToPay = parseFloat(Number(subTotal + shipping + tax).toFixed(2));
+
     return {
-    pizzaInCart,
-    pizzaInProcess,
+      pizzaInCart,
+      pizzaInProcess,
       pizzaIdlist,
       pizzaQtyList,
       totalCount,
@@ -65,5 +67,5 @@ export function useOrderSummery() {
       tax,
       totalToPay,
     };
-  }, [pizzaInCart, pizzaInProcess]);
+  }, [fetchedUserdata, pizzaRawData]);
 }

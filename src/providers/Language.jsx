@@ -1,11 +1,13 @@
-import {createContext, useContext} from "react"
+// role : provide the languge requird to render the UIs
+import {createContext, useContext, useMemo} from "react"
 import i18n from "../utils/i18n";
-export const LanguageContext = createContext(null);
+const LanguageContext = createContext(null);
 
 export default function LanguageProvider({ children }) {
-
+    // no re-render until language changes
+    const value = useMemo(() => ({ lang: i18n.language }) , [i18n.language] )
     return(
-        <LanguageContext.Provider value={{ lang: i18n.language }}>
+        <LanguageContext.Provider value={value}>
             {children}
         </LanguageContext.Provider>
     )

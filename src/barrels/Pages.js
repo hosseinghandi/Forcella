@@ -1,3 +1,4 @@
+// role holding pages
 export { default as Payment } from "../pages/Payment";
 export { default as Login } from "../pages/Login";
 export { default as Menu } from "../pages/Menu";

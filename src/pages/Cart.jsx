@@ -1,38 +1,27 @@
-// react imports
-import { useState, useCallback, useMemo } from "react";
-
+// role: cart page
+import { useState } from "react";
 import { useOrderSummery } from "../hook/useOrderSummery";
-import emptyCart from "/emptyCart.png"
+import emptyCart from "/emptyCart.png";
 import * as MUI from "../barrels/MUI";
 import * as UI from "../barrels/UI";
-
 import useRequestText from "../hook/useRequestText";
-// import useUser from "../hook/useUser";
 
 export default function Cart() {
-  // primary data set
   const [info, setInfo] = useState(null);
-  const {cart_text,button } = useRequestText("cart");
-
-  const handelInfoRequest = useCallback(
-    (id) => {
-      setInfo((prev) => (prev !== id ? id : null));
-    },
-    [info],
-  );
+  const { text, button } = useRequestText("cart");
   const orderdataProvider = useOrderSummery();
+  const hasItem = orderdataProvider?.pizzaIdlist?.length !== 0;
 
-  return orderdataProvider.pizzaIdlist.length !== 0 ? (
+  const handelInfoRequest = (id) => {
+    setInfo((prev) => (prev !== id ? id : null));
+  };
+
+  return hasItem ? (
     <>
-      <UI.SharedNavigation
-        varient={"cart"}
-        headText={cart_text.title}
-      />
-
+      <UI.SharedNavigation variant="cart" headText={text.title} />
       <UI.LayoutHandeler
         style={{
           width: "100%",
-          
         }}
       >
         {/* main grid container */}
@@ -58,7 +47,7 @@ export default function Cart() {
         >
           {/* pizza container */}
           <MUI.Grid
-            // half area of the grid
+            role="list"
             size={{ xs: 12, special: 6, xl: 6 }}
             container
             rowSpacing="var(--GlobalgapOfGrids)"
@@ -69,11 +58,9 @@ export default function Cart() {
               <MUI.Grid
                 sx={{ width: "100%" }}
                 key={pizza.name}
-                // size of each pizza element
                 size={{ xs: 12, sm: 6, md: 4, special: 5, lg: 4, xl: "auto" }}
               >
                 <UI.PizzaInOrder
-                  key={pizza.name}
                   pizzaData={pizza}
                   info={pizza.id === info}
                   count={orderdataProvider?.pizzaInProcess[pizza.id]}
@@ -81,44 +68,38 @@ export default function Cart() {
                 />
               </MUI.Grid>
             ))}
-            {/* finish pizza container */}
           </MUI.Grid>
-
-          {/* recepit grid */}
+          {/* summery grid */}
           <MUI.Grid
+            role="list"
             container
             direction="column"
             sx={{}}
             size={{ xs: 12, special: 6, xl: 6 }}
           >
-            {orderdataProvider?.pizzaInCart && 
-            <>
-            <MUI.Grid  size={{ xs: 12, md: 12, special: 12, xl: 12 }}>
+            <MUI.Grid size={{ xs: 12, md: 12, special: 12, xl: 12 }}>
               <UI.PreparationTime
-                text={cart_text}
+                text={text}
                 totalTimeRequired={orderdataProvider?.totalTimeRequired}
                 totalCount={orderdataProvider?.totalCount}
               />
             </MUI.Grid>
-
-            <MUI.Grid  size={{ xs: 12, md: 12, special: 12, xl: 12 }}>
+            <MUI.Grid size={{ xs: 12, md: 12, special: 12, xl: 12 }}>
               <UI.OrderSummery
-                text={cart_text}
+                text={text}
                 subTotalPrice={orderdataProvider?.subTotal}
                 shippingPrice={orderdataProvider?.shipping}
                 taxPrice={orderdataProvider?.tax}
                 totalToPay={orderdataProvider?.totalToPay}
               />
             </MUI.Grid>
-            </>
-            }
-            <MUI.Grid >
+            <MUI.Grid>
               <UI.ButtonBasic
+                aria-label="Go to payment page"
                 title={button.order}
                 to={"payment"}
               />
             </MUI.Grid>
-            {/* finish recipet container */}
           </MUI.Grid>
         </MUI.Grid>
       </UI.LayoutHandeler>
@@ -126,17 +107,16 @@ export default function Cart() {
   ) : (
     <>
       <UI.SharedNavigation
-        varient={"cart"}
-        errorText={"cart_text.empty"}
-        headText={cart_text.title}
+        variant="cart"
+        errorText={text.empty}
+        headText={text.title}
       />
-          <UI.EmptyList
-          image={emptyCart}
-          title={cart_text.empty.title}
-          message={cart_text.empty.message}
-          buttontitle={button.goToMenu}
-          />
-
+      <UI.EmptyList
+        image={emptyCart}
+        title={text.empty.title}
+        message={text.empty.message}
+        buttontitle={button.goToMenu}
+      />
     </>
   );
 }

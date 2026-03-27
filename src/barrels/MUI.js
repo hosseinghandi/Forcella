@@ -1,3 +1,4 @@
+// role: holding MUI components
 export {default as Box} from "@mui/material/Box";
 export {default as Badge} from "@mui/material/Badge";
 export {default as IconButton} from "@mui/material/IconButton";
@@ -28,3 +29,4 @@ export {default as InputBase} from "@mui/material/InputBase";
 export {default as Grid} from "@mui/material/Grid";
 export {default as CircularProgress} from "@mui/material/CircularProgress";
 export {default as Link} from "@mui/material/Link"
+export {default as Alert} from "@mui/material/Alert"

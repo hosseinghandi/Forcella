@@ -1,18 +1,14 @@
+// role: rendering and controlling the size of background pizza 
 import pizzaSlice from "/pizza-image/margherita.png";
 import * as MUI from "../../barrels/MUI"
 import { useTheme } from "../../providers/Theme";
 export default function PhotoBaner() {
     const {mode} = useTheme()
     return (
-        <MUI.Box 
-        
-        sx={{
-            height:"100%",
-            width:"fit-content"}}>
         <MUI.Box
                   component="img"
                   src={pizzaSlice}
-                  alt="A Margherita pizza in left side of header"
+                  aria-hidden="true"
                   sx={{
                     opacity:mode ? 0.1 : 0.2,
                     position:"fixed",
@@ -22,8 +18,6 @@ export default function PhotoBaner() {
                     zIndex:-1
                   }}
                 />
-                </MUI.Box>
-       
     )
 }
 

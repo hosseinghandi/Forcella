@@ -1,26 +1,23 @@
-// *role : on request render an error*
+// *role : on request render an error 
 
-// material ui icons for error
-
-import * as Icon from "../../barrels/Icons"
+import * as Icons from "../../barrels/Icons"
 import * as MUI from "../../barrels/MUI"
 
-export default function Error({ message}) {
-
+export default function Error({ message, id="error-message"}) {
+  if (!message) return null
   return (
-    message !== "" && (
       <MUI.Box 
+      role="alert"
       sx={{
         display: "flex", flexDirection:"row",
-        justifyContent:"start-flex",
+        justifyContent:"flex-start",
         alignItems:"center",width:"fit-content", gap:2}}>
-
-        <Icon.Error sx={{ color: "var(--red)", fontSize:"var(--iconsize)"}} />
-        
-        <MUI.Typography variant="textError" >
+        <Icons.Error aria-hidden="true" sx={{ color: "var(--red)", fontSize:"var(--iconsize)"}} />
+        <MUI.Typography 
+          id={id}
+          variant="textError" >
           {message}
         </MUI.Typography>
       </MUI.Box>
-    )
   );
 }

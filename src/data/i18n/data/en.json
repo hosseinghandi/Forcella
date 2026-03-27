@@ -91,8 +91,20 @@
         "name": "Vegetarian",
         "description": "Colorata, fresca e piena di carattere — la prova che la migliore pizza non ha bisogno di carne per essere indimenticabile. Peperoni croccanti, cipolla dolce e olive saporite si stratificano su una base classica di pomodoro e mozzarella cremosa, con ogni ingrediente che aggiunge la propria nota distintiva all'insieme. Il risultato è una pizza che sembra leggera e vivace senza mai sembrare un compromesso. Abbastanza fresca da sorprendervi, abbastanza saporita da farvi tornare ogni volta.",
         "ingredients": {
-          "list": ["Salsa di pomodoro", "Mozzarella", "Peperoni", "Cipolla", "Olive"],
-          "icons": ["tomato_sauce", "mozzarella", "bell_peppers", "onion", "olives"]
+          "list": [
+            "Salsa di pomodoro",
+            "Mozzarella",
+            "Peperoni",
+            "Cipolla",
+            "Olive"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "bell_peppers",
+            "onion",
+            "olives"
+          ]
         },
         "spiceLevel": "none",
         "category": ["Vegetarian"],

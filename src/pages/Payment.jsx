@@ -1,77 +1,77 @@
+// role : payment page
 import * as UI from "../barrels/UI";
 import * as MUI from "../barrels/MUI";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useRequestText from "../hook/useRequestText";
 import { useForm } from "react-hook-form";
 import useUserUpdate from "../hook/useUserUpdate";
-import { useOrderSummery } from "../hook/useOrderSummery";import { useState } from "react";
-;
+import { useOrderSummery } from "../hook/useOrderSummery";
+import { useState } from "react";
+
 export default function Payment() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { payment, button } = useRequestText("cart");
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(null);
   const fullWidth = Object.entries(payment["fullWidth"]).map(([_, v]) => v);
   const halfWidth = Object.entries(payment["halfWidth"]).map(([_, v]) => v);
-
-  const {pizzaIdlist,pizzaQtyList,totalToPay} = useOrderSummery();
+  const { pizzaIdlist, pizzaQtyList, totalToPay } = useOrderSummery();
   const formattedDate = new Intl.DateTimeFormat("en-GB").format(new Date());
-  const orderKey = Date.now().toString()
-  console.log(orderKey)
+  const orderKey = Date.now().toString();
+  const { handleOrder, setZeroValue } = useUserUpdate();
+
+  // premade order structure
   const orderdata = {
-          orderDate: formattedDate,
-          orderState:"In the oven",
-          pizzaId:pizzaIdlist.join(","),
-          quantity:pizzaQtyList.join(","),
-          totalPrice:totalToPay
-        }
-  
-  const {handleOrder, setZeroValue} = useUserUpdate()
+    orderDate: formattedDate,
+    orderState: "In the oven",
+    pizzaId: pizzaIdlist.join(","),
+    quantity: pizzaQtyList.join(","),
+    totalPrice: totalToPay,
+  };
 
   const {
     control,
     handleSubmit,
-    formState: { errors},
+    formState: { errors },
   } = useForm({
     defaultValues: Object.fromEntries(
       [...fullWidth, ...halfWidth].map((inputs) => [inputs.name, ""]),
     ),
   });
 
-
-
+  // fake delay
+  // null => nothing
+  // true => loading
+  // false => toast
   const onSubmit = () => {
-    handleOrder(orderKey , orderdata)
-    setIsLoading(true)
+    handleOrder(orderKey, orderdata);
+    setIsLoading(true);
     setTimeout(() => {
-        setIsLoading(false)
-        navigate("/menu")
-        setZeroValue()
-
-    }, 2000 )
+      setIsLoading(false);
+      setTimeout(() => {
+        setZeroValue();
+        navigate("/menu");
+      }, 2000);
+    }, 2000);
   };
 
   return (
     <>
-      <UI.SharedNavigation varient={"cart"} />
+      <UI.SharedNavigation variant={"cart"} />
       <UI.LayoutHandeler
         style={{
           marginTop: { xs: "20vh", lg: "unset" },
-          // margin:"auto",
           width: "100%",
           height: { xs: "50vh", lg: "80vh" },
         }}
       >
         <MUI.Box
           sx={{
-            minHeight: "80px",
             display: "flex",
             flexDirection: "column",
             gap: "var(--GlobalgapOfItems)",
           }}
         >
           <MUI.Typography variant="textNormal">{payment.title}</MUI.Typography>
-          {/* <UI.Error 
-                message={"here is the invalid"}/> */}
         </MUI.Box>
 
         <MUI.Box
@@ -115,20 +115,16 @@ export default function Payment() {
               />
             </MUI.Box>
             <UI.ButtonBasic
-              title={`${button.pay} ${totalToPay} $`}
+              title={`${button.pay} $${totalToPay}`}
+              aria-label={`pay ${totalToPay} dollars`}
               type={"submit"}
-              color="white"
             />
           </MUI.Box>
         </MUI.Box>
       </UI.LayoutHandeler>
-      {isLoading && 
-          <UI.LandingPage 
-          isLoading={isLoading}/>
-      }
+      {isLoading !== null && (
+        <UI.SuccessfulAction toastMessage={payment.toast} loading={isLoading} />
+      )}
     </>
   );
 }
-
-
-// orderdataProvider?.totalToPay ?? 

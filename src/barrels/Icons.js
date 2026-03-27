@@ -1,3 +1,4 @@
+// role: holding icons
 export { default as Person_outlined } from "@mui/icons-material/PersonOutlined";
 export { default as Email } from "@mui/icons-material/EmailOutlined";
 export { default as Phone } from "@mui/icons-material/PhoneIphoneOutlined";

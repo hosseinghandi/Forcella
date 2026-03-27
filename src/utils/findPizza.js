@@ -1,20 +1,32 @@
- const findPizza = (data, searchFor, compareTo) => {
+//  role: do some small task for finding target pizza data
+export default function findPizza() {
+  const filterPizza = (data, compareTo) => {
+    return compareTo
+      ? data?.filter((el) => el["category"]?.includes(compareTo))
+      : data;
+  };
+  // works for pizza id in wishlist and pizza id in cart
+  const isPizzaInList = (data, compareTo) => {
+    return !!compareTo && data?.includes(compareTo);
+  };
 
-    switch(searchFor) {
-        case "filter" :
-            return compareTo ? data.filter((el) => el["category"]?.includes(compareTo)) : data
-        case "boolean": 
-            return compareTo && data.includes(compareTo)
-        case "wish" :
-        case "cart" :
-             return compareTo && 
-            data.filter( el => compareTo.includes(el.id))
-        case "offered" :
-             return data && data.filter((el) => el.discount)
-        case "info" :
-             return data ? data.filter((el) => el.id === compareTo)[0] : null
-        default:
-            throw new Error(`getPizza: unknown searchFor"${searchFor}"`)
-    }
+  const getPizzaList = (data, compareTo) => {
+    return !!compareTo?.length
+      ? data?.filter((el) => compareTo?.includes(el.id))
+      : [];
+  };
+  const getOfferedPizza = (data) => {
+    console.log(data);
+    return data?.filter((el) => el.discount) ?? null;
+  };
+  const getInfoPizza = (data, compareTo) => {
+    return data?.find((el) => el.id === compareTo) ?? null;
+  };
+  return {
+    filterPizza,
+    isPizzaInList,
+    getPizzaList,
+    getOfferedPizza,
+    getInfoPizza,
+  };
 }
-   export default findPizza

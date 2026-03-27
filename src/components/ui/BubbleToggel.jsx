@@ -1,33 +1,29 @@
-// *Role : take the datalist pssing through props 
-//  and render the bubbles to navigate through*
+// role : take the datalist and make selective tab to navigate content
 
-// required material
-import * as MUI from "../../barrels/MUI"
-// required imports
+import * as MUI from "../../barrels/MUI";
 import { useState } from "react";
 import { useTheme } from "../../providers/Theme";
 
-export default function BubbleToggle({ dataList}) {
+export default function BubbleToggle({ dataList }) {
   const [index, setIndex] = useState(0);
-  const {colors} = useTheme()
+  const { colors } = useTheme();
   return (
-    <MUI.Box sx={{maxWidth:"150ch", mt: "var(--GlobalgapOfItems)" }}>
+    <MUI.Box sx={{ maxWidth: "150ch", mt: "var(--GlobalgapOfItems)" }}>
       {/* Content */}
-      <MUI.Box 
-      id={`tabpanel${index}`}
-      role="tabpanel"
-      aria-labelledby={`tab-${index}`}
-      sx={{
-        height:{xs:"calc(320px - 20vw)", 
-          special:"calc(320px - 15vw)", 
-          lg:"calc(320px - 13vw)", 
-        xl:"calc(320px - 9vw)"}
-      }}
+      <MUI.Box
+        role="tabpanel"
+        aria-labelledby={`tab-${index}`}
+        id={`tabpanel-${index}`}
+        sx={{
+          height: {
+            xs: "calc(320px - 20vw)",
+            special: "calc(320px - 15vw)",
+            lg: "calc(320px - 13vw)",
+            xl: "calc(320px - 9vw)",
+          },
+        }}
       >
-        <MUI.Typography 
-        sx={{lineHeight:1.2}}
-        variant="textWelcomingInfo" 
-          >
+        <MUI.Typography component={"p"} sx={{ lineHeight: 1.2 }} variant="textWelcomingInfo">
           {dataList[index]}
         </MUI.Typography>
       </MUI.Box>
@@ -35,41 +31,39 @@ export default function BubbleToggle({ dataList}) {
       {/* Bubbles wrapper */}
       <MUI.Box
         role="tablist"
-        aria-label="tab navigations"
+        aria-label="content navigation"
         sx={{
           display: "flex",
           gap: "var(--bubbleDimension)",
           width: "100%",
-          height : "var(--bubbleDimension)",
+          height: "var(--bubbleDimension)",
           alignItems: "center",
-          margin:"10px",
+          margin: "10px",
           justifyContent: "center",
         }}
       >
         {dataList.map((_, i) => {
-          const active = index === i;
-
+          const isActive = index === i;
           return (
             <MUI.IconButton
-              key={i}
-              id={`tab-${i}`}
-              onClick={() => setIndex(i)}
-              aria-controls={`tabpanel${i}`}
-              aria-selected = {active}
-              tabIndex={active ? 0 : -1}
               role="tab"
+              aria-label={`Show item ${i + 1}`}
+              aria-selected={isActive}
+              aria-controls={`tabpanel-${i}`}
+              id={`tab-${i}`}
+              key={i}
+              onClick={() => setIndex(i)}
               sx={{
                 width: "var(--bubbleDimension)",
                 height: "var(--bubbleDimension)",
                 borderRadius: "50%",
-                backgroundColor: active ? colors.text : "#B55638",
-                transform :  active ? "scale(1.3)" : 'scale(1)',
+                backgroundColor: isActive ? colors.text : "#B55638",
+                transform: isActive ? "scale(1.3)" : "scale(1)",
                 transition: "transform 0.3s ease-in-out",
                 "&:hover": {
-                backgroundColor: active ? colors.text : "#B55638",
-              }
-              }
-            }
+                  backgroundColor: isActive ? colors.text : "#B55638",
+                },
+              }}
             />
           );
         })}

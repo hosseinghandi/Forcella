@@ -23,7 +23,7 @@
           "icons": ["tomato", "mozzarella", "basil"]
         },
         "spiceLevel": "none",
-        "category": ["Special"],
+        "category": ["Speciale"],
         "calories": 250,
         "price": 8.99,
         "review": 5,
@@ -41,7 +41,7 @@
           "icons": ["tomato_sauce", "mozzarella", "pepperoni"]
         },
         "spiceLevel": "hot",
-        "category": ["Special", "Meat"],
+        "category": ["Speciale", "Carne"],
         "calories": 300,
         "price": 9.99,
         "review": 4.5,
@@ -59,7 +59,7 @@
           "icons": ["tomato_sauce", "chicken_breast", "onion", "mozzarella"]
         },
         "spiceLevel": "mild",
-        "category": ["Special", "Meat"],
+        "category": ["Speciale", "Carne"],
         "calories": 320,
         "price": 10.99,
         "review": 3.8,
@@ -77,7 +77,7 @@
           "icons": ["tomato_sauce", "mozzarella", "ham", "pineapple"]
         },
         "spiceLevel": "medium",
-        "category": ["Meat"],
+        "category": ["Carne"],
         "calories": 290,
         "price": 9.99,
         "review": 4,
@@ -91,11 +91,23 @@
         "name": "Vegetarian",
         "description": "Fresca, colorata e piena di carattere. Peperoni croccanti, olive e cipolla dolce si stratificano su salsa di pomodoro e mozzarella per una pizza vivace e senza carne che non fa mai rimpiangere nulla.",
         "ingredients": {
-          "list": ["Salsa di pomodoro", "Mozzarella", "Peperoni", "Cipolla", "Olive"],
-          "icons": ["tomato_sauce", "mozzarella", "bell_peppers", "onion", "olives"]
+          "list": [
+            "Salsa di pomodoro",
+            "Mozzarella",
+            "Peperoni",
+            "Cipolla",
+            "Olive"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "bell_peppers",
+            "onion",
+            "olives"
+          ]
         },
         "spiceLevel": "none",
-        "category": ["Vegetarian"],
+        "category": ["Vegetariana"],
         "calories": 240,
         "price": 8.99,
         "review": 4.1,

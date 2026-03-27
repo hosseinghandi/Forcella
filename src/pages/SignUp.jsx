@@ -1,65 +1,56 @@
-// role : takes theuser data and save it to the user data json
-
-// react imports
+// role : Sign up page
 import useRequestText from "../hook/useRequestText";
 import * as MUI from "../barrels/MUI";
 import * as UI from "../barrels/UI";
-import { useForm} from "react-hook-form";
-import useAddUser from "../hook/useAddUser"
-import { useUserData } from "../providers/UserData";
+import { useForm } from "react-hook-form";
+import useAddUser from "../hook/useAddUser";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 export default function Signup() {
-    const navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(false)
-    
-    const {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const {
     control,
-    getValues,  
-    // register,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues:{
-    address: "",
-    confirmPassword: "",
-    email: "",
-    optional: "",
-    firstName: "",
-    lastName: "",
-    password: "",
-    phone: "",
-    zipcode: ""
-    }
+    defaultValues: {
+      address: "",
+      email: "",
+      optional: "",
+      firstName: "",
+      lastName: "",
+      confirmPassword: "",
+      password: "",
+      phone: "",
+      zipcode: "",
+    },
   });
-  
-  const data = useRequestText("signup",getValues);
-  const text = data.text;
-  console.log(text)
-  const personalInputs = data.personalInputs;
-  const fullWidthInput = Array(data.addressInputs[0]);
-  const halfWidthInputs = data.addressInputs.slice(1);
-  const addUser = useAddUser()
 
+  const data = useRequestText("signup", getValues);
+  const text = data.text;
+  const personalInputs = data.personalInputs;
+  const fullWidthInput = [data.addressInputs[0]];
+  const halfWidthInputs = data.addressInputs.slice(1);
+  const addUser = useAddUser();
 
   // a fake welcoming process
-  const onsubmit= (formData) => {
-    setIsLoading(true)
+  const onsubmit = (formData) => {
+    setIsLoading(true);
     setTimeout(() => {
-        addUser(formData)
-        setIsLoading(false)
-        navigate("/menu")
-    }, 3000 )
-  }
+      addUser(formData);
+      setIsLoading(false);
+      navigate("/menu");
+    }, 2000);
+  };
 
-  // tak ethe first item which is street an dthe rest for halfwidth
-
-  return false ? (
+  return !isLoading ? (
     <>
-      <UI.SharedNavigation varient={"signup"} />
+      <UI.SharedNavigation variant="signup" />
       <UI.LayoutHandeler
         style={{
-          marginTop: { xs: "5vh", lg: "15vh", xl:"6vh" },
+          marginTop: { xs: "5vh", lg: "10vh", xl: "5vh" },
           width: "100%",
           height: { xs: "fit-content" },
         }}
@@ -83,7 +74,6 @@ export default function Signup() {
             sx={{
               display: "flex",
               flexDirection: { xs: "column", lg: "column" },
-              // gap from within form and title
               gap: "calc(var(--GlobalgapOfInputs)*2)",
               width: "100%",
             }}
@@ -121,7 +111,6 @@ export default function Signup() {
                   errors={errors}
                 />
               </MUI.Box>
-
               {/*  address wrapper */}
               <MUI.Box
                 sx={{
@@ -159,7 +148,7 @@ export default function Signup() {
                   <UI.ButtonBasic
                     type="submit"
                     title={text.button.signup}
-                    color={"white"}
+                    aria-label="Sign up in application"
                   />
                 </MUI.Box>
               </MUI.Box>
@@ -167,10 +156,6 @@ export default function Signup() {
           </MUI.Box>
         </MUI.Box>
       </UI.LayoutHandeler>
-       {isLoading && 
-                <UI.LandingPage 
-                isLoading={isLoading}/>
-            }
     </>
   ) : (
     <UI.WelcomingToUser
@@ -178,5 +163,5 @@ export default function Signup() {
       mainMessage={text.LandingPage.mainMessage}
       greeting={text.LandingPage.greeting}
     />
-  )
+  );
 }

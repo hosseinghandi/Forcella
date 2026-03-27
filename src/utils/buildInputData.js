@@ -1,12 +1,16 @@
+// role: this function gets the field and make inputs that helps
+// avoiding repating to create rules for react hook form
+
 import * as Icons from "../barrels/Icons";
+// required pattern to add
 const patternslib = {
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   phone: /^[0-9+\-\s]{8,15}$/,
-  zipcode: /^[0-9]{4,10}$/,
+  zipcode: /^[0-9]{4,6}$/,
   cardNumber: /^[0-9\s]{16,19}$/,
   cvv: /^[0-9]{3,4}$/,
 };
-
+// icons required for each filed
 const fieldIconslib = {
   firstName: Icons.Person_outlined,
   lastName: Icons.Person_outlined,
@@ -18,40 +22,55 @@ const fieldIconslib = {
   zipcode: Icons.Mailbox,
   addressExtra: Icons.Location,
   cardHolder: Icons.Person_outlined,
-  cardNumber : Icons.CardBank,
-  expiryDate :Icons.Calender,
-  cvv : Icons.CardBank
+  cardNumber: Icons.CardBank,
+  expiryDate: Icons.Calender,
+  cvv: Icons.CardBank,
 };
 
-const resolveRules = (fieled, formTools) => {
-  // for th field 3 main elements needed 
-  const {rules, error, name} = fieled
+// this function get field and if exist, formtools to create rules
+const resolveRules = (field, formTools) => {
+  const { rules, error } = field;
 
   if (!rules || Object.keys(rules).length === 0) return {};
-  
-  const resolved = {}
-//   check the type of rules
-  if  (rules.required) resolved.required = error;
-  if  (rules.minLength) resolved.minLength = { value: rules.minLength, message :error};
-  if (rules.pattern) resolved.pattern = {value : patternslib[rules.pattern], message:error}
+  const resolved = {};
+  // check the type of rules which comes from data json
 
-//   just one input requirs a function 
-  if (rules.validate ==="matchedPassword" && formTools){
-      resolved.validate = (value) => value === formTools(name) ?? error
+  // if it is just required add the message
+  if (rules.required) resolved.required = error;
+  // if length matters add to rules
+  if (rules.minLength)
+    resolved.minLength = {
+      value: rules.minLength.value ?? rules.minLength,
+      message: rules.minLength.message ?? error,
+    };
+
+  // take care of the length of address string
+  if (rules.maxLength)
+    resolved.maxLength = {
+      value: rules.maxLength.value ?? rules.maxLength,
+      message: rules.maxLength.message ?? "Too many characters",
+    };
+  // if pattern matters add to rules
+  if (rules.pattern)
+    resolved.pattern = { value: patternslib[rules.pattern], message: error };
+
+  //   just one input requirs a function/ formtools(GetValue)
+  if (rules.validate === "matchPassword" && formTools) {
+    resolved.validate = (value) => value === formTools("password") || error;
   }
-  return resolved
-}
+  return resolved;
+};
 
-export default function buildInputData(fieled, formTools) {
-
-    return Object.fromEntries( 
-        Object.entries(fieled).map(([key, field]) => [
-            key, 
-           { ...field,
-            icon : fieldIconslib[key],
-            rules: resolveRules(fieled[key], formTools)
-        }
-        ] )
-    )
-
+export default function buildInputData(field, formTools) {
+  // return filds items + rules and icon
+  return Object.fromEntries(
+    Object.entries(field).map(([key, field]) => [
+      key,
+      {
+        ...field,
+        icon: fieldIconslib[key],
+        rules: resolveRules(field, formTools),
+      },
+    ]),
+  );
 }

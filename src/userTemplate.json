@@ -1,32 +1,5 @@
 {
-  "ForcellaUserDataBase": {
-    "userTemplate": {
-      "personalInfo": {
-        "firstName": "",
-        "lastName": "",
-        "email": "",
-        "phone": "",
-        "address": "",
-        "zipcode": 0,
-        "language": "",
-        "theme": "",
-        "password":"", 
-        "optional":"" 
-      },
-      "pizzaInCartId": "",
-      "likedPizzasId": "",
-      "orders": {
-        "orderId": {
-          "orderDate": "",
-          "orderState": "",
-          "pizzaId": "",
-          "quantity": "",
-          "totalPrice": 0
-        }
-      },
-      "pizzaInProcess": ""
-    },
-    "user_jackiwl": {
+    "default_User": {
       "personalInfo": {
         "firstName": "Jack",
         "lastName": "Walton",
@@ -34,7 +7,6 @@
         "phone": "+339 334 159 3024",
         "address": "124 Maple Grove Avenue",
         "zipcode": "90211",
-        "password":"12345",
         "language": "en",
         "theme": true, 
         "optional":"second Floor"
@@ -60,5 +32,4 @@
       "pizzaInProcess": 
       {"1": 5, "4": 4 }
     }
-  }
 }

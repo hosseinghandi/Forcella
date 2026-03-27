@@ -1,7 +1,7 @@
 {
   "app": {
-    "name": "Pizzeria Forcella",
-    "description": "Ordina autentica pizza napoletana preparata con ingredienti freschi."
+    "title": "Pizzeria Forcella | Consegna Pizza Napoletana",
+    "description": "Ordina online l’autentica pizza napoletana. Ingredienti freschi, forni a legna e consegna veloce in tutta Italia."
   },
   "forms": {
     "fields": {
@@ -11,7 +11,10 @@
         "label": "Nome",
         "placeholder": "es. Mario",
         "error": "Inserisci il tuo nome.",
-        "rules": { "required": true, "minLength": 2 }
+        "rules": {
+          "required": true,
+          "minLength": 2
+        }
       },
       "lastName": {
         "name": "lastName",
@@ -19,7 +22,10 @@
         "label": "Cognome",
         "placeholder": "es. Rossi",
         "error": "Inserisci il tuo cognome.",
-        "rules": { "required": true, "minLength": 2 }
+        "rules": {
+          "required": true,
+          "minLength": 2
+        }
       },
       "email": {
         "name": "email",
@@ -27,7 +33,10 @@
         "label": "Email",
         "placeholder": "es. mario.rossi@email.com",
         "error": "Inserisci un indirizzo email valido.",
-        "rules": { "required": true, "pattern": "email" }
+        "rules": {
+          "required": true,
+          "pattern": "email"
+        }
       },
       "phone": {
         "name": "phone",
@@ -35,7 +44,10 @@
         "label": "Telefono",
         "placeholder": "es. +39 345 123 4567",
         "error": "Inserisci un numero di telefono valido.",
-        "rules": { "required": true, "pattern": "phone" }
+        "rules": {
+          "required": true,
+          "pattern": "phone"
+        }
       },
       "password": {
         "name": "password",
@@ -43,7 +55,10 @@
         "label": "Password",
         "placeholder": "Minimo 8 caratteri",
         "error": "La password deve contenere almeno 8 caratteri.",
-        "rules": { "required": true, "minLength": 8 }
+        "rules": {
+          "required": true,
+          "minLength": 8
+        }
       },
       "confirmPassword": {
         "name": "confirmPassword",
@@ -51,7 +66,10 @@
         "label": "Conferma password",
         "placeholder": "Reinserisci la tua password",
         "error": "Le password non coincidono.",
-        "rules": { "required": true, "validate": "matchPassword" }
+        "rules": {
+          "required": true,
+          "validate": "matchPassword"
+        }
       },
       "address": {
         "name": "address",
@@ -59,7 +77,17 @@
         "label": "Indirizzo",
         "placeholder": "es. Via Roma 12",
         "error": "L'indirizzo è obbligatorio.",
-        "rules": { "required": true, "minLength": 5 }
+        "rules": {
+          "required": true,
+          "minLength": {
+            "value": 5,
+            "message": "L'indirizzo è troppo corto."
+          },
+          "maxLength": {
+            "value": 25,
+            "message": "L'indirizzo è troppo lungo."
+          }
+        }
       },
       "zipcode": {
         "name": "zipcode",
@@ -67,7 +95,10 @@
         "label": "CAP",
         "placeholder": "es. 80100",
         "error": "Inserisci un CAP valido.",
-        "rules": { "required": true, "pattern": "zipcode" }
+        "rules": {
+          "required": true,
+          "pattern": "zipcode"
+        }
       },
       "addressExtra": {
         "name": "optional",
@@ -82,7 +113,10 @@
         "label": "Intestatario carta",
         "placeholder": "Nome sulla carta",
         "error": "Inserisci il nome dell'intestatario della carta.",
-        "rules": { "required": true, "minLength": 2 }
+        "rules": {
+          "required": true,
+          "minLength": 2
+        }
       },
       "cardNumber": {
         "name": "cardNumber",
@@ -90,7 +124,10 @@
         "label": "Numero carta",
         "placeholder": "1234 5678 9012 3456",
         "error": "Inserisci un numero di carta valido.",
-        "rules": { "required": true, "pattern": "cardNumber" }
+        "rules": {
+          "required": true,
+          "pattern": "cardNumber"
+        }
       },
       "expiryDate": {
         "name": "expiryDate",
@@ -98,7 +135,9 @@
         "label": "Data di scadenza",
         "placeholder": "gg/mm/aaaa",
         "error": "Inserisci una data valida.",
-        "rules": { "required": true}
+        "rules": {
+          "required": true
+        }
       },
       "cvv": {
         "name": "cvv",
@@ -106,7 +145,10 @@
         "label": "CVV",
         "placeholder": "123",
         "error": "Inserisci il tuo CVV.",
-        "rules": { "required": true, "pattern": "cvv" }
+        "rules": {
+          "required": true,
+          "pattern": "cvv"
+        }
       }
     }
   },
@@ -121,12 +163,14 @@
         ]
       }
     },
-
     "login": {
       "title": "Accedi",
       "subtitle": "Accedi con le credenziali utilizzate durante la registrazione.",
       "form": {
-        "fields": ["email", "password"],
+        "fields": [
+          "email",
+          "password"
+        ],
         "links": {
           "forgotPassword": "Hai dimenticato la password?"
         },
@@ -134,7 +178,6 @@
       },
       "userCommunication": "Questa pagina di accesso fa parte di una demo e non si collega a un database reale. Se clicchi su \"Vai al menu\", verrai portato direttamente al menu per esplorare il resto dell'app. Se scegli \"Rimani qui\", resterai su questa pagina e verrà mostrato il messaggio \"Utente non trovato\", poiché non esistono account reali in questa demo."
     },
-
     "signup": {
       "title": "Crea un account",
       "subtitle": "Compila i tuoi dati per completare la registrazione.",
@@ -153,14 +196,24 @@
           },
           "address": {
             "title": "Indirizzo di consegna",
-            "fields": ["address", "zipcode", "addressExtra"]
+            "fields": [
+              "address",
+              "zipcode",
+              "addressExtra"
+            ]
           }
         }
       }
     },
     "menu": {
       "title": "Menu",
-      "categories": ["Tutti", "Carne", "Vegetariana", "Speciale", "In offerta"],
+      "categories": [
+        "Tutti",
+        "Carne",
+        "Vegetariana",
+        "Speciale",
+        "In offerta"
+      ],
       "offer": {
         "title": "Offerta speciale",
         "note": "Offerta applicata al momento del pagamento",
@@ -168,13 +221,14 @@
       }
     },
     "profile": {
-      "greeting":"Ciao",
+      "greeting": "Ciao",
+      "toast": "Profilo aggiornato con successo.",
       "sections": {
         "personalInfo": "Informazioni personali",
         "orders": "Cronologia ordini",
         "orderSummary": {
           "title": "Stato dell'ordine",
-          "orderIn" : "Ordinato il",
+          "orderIn": "Ordinato il",
           "total": "Totale pagato",
           "removeItem": "Sei sicuro di voler rimuovere questo ordine?",
           "state": {
@@ -202,8 +256,14 @@
       "payment": {
         "title": "Inserisci i dati di pagamento.",
         "form": {
-          "fields": ["cardHolder", "cardNumber", "expiryDate", "cvv"]
-        }
+          "fields": [
+            "cardHolder",
+            "cardNumber",
+            "expiryDate",
+            "cvv"
+          ]
+        },
+        "toast": "Il pagamento è stato effettuato con successo."
       },
       "orderSummery": {
         "title": "Il tuo ordine",
@@ -222,16 +282,16 @@
       }
     },
     "landingPage": {
-    "greeting": "Ciao",
-    "login": {
-      "message": "Di nuovo qui",
-      "subMessage" : "La tua pizza preferita ti aspetta."
-    },
-    "signup": {
-      "mainMessage": "Stiamo convincendo il pizzaiolo ad affrettarsi",
-      "subMessage": "il menu arriva presto..."
+      "greeting": "Ciao",
+      "login": {
+        "message": "Di nuovo qui",
+        "subMessage": "La tua pizza preferita ti aspetta"
+      },
+      "signup": {
+        "mainMessage": "Stiamo convincendo il pizzaiolo ad affrettarsi",
+        "subMessage": "il menu arriva presto"
+      }
     }
-}
   },
   "ui": {
     "buttons": {
@@ -246,9 +306,9 @@
       "stayHere": "Rimani qui",
       "gotIt": "Ho capito",
       "refreshPage": "Aggiorna la pagina",
-      "sure" : "Sicurissimo",
-      "no" : "Noooo!",
-      "edite": "Modifica",
+      "sure": "Sicurissimo",
+      "no": "Noooo!",
+      "edit": "Modifica",
       "seeYouSoon": "A presto!",
       "no_stay": "No, resto qui"
     },
@@ -270,8 +330,13 @@
       "noData": "Nessun dato disponibile."
     },
     "error404": {
-      "title": "Pagina non trovata",
-      "message": "Oops! La pagina che stai cercando non esiste o è stata spostata."
+      "title": "404",
+      "mainMessage": "Ops! Sembra che tu ti sia perso.",
+      "subMessage": "Potrebbe essere stata spostata o eliminata.",
+      "buttonMessage": {
+        "goto": "Vai al",
+        "refresh": "Aggiorna la pagina"
+      }
     }
   }
 }

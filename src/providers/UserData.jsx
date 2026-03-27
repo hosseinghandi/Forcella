@@ -1,12 +1,24 @@
-import { createContext, useContext, useMemo, useState } from "react";
+// role: to get the user data using useUSer and
+// become as sourth of truth which shares teh data to other elements
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import useUser from "../hook/useUser";
-export const UserDataContext = createContext(null);
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
+
+const UserDataContext = createContext(null);
 
 export default function UserDataProvider({ children }) {
-
-  const [userId, setUserId] = useState(
-    () => JSON.parse(localStorage.getItem("userId"))
-  );
+  
+  const [userId, setUserId] = useState(null)
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) =>{
+      if (user) {
+        setUserId(user.uid)
+      }
+    })
+    return unsubscribe
+  }, [])
+  
   const { fetchedUserdata, loading, error } = useUser(userId);
 
   const value = useMemo(
@@ -27,6 +39,7 @@ export default function UserDataProvider({ children }) {
   );
 }
 export const useUserData = () => {
+  // just be sure that until the data is ready the structure will be kept as meaningful object
   const context = useContext(UserDataContext);
   if (!context) return { fetchedUserdata: null, loading: true, error: null };
   if (!context.fetchedUserdata) return { ...context, loading: true };

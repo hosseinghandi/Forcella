@@ -1,3 +1,4 @@
+// role: holding all created UI
 export { default as Logo } from "../components/shared/Logo";
 export { default as SwitchLanguage } from "../components/ui/SwitchLanguage";
 export { default as ToggleTheme } from "../components/ui/ToggleTheme";
@@ -25,6 +26,12 @@ export { default as PhotoBaner } from "../components/shared/PhotoBaner";
 export { default as EmptyList } from "../components/ui/EmptyList";
 export { default as LandingPage } from "../components/ui/LandingPage";
 export { default as ConfirmationDialog } from "../components/ui/ConfirmationDialog";
-export { default as SucessfulPayment } from "../components/ui/SucessfulPayment";
+export { default as SuccessfulAction } from "../components/ui/SucessfulAction";
 export { default as E404 } from "../components/ui/E404";
 export { default as WelcomingToUser } from "../components/ui/WelcomingToUser";
+export {default as BouncingLoader} from "../components/ui/BouncingLoader"
+export {default as Toast} from "../components/ui/Toast"
+export {default as PersonalDetailsMaker} from "../components/ui/PersonalDetailsMaker"
+export { default as OrderedDetailsMaker} from "../components/ui/OrderedDetailsMaker"
+export {default as CreateHint} from "../components/ui/CreateHint"
+export {default as OrderRow} from "../components/ui/orderRow"
