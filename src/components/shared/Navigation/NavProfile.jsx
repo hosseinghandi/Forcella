@@ -91,7 +91,7 @@ export default function NavProfile({
               htmlColor={colors.text}
             />
           </MUI.IconButton>
-          <UI.Logo color={colors.text} />
+          <UI.Logo />
         </MUI.Box>
         {/* log out icon */}
         <MUI.Box

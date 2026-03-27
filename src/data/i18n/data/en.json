@@ -1,29 +1,39 @@
 {
   "pizzas": {
     "labels": {
-      "ingredients": "Ingredienti : ",
-      "calories": "Calorie",
-      "preparationTime": "Tempo di preparazione",
-      "time": "tempo",
-      "spiceLevel": "Piccantezza"
+      "ingredients": "Ingredients:",
+      "calories": "Calories",
+      "preparationTime": "Preparation time",
+      "time": "min",
+      "spiceLevel": "Spice level"
     },
     "spiceLevels": {
-      "none": "Non piccante",
-      "mild": "Leggero",
-      "medium": "Medio",
-      "hot": "Piccante"
+      "none": "Not spicy",
+      "mild": "Mild",
+      "medium": "Medium",
+      "hot": "Hot"
     },
     "items": {
       "margherita": {
         "id": 1,
         "name": "Margherita",
-        "description": "L'anima della tradizione napoletana, ridotta alla sua forma più pura. Salsa di pomodoro San Marzano, mozzarella fresca e basilico profumato si incontrano su un impasto leggero e soffice, cotto a temperature altissime. I bordi si bruciacchiano leggermente, la mozzarella si scioglie alla perfezione e il basilico sprigiona il suo aroma al momento giusto. Tre ingredienti, secoli di storia e un sapore così equilibrato da non stancare mai. È qui che inizia la grande pizza — e per molti, è qui che finisce.",
+        "description": "The soul of Neapolitan pizza. A perfect harmony of San Marzano tomato sauce, fresh mozzarella, and fragrant basil on a light and airy dough. Simple, timeless, and impossible to improve.",
         "ingredients": {
-          "list": ["Pomodoro", "Mozzarella", "Basilico"],
-          "icons": ["tomato", "mozzarella", "basil"]
+          "list": [
+            "Tomato sauce",
+            "Mozzarella",
+            "Basil"
+          ],
+          "icons": [
+            "tomato",
+            "mozzarella",
+            "basil"
+          ]
         },
         "spiceLevel": "none",
-        "category": ["Special"],
+        "category": [
+          "Special"
+        ],
         "calories": 250,
         "price": 8.99,
         "review": 5,
@@ -31,17 +41,27 @@
         "image": "/pizza-image/margherita.png",
         "discount": 20
       },
-
       "pepperoni": {
         "id": 2,
         "name": "Pepperoni",
-        "description": "Affumicata, piccante e impossibile da resistere. Generose fette di pepperoni stagionato si arricciano e diventano croccanti in forno, rilasciando i loro oli intensi sulla mozzarella filante e la ricca salsa di pomodoro. Ogni morso offre un contrasto di consistenze soddisfacente — impasto morbido, formaggio filante e bordi perfettamente croccanti. È decisa senza essere eccessiva, golosa senza chiedere scusa. Il tipo di pizza che sparisce dal tavolo prima che qualcuno si accorga di quanto ne ha mangiata.",
+        "description": "Bold, smoky, and irresistibly indulgent. Generous layers of spicy pepperoni curl and crisp over melted mozzarella and rich tomato sauce — a favorite for a reason.",
         "ingredients": {
-          "list": ["Salsa di pomodoro", "Mozzarella", "Pepperoni"],
-          "icons": ["tomato_sauce", "mozzarella", "pepperoni"]
+          "list": [
+            "Tomato sauce",
+            "Mozzarella",
+            "Spicy salami"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "pepperoni"
+          ]
         },
         "spiceLevel": "hot",
-        "category": ["Special", "Meat"],
+        "category": [
+          "Special",
+          "Meat"
+        ],
         "calories": 300,
         "price": 9.99,
         "review": 4.5,
@@ -49,17 +69,29 @@
         "image": "/pizza-image/peperoni.png",
         "discount": null
       },
-
       "bbq_chicken": {
         "id": 3,
         "name": "BBQ Chicken",
-        "description": "Un'audace alternativa alla tradizione che conquista il suo posto su qualsiasi menu. La salsa barbecue sostituisce il pomodoro, creando una base ricca e leggermente dolce per il tenero pollo marinato, la cipolla caramellata e la mozzarella filante. I sapori si stratificano magnificamente — affumicato, saporito e con una punta di dolcezza — costruendo qualcosa di sostanzioso e profondamente soddisfacente. Se avete mai dubitato che la pizza potesse funzionare senza salsa di pomodoro, questa è quella che chiuderà il dibattito una volta per tutte.",
+        "description": "Where smoky meets savory. Tender marinated chicken and caramelized onions over a rich barbecue sauce base with melted mozzarella — a hearty and satisfying alternative to the classic.",
         "ingredients": {
-          "list": ["Salsa BBQ", "Petto di pollo", "Cipolla", "Mozzarella"],
-          "icons": ["tomato_sauce", "chicken_breast", "onion", "mozzarella"]
+          "list": [
+            "BBQ sauce",
+            "Chicken breast",
+            "Onion",
+            "Mozzarella"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "chicken_breast",
+            "onion",
+            "mozzarella"
+          ]
         },
         "spiceLevel": "mild",
-        "category": ["Special", "Meat"],
+        "category": [
+          "Special",
+          "Meat"
+        ],
         "calories": 320,
         "price": 10.99,
         "review": 3.8,
@@ -67,17 +99,28 @@
         "image": "/pizza-image/chicken.png",
         "discount": null
       },
-
       "hawaiian": {
         "id": 4,
         "name": "Hawaiian",
-        "description": "La pizza che divide le opinioni e conquista i cuori in egual misura. Ananas succoso e prosciutto saporito riposano insieme su una base classica di pomodoro e mozzarella, creando un contrasto dolce-salato molto più convincente di quanto sembri. L'ananas alleggerisce la ricchezza del formaggio, il prosciutto aggiunge profondità e ogni morso sorprende un poco. Discutetene quanto volete — ma provatela prima. La maggior parte di chi lo fa smette di discutere e inizia a ordinare.",
+        "description": "The pizza that divides — and keeps winning fans. Juicy pineapple and savory ham create a surprisingly irresistible sweet-salty balance on a classic tomato and mozzarella base.",
         "ingredients": {
-          "list": ["Salsa di pomodoro", "Mozzarella", "Prosciutto", "Ananas"],
-          "icons": ["tomato_sauce", "mozzarella", "ham", "pineapple"]
+          "list": [
+            "Tomato sauce",
+            "Mozzarella",
+            "Ham",
+            "Pineapple"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "ham",
+            "pineapple"
+          ]
         },
         "spiceLevel": "medium",
-        "category": ["Meat"],
+        "category": [
+          "Meat"
+        ],
         "calories": 290,
         "price": 9.99,
         "review": 4,
@@ -85,18 +128,17 @@
         "image": "/pizza-image/hawai.png",
         "discount": 20
       },
-
       "vegetarian": {
         "id": 5,
         "name": "Vegetarian",
-        "description": "Colorata, fresca e piena di carattere — la prova che la migliore pizza non ha bisogno di carne per essere indimenticabile. Peperoni croccanti, cipolla dolce e olive saporite si stratificano su una base classica di pomodoro e mozzarella cremosa, con ogni ingrediente che aggiunge la propria nota distintiva all'insieme. Il risultato è una pizza che sembra leggera e vivace senza mai sembrare un compromesso. Abbastanza fresca da sorprendervi, abbastanza saporita da farvi tornare ogni volta.",
+        "description": "Fresh, colorful, and full of character. Crisp bell peppers, olives, and sweet onion layer over tomato sauce and mozzarella for a vibrant meat-free pizza that never feels like a compromise.",
         "ingredients": {
           "list": [
-            "Salsa di pomodoro",
+            "Tomato sauce",
             "Mozzarella",
-            "Peperoni",
-            "Cipolla",
-            "Olive"
+            "Bell peppers",
+            "Onion",
+            "Olives"
           ],
           "icons": [
             "tomato_sauce",
@@ -107,12 +149,133 @@
           ]
         },
         "spiceLevel": "none",
-        "category": ["Vegetarian"],
+        "category": [
+          "Vegetarian"
+        ],
         "calories": 240,
         "price": 8.99,
         "review": 4.1,
         "time": 10,
         "image": "/pizza-image/vegan.png",
+        "discount": null
+      },
+      "diavola": {
+        "id": 6,
+        "name": "Diavola",
+        "description": "A spicy variation with bold flavors and a strong kick. Perfect for those who enjoy an intense taste.",
+        "ingredients": {
+          "list": [
+            "Tomato sauce",
+            "Mozzarella",
+            "Spicy salami"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "pepperoni"
+          ]
+        },
+        "spiceLevel": "hot",
+        "category": [
+          "Special",
+          "Meat"
+        ],
+        "calories": 330,
+        "price": 10.99,
+        "review": 4.7,
+        "time": 15,
+        "image": "/pizza-image/diavola.png",
+        "discount": 15
+      },
+      "veggie_mix": {
+        "id": 7,
+        "name": "Veggie Mix",
+        "description": "A fresh and colorful combination of vegetables over a classic tomato and mozzarella base. Light, vibrant, and full of flavor.",
+        "ingredients": {
+          "list": [
+            "Tomato sauce",
+            "Mozzarella",
+            "Bell peppers",
+            "Onion",
+            "Olives"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "bell_peppers",
+            "onion",
+            "olives"
+          ]
+        },
+        "spiceLevel": "none",
+        "category": [
+          "Vegetarian"
+        ],
+        "calories": 250,
+        "price": 9.49,
+        "review": 4.3,
+        "time": 12,
+        "image": "/pizza-image/veggie.png",
+        "discount": null
+      },
+      "pepperoni_feast": {
+        "id": 8,
+        "name": "Pepperoni Feast",
+        "description": "Loaded with crispy pepperoni slices and melted mozzarella over a rich tomato base. A bold and satisfying choice for pepperoni lovers.",
+        "ingredients": {
+          "list": [
+            "Tomato sauce",
+            "Mozzarella",
+            "Spicy salami"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "pepperoni"
+          ]
+        },
+        "spiceLevel": "medium",
+        "category": [
+          "Special",
+          "Meat"
+        ],
+        "calories": 320,
+        "price": 10.49,
+        "review": 4.6,
+        "time": 15,
+        "image": "/pizza-image/pepperoni-feast.png",
+        "discount": null
+      },
+      "green_garden": {
+        "id": 9,
+        "name": "Green Garden",
+        "description": "A fresh and vibrant pizza loaded with colorful vegetables over a classic tomato and mozzarella base. Light, balanced, and full of natural flavor.",
+        "ingredients": {
+          "list": [
+            "Tomato sauce",
+            "Mozzarella",
+            "Bell peppers",
+            "Onion",
+            "Olives"
+          ],
+          "icons": [
+            "tomato_sauce",
+            "mozzarella",
+            "bell_peppers",
+            "onion",
+            "olives"
+          ]
+        },
+        "spiceLevel": "none",
+        "category": [
+          "Vegetarian",
+          "Special"
+        ],
+        "calories": 240,
+        "price": 9.29,
+        "review": 4.4,
+        "time": 12,
+        "image": "/pizza-image/green-garden.png",
         "discount": null
       }
     }
