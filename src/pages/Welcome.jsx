@@ -31,7 +31,7 @@ export default function Welcome() {
         <MUI.Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", sm: "column", special: "row" },
+            flexDirection: { xs: "column", sm: "column", md: "row" },
             marginTop: "var(--GlobalgapOfItems)",
             gap: "var(--GlobalgapOfInputs)",
             width: "100%",

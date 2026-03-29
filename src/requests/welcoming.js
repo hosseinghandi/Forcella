@@ -8,7 +8,7 @@ export default function getWelcomingData(t) {
     button: {
       login: t("ui.buttons.login"),
       signup: t("ui.buttons.signup"),
-      goToMenu: t("ui.buttons.goToMenu"),
+      enterAsGuest: t("ui.buttons.enterAsGuest"),
     },
   };
   return { ...text };

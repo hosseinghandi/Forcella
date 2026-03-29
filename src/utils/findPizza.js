@@ -16,7 +16,6 @@ export default function findPizza() {
       : [];
   };
   const getOfferedPizza = (data) => {
-    console.log(data);
     return data?.filter((el) => el.discount) ?? null;
   };
   const getInfoPizza = (data, compareTo) => {

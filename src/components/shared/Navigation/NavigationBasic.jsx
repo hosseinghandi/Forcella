@@ -52,7 +52,7 @@ export default function NavigationBasic({ distance, switches }) {
           <UI.SwitchLanguage />
           <UI.ToggleTheme />
           <MUI.Box>
-            <UI.ButtonBasic title={button.goToMenu} to="/menu" shrink={true} />
+            <UI.ButtonBasic title={button.enterAsGuest} to="/menu" shrink={true} />
           </MUI.Box>
         </>
       ) : (

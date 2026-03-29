@@ -30,6 +30,8 @@ export default memo(function PizzaInList({
     [Icons.Info, "var(--black)", "info", "View details"],
   ];
 
+  console.log(finalPrice)
+
   const { toggleLike, toggleCart } = useUpdateUser();
 
   const icons = (list) => {

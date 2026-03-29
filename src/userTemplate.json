@@ -13,8 +13,7 @@
       },
       "pizzaInCartId": "",
       "likedPizzasId": "",
-      "orders": {},
+      "orders": {}
       },
       "pizzaInProcess": {}
     }
-}

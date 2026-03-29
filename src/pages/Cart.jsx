@@ -12,6 +12,7 @@ export default function Cart() {
   const orderdataProvider = useOrderSummery();
   const hasItem = orderdataProvider?.pizzaIdlist?.length !== 0;
 
+  console.log(orderdataProvider)
   const handelInfoRequest = (id) => {
     setInfo((prev) => (prev !== id ? id : null));
   };
