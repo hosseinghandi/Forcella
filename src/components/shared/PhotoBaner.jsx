@@ -12,9 +12,9 @@ export default function PhotoBaner() {
                   sx={{
                     opacity:mode ? 0.1 : 0.2,
                     position:"fixed",
-                    left: {xs:"-50vh", lg:"-30vh"}, 
-                    top: {xs:"-30vh",lg:"-10vh", xl:"-2vh"},
-                    height:"90%",
+                    left: {xs:"-100vw", lg:"-30vw", xl:"-25vw"}, 
+                    top: {xs:"-50vw",lg:"-20vw", xl:"-20vw"},
+                    height:{xs:"160vw",md:"150vw", lg:"70vw",xl:"60vw"},
                     zIndex:-1
                   }}
                 />
