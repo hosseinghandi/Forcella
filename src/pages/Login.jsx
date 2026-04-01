@@ -13,9 +13,12 @@ export default function Login() {
   const { colors } = useTheme();
   const { text, inputsList } = useRequestText("login");
   const { fetchedUserdata } = useUserData();
-  const [show, setshow] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [loading, setIsLoading] = useState(false);
+
+  const isUserExist = (insertedEmail) => {
+    return fetchedUserdata?.personalInfo?.email === insertedEmail 
+  }
 
   const {
     control,
@@ -27,9 +30,19 @@ export default function Login() {
     ),
   });
 
-  const onSubmit = () => {
-    setshow(true);
+  const onSubmit = (fromData) => {
+    const exist = isUserExist(fromData.email)
+    if (exist) {
+      setIsLoading(true);
+        setTimeout(() => {
+          navigate("/menu");
+        }, 2000);
+    } else {
+      setNotFound(true)
+    }
   };
+
+
   const capitalize = (name = "") =>
     name.charAt(0).toUpperCase() + name.slice(1);
 
@@ -97,29 +110,10 @@ export default function Login() {
           >
             {text.forget}
           </MUI.Link>
-
-          <UI.ConfirmationDialog
-            onClose={() => setshow(false)}
-            open={show}
-            actOnPositive={() => {
-              setIsLoading(true);
-              setTimeout(() => {
-                setIsLoading(false);
-                navigate("/menu");
-              }, 2000);
-            }}
-            actOnNegative={() => {
-              setshow(false);
-              setNotFound(true);
-            }}
-            message={text.userCommunication}
-            positiveBtnName={text.button.goToMenu}
-            negativeBtnName={text.button.stayHere}
-          />
           <UI.ButtonBasic
             type="submit"
             title={text.button.login}
-            aria-label="login to your profile"
+            aria-label="login to the app"
           />
         </MUI.Box>
       </UI.LayoutHandeler>

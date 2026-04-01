@@ -1,19 +1,18 @@
 {
-    "default_User": {
-      "personalInfo": {
-        "firstName": "Jack",
-        "lastName": "Walton",
-        "email": "jackiwl@gamil.com",
-        "phone": "334 159 3024",
-        "address": "124 Maple Grove Avenue",
-        "zipcode": "90211",
-        "language": "en",
-        "theme": true, 
-        "optional":"second Floor"
-      },
-      "pizzaInCartId": "",
-      "likedPizzasId": "",
-      "orders": {}
-      },
-      "pizzaInProcess": {}
-    }
+  "default_User": {
+    "personalInfo": {
+      "firstName": "Jack",
+      "lastName": "Walton",
+      "email": "jackiwl@gamil.com",
+      "phone": "334 159 3024",
+      "address": "124 Maple Grove Avenue",
+      "zipcode": "90211",
+      "language": "en",
+      "theme": true,
+      "islogin": false,
+      "optional": "second Floor"
+    },
+    "pizzaInCartId": "",
+    "likedPizzasId": ""
+  }
+}

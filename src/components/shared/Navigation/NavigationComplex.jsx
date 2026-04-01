@@ -63,6 +63,7 @@ export default function NavigationComplex({ filter, navBar, headText }) {
 
       <MUI.Box sx={{ gridArea: "icon", width: "100%" }}>
         <MUI.IconButton
+        disableRipple
           aria-label="Navigate to previous page"
           sx={{
             "&:hover": {

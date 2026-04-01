@@ -87,14 +87,14 @@ export default function Menu() {
         columnSpacing="var(--GlobalgapOfGrids)"
       >
         {!filterkey && (
-          <MUI.Grid size={{ xs: 12, md: 12, special: 4, lg: 3, xl: 2 }}>
+          <MUI.Grid size={{ xs: 12, md: 12, special: 4, lg: 3, xl: 3 }}>
             <UI.SpecialCard offered={pizzaData.offeredPizza} />
           </MUI.Grid>
         )}
         {pizzaData.filteredPizza?.map((pizza) => (
           <MUI.Grid
             key={pizza.name}
-            size={{ xs: 12, sm: 6, md: 6, special: 4, lg: 3, xl: 2 }}
+            size={{ xs: 12, sm: 6, md: 6, special: 4, lg: 3, xl: 3 }}
           >
             <UI.PizzaInList
               name={pizza.name}

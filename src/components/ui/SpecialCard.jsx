@@ -68,7 +68,9 @@ export default memo(function SpecialCard({ offered }) {
             <MUI.Typography variant="pizzaContentBold">
               {text.offer.title}
             </MUI.Typography>
-            <MUI.Typography variant="textNormal">
+            <MUI.Typography 
+            sx={{maxWidth: {xs:"20ch",sm:"30ch", md:"unset"}}}
+            variant="textNormal">
               <strong>{`${offeredPizza.discount}%`}</strong> {text.offer.note}
             </MUI.Typography>
           </MUI.Box>
@@ -86,9 +88,9 @@ export default memo(function SpecialCard({ offered }) {
             ></UI.ButtonBasic>
           </MUI.CardActions>
         </MUI.CardContent>
-
         <MUI.CardMedia
           component="img"
+          loading="lazy"
           alt={`A photo of ${offeredPizza.name} pizza`}
           image={offeredPizza.img}
           sx={{
@@ -101,7 +103,6 @@ export default memo(function SpecialCard({ offered }) {
             objectFit: "contain",
             transformOrigin: "center center",
             animation: "spinIn 50s linear infinite",
-
             "@keyframes spinIn": {
               from: {
                 transform: "rotate(0deg)",
@@ -111,7 +112,7 @@ export default memo(function SpecialCard({ offered }) {
               },
             },
           }}
-        />
+         />                
         {/* inform the user that the item is already exist in the cart */}
         <UI.ConfirmationDialog
           onClose={() => setAlreadyExist(false)}

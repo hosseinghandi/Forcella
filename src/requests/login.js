@@ -10,7 +10,6 @@ export default function getLoginData(t) {
   const text = {
     title: t("pages.login.title"),
     subtitle: t("pages.login.subtitle"),
-    userCommunication: t("pages.login.userCommunication"),
     error: t("pages.login.form.fieldError"),
     inputs: {
       email: fields.email,

@@ -21,6 +21,7 @@ export default function Signup() {
       optional: "",
       firstName: "",
       lastName: "",
+      islogin:true,
       confirmPassword: "",
       password: "",
       phone: "",

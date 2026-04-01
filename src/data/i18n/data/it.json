@@ -64,7 +64,7 @@
         ],
         "calories": 300,
         "price": 9.99,
-        "review": 4.5,
+        "review": 4,
         "time": 15,
         "image": "/pizza-image/peperoni.png",
         "discount": null
@@ -94,7 +94,7 @@
         ],
         "calories": 320,
         "price": 10.99,
-        "review": 3.8,
+        "review": 3,
         "time": 20,
         "image": "/pizza-image/chicken.png",
         "discount": null
@@ -154,7 +154,7 @@
         ],
         "calories": 240,
         "price": 8.99,
-        "review": 4.1,
+        "review": 4,
         "time": 10,
         "image": "/pizza-image/vegan.png",
         "discount": null
@@ -182,7 +182,7 @@
         ],
         "calories": 330,
         "price": 10.99,
-        "review": 4.7,
+        "review": 5,
         "time": 15,
         "image": "/pizza-image/diavola.png",
         "discount": 15
@@ -213,7 +213,7 @@
         ],
         "calories": 250,
         "price": 9.49,
-        "review": 4.3,
+        "review": 4,
         "time": 12,
         "image": "/pizza-image/veggie.png",
         "discount": null
@@ -241,7 +241,7 @@
         ],
         "calories": 320,
         "price": 10.49,
-        "review": 4.6,
+        "review": 3,
         "time": 15,
         "image": "/pizza-image/pepperoni-feast.png",
         "discount": null
@@ -273,7 +273,7 @@
         ],
         "calories": 240,
         "price": 9.29,
-        "review": 4.4,
+        "review": 4,
         "time": 12,
         "image": "/pizza-image/green-garden.png",
         "discount": null

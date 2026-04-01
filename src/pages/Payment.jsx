@@ -17,8 +17,7 @@ export default function Payment() {
   const { pizzaIdlist, pizzaQtyList, totalToPay } = useOrderSummery();
   const formattedDate = new Intl.DateTimeFormat("en-GB").format(new Date());
   const orderKey = Date.now().toString();
-  const { handleOrder, setZeroValue } = useUserUpdate();
-
+  const { handleOrder, setZeroValue} = useUserUpdate();
   // premade order structure
   const orderdata = {
     orderDate: formattedDate,
@@ -59,7 +58,7 @@ export default function Payment() {
       <UI.SharedNavigation variant={"cart"} />
       <UI.LayoutHandeler
         style={{
-          marginTop: { xs: "20vh", lg: "unset" },
+          marginTop: { xs: "5vh", lg: "unset" },
           width: "100%",
           height: { xs: "50vh", lg: "80vh" },
         }}

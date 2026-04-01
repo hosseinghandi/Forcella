@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 export default function SiteWrapper({ children }) {
   const { colors } = useTheme();
   const {t} = useTranslation()
-  console.log()
   return (
     <>
       <Helmet>
@@ -21,7 +20,7 @@ export default function SiteWrapper({ children }) {
           py: {
             xs: "var(--spacing-global-padding-y-mobile)",
             md: "var(--spacing-global-padding-y-tablet)",
-            special: "var(--spacing-global-padding-y-desktop)",
+            special:"var(--spacing-global-padding-y-desktop)",
           },
           px: {
             xs: "var(--spacing-global-padding-x-mobile)",

@@ -1,5 +1,6 @@
 // *role : on request render pizza item for menu*
 import * as MUI from "../../barrels/MUI";
+import * as UI from "../../barrels/UI";
 import * as Icons from "../../barrels/Icons";
 import useUpdateUser from "../../hook/useUserUpdate";
 import { memo } from "react";
@@ -30,16 +31,23 @@ export default memo(function PizzaInList({
     [Icons.Info, "var(--black)", "info", "View details"],
   ];
 
-  console.log(finalPrice)
-
   const { toggleLike, toggleCart } = useUpdateUser();
 
   const icons = (list) => {
     return list.map(([Icon, color, key, aria]) => (
       <MUI.IconButton
+        disableRipple
         aria-pressed={
           key === "like" ? liked : key === "add" ? added : undefined
         }
+        sx={{
+          "&:active": {
+            transform: "scale(0.8)",
+            color: "var(--orange)"
+          },
+          padding: "0",
+          color: "var(--black)",
+        }}
         aria-label={aria}
         key={key}
         onClick={() => {
@@ -54,21 +62,20 @@ export default memo(function PizzaInList({
               return;
           }
         }}
-        sx={{
-          padding: "0",
-          color: "var(--black)",
-        }}
         size="small"
       >
         <Icon
           aria-hidden="true"
           sx={{
+            // keep the scaling only on devices with pointing capabilities
+            "@media (hover: hover)": {
+              "&:hover": {
+                color: "var(--orange)",
+              },
+            },
             color: color,
             width: "var(--iconsize)",
             height: "var(--iconsize)",
-            "&:hover": {
-              color: "var(--orange)",
-            },
           }}
         />
       </MUI.IconButton>
@@ -88,9 +95,12 @@ export default memo(function PizzaInList({
     // main holder
     <MUI.Card
       sx={{
-        "&:hover": {
-          boxShadow: "0 12px 32px rgba(181, 86, 56, 0.6)",
-          scale: 1.05,
+        // keep the scaling only on devices with pointing capabilities
+        "@media (hover: hover)": {
+          "&:hover": {
+            boxShadow: "0 12px 32px rgba(181, 86, 56, 0.6)",
+            scale: 1.03,
+          },
         },
         height: { xs: "var(--cardSizeMainVertical)", sm: "fit-content" },
       }}
@@ -148,6 +158,7 @@ export default memo(function PizzaInList({
             >
               <MUI.CardMedia
                 component="img"
+                loading="lazy"
                 image={img}
                 alt={`A photo of ${name} pizza`}
                 sx={{
@@ -160,6 +171,7 @@ export default memo(function PizzaInList({
           ) : (
             <MUI.CardMedia
               component="img"
+              loading="lazy"
               image={img}
               alt={`A photo of ${name} pizza`}
               sx={{

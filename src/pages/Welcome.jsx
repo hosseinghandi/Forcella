@@ -11,6 +11,8 @@ export default function Welcome() {
         style={{
           marginTop: { xs: "10vh", lg: "unset" },
           width: "100%",
+          // keep proper height on device "375px"
+          minHeight:{xs:"500px"},
           height: { xs: "50vh", lg: "85vh" },
         }}
       >
@@ -33,7 +35,7 @@ export default function Welcome() {
             display: "flex",
             flexDirection: { xs: "column", sm: "column", md: "row" },
             marginTop: "var(--GlobalgapOfItems)",
-            gap: "var(--GlobalgapOfInputs)",
+            gap: "var(--GlobalgapOfGrids)",
             width: "100%",
           }}
         >

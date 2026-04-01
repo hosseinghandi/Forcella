@@ -1,4 +1,4 @@
-// role: take props and make an empty list 
+// role: take props and make an empty list
 // announce to the user such as empty cart, empty wishlit
 import * as MUI from "../../barrels/MUI";
 import * as UI from "../../barrels/UI";
@@ -13,6 +13,7 @@ export default function EmptyList({ image, title, message, buttontitle }) {
       <MUI.Box
         role="status"
         sx={{
+          position:"relative",
           display: "flex",
           flexDirection: "column",
           gap: "var(--GlobalgapOfGrids)",
@@ -23,7 +24,8 @@ export default function EmptyList({ image, title, message, buttontitle }) {
         <MUI.Box
           component="img"
           alt=""
-          sx={{ width: "30vh", height: "30vh" }}
+          loading="eager"
+          sx={{ width: "30vh", height: "30vh"}}
           src={image}
         />
         <MUI.Typography variant="emptyCart">{title}</MUI.Typography>

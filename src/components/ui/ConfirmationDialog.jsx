@@ -17,6 +17,8 @@ export default function ConfirmationDialog({
     aria-labelledby="dialog-message"
       PaperProps={{
         sx: {
+          maxWidth:{xs:"85vw",md:"500px"},
+          minWidth:"300px",
           padding: "var(--cardPaddingY) var(--cardPaddingX)",
           borderRadius: "25px",
         },
@@ -24,7 +26,6 @@ export default function ConfirmationDialog({
       onClose={onClose}
       open={open}
       fullWidth
-      maxWidth="sm"
     >
       <MUI.CardActions
         sx={{
@@ -37,21 +38,24 @@ export default function ConfirmationDialog({
         }}
       >
         <MUI.Typography variant="textNormal" id="dialog-message"> {message}</MUI.Typography>
-        <MUI.Box sx={{ display: "flex", flexDirection: "row", gap: 8 }}>
+        <MUI.Box sx={{ 
+          display: "flex", 
+          flexDirection: "row", 
+          justifyContent:"space-between",
+          gap:{xs:"10px"},
+          alignItems:"center",
+          width:"100%",}}>
           {
             positiveBtnName &&
           <UI.ButtonBasic
-            autoFocus
             title={positiveBtnName}
             task={actOnPositive}
-            shrink={true}
           />
           }
           {negativeBtnName &&
             <UI.ButtonBasic
             title={negativeBtnName}
             task={actOnNegative}
-            shrink={true}
           />}
         </MUI.Box>
       </MUI.CardActions>

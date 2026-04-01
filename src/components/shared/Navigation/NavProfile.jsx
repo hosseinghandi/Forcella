@@ -6,7 +6,7 @@ import * as Icons from "../../../barrels/Icons";
 import { useTheme } from "../../../providers/Theme";
 import { useUserData } from "../../../providers/UserData";
 import useRequestText from "../../../hook/useRequestText";
-
+import useUpdateUser from "../../../hook/useUserUpdate";
 export default function NavProfile({
   exit,
   setExit,
@@ -22,6 +22,12 @@ export default function NavProfile({
   const location = useLocation();
   const { text } = useRequestText("profile");
 
+  const {setLoginUser} = useUpdateUser()
+  // synce timing 
+  const handleGuestExit = async () => {
+    await setLoginUser(false)
+    navigate("/welcome")
+  }
   return (
     <>
       {/* navigation main holder */}
@@ -71,6 +77,7 @@ export default function NavProfile({
           }}
         >
           <MUI.IconButton
+          disableRipple
             aria-label="Navigate to previous page"
             sx={{
               "&:hover": {
@@ -100,7 +107,7 @@ export default function NavProfile({
             display: "flex",
             flexDirection: "row",
             width: "100%",
-            padding: "0 60px",
+            padding: {xs:"0 40px", special:"0 60px"},
             justifyContent: "flex-end",
             alignItems: "center",
             gap: "50px",
@@ -157,7 +164,7 @@ export default function NavProfile({
         onClose={() => setExit(false)}
         open={exit}
         message={text.logOut.message}
-        actOnPositive={() => navigate("/welcome")}
+        actOnPositive={handleGuestExit}
         positiveBtnName={text.button.seeYouSoon}
         actOnNegative={() => setExit(false)}
         negativeBtnName={text.button.no_stay}

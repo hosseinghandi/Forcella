@@ -30,6 +30,7 @@ export default function PizzaInfo({ id, setInfo, dialog }) {
       <MUI.Grid key={el ?? index} size="auto">
         <MUI.Box
           component={"img"}
+          loading="lazy"
           sx={{ width: "calc(var(--iconsize) * 2 )" }}
           alt={`${el} ingredient`}
           src={`/pizza-gradient/${el}.png`}
@@ -66,6 +67,7 @@ export default function PizzaInfo({ id, setInfo, dialog }) {
         <>
           <MUI.Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <MUI.IconButton
+              disableRipple
               aria-label="close"
               onClick={() => setInfo(null)}
               sx={{
@@ -117,6 +119,7 @@ export default function PizzaInfo({ id, setInfo, dialog }) {
                 component="img"
                 src={image}
                 alt={`A picture of ${name} pizza`}
+                loading="lazy"
                 sx={{
                   objectFit: "contain",
                 }}
@@ -208,13 +211,13 @@ export default function PizzaInfo({ id, setInfo, dialog }) {
           padding: "var(--cardPaddingY) var(--cardPaddingX)",
           borderRadius: "25px",
           maxWidth: {
-            xs: "80vw",
+            xs: "86vw",
             sm: "65vw",
             md: "80%",
             special: "70%",
             xl: "50%",
           },
-          minWidth: "375px",
+          minWidth:{xs:"85vw", sm:"unset"},
         },
       }}
       onClose={() => setInfo(null)}

@@ -46,6 +46,7 @@ export default function BubbleToggle({ dataList }) {
           const isActive = index === i;
           return (
             <MUI.IconButton
+              disableRipple
               role="tab"
               aria-label={`Show item ${i + 1}`}
               aria-selected={isActive}

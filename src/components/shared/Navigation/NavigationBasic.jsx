@@ -5,11 +5,19 @@ import * as Icons from "../../../barrels/Icons";
 import * as UI from "../../../barrels/UI";
 import { useTheme } from "../../../providers/Theme";
 import useRequestText from "../../../hook/useRequestText";
+import useUpdateUser from "../../../hook/useUserUpdate";
 export default function NavigationBasic({ distance, switches }) {
   const { colors } = useTheme();
   const { button } = useRequestText("welcoming");
-
+  const {setLoginUser} = useUpdateUser()
   const navigate = useNavigate();
+  
+  // wait until firebase chanegs properly the value
+  const handleGuestEnter = async () => {
+    await setLoginUser(true);
+    navigate("/menu");
+  };
+  
   return (
     <MUI.Box
       component="nav"
@@ -20,9 +28,7 @@ export default function NavigationBasic({ distance, switches }) {
         ...(distance
           ? {
               justifyContent: { xs: "space-between" },
-
               flexDirection: { xs: "row-reverse" },
-
               gap: "var(--gapOfLogoAndArrow)",
               alignItems: "flex-end",
             }
@@ -52,11 +58,15 @@ export default function NavigationBasic({ distance, switches }) {
           <UI.SwitchLanguage />
           <UI.ToggleTheme />
           <MUI.Box>
-            <UI.ButtonBasic title={button.enterAsGuest} to="/menu" shrink={true} />
+            <UI.ButtonBasic 
+            title={button.enterAsGuest} 
+            task={handleGuestEnter}
+            shrink={true}/>
           </MUI.Box>
         </>
       ) : (
         <MUI.IconButton
+        disableRipple
           aria-label="Navigate to previous page"
           sx={{
             "&:hover": {

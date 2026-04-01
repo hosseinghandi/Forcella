@@ -157,9 +157,9 @@
       "title": "Benvenuto alla Pizzeria Forcella",
       "content": {
         "highlights": [
+          "La pizza viene cotta in un forno a legna tradizionale a temperature molto elevate, spesso superiori ai 450°C. Questo calore intenso cuoce la pizza in soli 60–90 secondi, permettendo all'impasto di lievitare rapidamente e sviluppare la sua caratteristica consistenza morbida e ariosa. Il risultato è un cornicione leggero con bordi leggermente bruciacchiati e un delicato aroma affumicato.",
           "La pizza napoletana è nata a Napoli e nel corso del tempo è diventata uno dei simboli più celebri della cucina tradizionale italiana. La sua storia abbraccia secoli e riflette la semplicità e l'autenticità delle tradizioni culinarie locali. Oggi è riconosciuta in tutto il mondo come icona culturale e gastronomica dell'Italia.",
-          "Viene preparata con ingredienti selezionati con cura — pomodori San Marzano, mozzarella fresca, olio extravergine di oliva e basilico profumato. Ogni ingrediente svolge un ruolo essenziale nel creare il sapore equilibrato e autentico della pizza. L'attenzione è sempre rivolta alla freschezza, alla qualità e al rispetto dei metodi di preparazione tradizionali.",
-          "La pizza viene cotta in un forno a legna tradizionale a temperature molto elevate, spesso superiori ai 450°C. Questo calore intenso cuoce la pizza in soli 60–90 secondi, permettendo all'impasto di lievitare rapidamente e sviluppare la sua caratteristica consistenza morbida e ariosa. Il risultato è un cornicione leggero con bordi leggermente bruciacchiati e un delicato aroma affumicato."
+          "Viene preparata con ingredienti selezionati con cura — pomodori San Marzano, mozzarella fresca, olio extravergine di oliva e basilico profumato. Ogni ingrediente svolge un ruolo essenziale nel creare il sapore equilibrato e autentico della pizza. L'attenzione è sempre rivolta alla freschezza, alla qualità e al rispetto dei metodi di preparazione tradizionali."
         ]
       }
     },
@@ -174,9 +174,8 @@
         "links": {
           "forgotPassword": "Hai dimenticato la password?"
         },
-        "fieldError": "Nessun account trovato con questa email."
-      },
-      "userCommunication": "Questa pagina di accesso fa parte di una demo e non si collega a un database reale. Se clicchi su \"Vai al menu\", verrai portato direttamente al menu per esplorare il resto dell'app. Se scegli \"Rimani qui\", resterai su questa pagina e verrà mostrato il messaggio \"Utente non trovato\", poiché non esistono account reali in questa demo."
+        "fieldError": "Nessun account trovato con le informazioni fornite. Prova a inserire i dati usati durante la registrazione."
+      }
     },
     "signup": {
       "title": "Crea un account",
@@ -302,6 +301,7 @@
       "submit": "Salva modifiche",
       "pay": "Paga",
       "add": "Aggiungi articoli",
+      "goToMenu": "Vai al Menu",
       "enterAsGuest": "Entra come ospite",
       "stayHere": "Rimani qui",
       "gotIt": "Ho capito",

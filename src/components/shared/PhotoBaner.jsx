@@ -1,7 +1,8 @@
-// role: rendering and controlling the size of background pizza 
 import pizzaSlice from "/pizza-image/margherita.png";
-import * as MUI from "../../barrels/MUI"
+import * as UI from "../../barrels/UI";
+import * as MUI from "../../barrels/MUI";
 import { useTheme } from "../../providers/Theme";
+
 export default function PhotoBaner() {
     const {mode} = useTheme()
     return (
@@ -9,6 +10,7 @@ export default function PhotoBaner() {
                   component="img"
                   src={pizzaSlice}
                   aria-hidden="true"
+                  loading="eager"
                   sx={{
                     opacity:mode ? 0.1 : 0.2,
                     position:"fixed",

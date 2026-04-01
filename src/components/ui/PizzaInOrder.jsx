@@ -32,6 +32,7 @@ export default function PizzaInOrder({
   const icons = (list) => {
     return list.map(([Icon, key, aria]) => (
       <MUI.IconButton
+        disableRipple
         aria-label={aria}
         key={key}
         onClick={() => {
@@ -47,15 +48,28 @@ export default function PizzaInOrder({
           }
         }}
         sx={{
-          "&:hover": {
-            color: "var(--orange)",
+          "&:active": {
+            transform: "scale(0.8)",
+            color: "var(--orange)"
           },
           padding: "0",
           color: "var(--dark)",
         }}
         size="small"
       >
-        <Icon />
+        <Icon 
+        aria-hidden="true"
+          sx={{
+            // only on devices with pointing capabilities
+            "@media (hover: hover)": {
+              "&:hover": {
+                color: "var(--orange)",
+              },
+            },
+            color: "var(--black-bg)",
+            width: "var(--iconsize)",
+            height: "var(--iconsize)",
+          }}/>
       </MUI.IconButton>
     ));
   };
@@ -63,11 +77,13 @@ export default function PizzaInOrder({
   return (
     <MUI.Card
       sx={{
-        "&:hover": {
-          boxShadow: "0 12px 32px rgba(181, 86, 56, 0.6)",
-          scale: 1.05,
+        // keep the scaling only on devices with pointing capabilities
+        "@media (hover: hover)": {
+          "&:hover": {
+            boxShadow: "0 12px 32px rgba(181, 86, 56, 0.6)",
+            scale: 1.03,
+          }
         },
-
         flexDirection: "column",
         justifyContent: "space-between",
         height: { xs: "fit-content", md: "fit-content" },
@@ -97,6 +113,7 @@ export default function PizzaInOrder({
           <MUI.CardMedia
             component="img"
             image={img}
+            loading="lazy"
             alt={`A photo of ${name} pizza`}
             sx={{
               width: {

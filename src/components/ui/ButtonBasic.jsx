@@ -60,6 +60,7 @@ export default function ButtonBasic({
         borderRadius: "25px",
         backgroundColor: "#B55638",
         color: "var(--white-text)",
+        whiteSpace:"nowrap",
         opacity: (isActive ?? true) ? 1 :  "20%",
         ...(shrink && { padding: "1px 10px" }),
       }}

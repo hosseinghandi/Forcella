@@ -118,6 +118,12 @@ export default function useUpdateUser() {
     });
   };
 
+  const setLoginUser = (value) => {
+    return writeUser({
+      "personalInfo/islogin": value,
+    });
+  }
+
   return {
     setZeroValue,
     updateProfile,
@@ -128,5 +134,6 @@ export default function useUpdateUser() {
     handleOrder,
     toggleTheme,
     changeLanguage,
+    setLoginUser
   };
 }

@@ -78,6 +78,7 @@ export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
         left: { xs: "0" },
         bottom: { xs: "20px" },
         width: "100%",
+        // maxWidth:{xs:"375px"},
         px: {
           xs: "var(--spacing-global-padding-x-mobile)",
           md: "var(--spacing-global-padding-x-tablet)",
@@ -110,6 +111,9 @@ export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
               aria-current={active ? "page" : undefined}
               to={link}
               key={page}
+              style={{
+                WebkitTapHighlightColor: "transparent",
+              }}
             >
               <MUI.Box
                 sx={{

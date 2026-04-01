@@ -157,9 +157,9 @@
       "title": "Welcome to Pizzeria Forcella",
       "content": {
         "highlights": [
+          "The pizza is baked in a traditional wood-fired oven at extremely high temperatures, often exceeding 450°C. This intense heat cooks the pizza in just 60–90 seconds, allowing the dough to rise quickly and develop its characteristic soft, airy texture. The result is a light crust with slightly charred edges and a delicate smoky flavor.",
           "Neapolitan pizza originated in Naples, Italy, and over time became one of the most celebrated symbols of traditional Italian cuisine. Its history spans centuries and reflects the simplicity and authenticity of local culinary traditions. Today it is recognized worldwide as a cultural and gastronomic icon of Italy.",
-          "It is prepared using carefully selected ingredients — San Marzano tomatoes, fresh mozzarella, extra virgin olive oil, and fragrant basil. Each ingredient plays an essential role in creating the balanced, authentic flavor of the pizza. The focus is always on freshness, quality, and respect for traditional preparation methods.",
-          "The pizza is baked in a traditional wood-fired oven at extremely high temperatures, often exceeding 450°C. This intense heat cooks the pizza in just 60–90 seconds, allowing the dough to rise quickly and develop its characteristic soft, airy texture. The result is a light crust with slightly charred edges and a delicate smoky flavor."
+          "It is prepared using carefully selected ingredients — San Marzano tomatoes, fresh mozzarella, extra virgin olive oil, and fragrant basil. Each ingredient plays an essential role in creating the balanced, authentic flavor of the pizza. The focus is always on freshness, quality, and respect for traditional preparation methods."
         ]
       }
     },
@@ -174,9 +174,8 @@
         "links": {
           "forgotPassword": "Forgot your password?"
         },
-        "fieldError": "No account found with this email."
-      },
-      "userCommunication": "This login page is part of a demo and does not connect to a real user database. If you click \"Go to menu\", you will be taken directly to the menu to explore the rest of the app. If you choose \"Stay here\", you will remain on this page and a \"User not found\" message will be displayed, since no real user accounts exist in this demo."
+        "fieldError": "No account found with the provided information. Please try the details you used when registering."
+      }
     },
     "signup": {
       "title": "Create an account",
@@ -302,6 +301,7 @@
       "submit": "Save changes",
       "pay": "Pay",
       "add": "Add items",
+      "goToMenu": "Go to Menu",
       "enterAsGuest": "Enter as guest",
       "stayHere": "Stay here",
       "gotIt": "Got it",
