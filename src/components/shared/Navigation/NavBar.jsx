@@ -112,6 +112,8 @@ export default function NavBar({ current, pizzaLikedNum, pizzaInCartNum }) {
               to={link}
               key={page}
               style={{
+                textDecoration: "none",
+                outline: "none",
                 WebkitTapHighlightColor: "transparent",
               }}
             >

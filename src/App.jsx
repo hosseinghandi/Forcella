@@ -12,13 +12,11 @@ export default function App() {
         <providers.UserData>
           <AppInitializer>
             <providers.Theme>
-              <providers.Language>
-                <providers.PizzaData>
-                  <UI.SiteWrapper>
-                    <AppRoutes />
-                  </UI.SiteWrapper>
-                </providers.PizzaData>
-              </providers.Language>
+              <providers.PizzaData>
+                <UI.SiteWrapper>
+                  <AppRoutes />
+                </UI.SiteWrapper>
+              </providers.PizzaData>
             </providers.Theme>
           </AppInitializer>
         </providers.UserData>

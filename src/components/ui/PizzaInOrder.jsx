@@ -4,6 +4,7 @@ import * as UI from "../../barrels/UI";
 import * as Icons from "../../barrels/Icons";
 import useUpdateUser from "../../hook/useUserUpdate";
 import useRequestText from "../../hook/useRequestText";
+import { number } from "motion";
 export default function PizzaInOrder({
   pizzaData,
   info,
@@ -18,8 +19,9 @@ export default function PizzaInOrder({
   const id = pizzaData.id;
 
   const finalPrice = discount
-    ? (price * (1 - discount / 100)).toFixed(2)
-    : price.toFixed(2);
+    ? Number(((price * (1 - discount / 100) * count )).toFixed(2))
+    : Number((price * count).toFixed(2));
+  
 
   const { changeQuantity, removeItem } = useUpdateUser();
 
@@ -180,23 +182,22 @@ export default function PizzaInOrder({
                 gap: 2,
               }}
             >
+              {!!discount &&
               <MUI.Typography
                 variant="pizzaContentBold"
                 sx={{
-                  ...(!!discount && {
+                  
                     textDecoration: "line-through",
                     textDecorationColor: "var(--orange)",
                     textDecorationThickness: 2,
-                  }),
                 }}
               >
                 {`${price}€`}
               </MUI.Typography>
-              {!!discount && (
+              }
                 <MUI.Typography variant="pizzaContentBold">
-                  {`${finalPrice}€`}
+                  {`€${finalPrice === 0 ? price : finalPrice}`}
                 </MUI.Typography>
-              )}
             </MUI.Box>
           </MUI.Box>
         </MUI.CardContent>

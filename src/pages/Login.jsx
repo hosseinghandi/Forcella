@@ -7,6 +7,7 @@ import { useTheme } from "../providers/Theme";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useUserData } from "../providers/UserData";
+import useUpdateUser from "../hook/useUserUpdate";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function Login() {
   const { fetchedUserdata } = useUserData();
   const [notFound, setNotFound] = useState(false);
   const [loading, setIsLoading] = useState(false);
-
+  const {setLoginUser} = useUpdateUser()
   const isUserExist = (insertedEmail) => {
     return fetchedUserdata?.personalInfo?.email === insertedEmail 
   }
@@ -33,6 +34,7 @@ export default function Login() {
   const onSubmit = (fromData) => {
     const exist = isUserExist(fromData.email)
     if (exist) {
+      setLoginUser(true)
       setIsLoading(true);
         setTimeout(() => {
           navigate("/menu");

@@ -5,7 +5,8 @@
 
 import { ref, set } from "firebase/database";
 import { db, auth } from "../firebase";
-
+import i18n from "../utils/i18n";
+import { LandingPage } from "../barrels/UI";
 function useAddUser() {
   async function addUser(formData) {
     try {
@@ -17,7 +18,7 @@ function useAddUser() {
         orders: {},
         personalInfo: {
           ...rest,
-          language: "it",
+          language: i18n.language,
           theme: false,
         },
         pizzaInCartId: "",
@@ -28,7 +29,7 @@ function useAddUser() {
       const userRef = ref(db, `ForcellaUserDataBase/${uid}`);
       await set(userRef, userDataPreparation);
     } catch (err) {
-      console.log(err);
+      console.warn(err);
     }
   }
   return addUser;
