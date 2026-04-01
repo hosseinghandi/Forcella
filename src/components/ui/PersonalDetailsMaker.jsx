@@ -2,6 +2,7 @@
 // create meaningful UI
 import * as MUI from "../../barrels/MUI";
 export default function PersonalDetailsMaker({ list }) {
+  
   return list.map(([data, Icon, label]) => (
     <MUI.Card
       key={label}
@@ -37,14 +38,17 @@ export default function PersonalDetailsMaker({ list }) {
             component="span"
             variant="textProfileBold"
             sx={{
-              width: { xs: "clamp(6.88rem, 6.91vi + 5.25rem, 15.63rem)" },
+              width:"clamp(6.88rem, 6.91vi + 5.25rem, 15.63rem)",
             }}
           >
-            {label.toUpperCase()}
+            {label}
           </MUI.Typography>
           <MUI.Typography
             variant="textNormal"
+            component="p"
             sx={{
+              overflowWrap: "anywhere",
+              maxWidth:{xs:"40vw", sm:"unset"},
               flex: 1,
             }}
           >

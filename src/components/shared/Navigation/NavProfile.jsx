@@ -41,14 +41,11 @@ export default function NavProfile({
           gridTemplateAreas: {
             xs: `
                 "iconLogo editMode"
-                "nav nav"
               `,
-            md: `"iconLogo editMode nav"`,
             special: `"iconLogo editMode nav"`,
           },
           gridTemplateColumns: {
             xs: "repeat(2, 1fr)",
-            md: "max-content 1fr 1fr",
             special: "max-content 1fr 1.45fr",
             lg: "max-content 1fr 1.3fr",
             xl: "max-content 1fr 40vw",

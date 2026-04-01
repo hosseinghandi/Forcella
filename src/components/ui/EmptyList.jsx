@@ -13,7 +13,6 @@ export default function EmptyList({ image, title, message, buttontitle }) {
       <MUI.Box
         role="status"
         sx={{
-          position:"relative",
           display: "flex",
           flexDirection: "column",
           gap: "var(--GlobalgapOfGrids)",
@@ -29,7 +28,7 @@ export default function EmptyList({ image, title, message, buttontitle }) {
           src={image}
         />
         <MUI.Typography variant="emptyCart">{title}</MUI.Typography>
-        <MUI.Typography variant="textNormal">{message}</MUI.Typography>
+        <MUI.Typography component="p" variant="textNormal">{message}</MUI.Typography>
         <UI.ButtonBasic title={buttontitle} to={"/menu"} shrink={true} />
       </MUI.Box>
     </UI.LayoutHandeler>
