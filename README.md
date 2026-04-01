@@ -11,12 +11,12 @@ The app includes:
 - Login & signup
 - Dynamic pizza menu
 - Wishlist
-- Cart & checkout
+- Cart & Payment
 - Editable profile
 - Dark / light mode
 - Multi-language support (**English & Italian**)
 
-Users can either **continue as a guest** with a generated username or create an account using **Firebase authentication**.
+You can can either **continue as a guest** with a generated username or create an account using **Firebase authentication**.
 ## Live Demo
 https://forcella.netlify.app/
 
@@ -31,8 +31,16 @@ This project helped me improve in:
 - responsive design
 - complex conditional UI handling
 
+Things I want to explore further in future projects:
 
-## 🛠️ Tech Stack
+- Better project planning and data modeling before coding
+- Skeleton loaders for better loading UX
+- Zustand for scalable state management
+- More advanced route guards and protected routes
+- Better responsive grid and flex layouts
+- More advanced performance optimization patterns
+
+## Tech Stack
 - React
 - React Router
 - React Hook Form
