@@ -9,7 +9,7 @@ export default function Welcome() {
       <UI.SharedNavigation variant={"welcoming"} />
       <UI.LayoutHandeler
         style={{
-          marginTop: { xs: "10vh", lg: "unset" },
+          marginTop: { xs: "10vh", md: "unset" },
           width: "100%",
           // keep proper height on device "375px"
           minHeight:{xs:"500px"},
