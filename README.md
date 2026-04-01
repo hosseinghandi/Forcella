@@ -1,16 +1,46 @@
-# React + Vite
+# Forcella
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **React + Material UI pizza ordering app** built with a strong focus on **clean architecture, reusable components, accessibility, and real-world UX flows**.
 
-Currently, two official plugins are available:
+The app includes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Welcome page
+- Login & signup
+- Dynamic pizza menu
+- Wishlist
+- Cart & checkout
+- Editable profile
+- Dark / light mode
+- Multi-language support (**English & Italian**)
 
-## React Compiler
+Users can either **continue as a guest** with a generated username or create an account using **Firebase authentication**.
+## Live Demo
+https://forcella.netlify.app/
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project helped me improve in:
 
-## Expanding the ESLint configuration
+- reusable component architecture
+- scalable routing
+- state management
+- custom hooks
+- Firebase integration
+- accessibility best practices
+- responsive design
+- complex conditional UI handling
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 🛠️ Tech Stack
+- React
+- React Router
+- React Hook Form
+- Material UI
+- Firebase
+- i18next
+
+## ⚙️ Installation
+```bash
+git clone https://github.com/yourusername/forcella.git
+cd forcella
+npm install
+npm run dev
+```
