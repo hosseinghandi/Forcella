@@ -1,4 +1,5 @@
 # Forcella
+<img width="1013" height="609" alt="image" src="https://github.com/user-attachments/assets/1f86d7ee-38f3-4b8d-9e7f-1aad25bf9845" />
 
 A modern **React + Material UI pizza ordering app** built with a strong focus on **clean architecture, reusable components, accessibility, and real-world UX flows**.
 
