@@ -40,8 +40,8 @@ export const appTheme = createTheme({
     },
     textError: {
       color: "var(--red)",
-      fontSize: "var(--textNormalTitles)",
-      fontWeight: 600,
+      fontSize: "var(--textNormal)",
+      fontWeight: 400,
     },
     emptyCart: {
       color: "var(--orange)",

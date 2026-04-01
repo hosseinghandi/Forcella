@@ -75,16 +75,15 @@ export default function Login() {
             role="status"
             aria-live="polite"
             sx={{
-              minHeight: "60px",
               display: "flex",
               flexDirection: "column",
               gap: "calc(var(--GlobalgapOfItems)/2)",
             }}
           >
+            {notFound && <UI.Error message={text.error} />}
             <MUI.Typography component={"p"} variant="textNormal">
               {text.subtitle}
             </MUI.Typography>
-            {notFound && <UI.Error message={text.error} />}
           </MUI.Box>
           <MUI.Box
             sx={{
