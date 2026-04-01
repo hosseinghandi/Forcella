@@ -14,7 +14,7 @@ export default function App() {
             <providers.Theme>
               <providers.PizzaData>
                 <UI.SiteWrapper>
-                  <AppRoutes />
+                  <AppRoutes/>
                 </UI.SiteWrapper>
               </providers.PizzaData>
             </providers.Theme>
